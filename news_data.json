@@ -1,0 +1,70 @@
+{
+  "date": "20260504",
+  "updated_at": "2026-05-04T06:04:23.944Z",
+  "note": "Populated daily by trading signals task",
+  "tickers": {
+    "NVDA": {
+      "top_news": []
+    },
+    "AMD": {
+      "top_news": []
+    },
+    "AVGO": {
+      "top_news": []
+    },
+    "QCOM": {
+      "top_news": []
+    },
+    "MU": {
+      "top_news": []
+    },
+    "ASML": {
+      "top_news": []
+    },
+    "TSM": {
+      "top_news": []
+    },
+    "AMAT": {
+      "top_news": []
+    },
+    "LRCX": {
+      "top_news": []
+    },
+    "MSFT": {
+      "top_news": []
+    },
+    "GOOGL": {
+      "top_news": []
+    },
+    "META": {
+      "top_news": []
+    },
+    "AMZN": {
+      "top_news": []
+    },
+    "PLTR": {
+      "top_news": []
+    },
+    "ORCL": {
+      "top_news": []
+    },
+    "SOXL": {
+      "top_news": []
+    },
+    "SMH": {
+      "top_news": []
+    },
+    "QQQ": {
+      "top_news": []
+    },
+    "TECL": {
+      "top_news": []
+    },
+    "ARKK": {
+      "top_news": []
+    },
+    "1570.T": {
+      "top_news": []
+    }
+  }
+}
