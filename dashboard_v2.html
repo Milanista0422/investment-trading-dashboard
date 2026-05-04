@@ -800,7 +800,7 @@
      SECTOR ETF TAB BUNDLE
      このファイルは daily-trading-signals-prod タスクで dashboard_v2.html に
      verbatim 埋め込みされます。直接編集することで ETF タブの内容を更新できます。
-     Chart.js が必要です（dashboard_v2.html の <head> で読み込むこと）。
+     Chart.js が必要です（dashboard_v2.html の <head> で読み込　こと）。
      ============================================================ -->
 
 <!-- ===== Sector ETF CSS ===== -->
@@ -813,23 +813,22 @@
 .refresh-dot{width:8px;height:8px;border-radius:50%;background:#3fb950;display:inline-block;margin-right:4px;flex-shrink:0}
 .refresh-dot.spin{animation:spin 1s linear infinite;background:#f0883e}
 @keyframes spin{to{transform:rotate(360deg)}}
-.chart-wrap{position:relative;height:300px;margin-bottom:12px}
-#main-chart{width:100%!important}
-#chart-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8b949e;font-size:13px}
-.legend-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;font-size:11px;font-weight:600;color:#8b949e;cursor:pointer;transition:.15s}
-.legend-item:hover{border-color:#58a6ff;color:#e6edf3}
-.legend-item.hidden{opacity:.4}
-.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.s-chart-wrap{position:relative;height:260px;margin-bottom:12px}
+.s-chart-wrap canvas{width:100%!important}
+.s-chart-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8b949e;font-size:13px}
+.s-legend-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;font-size:11px;color:#8b949e}
+.s-legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;font-size:11px;font-weight:600;color:#8b949e;cursor:pointer;transition:.15s}
+.s-legend-item:hover{border-color:#58a6ff;color:#e6edf3}
+.s-legend-item.s-hidden{opacity:.4}
+.s-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .sort-wrap{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:11px;color:#8b949e}
 .sort-btn{padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:11px;cursor:pointer;transition:.15s}
 .sort-btn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
 .sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:12px}
-.sector-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;cursor:pointer;transition:border-color .15s}
+.sector-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;transition:border-color .15s}
 .sector-card:hover{border-color:#58a6ff}
-.sector-card.active-card{border-color:#58a6ff;background:#1a2332}
 .sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
-.sc-name-ja{font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:3px;line-height:1.2}
+.sc-name-ja{font-size:13px;font-weight:700;color:#e6edf3;margin-bottom:3px;line-height:1.2}
 .sc-ticker-sm{font-size:11px;font-weight:600;color:#58a6ff}
 .sc-pct{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
 .sc-price{font-size:11px;color:#8b949e;font-variant-numeric:tabular-nums}
@@ -841,10 +840,12 @@
 <!-- ===== Sector ETF Tab Pane ===== -->
 <div id="tab-sector" class="tab-panel">
   <div style="max-width:900px;margin:0 auto;padding:16px">
+
+    <!-- Header -->
     <div class="s-header">
       <div style="display:flex;align-items:center;gap:10px">
         <span class="refresh-dot" id="s-refresh-dot"></span>
-        <h1>🇺🇸 US Sector ETF Dashboard</h1>
+        <h1>US Sector ETF Dashboard</h1>
       </div>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <div id="period-btns" class="periods">
@@ -854,164 +855,345 @@
           <button class="period-btn" data-range="ytd">YTD</button>
           <button class="period-btn" data-range="1y">1Y</button>
         </div>
-        <button class="period-btn" onclick="sectorLoadAll()" style="gap:4px">⟳ 更新</button>
+        <button class="period-btn" onclick="sectorLoadAll()">Refresh</button>
       </div>
     </div>
+
+    <!-- Update time -->
     <div style="font-size:11px;color:#8b949e;margin-bottom:8px">
-      <span id="s-last-update">—</span>&nbsp;&nbsp;
-      <span id="s-refresh-label">読み込み中...</span>
+      <span id="s-last-update">--</span>&nbsp;&nbsp;
+      <span id="s-refresh-label">Loading...</span>
     </div>
-    <div class="chart-wrap">
+
+    <!-- Line chart -->
+    <div class="s-chart-wrap">
       <canvas id="s-main-chart"></canvas>
-      <div id="s-chart-loading">データを取得中...</div>
+      <div class="s-chart-loading" id="s-chart-loading">Fetching data...</div>
     </div>
-    <div class="legend-wrap" id="s-legend">正規化パフォーマンス比較（期間開始=100）　クリックで表示/非表示</div>
+
+    <!-- Legend -->
+    <div class="s-legend-wrap" id="s-legend">Normalized performance (period start=100). Click to show/hide.</div>
+
+    <!-- Sort -->
     <div class="sort-wrap">
-      並び替え:
-      <button class="sort-btn active" data-sort="perf">期間パフォーマンス</button>
-      <button class="sort-btn" data-sort="price">現在価格</button>
-      <button class="sort-btn" data-sort="ticker">ティッカー</button>
+      Sort:
+      <button class="sort-btn active" data-sort="perf">Performance</button>
+      <button class="sort-btn" data-sort="price">Price</button>
+      <button class="sort-btn" data-sort="ticker">Ticker</button>
     </div>
+
+    <!-- Sector cards -->
     <div class="sector-grid" id="s-sector-grid"></div>
+
+    <!-- Error area -->
     <div id="s-error-area"></div>
+
+    <!-- Footer -->
     <div class="s-footer">
-      ⚠️ データはYahoo Finance API経由で取得。遅延がある場合があります。投資判断はご自身でお行いください。<br>
-      このダッシュボードはページを開くたびに自動で最新データに更新されます。
+      Data via Yahoo Finance API. Delays may occur. Invest at your own risk.<br>
+      Auto-refreshes on open and every 5 minutes.
     </div>
+
   </div>
 </div>
 
 <!-- ===== Sector ETF JavaScript ===== -->
 <script id="sector-script">
 (function() {
-  const SECTORS = [
-    {ticker:'SPY',  jaName:'S&P500 全市場',  color:'#6366f1'},
-    {ticker:'QQQ',  jaName:'ナスダック100',   color:'#8b5cf6'},
-    {ticker:'XLK',  jaName:'テクノロジー',    color:'#3b82f6'},
-    {ticker:'SOXX', jaName:'半導体',          color:'#06b6d4'},
-    {ticker:'XLC',  jaName:'通信サービス',    color:'#10b981'},
-    {ticker:'XLF',  jaName:'金融',            color:'#f59e0b'},
-    {ticker:'XLE',  jaName:'エネルギー',      color:'#ef4444'},
-    {ticker:'XLV',  jaName:'ヘルスケア',      color:'#ec4899'},
-    {ticker:'XLY',  jaName:'一般消費財',      color:'#f97316'},
-    {ticker:'XLP',  jaName:'生活必需品',      color:'#84cc16'},
-    {ticker:'XLI',  jaName:'資本財・工業',    color:'#a78bfa'},
-    {ticker:'ARKK', jaName:'イノベーション',  color:'#d946ef'},
+  var SECTORS = [
+    {ticker:'SPY',  jaName:'S&P500',       color:'#6366f1'},
+    {ticker:'QQQ',  jaName:'Nasdaq100',    color:'#8b5cf6'},
+    {ticker:'XLK',  jaName:'Tech',         color:'#3b82f6'},
+    {ticker:'SOXX', jaName:'Semicon',      color:'#06b6d4'},
+    {ticker:'XLC',  jaName:'Comm Svc',    color:'#10b981'},
+    {ticker:'XLF',  jaName:'Finance',      color:'#f59e0b'},
+    {ticker:'XLE',  jaName:'Energy',       color:'#ef4444'},
+    {ticker:'XLV',  jaName:'Health',       color:'#ec4899'},
+    {ticker:'XLY',  jaName:'Cons Disc',   color:'#f97316'},
+    {ticker:'XLP',  jaName:'Cons Stpl',   color:'#84cc16'},
+    {ticker:'XLI',  jaName:'Industrials',  color:'#a78bfa'},
+    {ticker:'ARKK', jaName:'Innovation',   color:'#d946ef'}
   ];
-  const PROXY = 'https://corsproxy.io/?';
-  let sCurrentRange = '6mo', sAllData = {}, sMainChart = null, sHidden = new Set(), sSortMode = 'perf', sRefreshTimer = null, sReady = false;
-  window._sectorInit = function() { if (sReady) return; sReady = true; sectorLoadAll(); };
-  async function sectorFetch(ticker, range) {
-    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=' + range + '&events=div';
-    try { const r = await fetch(url, {headers:{'Accept':'application/json'}}); if (!r.ok) throw new Error('direct failed'); return await r.json(); }
-    catch { const r2 = await fetch(PROXY + encodeURIComponent(url)); if (!r2.ok) throw new Error('HTTP ' + r2.status); return await r2.json(); }
+  var PROXY = 'https://corsproxy.io/?';
+
+  var sCurrentRange = '6mo';
+  var sAllData = {};
+  var sMainChart = null;
+  var sHidden = {};
+  var sSortMode = 'perf';
+  var sRefreshTimer = null;
+  var sReady = false;
+
+  window._sectorInit = function() {
+    if (sReady) return;
+    sReady = true;
+    sectorLoadAll();
+  };
+
+  function sectorFetch(ticker, range) {
+    var url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=' + range + '&events=div';
+    return fetch(url, {headers: {'Accept': 'application/json'}})
+      .then(function(r) {
+        if (!r.ok) throw new Error('direct failed');
+        return r.json();
+      })
+      .catch(function() {
+        return fetch(PROXY + encodeURIComponent(url))
+          .then(function(r2) {
+            if (!r2.ok) throw new Error('HTTP ' + r2.status);
+            return r2.json();
+          });
+      });
   }
+
   function sectorParse(json) {
-    const result = json && json.chart && json.chart.result && json.chart.result[0];
+    var result = json && json.chart && json.chart.result && json.chart.result[0];
     if (!result) throw new Error('No data');
-    const ts = result.timestamp, closes = result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close;
-    const dates = ts.map(function(t) { const d = new Date(t * 1000); return d.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'}); });
-    const meta = result.meta;
-    return {dates:dates, closes:closes, currency:meta.currency, currentPrice:meta.regularMarketPrice, prevClose:meta.chartPreviousClose};
+    var ts = result.timestamp;
+    var closes = result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close;
+    var dates = ts.map(function(t) {
+      var d = new Date(t * 1000);
+      return (d.getMonth() + 1) + '/' + d.getDate();
+    });
+    var meta = result.meta;
+    return {
+      dates: dates,
+      closes: closes,
+      currentPrice: meta.regularMarketPrice,
+      prevClose: meta.chartPreviousClose
+    };
   }
-  function sNormalize(c) { const base = c.find(function(v){return v!=null;}); if (!base) return c; return c.map(function(v){return v==null?null:(v/base)*100;}); }
-  function sPerfPct(c) { const v = c.filter(function(x){return x!=null;}); if (v.length<2) return 0; return (v[v.length-1]-v[0])/v[0]*100; }
-  window.sectorLoadAll = async function() {
+
+  function sNormalize(closes) {
+    var base = null;
+    for (var i = 0; i < closes.length; i++) {
+      if (closes[i] != null) { base = closes[i]; break; }
+    }
+    if (!base) return closes;
+    return closes.map(function(v) { return v == null ? null : (v / base) * 100; });
+  }
+
+  function sPerfPct(closes) {
+    var valid = closes.filter(function(v) { return v != null; });
+    if (valid.length < 2) return 0;
+    return (valid[valid.length - 1] - valid[0]) / valid[0] * 100;
+  }
+
+  window.sectorLoadAll = function() {
     sSetRefreshing(true);
     document.getElementById('s-error-area').innerHTML = '';
-    const errors = [];
-    await Promise.allSettled(SECTORS.map(async function(s) {
-      try { const json = await sectorFetch(s.ticker, sCurrentRange); sAllData[s.ticker] = sectorParse(json); }
-      catch(e) { errors.push(s.ticker + ': ' + e.message); sAllData[s.ticker] = null; }
-    }));
-    if (errors.length) document.getElementById('s-error-area').innerHTML = '<div class="s-error">⚠️ 一部取得失敗: ' + errors.join(' / ') + '</div>';
-    sRenderMainChart(); sRenderCards();
-    document.getElementById('s-last-update').textContent = '最終更新: ' + new Date().toLocaleString('ja-JP');
-    sSetRefreshing(false);
-    clearInterval(sRefreshTimer);
-    sRefreshTimer = setInterval(sectorLoadAll, 5*60*1000);
-    sUpdateRefreshLabel();
+    var errors = [];
+    var pending = SECTORS.length;
+
+    SECTORS.forEach(function(s) {
+      sectorFetch(s.ticker, sCurrentRange)
+        .then(function(json) { sAllData[s.ticker] = sectorParse(json); })
+        .catch(function(e) {
+          errors.push(s.ticker + ': ' + e.message);
+          sAllData[s.ticker] = null;
+        })
+        .then(function() {
+          pending--;
+          if (pending > 0) return;
+          if (errors.length) {
+            document.getElementById('s-error-area').innerHTML =
+              '<div class="s-error">Some tickers failed: ' + errors.join(', ') + '</div>';
+          }
+          sRenderMainChart();
+          sRenderCards();
+          document.getElementById('s-last-update').textContent =
+            'Updated: ' + new Date().toLocaleString();
+          sSetRefreshing(false);
+          clearInterval(sRefreshTimer);
+          sRefreshTimer = setInterval(sectorLoadAll, 5 * 60 * 1000);
+          sUpdateRefreshLabel();
+        });
+    });
   };
+
   function sSetRefreshing(on) {
-    const dot = document.getElementById('s-refresh-dot');
-    if (dot) dot.className = 'refresh-dot' + (on?' spin':'');
-    const lbl = document.getElementById('s-refresh-label');
-    if (lbl) lbl.textContent = on ? '更新中' : '5分後に自動更新';
+    var dot = document.getElementById('s-refresh-dot');
+    if (dot) dot.className = 'refresh-dot' + (on ? ' spin' : '');
+    var lbl = document.getElementById('s-refresh-label');
+    if (lbl) lbl.textContent = on ? 'Refreshing...' : 'Auto-refresh in 5min';
   }
+
   function sUpdateRefreshLabel() {
-    const next = Date.now()+5*60*1000;
-    const iv = setInterval(function() {
-      const sec = Math.max(0,Math.round((next-Date.now())/1000));
-      const el = document.getElementById('s-refresh-label');
-      if (el) el.textContent = '次回更新まで ' + Math.floor(sec/60) + ':' + String(sec%60).padStart(2,'0');
-      if (sec<=0) clearInterval(iv);
+    var next = Date.now() + 5 * 60 * 1000;
+    var iv = setInterval(function() {
+      var sec = Math.max(0, Math.round((next - Date.now()) / 1000));
+      var el = document.getElementById('s-refresh-label');
+      if (el) el.textContent = 'Next: ' + Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+      if (sec <= 0) clearInterval(iv);
     }, 1000);
   }
+
   function sRenderMainChart() {
-    const loading = document.getElementById('s-chart-loading');
+    var loading = document.getElementById('s-chart-loading');
     if (loading) loading.style.display = 'none';
-    const ref = SECTORS.find(function(s){return sAllData[s.ticker];});
+
+    var ref = null;
+    for (var i = 0; i < SECTORS.length; i++) {
+      if (sAllData[SECTORS[i].ticker]) { ref = SECTORS[i].ticker; break; }
+    }
     if (!ref) return;
-    const dates = sAllData[ref.ticker].dates;
-    const datasets = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s) {
-      return {label:s.ticker, data:sNormalize(sAllData[s.ticker].closes), borderColor:s.color, backgroundColor:s.color+'18', borderWidth:1.5, pointRadius:0, pointHoverRadius:4, tension:0.2, hidden:sHidden.has(s.ticker)};
-    });
+
+    var dates = sAllData[ref].dates;
+    var datasets = SECTORS.filter(function(s) { return sAllData[s.ticker]; })
+      .map(function(s) {
+        return {
+          label: s.ticker,
+          data: sNormalize(sAllData[s.ticker].closes),
+          borderColor: s.color,
+          backgroundColor: s.color + '18',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          tension: 0.2,
+          hidden: !!sHidden[s.ticker]
+        };
+      });
+
     if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
-    const ctx = document.getElementById('s-main-chart').getContext('2d');
-    sMainChart = new Chart(ctx, {
-      type:'line', data:{labels:dates, datasets:datasets},
-      options:{responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
-        plugins:{legend:{display:false}, tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,titleColor:'#8b949e',bodyColor:'#e6edf3'}},
-        scales:{x:{grid:{color:'#21262d'},ticks:{color:'#8b949e',font:{size:10},maxTicksLimit:8,maxRotation:0}},
-                y:{grid:{color:'#21262d'},ticks:{color:'#8b949e',font:{size:10}}}}}
+    var canvas = document.getElementById('s-main-chart');
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    sMainChart = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {labels: dates, datasets: datasets},
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {mode: 'index', intersect: false},
+        plugins: {
+          legend: {display: false},
+          tooltip: {
+            backgroundColor: '#161b22',
+            borderColor: '#30363d',
+            borderWidth: 1,
+            titleColor: '#8b949e',
+            bodyColor: '#e6edf3',
+            callbacks: {
+              label: function(ctx) {
+                return ' ' + ctx.dataset.label + ': ' + (ctx.parsed.y ? ctx.parsed.y.toFixed(1) : '--');
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: {color: '#21262d'},
+            ticks: {color: '#8b949e', font: {size: 10}, maxTicksLimit: 8, maxRotation: 0}
+          },
+          y: {
+            grid: {color: '#21262d'},
+            ticks: {
+              color: '#8b949e', font: {size: 10},
+              callback: function(v) { return v.toFixed(0); }
+            }
+          }
+        }
+      }
     });
     sRenderLegend();
   }
+
   function sRenderLegend() {
-    const wrap = document.getElementById('s-legend');
-    wrap.innerHTML = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s) {
-      return '<div class="legend-item ' + (sHidden.has(s.ticker)?'hidden':'') + '" onclick="sToggle(\'' + s.ticker + '\')">' +
-             '<span class="legend-dot" style="background:' + s.color + '"></span>' + s.ticker + '</div>';
+    var wrap = document.getElementById('s-legend');
+    if (!wrap) return;
+    var items = SECTORS.filter(function(s) { return sAllData[s.ticker]; });
+    wrap.innerHTML = items.map(function(s) {
+      var hiddenClass = sHidden[s.ticker] ? ' s-hidden' : '';
+      return '<div class="s-legend-item' + hiddenClass + '" onclick="sToggleSector(\'' + s.ticker + '\')">' +
+            '<span class="s-legend-dot" style="background:' + s.color + '"></span>' +
+            s.ticker +
+            '</div>';
     }).join('');
   }
-  window.sToggle = function(ticker) {
-    if (sHidden.has(ticker)) sHidden.delete(ticker); else sHidden.add(ticker);
-    if (sMainChart) { const idx = sMainChart.data.datasets.findIndex(function(d){return d.label===ticker;}); if (idx>=0) { sMainChart.data.datasets[idx].hidden=sHidden.has(ticker); sMainChart.update(); } }
+
+  window.sToggleSector = function(ticker) {
+    sHidden[ticker] = !sHidden[ticker];
+    if (sMainChart) {
+      for (var i = 0; i < sMainChart.data.datasets.length; i++) {
+        if (sMainChart.data.datasets[i].label === ticker) {
+          sMainChart.data.datasets[i].hidden = !!sHidden[ticker];
+          sMainChart.update();
+          break;
+        }
+      }
+    }
     sRenderLegend();
   };
+
   function sRenderCards() {
-    const grid = document.getElementById('s-sector-grid');
-    const entries = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s){return {s:s,d:sAllData[s.ticker],perf:sPerfPct(sAllData[s.ticker].closes)};});
-    if (sSortMode==='perf') entries.sort(function(a,b){return b.perf-a.perf;});
-    else if (sSortMode==='price') entries.sort(function(a,b){return b.d.currentPrice-a.d.currentPrice;});
-    else entries.sort(function(a,b){return a.s.ticker.localeCompare(b.s.ticker);});
+    var grid = document.getElementById('s-sector-grid');
+    if (!grid) return;
+    var entries = SECTORS
+      .filter(function(s) { return sAllData[s.ticker]; })
+      .map(function(s) {
+        return {s: s, d: sAllData[s.ticker], perf: sPerfPct(sAllData[s.ticker].closes)};
+      });
+
+    if (sSortMode === 'perf') entries.sort(function(a, b) { return b.perf - a.perf; });
+    else if (sSortMode === 'price') entries.sort(function(a, b) { return b.d.currentPrice - a.d.currentPrice; });
+    else entries.sort(function(a, b) { return a.s.ticker.localeCompare(b.s.ticker); });
+
     grid.innerHTML = entries.map(function(e) {
-      const s=e.s, d=e.d, perf=e.perf;
-      const cls=perf>0?'pos':perf<0?'neg':'neu', sign=perf>0?'+':'';
-      const dayChg=d.currentPrice&&d.prevClose?((d.currentPrice-d.prevClose)/d.prevClose*100).toFixed(2):null;
-      const dayCls=dayChg>0?'pos':dayChg<0?'neg':'neu', daySign=dayChg>0?'+':'';
-      return '<div class="sector-card ' + (!sHidden.has(s.ticker)?'active-card':'') + '" onclick="sToggle(\'' + s.ticker + '\')">' +
-        '<div class="sc-header"><div><div class="sc-name-ja">' + s.jaName + '</div><div class="sc-ticker-sm">' + s.ticker + '</div></div>' +
-        '<div style="text-align:right"><div class="sc-pct ' + cls + '">' + sign + perf.toFixed(1) + '%</div>' +
-        '<div class="sc-price">$' + (d.currentPrice?d.currentPrice.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—') + '</div></div></div>' +
-        (dayChg!=null?'<div style="font-size:10px" class="' + dayCls + '">前日比 ' + daySign + dayChg + '%</div>':'') + '</div>';
+      var s = e.s, d = e.d, perf = e.perf;
+      var perfCls = perf > 0 ? 'pos' : perf < 0 ? 'neg' : 'neu';
+      var perfSign = perf > 0 ? '+' : '';
+      var dayChg = (d.currentPrice && d.prevClose)
+        ? ((d.currentPrice - d.prevClose) / d.prevClose * 100).toFixed(2)
+        : null;
+      var dayCls = dayChg > 0 ? 'pos' : dayChg < 0 ? 'neg' : 'neu';
+      var daySign = dayChg > 0 ? '+' : '';
+      var priceStr = d.currentPrice
+        ? '$' + d.currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        : '--';
+      var dayRow = dayChg != null
+        ? '<div style="font-size:10px" class="' + dayCls + '">Day: ' + daySign + dayChg + '%</div>'
+        : '';
+      return '<div class="sector-card">' +
+             '<div class="sc-header">' +
+             '<div>' +
+             '<div class="sc-name-ja">' + s.jaName + '</div>' +
+             '<div class="sc-ticker-sm">' + s.ticker + '</div>' +
+             '</div>' +
+             '<div style="text-align:right">' +
+             '<div class="sc-pct ' + perfCls + '">' + perfSign + perf.toFixed(1) + '%</div>' +
+             '<div class="sc-price">' + priceStr + '</div>' +
+             '</div>' +
+             '</div>' +
+             dayRow +
+             '</div>';
     }).join('');
   }
+
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('#period-btns [data-range]').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        document.querySelectorAll('#period-btns .period-btn[data-range]').forEach(function(b){b.classList.remove('active');});
-        btn.classList.add('active'); sCurrentRange=btn.dataset.range; sAllData={}; sHidden.clear(); sectorLoadAll();
+        document.querySelectorAll('#period-btns [data-range]').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        sCurrentRange = btn.dataset.range;
+        sAllData = {};
+        sHidden = {};
+        if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
+        sectorLoadAll();
       });
     });
     document.querySelectorAll('[data-sort]').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active');}); btn.classList.add('active'); sSortMode=btn.dataset.sort; sRenderCards();
+        document.querySelectorAll('.sort-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        sSortMode = btn.dataset.sort;
+        sRenderCards();
       });
     });
   });
+
 })();
 </script>
+
 
 <script>
 function switchTab(name, btn) {
