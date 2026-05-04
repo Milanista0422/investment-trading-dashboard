@@ -629,7 +629,7 @@
                         },
                     ...((function() {
                         var n = closes.length;
-                        var ohlc = detailData.ohlcHistory || [];
+                        var ohlc = ohlcData || [];
                         var cp = closes[n - 1];
                         function clusterLvls(prices, pct) {
                             var sorted = prices.slice().sort(function(a,b){return a-b;});
@@ -769,8 +769,8 @@
                         },
                         ...((function() {
                             var n = dates.length;
-                            var ohlc = (typeof detailData !== 'undefined' && detailData.ohlcHistory) ? detailData.ohlcHistory : [];
-                            var cp = (typeof detailData !== 'undefined' && detailData.sr) ? detailData.sr.current : (data.current || 0);
+                            var ohlc = (typeof ohlcData !== 'undefined') ? ohlcData : [];
+                            var cp = closes && closes.length ? closes[closes.length-1] : (data.current || 0);
                             function clusterLvls(prices, pct) {
                                 var sorted = prices.slice().sort(function(a,b){return a-b;});
                                 var groups = [];
@@ -788,7 +788,7 @@
                             var ds=[],rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.6)','rgba(239,68,68,0.4)'],sC=['rgba(34,197,94,0.9)','rgba(34,197,94,0.6)','rgba(34,197,94,0.4)'];
                             for(var ri=0;ri<resistances.length;ri++){var lv=resistances[ri];ds.push({label:'R'+(ri+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[ri],borderWidth:ri===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
                             for(var si=0;si<supports.length;si++){var lv=supports[si];ds.push({label:'S'+(si+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:sC[si],borderWidth:si===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
-                            if(typeof detailData!=='undefined'&&detailData.fib){var fc=['rgba(251,191,36,0.45)','rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)'],fi=0;for(var fk in detailData.fib){ds.push({label:'Fib'+fk+'% '+parseFloat(detailData.fib[fk]).toFixed(1),data:Array(n).fill(parseFloat(detailData.fib[fk])),borderColor:fc[fi]||'rgba(251,191,36,0.5)',borderWidth:1,borderDash:[2,5],fill:false,pointRadius:0});fi++;}}
+                            if(ohlc.length>1){var fhigh=Math.max.apply(null,ohlc.map(function(d){return d.high;})),flow=Math.min.apply(null,ohlc.map(function(d){return d.low;})),frange=fhigh-flow,flevels=[['23.6',fhigh-frange*0.236],['38.2',fhigh-frange*0.382],['50.0',fhigh-frange*0.5],['61.8',fhigh-frange*0.618]],fc=['rgba(251,191,36,0.45)','rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)'];flevels.forEach(function(fl,fi){ds.push({label:'Fib'+fl[0]+'% '+fl[1].toFixed(1),data:Array(n).fill(fl[1]),borderColor:fc[fi],borderWidth:1,borderDash:[2,5],fill:false,pointRadius:0});});}
                             return ds;
                         })())
                     ]
