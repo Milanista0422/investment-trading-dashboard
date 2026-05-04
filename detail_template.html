@@ -631,31 +631,33 @@
                         var n = closes.length;
                         var ohlc = ohlcData || [];
                         var cp = closes[n - 1];
+                        var maxH = Math.max.apply(null, ohlc.map(function(d){return d.high;}));
+                        var minL = Math.min.apply(null, ohlc.map(function(d){return d.low;}));
+                        var range = maxH - minL;
                         function clusterLvls(prices, pct) {
                             var sorted = prices.slice().sort(function(a,b){return a-b;});
                             var groups = [];
                             for (var pi=0; pi<sorted.length; pi++) {
-                                var p = sorted[pi], found = null;
-                                for (var gi=0; gi<groups.length; gi++) {
-                                    if (Math.abs(groups[gi].price-p)/groups[gi].price < pct) { found=groups[gi]; break; }
-                                }
-                                if (found) { found.count++; found.price=(found.price*(found.count-1)+p)/found.count; }
-                                else groups.push({price:p,count:1});
+                                var p=sorted[pi], found=null;
+                                for(var gi=0;gi<groups.length;gi++){if(Math.abs(groups[gi].price-p)/groups[gi].price<pct){found=groups[gi];break;}}
+                                if(found){found.count++;found.price=(found.price*(found.count-1)+p)/found.count;}else groups.push({price:p,count:1});
                             }
                             return groups.sort(function(a,b){return b.count-a.count;});
                         }
-                        var highs=[], lows=[];
-                        for (var i=3; i<ohlc.length-3; i++) {
-                            var h=ohlc[i].high, l=ohlc[i].low, isH=true, isL=true;
-                            for(var j=i-3;j<i+4;j++){if(j===i)continue;if(ohlc[j].high>h)isH=false;if(ohlc[j].low<l)isL=false;}
-                            if(isH)highs.push(h); if(isL)lows.push(l);
-                        }
-                        var resistances=clusterLvls(highs.filter(function(p){return p>cp;}),0.015).sort(function(a,b){return a.price-b.price;}).slice(0,3);
-                        var supports=clusterLvls(lows.filter(function(p){return p<cp;}),0.015).sort(function(a,b){return b.price-a.price;}).slice(0,3);
-                        var ds=[], rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.6)','rgba(239,68,68,0.4)'], sC=['rgba(34,197,94,0.9)','rgba(34,197,94,0.6)','rgba(34,197,94,0.4)'];
-                        for(var ri=0;ri<resistances.length;ri++){var lv=resistances[ri];ds.push({label:'R'+(ri+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[ri],borderWidth:ri===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
-                        for(var si=0;si<supports.length;si++){var lv=supports[si];ds.push({label:'S'+(si+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:sC[si],borderWidth:si===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
-                        if(detailData.fib){var fc=['rgba(251,191,36,0.45)','rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)'],fi=0;for(var fk in detailData.fib){ds.push({label:'Fib'+fk+'% '+parseFloat(detailData.fib[fk]).toFixed(1),data:Array(n).fill(parseFloat(detailData.fib[fk])),borderColor:fc[fi]||'rgba(251,191,36,0.5)',borderWidth:1,borderDash:[2,5],fill:false,pointRadius:0});fi++;}}
+                        var swingH=[], swingL=[];
+                        for(var i=3;i<ohlc.length-3;i++){var h=ohlc[i].high,l=ohlc[i].low,isH=true,isL=true;for(var j=i-3;j<i+4;j++){if(j===i)continue;if(ohlc[j].high>h)isH=false;if(ohlc[j].low<l)isL=false;}if(isH)swingH.push(h);if(isL)swingL.push(l);}
+                        var aboveHighs = swingH.filter(function(p){return p>=cp;});
+                        var clusteredR = clusterLvls(aboveHighs,0.02).sort(function(a,b){return a.price-b.price;});
+                        if(clusteredR.length===0) clusteredR=[{price:maxH,count:1}];
+                        var resistances = clusteredR.slice(0,3);
+                        var fibLevels=[{key:'23.6',price:maxH-range*0.236},{key:'38.2',price:maxH-range*0.382},{key:'50.0',price:maxH-range*0.5},{key:'61.8',price:maxH-range*0.618}];
+                        var nearSwingL = clusterLvls(swingL.filter(function(l){return l<cp&&l>cp*0.85;}),0.02).sort(function(a,b){return b.price-a.price;}).slice(0,2);
+                        var ds=[], rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.65)','rgba(239,68,68,0.45)'];
+                        resistances.forEach(function(lv,i){ds.push({label:'R'+(i+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[i],borderWidth:i===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});});
+                        var sIdx=1;
+                        nearSwingL.forEach(function(lv){ds.push({label:'S'+sIdx+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:'rgba(34,197,94,0.85)',borderWidth:2,borderDash:[6,3],fill:false,pointRadius:0});sIdx++;});
+                        var fc=['rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)','rgba(251,191,36,0.85)'];
+                        fibLevels.filter(function(f){return f.price<cp;}).forEach(function(f,i){ds.push({label:'Fib'+f.key+'% '+f.price.toFixed(1),data:Array(n).fill(f.price),borderColor:fc[i]||'rgba(251,191,36,0.6)',borderWidth:1.5,borderDash:[3,5],fill:false,pointRadius:0});});
                         return ds;
                     })())
                     ]
