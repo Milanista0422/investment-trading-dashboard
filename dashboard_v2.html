@@ -277,29 +277,29 @@
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 </style><nav class="tab-nav" style="position:sticky;top:0;z-index:100">
-  <button class="tab-btn active" id="btn-signals" onclick="switchTab('signals')">📊 シグナル</button>
-  <button class="tab-btn" id="btn-sector" onclick="switchTab('sector')">🏭 セクター ETF</button>
-</nav><div id="tab-signals" class="tab-panel active">
+  <button class="tab-btn active" id="btn-signals" onclick="switchTab('signals')">ð ã·ã°ãã«</button>
+  <button class="tab-btn" id="btn-sector" onclick="switchTab('sector')">ð­ ã»ã¯ã¿ã¼ ETF</button>
+</nav><div id="tab-signals" class="tab-panel active" style="display:block">
     <div class="container">
         <div class="disclaimer-banner">
-            <span class="disclaimer-banner-icon">⚠️</span>
+            <span class="disclaimer-banner-icon">â ï¸</span>
             <div class="disclaimer-text">
-                このダッシュボードは教育目的の情報提供です。本分析に基づく投資判断はご自身の責任で行ってください。
+                ãã®ããã·ã¥ãã¼ãã¯æè²ç®çã®æå ±æä¾ã§ããæ¬åæã«åºã¥ãæè³å¤æ­ã¯ãèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã
             </div>
         </div>
 
         <div class="header">
-            <h1>📊 Advanced Trading Signals Dashboard</h1>
+            <h1>ð Advanced Trading Signals Dashboard</h1>
             <div class="header-meta">
-                <span>📅 更新日: 2026-05-04 04:00 JST</span>
-                <span>📈 分析対象: 21銘柄</span>
-                <span>📊 分析指標: 11個 + 4層統合テクニカル</span>
-                <span>📅 分析期間: 過去6ヶ月</span>
+                <span>ð æ´æ°æ¥: 2026-05-04 04:00 JST</span>
+                <span>ð åæå¯¾è±¡: 21éæ</span>
+                <span>ð åæææ¨: 11å + 4å±¤çµ±åãã¯ãã«ã«</span>
+                <span>ð åææé: éå»6ã¶æ</span>
             </div>
         </div>
 
         <div class="summary-section">
-            <div class="summary-title">📈 本日の分析サマリ</div>
+            <div class="summary-title">ð æ¬æ¥ã®åæãµããª</div>
             <div class="summary-grid">
                 <div class="summary-card">
                     <div class="summary-card-label">STRONG BUY</div>
@@ -324,40 +324,40 @@
             </div>
         </div>
 
-        <!-- STRONG_BUY セクション -->
+        <!-- STRONG_BUY ã»ã¯ã·ã§ã³ -->
         <div class="section-header">
-            <h2>🚀 STRONG_BUY (9銘柄) - 信度90%以上</h2>
+            <h2>ð STRONG_BUY (9éæ) - ä¿¡åº¦90%ä»¥ä¸</h2>
         </div>
         <div class="stocks-grid" id="strong-buy-grid"></div>
 
-        <!-- BUY セクション -->
+        <!-- BUY ã»ã¯ã·ã§ã³ -->
         <div class="section-header">
-            <h2>📈 BUY (8銘柄) - 信度75-89%</h2>
+            <h2>ð BUY (8éæ) - ä¿¡åº¦75-89%</h2>
         </div>
         <div class="stocks-grid" id="buy-grid"></div>
 
-        <!-- SELL/STRONG_SELL セクション -->
+        <!-- SELL/STRONG_SELL ã»ã¯ã·ã§ã³ -->
         <div class="section-header">
-            <h2>📉 SELL / STRONG_SELL (4銘柄)</h2>
+            <h2>ð SELL / STRONG_SELL (4éæ)</h2>
         </div>
         <div class="stocks-grid" id="sell-grid"></div>
 
         <div class="footer">
-            <h3>📋 4層統合テクニカル分析エンジン</h3>
+            <h3>ð 4å±¤çµ±åãã¯ãã«ã«åæã¨ã³ã¸ã³</h3>
             <p>
-                <strong>トレンド層 (35%):</strong> SMA(20,50,200) + ゴールデンクロス<br>
-                <strong>オシレーター層 (35%):</strong> RSI(14) + MACD(12,26,9) + Stochastic<br>
-                <strong>S/R層 (20%):</strong> サポート・レジスタンス + ボリンジャーバンド<br>
-                <strong>ボラティリティ層 (10%):</strong> ATR(14) / 変動性判定<br><br>
-                <strong>ファンダメンタル分析:</strong> ニュース定性評価 + テクニカル乖離判定 + 上昇/下降確度算出<br><br>
-                <strong>⚠️ 重要な免責事項:</strong> 本ダッシュボードは教育・情報提供目的です。
-                過去のパフォーマンスは将来を保証しません。ご自身の責任で投資判断をお願いします。
+                <strong>ãã¬ã³ãå±¤ (35%):</strong> SMA(20,50,200) + ã´ã¼ã«ãã³ã¯ã­ã¹<br>
+                <strong>ãªã·ã¬ã¼ã¿ã¼å±¤ (35%):</strong> RSI(14) + MACD(12,26,9) + Stochastic<br>
+                <strong>S/Rå±¤ (20%):</strong> ãµãã¼ãã»ã¬ã¸ã¹ã¿ã³ã¹ + ããªã³ã¸ã£ã¼ãã³ã<br>
+                <strong>ãã©ãã£ãªãã£å±¤ (10%):</strong> ATR(14) / å¤åæ§å¤å®<br><br>
+                <strong>ãã¡ã³ãã¡ã³ã¿ã«åæ:</strong> ãã¥ã¼ã¹å®æ§è©ä¾¡ + ãã¯ãã«ã«ä¹é¢å¤å® + ä¸æ/ä¸éç¢ºåº¦ç®åº<br><br>
+                <strong>â ï¸ éè¦ãªåè²¬äºé :</strong> æ¬ããã·ã¥ãã¼ãã¯æè²ã»æå ±æä¾ç®çã§ãã
+                éå»ã®ããã©ã¼ãã³ã¹ã¯å°æ¥ãä¿è¨¼ãã¾ããããèªèº«ã®è²¬ä»»ã§æè³å¤æ­ããé¡ããã¾ãã
             </p>
         </div>
     </div>
 
     <script>
-        // 動的テクニカルデータ読込 (JSONから)
+        // åçãã¯ãã«ã«ãã¼ã¿èª­è¾¼ (JSONãã)
         let technicalData = {};
 
         async function loadTechnicalData() {
@@ -365,65 +365,65 @@
                 const response = await fetch('technical_data.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 technicalData = await response.json();
-                console.log(`✅ technical_data.json読込完了: ${Object.keys(technicalData).length}銘柄`);
+                console.log(`â technical_data.jsonèª­è¾¼å®äº: ${Object.keys(technicalData).length}éæ`);
                 return true;
             } catch (error) {
-                console.error('❌ technical_data.json読込失敗:', error);
-                // フォールバック: 空オブジェクト
+                console.error('â technical_data.jsonèª­è¾¼å¤±æ:', error);
+                // ãã©ã¼ã«ããã¯: ç©ºãªãã¸ã§ã¯ã
                 technicalData = {};
                 return false;
             }
         }
 
-        // 初期化時にデータ読込を開始
+        // åæåæã«ãã¼ã¿èª­è¾¼ãéå§
         loadTechnicalData().then(() => {
-            // データ読込後にUIを更新
+            // ãã¼ã¿èª­è¾¼å¾ã«UIãæ´æ°
             renderDashboard();
         });
 
-        // ニュース定性スコアリング
+        // ãã¥ã¼ã¹å®æ§ã¹ã³ã¢ãªã³ã°
         const newsScores = {
-            "AMD": {score: 85, sentiment: "強気", analysis: "AI採用加速、エンタープライズ需要拡大で堅調"},
-            "NVDA": {score: 95, sentiment: "極強気", analysis: "GPU供給逼迫継続、企業AI投資継続で需要衰えず"},
-            "AVGO": {score: 80, sentiment: "強気", analysis: "5G・AI関連チップ受注好調"},
-            "MU": {score: 75, sentiment: "強気", analysis: "AI向けメモリ需要増加、供給ひっ迫継続"},
-            "TSM": {score: 90, sentiment: "強気", analysis: "3nm・2nmプロセス受託好調、AI向けチップセット好調見込み"},
-            "GOOGL": {score: 78, sentiment: "強気", analysis: "AI基盤モデル性能向上、クラウド統合強化"},
-            "MSFT": {score: 85, sentiment: "強気", analysis: "Copilot統合推進、Azure需要堅牢"},
-            "QCOM": {score: 70, sentiment: "やや強気", analysis: "スマホAI機能差別化、Snapdragon X高性能化"},
-            "ASML": {score: 88, sentiment: "強気", analysis: "EUV露光装置受注増、次世代半導体必須部品"},
-            "AMAT": {score: 82, sentiment: "強気", analysis: "AI向けメモリ・ロジック製造装置需要急増"},
-            "LRCX": {score: 80, sentiment: "強気", analysis: "メモリ製造プロセス優位、HBM製造シェア拡大"},
-            "SOXL": {score: 85, sentiment: "強気", analysis: "セミコンダクタETF、AI関連銘柄に資金流入"},
-            "SMH": {score: 82, sentiment: "強気", analysis: "Semiconductor ETF、半導体好調で指数上昇"},
-            "QQQ": {score: 80, sentiment: "強気", analysis: "Nasdaq100、テック大型株に支えられ回復基調"},
-            "TECL": {score: 88, sentiment: "強気", analysis: "テクノロジーセクター急騰、3倍レバレッジで恩恵"},
-            "1570.T": {score: 75, sentiment: "強気", analysis: "日本半導体産業復興、国策銘柄として投資加速"},
-            "AMZN": {score: 72, sentiment: "やや強気", analysis: "AWS AI関連サービス拡充、SageMaker需要増"},
-            "META": {score: 35, sentiment: "弱気", analysis: "AI開発費急増、利益成長鈍化懸念"},
-            "PLTR": {score: 55, sentiment: "中立", analysis: "AI導入企業向けソリューション受注増も成長鈍化"},
-            "ORCL": {score: 45, sentiment: "弱気", analysis: "クラウド地位確保も成長率鈍化、AI支援は限定的"},
-            "ARKK": {score: 40, sentiment: "弱気", analysis: "AI関連銘柄調整、テーマ型ファンドとして調整局面"}
+            "AMD": {score: 85, sentiment: "å¼·æ°", analysis: "AIæ¡ç¨å éãã¨ã³ã¿ã¼ãã©ã¤ãºéè¦æ¡å¤§ã§å èª¿"},
+            "NVDA": {score: 95, sentiment: "æ¥µå¼·æ°", analysis: "GPUä¾çµ¦é¼è¿«ç¶ç¶ãä¼æ¥­AIæè³ç¶ç¶ã§éè¦è¡°ãã"},
+            "AVGO": {score: 80, sentiment: "å¼·æ°", analysis: "5Gã»AIé¢é£ãããåæ³¨å¥½èª¿"},
+            "MU": {score: 75, sentiment: "å¼·æ°", analysis: "AIåãã¡ã¢ãªéè¦å¢å ãä¾çµ¦ã²ã£è¿«ç¶ç¶"},
+            "TSM": {score: 90, sentiment: "å¼·æ°", analysis: "3nmã»2nmãã­ã»ã¹åè¨å¥½èª¿ãAIåããããã»ããå¥½èª¿è¦è¾¼ã¿"},
+            "GOOGL": {score: 78, sentiment: "å¼·æ°", analysis: "AIåºç¤ã¢ãã«æ§è½åä¸ãã¯ã©ã¦ãçµ±åå¼·å"},
+            "MSFT": {score: 85, sentiment: "å¼·æ°", analysis: "Copilotçµ±åæ¨é²ãAzureéè¦å ç¢"},
+            "QCOM": {score: 70, sentiment: "ããå¼·æ°", analysis: "ã¹ããAIæ©è½å·®å¥åãSnapdragon Xé«æ§è½å"},
+            "ASML": {score: 88, sentiment: "å¼·æ°", analysis: "EUVé²åè£ç½®åæ³¨å¢ãæ¬¡ä¸ä»£åå°ä½å¿é é¨å"},
+            "AMAT": {score: 82, sentiment: "å¼·æ°", analysis: "AIåãã¡ã¢ãªã»ã­ã¸ãã¯è£½é è£ç½®éè¦æ¥å¢"},
+            "LRCX": {score: 80, sentiment: "å¼·æ°", analysis: "ã¡ã¢ãªè£½é ãã­ã»ã¹åªä½ãHBMè£½é ã·ã§ã¢æ¡å¤§"},
+            "SOXL": {score: 85, sentiment: "å¼·æ°", analysis: "ã»ãã³ã³ãã¯ã¿ETFãAIé¢é£éæã«è³éæµå¥"},
+            "SMH": {score: 82, sentiment: "å¼·æ°", analysis: "Semiconductor ETFãåå°ä½å¥½èª¿ã§ææ°ä¸æ"},
+            "QQQ": {score: 80, sentiment: "å¼·æ°", analysis: "Nasdaq100ãããã¯å¤§åæ ªã«æ¯ãããåå¾©åºèª¿"},
+            "TECL": {score: 88, sentiment: "å¼·æ°", analysis: "ãã¯ãã­ã¸ã¼ã»ã¯ã¿ã¼æ¥é¨°ã3åã¬ãã¬ãã¸ã§æ©æµ"},
+            "1570.T": {score: 75, sentiment: "å¼·æ°", analysis: "æ¥æ¬åå°ä½ç£æ¥­å¾©èãå½ç­éæã¨ãã¦æè³å é"},
+            "AMZN": {score: 72, sentiment: "ããå¼·æ°", analysis: "AWS AIé¢é£ãµã¼ãã¹æ¡åãSageMakeréè¦å¢"},
+            "META": {score: 35, sentiment: "å¼±æ°", analysis: "AIéçºè²»æ¥å¢ãå©çæé·éåæ¸å¿µ"},
+            "PLTR": {score: 55, sentiment: "ä¸­ç«", analysis: "AIå°å¥ä¼æ¥­åãã½ãªã¥ã¼ã·ã§ã³åæ³¨å¢ãæé·éå"},
+            "ORCL": {score: 45, sentiment: "å¼±æ°", analysis: "ã¯ã©ã¦ãå°ä½ç¢ºä¿ãæé·çéåãAIæ¯æ´ã¯éå®ç"},
+            "ARKK": {score: 40, sentiment: "å¼±æ°", analysis: "AIé¢é£éæèª¿æ´ããã¼ãåãã¡ã³ãã¨ãã¦èª¿æ´å±é¢"}
         };
 
-        // ===== 改善版：4層統合テクニカル分析エンジン =====
+        // ===== æ¹åçï¼4å±¤çµ±åãã¯ãã«ã«åæã¨ã³ã¸ã³ =====
         function analyzeWithFourLayers(ticker) {
             const data = technicalData[ticker];
             const news = newsScores[ticker];
 
-            // 層1: トレンド分析 (35%)
+            // å±¤1: ãã¬ã³ãåæ (35%)
             const trendScore = calculateTrendScore(data.sma, data.rsi);
 
-            // 層2: オシレーター分析 (35%)
+            // å±¤2: ãªã·ã¬ã¼ã¿ã¼åæ (35%)
             const oscillatorScore = calculateOscillatorScore(data.rsi, data.macd);
 
-            // 層3: S/R分析 (20%) - 改善版：フィボナッチ・BB活用
+            // å±¤3: S/Råæ (20%) - æ¹åçï¼ãã£ããããã»BBæ´»ç¨
             const srScore = calculateSRScore(data.sr, data.bbUpper, data.bbLower, data.sr.current, data.fib);
 
-            // 層4: ボラティリティ分析 (10%) - 改善版：相対ATR正規化
+            // å±¤4: ãã©ãã£ãªãã£åæ (10%) - æ¹åçï¼ç¸å¯¾ATRæ­£è¦å
             const volatilityScore = calculateVolatilityScore(data.atr, data.sr, data.sma.sma20);
 
-            // 加重平均で総合スコア算出
+            // å éå¹³åã§ç·åã¹ã³ã¢ç®åº
             const technicalScore = (
                 trendScore * 0.35 +
                 oscillatorScore * 0.35 +
@@ -431,24 +431,24 @@
                 volatilityScore * 0.10
             );
 
-            // ===== 改善版：テクニカル・ニュース乖離度を考慮した統合 =====
+            // ===== æ¹åçï¼ãã¯ãã«ã«ã»ãã¥ã¼ã¹ä¹é¢åº¦ãèæ®ããçµ±å =====
             const technicalNewsGap = Math.abs(technicalScore - news.score);
 
             let finalScore;
             if (technicalNewsGap > 40) {
-                // 乖離が大きい場合：より保守的に（両者の最小値に近づける）
-                // 例：NVDA(テク95, ニュース95) = 高信度
-                //     META(テク30, ニュース35) = 低信度
+                // ä¹é¢ãå¤§ããå ´åï¼ããä¿å®çã«ï¼ä¸¡èã®æå°å¤ã«è¿ã¥ããï¼
+                // ä¾ï¼NVDA(ãã¯95, ãã¥ã¼ã¹95) = é«ä¿¡åº¦
+                //     META(ãã¯30, ãã¥ã¼ã¹35) = ä½ä¿¡åº¦
                 finalScore = Math.min(technicalScore, news.score) * 0.7 +
                              Math.max(technicalScore, news.score) * 0.3;
             } else {
-                // 乖離が小さい場合：テクニカル重視（信頼度を上げる）
+                // ä¹é¢ãå°ããå ´åï¼ãã¯ãã«ã«éè¦ï¼ä¿¡é ¼åº¦ãä¸ããï¼
                 finalScore = technicalScore * 0.6 + news.score * 0.4;
             }
 
             const confidence = Math.round(finalScore);
 
-            // シグナル決定（従来通り）
+            // ã·ã°ãã«æ±ºå®ï¼å¾æ¥éãï¼
             let signal, signalClass;
             if (confidence >= 90) {
                 signal = "STRONG_BUY";
@@ -481,31 +481,31 @@
             };
         }
 
-        // ===== 改善版：各層の計算関数 =====
+        // ===== æ¹åçï¼åå±¤ã®è¨ç®é¢æ° =====
         function calculateTrendScore(sma, rsi) {
             let score = 50;
             let smaStrength = 0;
 
-            // SMA段階的判定（より柔軟な評価）
+            // SMAæ®µéçå¤å®ï¼ããæè»ãªè©ä¾¡ï¼
             if (sma.sma20 > sma.sma50) smaStrength += 20;
             if (sma.sma50 > sma.sma200) smaStrength += 15;
             if (sma.sma20 > sma.sma200) smaStrength += 15;
 
-            // ゴールデンクロス完全型（全て揃った時）
+            // ã´ã¼ã«ãã³ã¯ã­ã¹å®å¨åï¼å¨ã¦æã£ãæï¼
             if (sma.sma20 > sma.sma50 && sma.sma50 > sma.sma200) {
-                smaStrength = 50; // 最大値
+                smaStrength = 50; // æå¤§å¤
             }
-            // デッドクロス完全型
+            // ãããã¯ã­ã¹å®å¨å
             else if (sma.sma20 < sma.sma50 && sma.sma50 < sma.sma200) {
-                smaStrength = -50; // 最小値
+                smaStrength = -50; // æå°å¤
             }
 
             score += smaStrength;
 
-            // RSIでトレンド確認（段階的）
-            if (rsi > 65) score += 15;      // 上昇トレンド確認
+            // RSIã§ãã¬ã³ãç¢ºèªï¼æ®µéçï¼
+            if (rsi > 65) score += 15;      // ä¸æãã¬ã³ãç¢ºèª
             else if (rsi > 55) score += 8;
-            else if (rsi < 35) score -= 15; // 下降トレンド確認
+            else if (rsi < 35) score -= 15; // ä¸éãã¬ã³ãç¢ºèª
             else if (rsi < 45) score -= 8;
 
             return Math.max(0, Math.min(100, score));
@@ -514,24 +514,24 @@
         function calculateOscillatorScore(rsi, macd) {
             let score = 50;
 
-            // ===== 改善版RSI判定：段階的かつより正確 =====
+            // ===== æ¹åçRSIå¤å®ï¼æ®µéçãã¤ããæ­£ç¢º =====
             if (rsi > 80) {
-                score -= 25; // 極度の買われすぎ警告
+                score -= 25; // æ¥µåº¦ã®è²·ããããè­¦å
             } else if (rsi > 75) {
-                score -= 10; // 警告段階（調整可能性）
+                score -= 10; // è­¦åæ®µéï¼èª¿æ´å¯è½æ§ï¼
             } else if (rsi > 65) {
-                score += 10; // 上昇トレンド確認
+                score += 10; // ä¸æãã¬ã³ãç¢ºèª
             } else if (rsi > 55) {
-                score += 5;  // やや上昇
+                score += 5;  // ããä¸æ
             } else if (rsi < 20) {
-                score -= 25; // 極度の売られすぎ警告
+                score -= 25; // æ¥µåº¦ã®å£²ããããè­¦å
             } else if (rsi < 25) {
-                score -= 10; // 警告段階（反発可能性）
+                score -= 10; // è­¦åæ®µéï¼åçºå¯è½æ§ï¼
             } else if (rsi < 35) {
-                score -= 5;  // やや弱い
+                score -= 5;  // ããå¼±ã
             }
 
-            // MACD確認
+            // MACDç¢ºèª
             if (macd === "BULLISH") score += 20;
             else if (macd === "BEARISH") score -= 20;
 
@@ -544,38 +544,38 @@
             const positionFromSupport = current - sr.support;
             const positionRatio = positionFromSupport / range;
 
-            // ===== 改善版：主要レベルからの距離を詳細に評価 =====
+            // ===== æ¹åçï¼ä¸»è¦ã¬ãã«ããã®è·é¢ãè©³ç´°ã«è©ä¾¡ =====
             const distToResistance = ((sr.resistance - current) / sr.resistance) * 100;
             const distToSupport = ((current - sr.support) / sr.resistance) * 100;
 
-            // 1. レジスタンス・サポート距離評価
-            if (distToResistance < 2) score -= 20;  // レジスタンス直前
+            // 1. ã¬ã¸ã¹ã¿ã³ã¹ã»ãµãã¼ãè·é¢è©ä¾¡
+            if (distToResistance < 2) score -= 20;  // ã¬ã¸ã¹ã¿ã³ã¹ç´å
             else if (distToResistance < 5) score -= 10;
-            else if (distToSupport < 2) score += 20; // サポート直前
+            else if (distToSupport < 2) score += 20; // ãµãã¼ãç´å
             else if (distToSupport < 5) score += 10;
 
-            // 2. ピボット基準での評価
+            // 2. ããããåºæºã§ã®è©ä¾¡
             if (current > sr.pivot && positionRatio > 0.6) score += 8;
             else if (current < sr.pivot && positionRatio < 0.4) score += 8;
 
-            // ===== 改善版：フィボナッチレベルの活用 =====
+            // ===== æ¹åçï¼ãã£ããããã¬ãã«ã®æ´»ç¨ =====
             if (fib) {
                 const fib382 = fib['382'];
                 if (current < fib382 && current > sr.support) {
-                    score += 12; // Fib サポートレベル付近（下値の目安）
+                    score += 12; // Fib ãµãã¼ãã¬ãã«ä»è¿ï¼ä¸å¤ã®ç®å®ï¼
                 }
             }
 
-            // ===== 改善版：ボリンジャーバンドの詳細評価 =====
+            // ===== æ¹åçï¼ããªã³ã¸ã£ã¼ãã³ãã®è©³ç´°è©ä¾¡ =====
             const bbRange = bbUpper - bbLower;
             const priceInBB = (current - bbLower) / bbRange;
 
             if (priceInBB > 0.85) {
-                score -= 12; // 上バンド付近（買われすぎ傾向）
+                score -= 12; // ä¸ãã³ãä»è¿ï¼è²·ããããå¾åï¼
             } else if (priceInBB > 0.75) {
                 score -= 5;
             } else if (priceInBB < 0.15) {
-                score += 12; // 下バンド付近（売られすぎ = 買い機会）
+                score += 12; // ä¸ãã³ãä»è¿ï¼å£²ãããã = è²·ãæ©ä¼ï¼
             } else if (priceInBB < 0.25) {
                 score += 5;
             }
@@ -586,18 +586,18 @@
         function calculateVolatilityScore(atr, sr, smaValue) {
             let score = 50;
 
-            // ===== 改善版：相対ATRで正規化 =====
-            // ATR% = ATR / 20日SMA × 100
+            // ===== æ¹åçï¼ç¸å¯¾ATRã§æ­£è¦å =====
+            // ATR% = ATR / 20æ¥SMA Ã 100
             const volatilityPercent = (atr / smaValue) * 100;
 
             if (volatilityPercent > 3.5) {
-                score -= 15; // 高ボラティリティはリスク（機関投資家のリスク回避）
+                score -= 15; // é«ãã©ãã£ãªãã£ã¯ãªã¹ã¯ï¼æ©é¢æè³å®¶ã®ãªã¹ã¯åé¿ï¼
             } else if (volatilityPercent > 2.5) {
                 score -= 5;
             } else if (volatilityPercent > 1.5) {
-                score += 0;  // 正常範囲
+                score += 0;  // æ­£å¸¸ç¯å²
             } else if (volatilityPercent < 1.0) {
-                score += 15; // 低ボラティリティ = 安定した上昇
+                score += 15; // ä½ãã©ãã£ãªãã£ = å®å®ããä¸æ
             } else if (volatilityPercent < 1.5) {
                 score += 8;
             }
@@ -605,60 +605,60 @@
             return Math.max(0, Math.min(100, score));
         }
 
-        // テクニカル分析テキスト生成
+        // ãã¯ãã«ã«åæãã­ã¹ãçæ
         function generateTechnicalAnalysis(ticker, analysis) {
             const data = technicalData[ticker];
-            const trendDir = data.sma.sma20 > data.sma.sma50 ? "上昇" : "下降";
-            const rsiStatus = data.rsi > 70 ? "買われすぎ警告" : data.rsi < 30 ? "売られすぎ警告" : "適正範囲";
-            const macdStatus = data.macd === "BULLISH" ? "ポジティブ継続" : "ネガティブ局面";
+            const trendDir = data.sma.sma20 > data.sma.sma50 ? "ä¸æ" : "ä¸é";
+            const rsiStatus = data.rsi > 70 ? "è²·ããããè­¦å" : data.rsi < 30 ? "å£²ããããè­¦å" : "é©æ­£ç¯å²";
+            const macdStatus = data.macd === "BULLISH" ? "ãã¸ãã£ãç¶ç¶" : "ãã¬ãã£ãå±é¢";
 
-            return `${analysis.signal}シグナル (信度${analysis.confidence}%)：` +
-                `${trendDir}トレンド継続、` +
-                `RSI${data.rsi}で${rsiStatus}、` +
-                `MACD${macdStatus}。` +
-                `レジスタンス${data.sr.resistance}が上値目安、` +
-                `サポート${data.sr.support}が下値支持。`;
+            return `${analysis.signal}ã·ã°ãã« (ä¿¡åº¦${analysis.confidence}%)ï¼` +
+                `${trendDir}ãã¬ã³ãç¶ç¶ã` +
+                `RSI${data.rsi}ã§${rsiStatus}ã` +
+                `MACD${macdStatus}ã` +
+                `ã¬ã¸ã¹ã¿ã³ã¹${data.sr.resistance}ãä¸å¤ç®å®ã` +
+                `ãµãã¼ã${data.sr.support}ãä¸å¤æ¯æã`;
         }
 
-        // ===== 改善版：ファンダメンタル分析テキスト生成 =====
+        // ===== æ¹åçï¼ãã¡ã³ãã¡ã³ã¿ã«åæãã­ã¹ãçæ =====
         function generateFundamentalAnalysis(ticker, analysis) {
             const news = newsScores[ticker];
 
-            // 乖離度に基づく評価
+            // ä¹é¢åº¦ã«åºã¥ãè©ä¾¡
             let divergenceComment = "";
             if (analysis.techNewsGap > 40) {
-                divergenceComment = "⚠️ テクニカル・ニュース乖離注意：";
+                divergenceComment = "â ï¸ ãã¯ãã«ã«ã»ãã¥ã¼ã¹ä¹é¢æ³¨æï¼";
                 if (analysis.technicalScore > news.score) {
-                    divergenceComment += "好材料に対しテクニカルが強気。過熱警告。";
+                    divergenceComment += "å¥½ææã«å¯¾ããã¯ãã«ã«ãå¼·æ°ãéç±è­¦åã";
                 } else {
-                    divergenceComment += "ニュースより弱気。底値形成の可能性。";
+                    divergenceComment += "ãã¥ã¼ã¹ããå¼±æ°ãåºå¤å½¢æã®å¯è½æ§ã";
                 }
             } else {
-                divergenceComment = "✓ テクニカル・ニュース調和：";
+                divergenceComment = "â ãã¯ãã«ã«ã»ãã¥ã¼ã¹èª¿åï¼";
                 if (analysis.confidence >= 80) {
-                    divergenceComment += "両指標が高い信頼性を示唆。";
+                    divergenceComment += "ä¸¡ææ¨ãé«ãä¿¡é ¼æ§ãç¤ºåã";
                 } else {
-                    divergenceComment += "両指標が整合している。";
+                    divergenceComment += "ä¸¡ææ¨ãæ´åãã¦ããã";
                 }
             }
 
-            // 好材料に対する反応
+            // å¥½ææã«å¯¾ããåå¿
             const overboughtRisk = analysis.oscillatorScore < 40 && news.score > 75 ?
-                "🔥 好材料メリット未活用：RSIが低く、さらに上昇余地あり。" : "";
+                "ð¥ å¥½ææã¡ãªããæªæ´»ç¨ï¼RSIãä½ããããã«ä¸æä½å°ããã" : "";
 
             const upProbability = Math.round(50 + analysis.confidence / 2);
 
-            return `ニュース評価（${news.sentiment}）：${news.analysis}。` +
+            return `ãã¥ã¼ã¹è©ä¾¡ï¼${news.sentiment}ï¼ï¼${news.analysis}ã` +
                 `${divergenceComment} ` +
                 `${overboughtRisk} ` +
-                `総合判定：上昇確度${upProbability}% / 下降リスク${100-upProbability}%。`;
+                `ç·åå¤å®ï¼ä¸æç¢ºåº¦${upProbability}% / ä¸éãªã¹ã¯${100-upProbability}%ã`;
         }
 
-        // カード生成
+        // ã«ã¼ãçæ
         function createStockCard(ticker, analysis) {
             const data = technicalData[ticker];
             const news = newsScores[ticker];
-            const newBadge = data.is_new ? '<div class="new-badge">🆕 NEW</div>' : '';
+            const newBadge = data.is_new ? '<div class="new-badge">ð NEW</div>' : '';
             const tech = generateTechnicalAnalysis(ticker, analysis);
             const fund = generateFundamentalAnalysis(ticker, analysis);
 
@@ -673,19 +673,19 @@
                     </div>
 
                     <div class="price-info">
-                        <div class="price-item">現在値: <span class="price-value">${data.sr.current}</span></div>
-                        <div class="price-item">信度: <span class="price-value">${analysis.confidence}%</span></div>
+                        <div class="price-item">ç¾å¨å¤: <span class="price-value">${data.sr.current}</span></div>
+                        <div class="price-item">ä¿¡åº¦: <span class="price-value">${analysis.confidence}%</span></div>
                     </div>
 
                     <div class="technical-levels">
-                        <h4>📊 テクニカルレベル</h4>
+                        <h4>ð ãã¯ãã«ã«ã¬ãã«</h4>
                         <div class="levels-grid">
                             <div class="level-item">
-                                <span class="level-label">レジスタンス:</span>
+                                <span class="level-label">ã¬ã¸ã¹ã¿ã³ã¹:</span>
                                 <span class="level-value">${data.sr.resistance}</span>
                             </div>
                             <div class="level-item">
-                                <span class="level-label">サポート:</span>
+                                <span class="level-label">ãµãã¼ã:</span>
                                 <span class="level-value">${data.sr.support}</span>
                             </div>
                             <div class="level-item">
@@ -700,40 +700,40 @@
                     </div>
 
                     <div class="card-news">
-                        <div class="card-news-headline">📰 ${news.sentiment}</div>
+                        <div class="card-news-headline">ð° ${news.sentiment}</div>
                         <div class="card-news-summary">${news.analysis.substring(0, 60)}...</div>
                     </div>
 
                     <div class="analysis-box">
-                        <div class="analysis-title">📈 テクニカル考察</div>
+                        <div class="analysis-title">ð ãã¯ãã«ã«èå¯</div>
                         <div class="analysis-content">${tech}</div>
                     </div>
 
                     <div class="analysis-box fundamental">
-                        <div class="analysis-title">💡 ファンダメンタル考察</div>
+                        <div class="analysis-title">ð¡ ãã¡ã³ãã¡ã³ã¿ã«èå¯</div>
                         <div class="analysis-content">${fund}</div>
                     </div>
 
                     <div class="card-footer">
-                        <button class="detail-button" onclick="openDetailPage('${ticker}')">🔍 詳細分析</button>
+                        <button class="detail-button" onclick="openDetailPage('${ticker}')">ð è©³ç´°åæ</button>
                     </div>
                 </div>
             `;
         }
 
-        // 詳細ページを開く
+        // è©³ç´°ãã¼ã¸ãéã
         function openDetailPage(ticker) {
             const analysis = analyzeWithFourLayers(ticker);
             const data = technicalData[ticker];
             const news = newsScores[ticker];
 
-            // データをsessionStorageに保存して詳細ページを開く
+            // ãã¼ã¿ãsessionStorageã«ä¿å­ãã¦è©³ç´°ãã¼ã¸ãéã
             const detailData = {
                 ticker: ticker,
                 signal: analysis.signal,
                 confidence: analysis.confidence,
                 price: data.sr.current,
-                changeRate: '+0.5%',  // 実際の変動率
+                changeRate: '+0.5%',  // å®éã®å¤åç
                 changeColor: '#10b981',
                 updateTime: new Date().toLocaleTimeString('ja-JP'),
                 rsi: data.rsi,
@@ -757,11 +757,11 @@
             window.open('detail_template.html', '_blank');
         }
 
-        // ページレンダリング（データ読込後に呼び出される）
+        // ãã¼ã¸ã¬ã³ããªã³ã°ï¼ãã¼ã¿èª­è¾¼å¾ã«å¼ã³åºãããï¼
         function renderDashboard() {
-            // technicalDataが空の場合はスキップ
+            // technicalDataãç©ºã®å ´åã¯ã¹ã­ãã
             if (Object.keys(technicalData).length === 0) {
-                console.warn('⚠️ technicalDataが読み込まれていません');
+                console.warn('â ï¸ technicalDataãèª­ã¿è¾¼ã¾ãã¦ãã¾ãã');
                 return;
             }
 
@@ -772,7 +772,7 @@
                 'STRONG_SELL': ['META']
             };
 
-            // 各セクションを生成
+            // åã»ã¯ã·ã§ã³ãçæ
             ['STRONG_BUY', 'BUY'].forEach(category => {
                 const tickers = signals[category];
                 const html = tickers.map(ticker => {
@@ -793,14 +793,13 @@
             document.getElementById('sell-grid').innerHTML = sellHtml;
         }
 
-        // 注: renderDashboard()はloadTechnicalData()の完了後に呼び出される
+        // æ³¨: renderDashboard()ã¯loadTechnicalData()ã®å®äºå¾ã«å¼ã³åºããã
     </script>
 </div>
 <!-- ============================================================
      SECTOR ETF TAB BUNDLE
      このファイルは daily-trading-signals-prod タスクで dashboard_v2.html に
      verbatim 埋め込みされます。直接編集することで ETF タブの内容を更新できます。
-     Chart.js が必要です（dashboard_v2.html の <head> で読み込むこと）。
      ============================================================ -->
 
 <!-- ===== Sector ETF CSS ===== -->
@@ -813,21 +812,12 @@
 .refresh-dot{width:8px;height:8px;border-radius:50%;background:#3fb950;display:inline-block;margin-right:4px;flex-shrink:0}
 .refresh-dot.spin{animation:spin 1s linear infinite;background:#f0883e}
 @keyframes spin{to{transform:rotate(360deg)}}
-.chart-wrap{position:relative;height:300px;margin-bottom:12px}
-#main-chart{width:100%!important}
-#chart-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8b949e;font-size:13px}
-.legend-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;font-size:11px;font-weight:600;color:#8b949e;cursor:pointer;transition:.15s}
-.legend-item:hover{border-color:#58a6ff;color:#e6edf3}
-.legend-item.hidden{opacity:.4}
-.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .sort-wrap{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:11px;color:#8b949e}
 .sort-btn{padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:11px;cursor:pointer;transition:.15s}
 .sort-btn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
 .sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:12px}
-.sector-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;cursor:pointer;transition:border-color .15s}
+.sector-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;transition:border-color .15s}
 .sector-card:hover{border-color:#58a6ff}
-.sector-card.active-card{border-color:#58a6ff;background:#1a2332}
 .sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .sc-name-ja{font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:3px;line-height:1.2}
 .sc-ticker-sm{font-size:11px;font-weight:600;color:#58a6ff}
@@ -841,6 +831,8 @@
 <!-- ===== Sector ETF Tab Pane ===== -->
 <div id="tab-sector" class="tab-panel">
   <div style="max-width:900px;margin:0 auto;padding:16px">
+
+    <!-- Header -->
     <div class="s-header">
       <div style="display:flex;align-items:center;gap:10px">
         <span class="refresh-dot" id="s-refresh-dot"></span>
@@ -854,36 +846,43 @@
           <button class="period-btn" data-range="ytd">YTD</button>
           <button class="period-btn" data-range="1y">1Y</button>
         </div>
-        <button class="period-btn" onclick="sectorLoadAll()" style="gap:4px">⟳ 更新</button>
+        <button class="period-btn" onclick="sectorLoadAll()">⟳ 更新</button>
       </div>
     </div>
-    <div style="font-size:11px;color:#8b949e;margin-bottom:8px">
+
+    <!-- Update time -->
+    <div style="font-size:11px;color:#8b949e;margin-bottom:12px">
       <span id="s-last-update">—</span>&nbsp;&nbsp;
       <span id="s-refresh-label">読み込み中...</span>
     </div>
-    <div class="chart-wrap">
-      <canvas id="s-main-chart"></canvas>
-      <div id="s-chart-loading">データを取得中...</div>
-    </div>
-    <div class="legend-wrap" id="s-legend">正規化パフォーマンス比較（期間開始=100）　クリックで表示/非表示</div>
+
+    <!-- Sort -->
     <div class="sort-wrap">
       並び替え:
       <button class="sort-btn active" data-sort="perf">期間パフォーマンス</button>
       <button class="sort-btn" data-sort="price">現在価格</button>
       <button class="sort-btn" data-sort="ticker">ティッカー</button>
     </div>
+
+    <!-- Sector cards -->
     <div class="sector-grid" id="s-sector-grid"></div>
+
+    <!-- Error area -->
     <div id="s-error-area"></div>
+
+    <!-- Footer -->
     <div class="s-footer">
       ⚠️ データはYahoo Finance API経由で取得。遅延がある場合があります。投資判断はご自身でお行いください。<br>
       このダッシュボードはページを開くたびに自動で最新データに更新されます。
     </div>
+
   </div>
 </div>
 
 <!-- ===== Sector ETF JavaScript ===== -->
 <script id="sector-script">
 (function() {
+  // ---- Config ----
   const SECTORS = [
     {ticker:'SPY',  jaName:'S&P500 全市場',  color:'#6366f1'},
     {ticker:'QQQ',  jaName:'ナスダック100',   color:'#8b5cf6'},
@@ -899,132 +898,169 @@
     {ticker:'ARKK', jaName:'イノベーション',  color:'#d946ef'},
   ];
   const PROXY = 'https://corsproxy.io/?';
-  let sCurrentRange = '6mo', sAllData = {}, sMainChart = null, sHidden = new Set(), sSortMode = 'perf', sRefreshTimer = null, sReady = false;
-  window._sectorInit = function() { if (sReady) return; sReady = true; sectorLoadAll(); };
+
+  // ---- State ----
+  let sCurrentRange = '6mo';
+  let sAllData = {};
+  let sSortMode = 'perf';
+  let sRefreshTimer = null;
+  let sReady = false;
+
+  // ---- Lazy init: only run when sector tab is first shown ----
+  window._sectorInit = function() {
+    if (sReady) return;
+    sReady = true;
+    sectorLoadAll();
+  };
+
+  // ---- Data fetch ----
   async function sectorFetch(ticker, range) {
-    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=' + range + '&events=div';
-    try { const r = await fetch(url, {headers:{'Accept':'application/json'}}); if (!r.ok) throw new Error('direct failed'); return await r.json(); }
-    catch { const r2 = await fetch(PROXY + encodeURIComponent(url)); if (!r2.ok) throw new Error('HTTP ' + r2.status); return await r2.json(); }
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=${range}&events=div`;
+    try {
+      const r = await fetch(url, {headers:{'Accept':'application/json'}});
+      if (!r.ok) throw new Error('direct failed');
+      return await r.json();
+    } catch {
+      const r2 = await fetch(PROXY + encodeURIComponent(url));
+      if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
+      return await r2.json();
+    }
   }
+
   function sectorParse(json) {
-    const result = json && json.chart && json.chart.result && json.chart.result[0];
+    const result = json?.chart?.result?.[0];
     if (!result) throw new Error('No data');
-    const ts = result.timestamp, closes = result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close;
-    const dates = ts.map(function(t) { const d = new Date(t * 1000); return d.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'}); });
+    const closes = result.indicators?.quote?.[0]?.close;
     const meta = result.meta;
-    return {dates:dates, closes:closes, currency:meta.currency, currentPrice:meta.regularMarketPrice, prevClose:meta.chartPreviousClose};
+    return {closes, currency: meta.currency,
+            currentPrice: meta.regularMarketPrice,
+            prevClose: meta.chartPreviousClose};
   }
-  function sNormalize(c) { const base = c.find(function(v){return v!=null;}); if (!base) return c; return c.map(function(v){return v==null?null:(v/base)*100;}); }
-  function sPerfPct(c) { const v = c.filter(function(x){return x!=null;}); if (v.length<2) return 0; return (v[v.length-1]-v[0])/v[0]*100; }
+
+  function sPerfPct(closes) {
+    const valid = closes.filter(v => v != null);
+    if (valid.length < 2) return 0;
+    return (valid[valid.length-1] - valid[0]) / valid[0] * 100;
+  }
+
+  // ---- Load all ----
   window.sectorLoadAll = async function() {
     sSetRefreshing(true);
     document.getElementById('s-error-area').innerHTML = '';
     const errors = [];
-    await Promise.allSettled(SECTORS.map(async function(s) {
-      try { const json = await sectorFetch(s.ticker, sCurrentRange); sAllData[s.ticker] = sectorParse(json); }
-      catch(e) { errors.push(s.ticker + ': ' + e.message); sAllData[s.ticker] = null; }
+    await Promise.allSettled(SECTORS.map(async s => {
+      try {
+        const json = await sectorFetch(s.ticker, sCurrentRange);
+        sAllData[s.ticker] = sectorParse(json);
+      } catch(e) {
+        errors.push(`${s.ticker}: ${e.message}`);
+        sAllData[s.ticker] = null;
+      }
     }));
-    if (errors.length) document.getElementById('s-error-area').innerHTML = '<div class="s-error">⚠️ 一部取得失敗: ' + errors.join(' / ') + '</div>';
-    sRenderMainChart(); sRenderCards();
-    document.getElementById('s-last-update').textContent = '最終更新: ' + new Date().toLocaleString('ja-JP');
+    if (errors.length) {
+      document.getElementById('s-error-area').innerHTML =
+        `<div class="s-error">⚠️ 一部取得失敗: ${errors.join(' / ')}</div>`;
+    }
+    sRenderCards();
+    document.getElementById('s-last-update').textContent =
+      '最終更新: ' + new Date().toLocaleString('ja-JP');
     sSetRefreshing(false);
     clearInterval(sRefreshTimer);
-    sRefreshTimer = setInterval(sectorLoadAll, 5*60*1000);
+    sRefreshTimer = setInterval(sectorLoadAll, 5 * 60 * 1000);
     sUpdateRefreshLabel();
   };
+
+  // ---- UI helpers ----
   function sSetRefreshing(on) {
     const dot = document.getElementById('s-refresh-dot');
-    if (dot) dot.className = 'refresh-dot' + (on?' spin':'');
+    if (dot) dot.className = 'refresh-dot' + (on ? ' spin' : '');
     const lbl = document.getElementById('s-refresh-label');
-    if (lbl) lbl.textContent = on ? '更新中' : '5分後に自動更新';
+    if (lbl) lbl.textContent = on ? '更新中...' : '5分後に自動更新';
   }
+
   function sUpdateRefreshLabel() {
-    const next = Date.now()+5*60*1000;
-    const iv = setInterval(function() {
-      const sec = Math.max(0,Math.round((next-Date.now())/1000));
+    const nextRefresh = Date.now() + 5*60*1000;
+    const iv = setInterval(() => {
+      const sec = Math.max(0, Math.round((nextRefresh - Date.now()) / 1000));
+      const m = Math.floor(sec/60), s = sec%60;
       const el = document.getElementById('s-refresh-label');
-      if (el) el.textContent = '次回更新まで ' + Math.floor(sec/60) + ':' + String(sec%60).padStart(2,'0');
-      if (sec<=0) clearInterval(iv);
+      if (el) el.textContent = `次回更新まで ${m}:${String(s).padStart(2,'0')}`;
+      if (sec <= 0) clearInterval(iv);
     }, 1000);
   }
-  function sRenderMainChart() {
-    const loading = document.getElementById('s-chart-loading');
-    if (loading) loading.style.display = 'none';
-    const ref = SECTORS.find(function(s){return sAllData[s.ticker];});
-    if (!ref) return;
-    const dates = sAllData[ref.ticker].dates;
-    const datasets = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s) {
-      return {label:s.ticker, data:sNormalize(sAllData[s.ticker].closes), borderColor:s.color, backgroundColor:s.color+'18', borderWidth:1.5, pointRadius:0, pointHoverRadius:4, tension:0.2, hidden:sHidden.has(s.ticker)};
-    });
-    if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
-    const ctx = document.getElementById('s-main-chart').getContext('2d');
-    sMainChart = new Chart(ctx, {
-      type:'line', data:{labels:dates, datasets:datasets},
-      options:{responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
-        plugins:{legend:{display:false}, tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,titleColor:'#8b949e',bodyColor:'#e6edf3'}},
-        scales:{x:{grid:{color:'#21262d'},ticks:{color:'#8b949e',font:{size:10},maxTicksLimit:8,maxRotation:0}},
-                y:{grid:{color:'#21262d'},ticks:{color:'#8b949e',font:{size:10}}}}}
-    });
-    sRenderLegend();
-  }
-  function sRenderLegend() {
-    const wrap = document.getElementById('s-legend');
-    wrap.innerHTML = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s) {
-      return '<div class="legend-item ' + (sHidden.has(s.ticker)?'hidden':'') + '" onclick="sToggle('' + s.ticker + '')">' +
-             '<span class="legend-dot" style="background:' + s.color + '"></span>' + s.ticker + '</div>';
-    }).join('');
-  }
-  window.sToggle = function(ticker) {
-    if (sHidden.has(ticker)) sHidden.delete(ticker); else sHidden.add(ticker);
-    if (sMainChart) { const idx = sMainChart.data.datasets.findIndex(function(d){return d.label===ticker;}); if (idx>=0) { sMainChart.data.datasets[idx].hidden=sHidden.has(ticker); sMainChart.update(); } }
-    sRenderLegend();
-  };
+
+  // ---- Cards ----
   function sRenderCards() {
     const grid = document.getElementById('s-sector-grid');
-    const entries = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s){return {s:s,d:sAllData[s.ticker],perf:sPerfPct(sAllData[s.ticker].closes)};});
-    if (sSortMode==='perf') entries.sort(function(a,b){return b.perf-a.perf;});
-    else if (sSortMode==='price') entries.sort(function(a,b){return b.d.currentPrice-a.d.currentPrice;});
-    else entries.sort(function(a,b){return a.s.ticker.localeCompare(b.s.ticker);});
-    grid.innerHTML = entries.map(function(e) {
-      const s=e.s, d=e.d, perf=e.perf;
-      const cls=perf>0?'pos':perf<0?'neg':'neu', sign=perf>0?'+':'';
-      const dayChg=d.currentPrice&&d.prevClose?((d.currentPrice-d.prevClose)/d.prevClose*100).toFixed(2):null;
-      const dayCls=dayChg>0?'pos':dayChg<0?'neg':'neu', daySign=dayChg>0?'+':'';
-      return '<div class="sector-card ' + (!sHidden.has(s.ticker)?'active-card':'') + '" onclick="sToggle('' + s.ticker + '')">' +
-        '<div class="sc-header"><div><div class="sc-name-ja">' + s.jaName + '</div><div class="sc-ticker-sm">' + s.ticker + '</div></div>' +
-        '<div style="text-align:right"><div class="sc-pct ' + cls + '">' + sign + perf.toFixed(1) + '%</div>' +
-        '<div class="sc-price">$' + (d.currentPrice?d.currentPrice.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—') + '</div></div></div>' +
-        (dayChg!=null?'<div style="font-size:10px" class="' + dayCls + '">前日比 ' + daySign + dayChg + '%</div>':'') + '</div>';
+    const entries = SECTORS
+      .filter(s => sAllData[s.ticker])
+      .map(s => ({s, d:sAllData[s.ticker], perf:sPerfPct(sAllData[s.ticker].closes)}));
+    if (sSortMode === 'perf') entries.sort((a,b) => b.perf - a.perf);
+    else if (sSortMode === 'price') entries.sort((a,b) => b.d.currentPrice - a.d.currentPrice);
+    else entries.sort((a,b) => a.s.ticker.localeCompare(b.s.ticker));
+    grid.innerHTML = entries.map(({s,d,perf}) => {
+      const cls = perf>0?'pos':perf<0?'neg':'neu';
+      const sign = perf>0?'+':'';
+      const dayChg = d.currentPrice && d.prevClose
+        ? ((d.currentPrice - d.prevClose)/d.prevClose*100).toFixed(2) : null;
+      const dayCls = dayChg>0?'pos':dayChg<0?'neg':'neu';
+      const daySign = dayChg>0?'+':'';
+      return `<div class="sector-card">
+        <div class="sc-header">
+          <div>
+            <div class="sc-name-ja">${s.jaName}</div>
+            <div class="sc-ticker-sm">${s.ticker}</div>
+          </div>
+          <div style="text-align:right">
+            <div class="sc-pct ${cls}">${sign}${perf.toFixed(1)}%</div>
+            <div class="sc-price">$${d.currentPrice?.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})??'—'}</div>
+          </div>
+        </div>
+        ${dayChg!=null?`<div style="font-size:10px" class="${dayCls}">前日比 ${daySign}${dayChg}%</div>`:''}
+      </div>`;
     }).join('');
   }
+
+  // ---- Event listeners ----
   document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('#period-btns [data-range]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('#period-btns .period-btn[data-range]').forEach(function(b){b.classList.remove('active');});
-        btn.classList.add('active'); sCurrentRange=btn.dataset.range; sAllData={}; sHidden.clear(); sectorLoadAll();
+    document.querySelectorAll('#period-btns [data-range]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#period-btns .period-btn[data-range]').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        sCurrentRange = btn.dataset.range;
+        sAllData = {};
+        sectorLoadAll();
       });
     });
-    document.querySelectorAll('[data-sort]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.sort-btn').forEach(function(b){b.classList.remove('active');}); btn.classList.add('active'); sSortMode=btn.dataset.sort; sRenderCards();
+    document.querySelectorAll('[data-sort]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        sSortMode = btn.dataset.sort;
+        sRenderCards();
       });
     });
   });
+
 })();
 </script>
 
+
 <script>
-function switchTab(name){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  var panel=document.getElementById('tab-'+name);
-  var btn=document.getElementById('btn-'+name);
-  if(panel)panel.classList.add('active');
-  if(btn)btn.classList.add('active');
-  if(name==='sector'&&typeof window._sectorInit==='function'&&!window._sectorInited){
-    window._sectorInited=true;
-    window._sectorInit();
-  }
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  var panel = document.getElementById('tab-' + name);
+  if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
+  if (btn) btn.classList.add('active');
+  if (name === 'sector') window._sectorInit && window._sectorInit();
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var signalsPanel = document.getElementById('tab-signals');
+  if (signalsPanel) signalsPanel.style.display = 'block';
+});
 </script></body>
 </html>
