@@ -450,6 +450,13 @@
             </div>
         </div>
 
+
+        <!-- 関連ニュース -->
+        <div class="analysis-box" id="news-links-box" style="display:none; background:rgba(15,30,60,0.85); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:16px; margin-bottom:16px;">
+            <div class="analysis-title" style="font-size:14px; font-weight:700; color:#93c5fd; margin-bottom:12px;">📰 関連ニュース</div>
+            <div id="news-links-content"></div>
+        </div>
+
         <!-- フッター -->
         <div class="footer">
             ⚠️ このページは教育目的の分析です。実際の投資判断はご自身の責任で行ってください。
@@ -520,6 +527,37 @@
 
             renderCharts();
             updateSidebarMetrics();
+            await loadNewsLinks();
+        }
+
+        async function loadNewsLinks() {
+            try {
+                const resp = await fetch('news_data.json');
+                if (!resp.ok) return;
+                const data = await resp.json();
+                const tk = detailData.ticker;
+                if (data.tickers && data.tickers[tk] && data.tickers[tk].top_news) {
+                    renderNewsLinks(data.tickers[tk].top_news);
+                }
+            } catch(e) { /* not available */ }
+        }
+
+        function renderNewsLinks(items) {
+            if (!items || !items.length) return;
+            var box = document.getElementById('news-links-box');
+            var content = document.getElementById('news-links-content');
+            if (!box || !content) return;
+            box.style.display = '';
+            var html = items.map(function(n) {
+                var sc = n.sentiment === 'positive' ? '#10b981' : n.sentiment === 'negative' ? '#f87171' : '#fbbf24';
+                var imp = n.impact === 'high' ? '<span style="background:#dc2626;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;margin-left:6px;">🔥 HIGH</span>' : '<span style="background:#374151;color:#d1d5db;font-size:10px;padding:2px 6px;border-radius:4px;margin-left:6px;">📌 MED</span>';
+                return '<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);">' +
+                    '<a href="' + n.url + '" target="_blank" rel="noopener" style="color:#60a5fa;font-size:13px;line-height:1.5;text-decoration:none;display:block;margin-bottom:4px;">' + n.headline + '</a>' +
+                    '<div style="color:#9ca3af;font-size:12px;margin-bottom:6px;line-height:1.4;">' + (n.summary || '') + '</div>' +
+                    '<span style="color:' + sc + ';font-size:11px;font-weight:600;">● ' + (n.sentiment || '') + '</span>' + imp +
+                    '</div>';
+            }).join('');
+            content.innerHTML = html;
         }
 
         // タイムフレーム切り替え
