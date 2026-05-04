@@ -298,6 +298,7 @@
                     <div class="oscillator-chart">
                         <div class="oscillator-title">RSI(14)</div>
                         <canvas id="rsiChart"></canvas>
+                <div id="rsi-commentary" style="font-size:12px;color:#fbbf24;padding:6px 10px;background:rgba(251,191,36,0.08);border-left:3px solid #fbbf24;border-radius:4px;margin-top:8px;min-height:18px;"></div>
                     </div>
                     <div class="oscillator-chart">
                         <div class="oscillator-title">MACD</div>
@@ -584,24 +585,31 @@
         }
 
         // チャート描画
-        function renderCharts() {
-            const ticker = detailData.ticker || "AAPL";
+                function renderCharts() {
+            const ticker = detailData.ticker || 'AAPL';
             const data = tickerData[ticker];
+            if (!data) return;
 
-            if (!data) return; // データがない場合はスキップ
+            // Resolve ohlcHistory: may be an array or nested object
+            let ohlc = null;
+            if (Array.isArray(data.ohlcHistory)) {
+                ohlc = data.ohlcHistory;
+            } else if (data.ohlcHistory && Array.isArray(data.ohlcHistory.ohlcHistory)) {
+                ohlc = data.ohlcHistory.ohlcHistory;
+            }
 
-            // サンプルデータ生成（実装環境では実データを使用）
-            const dates = generateDates(currentTimeframe);
-            const prices = generatePriceData(data.price, dates.length, currentTimeframe);
+            let dates, closes;
+            if (ohlc && ohlc.length > 0) {
+                dates = ohlc.map(function(d) { return d.t; });
+                closes = ohlc.map(function(d) { return d.c; });
+            } else {
+                dates = generateDates(currentTimeframe);
+                closes = generatePriceData(data.price, dates.length, currentTimeframe);
+            }
 
-            // メインチャート
-            renderMainChart(ticker, dates, prices, data);
-
-            // RSIチャート
-            renderRSIChart(ticker, dates, data.rsi);
-
-            // MACDチャート
-            renderMACDChart(ticker, dates, data.macd);
+            renderMainChart(ticker, dates, closes, data, ohlc);
+            renderRSIChart(ticker, dates, closes, data.rsi, data.news);
+            renderMACDChart(ticker, dates, closes, data.macd);
         }
 
         // キャンドルスティックチャート描画
@@ -727,221 +735,248 @@
         }
 
         // メインチャート描画（OHLC対応）
-        function renderMainChart(ticker, dates, prices, data) {
-            const ctx = document.getElementById('mainChart');
+                function renderMainChart(ticker, dates, closes, data, ohlc) {
+            var ctx = document.getElementById('mainChart');
             if (!ctx) return;
+            if (charts.main) { charts.main.destroy(); charts.main = null; }
 
-            // OHLC履歴がある場合はキャンドルチャートを使用
-            if (data.ohlcHistory && data.ohlcHistory.length > 0) {
-                renderCandlestickChart(ticker, data);
-                return;
+            function computeSMA(prices, period) {
+                var result = new Array(prices.length).fill(null);
+                if (prices.length < period) return result;
+                var sum = 0;
+                for (var i = 0; i < period; i++) sum += prices[i];
+                result[period - 1] = sum / period;
+                for (var j = period; j < prices.length; j++) {
+                    sum += prices[j] - prices[j - period];
+                    result[j] = sum / period;
+                }
+                return result;
             }
 
-            // ボリンジャーバンドの上下
-            const bbUpper = Array(dates.length).fill(data.bbUpper);
-            const bbLower = Array(dates.length).fill(data.bbLower);
-            const bbMiddle = Array(dates.length).fill((data.bbUpper + data.bbLower) / 2);
+            var ma50 = closes.length >= 50
+                ? computeSMA(closes, 50)
+                : new Array(closes.length).fill(data.sma50 || null);
+            var ma200 = closes.length >= 200
+                ? computeSMA(closes, 200)
+                : new Array(closes.length).fill(data.sma200 || null);
 
-            // SMA
-            const sma20 = Array(dates.length).fill(data.sma20);
-            const sma50 = Array(dates.length).fill(data.sma50);
-            const sma200 = Array(dates.length).fill(data.sma200);
+            var datasets = [
+                { label: ticker + ' 終値', data: closes, borderColor: '#3b82f6',
+                  backgroundColor: 'rgba(59,130,246,0.06)', tension: 0.3,
+                  fill: false, pointRadius: 0, borderWidth: 2 },
+                { label: 'MA50', data: ma50, borderColor: '#f59e0b',
+                  backgroundColor: 'transparent', tension: 0.3, fill: false,
+                  pointRadius: 0, borderWidth: 1.5, spanGaps: true },
+                { label: 'MA200', data: ma200, borderColor: '#ef4444',
+                  backgroundColor: 'transparent', tension: 0.3, fill: false,
+                  pointRadius: 0, borderWidth: 1.5, spanGaps: true }
+            ];
+
+            if (data.bbUpper && data.bbLower) {
+                datasets.push({ label: 'BB上限', data: new Array(dates.length).fill(data.bbUpper),
+                    borderColor: 'rgba(156,163,175,0.35)', backgroundColor: 'transparent',
+                    fill: false, pointRadius: 0, borderWidth: 1, borderDash: [4,4] });
+                datasets.push({ label: 'BB下限', data: new Array(dates.length).fill(data.bbLower),
+                    borderColor: 'rgba(156,163,175,0.35)', backgroundColor: 'transparent',
+                    fill: false, pointRadius: 0, borderWidth: 1, borderDash: [4,4] });
+            }
 
             charts.main = new Chart(ctx, {
                 type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        {
-                            label: `${ticker} 終値`,
-                            data: prices,
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            pointRadius: 0,
-                            borderWidth: 2
-                        },
-                        {
-                            label: 'SMA(20)',
-                            data: sma20,
-                            borderColor: '#f59e0b',
-                            borderDash: [0],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1.5
-                        },
-                        {
-                            label: 'SMA(50)',
-                            data: sma50,
-                            borderColor: '#10b981',
-                            borderDash: [0],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1.5
-                        },
-                        {
-                            label: 'SMA(200)',
-                            data: sma200,
-                            borderColor: '#8b5cf6',
-                            borderDash: [5, 5],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1.5
-                        },
-                        {
-                            label: 'ボリバン上',
-                            data: bbUpper,
-                            borderColor: '#ef4444',
-                            borderDash: [5, 5],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'ボリバン下',
-                            data: bbLower,
-                            borderColor: '#10b981',
-                            borderDash: [5, 5],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1
-                        },
-                        ...((function() {
-                            var n = dates.length;
-                            var ohlc = (typeof ohlcData !== 'undefined') ? ohlcData : [];
-                            var cp = closes && closes.length ? closes[closes.length-1] : (data.current || 0);
-                            function clusterLvls(prices, pct) {
-                                var sorted = prices.slice().sort(function(a,b){return a-b;});
-                                var groups = [];
-                                for (var pi=0; pi<sorted.length; pi++) {
-                                    var p=sorted[pi], found=null;
-                                    for(var gi=0;gi<groups.length;gi++){if(Math.abs(groups[gi].price-p)/groups[gi].price<pct){found=groups[gi];break;}}
-                                    if(found){found.count++;found.price=(found.price*(found.count-1)+p)/found.count;}else groups.push({price:p,count:1});
-                                }
-                                return groups.sort(function(a,b){return b.count-a.count;});
-                            }
-                            var highs=[], lows=[];
-                            for(var i=3;i<ohlc.length-3;i++){var h=ohlc[i].high,l=ohlc[i].low,isH=true,isL=true;for(var j=i-3;j<i+4;j++){if(j===i)continue;if(ohlc[j].high>h)isH=false;if(ohlc[j].low<l)isL=false;}if(isH)highs.push(h);if(isL)lows.push(l);}
-                            var resistances=clusterLvls(highs.filter(function(p){return p>cp;}),0.015).sort(function(a,b){return a.price-b.price;}).slice(0,3);
-                            var supports=clusterLvls(lows.filter(function(p){return p<cp;}),0.015).sort(function(a,b){return b.price-a.price;}).slice(0,3);
-                            var ds=[],rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.6)','rgba(239,68,68,0.4)'],sC=['rgba(34,197,94,0.9)','rgba(34,197,94,0.6)','rgba(34,197,94,0.4)'];
-                            for(var ri=0;ri<resistances.length;ri++){var lv=resistances[ri];ds.push({label:'R'+(ri+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[ri],borderWidth:ri===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
-                            for(var si=0;si<supports.length;si++){var lv=supports[si];ds.push({label:'S'+(si+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:sC[si],borderWidth:si===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
-                            if(ohlc.length>1){var fhigh=Math.max.apply(null,ohlc.map(function(d){return d.high;})),flow=Math.min.apply(null,ohlc.map(function(d){return d.low;})),frange=fhigh-flow,flevels=[['23.6',fhigh-frange*0.236],['38.2',fhigh-frange*0.382],['50.0',fhigh-frange*0.5],['61.8',fhigh-frange*0.618]],fc=['rgba(251,191,36,0.45)','rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)'];flevels.forEach(function(fl,fi){ds.push({label:'Fib'+fl[0]+'% '+fl[1].toFixed(1),data:Array(n).fill(fl[1]),borderColor:fc[fi],borderWidth:1,borderDash:[2,5],fill:false,pointRadius:0});});}
-                            return ds;
-                        })())
-                    ]
-                },
+                data: { labels: dates, datasets: datasets },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            labels: { color: '#cbd5e1', font: { size: 11 } },
-                            position: 'top'
-                        }
+                        legend: { display: true, position: 'top',
+                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
+                        tooltip: { mode: 'index', intersect: false }
                     },
                     scales: {
-                        x: { ticks: { color: '#a0aec0' }, grid: { color: '#374151' } },
-                        y: { ticks: { color: '#a0aec0' }, grid: { color: '#374151' } }
+                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
+                             grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { ticks: { color: '#9ca3af', maxTicksLimit: 6 },
+                             grid: { color: 'rgba(255,255,255,0.05)' } }
                     }
                 }
             });
         }
 
         // RSIチャート描画
-        function renderRSIChart(ticker, dates, rsiValue) {
-            const ctx = document.getElementById('rsiChart');
-            const rsiLine = Array(dates.length).fill(rsiValue);
-            const overbought = Array(dates.length).fill(70);
-            const oversold = Array(dates.length).fill(30);
+                function renderRSIChart(ticker, dates, closes, rsiSingle, newsSentiment) {
+            var ctx = document.getElementById('rsiChart');
+            if (!ctx) return;
+            if (charts.rsi) { charts.rsi.destroy(); charts.rsi = null; }
+
+            function computeRSI(prices, period) {
+                var result = new Array(prices.length).fill(null);
+                if (prices.length <= period) return result;
+                var gains = 0, losses = 0;
+                for (var i = 1; i <= period; i++) {
+                    var d = prices[i] - prices[i-1];
+                    if (d > 0) gains += d; else losses += Math.abs(d);
+                }
+                var ag = gains / period, al = losses / period;
+                result[period] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
+                for (var j = period + 1; j < prices.length; j++) {
+                    var diff = prices[j] - prices[j-1];
+                    var g = diff > 0 ? diff : 0, l = diff < 0 ? -diff : 0;
+                    ag = (ag * (period - 1) + g) / period;
+                    al = (al * (period - 1) + l) / period;
+                    result[j] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
+                }
+                return result;
+            }
+
+            var rsiData = (closes && closes.length > 14)
+                ? computeRSI(closes, 14)
+                : new Array(dates.length).fill(parseFloat(rsiSingle) || 50);
+
+            // RSI + News sentiment commentary
+            var latestRSI = parseFloat(rsiSingle) || 50;
+            var newsScore = parseFloat(newsSentiment) || 50;
+            var commentary = '';
+            if (latestRSI >= 70) {
+                if (newsScore > 60)
+                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。ニュースは強気だが利確の引き金待ち。';
+                else if (newsScore < 40)
+                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏 + ネガティブニュース。反落リスク大。';
+                else
+                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。押し目エントリーを待ちたい局面。';
+            } else if (latestRSI <= 30) {
+                if (newsScore > 60)
+                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏 + 強気ニュース。反発エントリー候補。';
+                else if (newsScore < 40)
+                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。ニュースも弱気、下値模索に注意。';
+                else
+                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。反発タイミングを見極めたい。';
+            } else if (latestRSI >= 55) {
+                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや強め。トレンドフォロー継続圏。';
+            } else if (latestRSI <= 45) {
+                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや弱め。反発か下落継続か見極め中。';
+            } else {
+                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 中立圏。方向感に欠ける。他指標を参照。';
+            }
+            var commentEl = document.getElementById('rsi-commentary');
+            if (commentEl) commentEl.textContent = commentary;
 
             charts.rsi = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: dates,
                     datasets: [
-                        {
-                            label: 'RSI(14)',
-                            data: rsiLine,
-                            borderColor: '#f59e0b',
-                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
-                            tension: 0,
-                            fill: true,
-                            pointRadius: 0,
-                            borderWidth: 2
-                        },
-                        {
-                            label: '買われすぎ(70)',
-                            data: overbought,
-                            borderColor: '#ef4444',
-                            borderDash: [5, 5],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1
-                        },
-                        {
-                            label: '売られすぎ(30)',
-                            data: oversold,
-                            borderColor: '#10b981',
-                            borderDash: [5, 5],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 1
-                        }
+                        { label: 'RSI(14)', data: rsiData, borderColor: '#a78bfa',
+                          backgroundColor: 'rgba(167,139,250,0.08)', tension: 0.3,
+                          fill: false, pointRadius: 0, borderWidth: 2, spanGaps: true },
+                        { label: '過買(70)', data: new Array(dates.length).fill(70),
+                          borderColor: 'rgba(239,68,68,0.65)', borderDash: [6,3],
+                          pointRadius: 0, fill: false, borderWidth: 1.5 },
+                        { label: '過売(30)', data: new Array(dates.length).fill(30),
+                          borderColor: 'rgba(52,211,153,0.65)', borderDash: [6,3],
+                          pointRadius: 0, fill: false, borderWidth: 1.5 }
                     ]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#cbd5e1', font: { size: 10 } } } },
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
                     scales: {
-                        x: { ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } },
-                        y: { min: 0, max: 100, ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } }
+                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
+                             grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { min: 0, max: 100,
+                             ticks: { color: '#9ca3af', stepSize: 10 },
+                             grid: { color: 'rgba(255,255,255,0.05)' } }
                     }
                 }
             });
         }
 
         // MACDチャート描画
-        function renderMACDChart(ticker, dates, macdSignal) {
-            const ctx = document.getElementById('macdChart');
-            const macdValue = macdSignal === 'BULLISH' ? 2 : -2;
-            const macdLine = Array(dates.length).fill(macdValue);
-            const signalLine = Array(dates.length).fill(0);
+                function renderMACDChart(ticker, dates, closes, macdSignalStr) {
+            var ctx = document.getElementById('macdChart');
+            if (!ctx) return;
+            if (charts.macd) { charts.macd.destroy(); charts.macd = null; }
+
+            function computeEMA(prices, period) {
+                var ema = new Array(prices.length).fill(null);
+                if (prices.length < period) return ema;
+                var k = 2 / (period + 1), sum = 0;
+                for (var i = 0; i < period; i++) sum += prices[i];
+                ema[period - 1] = sum / period;
+                for (var j = period; j < prices.length; j++)
+                    ema[j] = prices[j] * k + ema[j-1] * (1 - k);
+                return ema;
+            }
+
+            var macdLine = new Array(dates.length).fill(null);
+            var signalLine = new Array(dates.length).fill(null);
+            var histogram = new Array(dates.length).fill(null);
+
+            if (closes && closes.length > 26) {
+                var ema12 = computeEMA(closes, 12);
+                var ema26 = computeEMA(closes, 26);
+                var macdVals = [], macdIdxs = [];
+                for (var i = 0; i < closes.length; i++) {
+                    if (ema12[i] !== null && ema26[i] !== null) {
+                        macdLine[i] = ema12[i] - ema26[i];
+                        macdVals.push(macdLine[i]); macdIdxs.push(i);
+                    }
+                }
+                if (macdVals.length >= 9) {
+                    var k2 = 2 / 10, sigSum = 0;
+                    for (var s = 0; s < 9; s++) sigSum += macdVals[s];
+                    signalLine[macdIdxs[8]] = sigSum / 9;
+                    for (var m = 9; m < macdVals.length; m++) {
+                        var mi = macdIdxs[m], pi = macdIdxs[m-1];
+                        signalLine[mi] = macdVals[m] * k2 + signalLine[pi] * (1 - k2);
+                        histogram[mi] = macdLine[mi] - signalLine[mi];
+                    }
+                }
+            } else {
+                var fv = macdSignalStr === 'BULLISH' ? 1.5 : macdSignalStr === 'BEARISH' ? -1.5 : 0.1;
+                for (var d = 0; d < dates.length; d++) { macdLine[d] = fv; signalLine[d] = 0; histogram[d] = fv; }
+            }
+
+            var histColors = histogram.map(function(v) {
+                if (v === null) return 'transparent';
+                return v >= 0 ? 'rgba(52,211,153,0.65)' : 'rgba(248,113,113,0.65)';
+            });
+
+            var datasets = [];
+            if (closes && closes.length === dates.length) {
+                datasets.push({ label: '終値', data: closes, type: 'line', yAxisID: 'yPrice',
+                    borderColor: 'rgba(148,163,184,0.45)', backgroundColor: 'transparent',
+                    pointRadius: 0, borderWidth: 1, fill: false, tension: 0.2, spanGaps: true });
+            }
+            datasets.push({ label: 'MACD', data: macdLine, type: 'line', yAxisID: 'yMACD',
+                borderColor: '#60a5fa', backgroundColor: 'transparent',
+                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
+            datasets.push({ label: 'Signal', data: signalLine, type: 'line', yAxisID: 'yMACD',
+                borderColor: '#f97316', backgroundColor: 'transparent',
+                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
+            datasets.push({ label: 'Hist', data: histogram, type: 'bar', yAxisID: 'yMACD',
+                backgroundColor: histColors, borderWidth: 0 });
 
             charts.macd = new Chart(ctx, {
                 type: 'bar',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        {
-                            label: 'ヒストグラム',
-                            data: macdLine,
-                            backgroundColor: macdSignal === 'BULLISH' ? '#10b98180' : '#ef444480',
-                            borderColor: macdSignal === 'BULLISH' ? '#10b981' : '#ef4444',
-                            borderWidth: 0,
-                            barPercentage: 1
-                        },
-                        {
-                            label: 'シグナル',
-                            data: signalLine,
-                            borderColor: '#f59e0b',
-                            type: 'line',
-                            fill: false,
-                            pointRadius: 0,
-                            borderWidth: 2
-                        }
-                    ]
-                },
+                data: { labels: dates, datasets: datasets },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { color: '#cbd5e1', font: { size: 10 } } } },
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'top',
+                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
+                        tooltip: { mode: 'index', intersect: false }
+                    },
                     scales: {
-                        x: { ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } },
-                        y: { ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } }
+                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
+                             grid: { color: 'rgba(255,255,255,0.05)' } },
+                        yPrice: { position: 'right', display: true,
+                            ticks: { color: 'rgba(148,163,184,0.4)', maxTicksLimit: 4 },
+                            grid: { display: false } },
+                        yMACD: { position: 'left',
+                            ticks: { color: '#9ca3af', maxTicksLimit: 5 },
+                            grid: { color: 'rgba(255,255,255,0.05)' } }
                     }
                 }
             });
