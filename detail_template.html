@@ -627,24 +627,37 @@
                             pointRadius: 0,
                             borderWidth: 1
                         },
-                    {
-                        label: 'レジスタンス',
-                        data: Array(closes.length).fill(detailData.resistance),
-                        borderColor: 'rgba(239, 68, 68, 0.9)',
-                        borderWidth: 2,
-                        borderDash: [6, 3],
-                        fill: false,
-                        pointRadius: 0
-                    },
-                    {
-                        label: 'サポート',
-                        data: Array(closes.length).fill(detailData.support),
-                        borderColor: 'rgba(34, 197, 94, 0.9)',
-                        borderWidth: 2,
-                        borderDash: [6, 3],
-                        fill: false,
-                        pointRadius: 0
-                    }
+                    ...((function() {
+                        var n = closes.length;
+                        var ohlc = detailData.ohlcHistory || [];
+                        var cp = closes[n - 1];
+                        function clusterLvls(prices, pct) {
+                            var sorted = prices.slice().sort(function(a,b){return a-b;});
+                            var groups = [];
+                            for (var pi=0; pi<sorted.length; pi++) {
+                                var p = sorted[pi], found = null;
+                                for (var gi=0; gi<groups.length; gi++) {
+                                    if (Math.abs(groups[gi].price-p)/groups[gi].price < pct) { found=groups[gi]; break; }
+                                }
+                                if (found) { found.count++; found.price=(found.price*(found.count-1)+p)/found.count; }
+                                else groups.push({price:p,count:1});
+                            }
+                            return groups.sort(function(a,b){return b.count-a.count;});
+                        }
+                        var highs=[], lows=[];
+                        for (var i=3; i<ohlc.length-3; i++) {
+                            var h=ohlc[i].high, l=ohlc[i].low, isH=true, isL=true;
+                            for(var j=i-3;j<i+4;j++){if(j===i)continue;if(ohlc[j].high>h)isH=false;if(ohlc[j].low<l)isL=false;}
+                            if(isH)highs.push(h); if(isL)lows.push(l);
+                        }
+                        var resistances=clusterLvls(highs.filter(function(p){return p>cp;}),0.015).sort(function(a,b){return a.price-b.price;}).slice(0,3);
+                        var supports=clusterLvls(lows.filter(function(p){return p<cp;}),0.015).sort(function(a,b){return b.price-a.price;}).slice(0,3);
+                        var ds=[], rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.6)','rgba(239,68,68,0.4)'], sC=['rgba(34,197,94,0.9)','rgba(34,197,94,0.6)','rgba(34,197,94,0.4)'];
+                        for(var ri=0;ri<resistances.length;ri++){var lv=resistances[ri];ds.push({label:'R'+(ri+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[ri],borderWidth:ri===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
+                        for(var si=0;si<supports.length;si++){var lv=supports[si];ds.push({label:'S'+(si+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:sC[si],borderWidth:si===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
+                        if(detailData.fib){var fc=['rgba(251,191,36,0.45)','rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)'],fi=0;for(var fk in detailData.fib){ds.push({label:'Fib'+fk+'% '+parseFloat(detailData.fib[fk]).toFixed(1),data:Array(n).fill(parseFloat(detailData.fib[fk])),borderColor:fc[fi]||'rgba(251,191,36,0.5)',borderWidth:1,borderDash:[2,5],fill:false,pointRadius:0});fi++;}}
+                        return ds;
+                    })())
                     ]
                 },
                 options: {
@@ -754,24 +767,30 @@
                             fill: false,
                             borderWidth: 1
                         },
-                        {
-                            label: 'レジスタンス',
-                            data: Array(dates.length).fill(data.resistance),
-                            borderColor: '#ef4444',
-                            borderDash: [2, 4],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 2
-                        },
-                        {
-                            label: 'サポート',
-                            data: Array(dates.length).fill(data.support),
-                            borderColor: '#10b981',
-                            borderDash: [2, 4],
-                            pointRadius: 0,
-                            fill: false,
-                            borderWidth: 2
-                        }
+                        ...((function() {
+                            var n = dates.length;
+                            var ohlc = (typeof detailData !== 'undefined' && detailData.ohlcHistory) ? detailData.ohlcHistory : [];
+                            var cp = (typeof detailData !== 'undefined' && detailData.sr) ? detailData.sr.current : (data.current || 0);
+                            function clusterLvls(prices, pct) {
+                                var sorted = prices.slice().sort(function(a,b){return a-b;});
+                                var groups = [];
+                                for (var pi=0; pi<sorted.length; pi++) {
+                                    var p=sorted[pi], found=null;
+                                    for(var gi=0;gi<groups.length;gi++){if(Math.abs(groups[gi].price-p)/groups[gi].price<pct){found=groups[gi];break;}}
+                                    if(found){found.count++;found.price=(found.price*(found.count-1)+p)/found.count;}else groups.push({price:p,count:1});
+                                }
+                                return groups.sort(function(a,b){return b.count-a.count;});
+                            }
+                            var highs=[], lows=[];
+                            for(var i=3;i<ohlc.length-3;i++){var h=ohlc[i].high,l=ohlc[i].low,isH=true,isL=true;for(var j=i-3;j<i+4;j++){if(j===i)continue;if(ohlc[j].high>h)isH=false;if(ohlc[j].low<l)isL=false;}if(isH)highs.push(h);if(isL)lows.push(l);}
+                            var resistances=clusterLvls(highs.filter(function(p){return p>cp;}),0.015).sort(function(a,b){return a.price-b.price;}).slice(0,3);
+                            var supports=clusterLvls(lows.filter(function(p){return p<cp;}),0.015).sort(function(a,b){return b.price-a.price;}).slice(0,3);
+                            var ds=[],rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.6)','rgba(239,68,68,0.4)'],sC=['rgba(34,197,94,0.9)','rgba(34,197,94,0.6)','rgba(34,197,94,0.4)'];
+                            for(var ri=0;ri<resistances.length;ri++){var lv=resistances[ri];ds.push({label:'R'+(ri+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[ri],borderWidth:ri===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
+                            for(var si=0;si<supports.length;si++){var lv=supports[si];ds.push({label:'S'+(si+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:sC[si],borderWidth:si===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});}
+                            if(typeof detailData!=='undefined'&&detailData.fib){var fc=['rgba(251,191,36,0.45)','rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)'],fi=0;for(var fk in detailData.fib){ds.push({label:'Fib'+fk+'% '+parseFloat(detailData.fib[fk]).toFixed(1),data:Array(n).fill(parseFloat(detailData.fib[fk])),borderColor:fc[fi]||'rgba(251,191,36,0.5)',borderWidth:1,borderDash:[2,5],fill:false,pointRadius:0});fi++;}}
+                            return ds;
+                        })())
                     ]
                 },
                 options: {
