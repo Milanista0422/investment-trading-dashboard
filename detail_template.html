@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">è©³ç´°ãã¯ãã«ã«åæ</title>
+    <title id="page-title">詳細テクニカル分析</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,7 +17,7 @@
 
         .container { max-width: 1600px; margin: 0 auto; }
 
-        /* ===== ãããã¼ ===== */
+        /* ===== ヘッダー ===== */
         .page-header {
             display: flex;
             justify-content: space-between;
@@ -51,7 +51,7 @@
         }
         .back-button:hover { background: #2563eb; transform: translateY(-2px); }
 
-        /* ===== ã¿ãããã²ã¼ã·ã§ã³ ===== */
+        /* ===== タブナビゲーション ===== */
         .timeframe-tabs {
             display: flex;
             gap: 10px;
@@ -76,7 +76,7 @@
         }
         .tab-button:hover { color: #cbd5e1; }
 
-        /* ===== ã¡ã¤ã³ã³ã³ãã³ã ===== */
+        /* ===== メインコンテンツ ===== */
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 350px;
@@ -84,7 +84,7 @@
             margin-bottom: 30px;
         }
 
-        /* ===== ãã£ã¼ãã»ã¯ã·ã§ã³ ===== */
+        /* ===== チャートセクション ===== */
         .chart-section {
             background: #1f2937;
             border: 1px solid #374151;
@@ -107,7 +107,7 @@
             margin-bottom: 20px;
         }
 
-        /* ãªã·ã¬ã¼ã¿ã¼ */
+        /* オシレーター */
         .oscillator-charts {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -128,7 +128,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== å³ãµã¤ããã¼ ===== */
+        /* ===== 右サイドバー ===== */
         .sidebar {
             background: #1f2937;
             border: 1px solid #374151;
@@ -194,7 +194,7 @@
             transition: width 0.3s;
         }
 
-        /* ===== åæã»ã¯ã·ã§ã³ ===== */
+        /* ===== 分析セクション ===== */
         .analysis-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -239,7 +239,7 @@
         .analysis-key { color: #a0aec0; font-size: 12px; }
         .analysis-value { color: #fff; font-weight: 600; }
 
-        /* ===== ããã¿ã¼ ===== */
+        /* ===== フッター ===== */
         .footer {
             background: #1f2937;
             border-top: 1px solid #374151;
@@ -251,7 +251,7 @@
             color: #a0aec0;
         }
 
-        /* ===== ã¬ã¹ãã³ã·ã ===== */
+        /* ===== レスポンシブ ===== */
         @media (max-width: 1200px) {
             .content-grid { grid-template-columns: 1fr; }
             .sidebar { position: static; }
@@ -262,38 +262,38 @@
 </head>
 <body>
     <div class="container">
-        <!-- ãããã¼ -->
+        <!-- ヘッダー -->
         <div class="page-header">
             <div class="header-info">
                 <h1 id="ticker-display">AAPL</h1>
                 <div class="header-stats">
-                    <span>ç¾å¨å¤: <strong id="current-price">150.00</strong></span>
-                    <span>å¤åç: <strong id="change-rate" style="color: #10b981;">+0.5%</strong></span>
-                    <span>æ´æ°: <span id="update-time">--:--:--</span></span>
+                    <span>現在値: <strong id="current-price">150.00</strong></span>
+                    <span>変動率: <strong id="change-rate" style="color: #10b981;">+0.5%</strong></span>
+                    <span>更新: <span id="update-time">--:--:--</span></span>
                 </div>
             </div>
-            <button class="back-button" onclick="window.close()">â ããã·ã¥ãã¼ãã«æ»ã</button>
+            <button class="back-button" onclick="window.close()">← ダッシュボードに戻る</button>
         </div>
 
-        <!-- ã¿ãããã²ã¼ã·ã§ã³ -->
+        <!-- タブナビゲーション -->
         <div class="timeframe-tabs">
-            <button class="tab-button active" onclick="switchTimeframe('daily')">ð æ¥è¶³ (1D)</button>
-            <button class="tab-button" onclick="switchTimeframe('weekly')">ð é±è¶³ (1W)</button>
-            <button class="tab-button" onclick="switchTimeframe('monthly')">ð æè¶³ (1M)</button>
+            <button class="tab-button active" onclick="switchTimeframe('daily')">📅 日足 (1D)</button>
+            <button class="tab-button" onclick="switchTimeframe('weekly')">📊 週足 (1W)</button>
+            <button class="tab-button" onclick="switchTimeframe('monthly')">📈 月足 (1M)</button>
         </div>
 
-        <!-- ã¡ã¤ã³ã³ã³ãã³ã -->
+        <!-- メインコンテンツ -->
         <div class="content-grid">
-            <!-- ãã£ã¼ãè¡¨ç¤º -->
+            <!-- チャート表示 -->
             <div class="chart-section">
-                <div class="chart-title">ð ä¾¡æ ¼ãã£ã¼ã + ãã¯ãã«ã«ææ¨</div>
+                <div class="chart-title">📊 価格チャート + テクニカル指標</div>
 
-                <!-- ã¡ã¤ã³ãã£ã¼ã -->
+                <!-- メインチャート -->
                 <div class="chart-container">
                     <canvas id="mainChart"></canvas>
                 </div>
 
-                <!-- ãªã·ã¬ã¼ã¿ã¼ -->
+                <!-- オシレーター -->
                 <div class="oscillator-charts">
                     <div class="oscillator-chart">
                         <div class="oscillator-title">RSI(14)</div>
@@ -306,15 +306,15 @@
                 </div>
             </div>
 
-            <!-- ãµã¤ããã¼: ãã¯ãã«ã«ææ¨ -->
+            <!-- サイドバー: テクニカル指標 -->
             <div class="sidebar">
                 <div class="sidebar-section">
-                    <div class="sidebar-title">ð¯ ç·åå¤å®</div>
+                    <div class="sidebar-title">🎯 総合判定</div>
                     <div style="font-size: 24px; font-weight: 700; margin: 15px 0; color: #10b981;" id="overall-signal">
                         BUY
                     </div>
                     <div style="font-size: 13px; color: #a0aec0; margin-bottom: 10px;">
-                        ä¿¡åº¦: <strong style="color: #fff;" id="overall-confidence">92%</strong>
+                        信度: <strong style="color: #fff;" id="overall-confidence">92%</strong>
                     </div>
                     <div class="score-bar">
                         <div class="score-fill" style="width: 92%;" id="overall-score"></div>
@@ -322,168 +322,168 @@
                 </div>
 
                 <div class="sidebar-section">
-                    <div class="sidebar-title">ð ãã¬ã³ãåæ</div>
+                    <div class="sidebar-title">📈 トレンド分析</div>
                     <div class="indicator-item">
                         <span class="indicator-label">SMA20/50</span>
                         <span class="indicator-value" id="sma-signal">BUL</span>
                     </div>
                     <div class="indicator-item">
-                        <span class="indicator-label">ã´ã¼ã«ãã³ã¯ã­ã¹</span>
-                        <span class="indicator-value" id="gc-signal">â</span>
+                        <span class="indicator-label">ゴールデンクロス</span>
+                        <span class="indicator-value" id="gc-signal">✓</span>
                     </div>
                     <div class="indicator-item">
-                        <span class="indicator-label">ãã¬ã³ãå¼·åº¦</span>
-                        <span class="indicator-value" id="trend-strength">å¼·</span>
+                        <span class="indicator-label">トレンド強度</span>
+                        <span class="indicator-value" id="trend-strength">強</span>
                     </div>
                 </div>
 
                 <div class="sidebar-section">
-                    <div class="sidebar-title">ð ãªã·ã¬ã¼ã¿ã¼</div>
+                    <div class="sidebar-title">📊 オシレーター</div>
                     <div class="indicator-item">
                         <span class="indicator-label">RSI(14)</span>
                         <span class="indicator-value" id="rsi-value">65</span>
                     </div>
                     <div style="margin: 5px 0; font-size: 11px;">
-                        <span id="rsi-status" class="signal-badge signal-neutral">ä¸­ç«</span>
+                        <span id="rsi-status" class="signal-badge signal-neutral">中立</span>
                     </div>
                     <div class="indicator-item">
                         <span class="indicator-label">MACD</span>
-                        <span class="indicator-value" id="macd-signal">â</span>
+                        <span class="indicator-value" id="macd-signal">↑</span>
                     </div>
                     <div style="margin: 5px 0; font-size: 11px;">
-                        <span id="macd-status" class="signal-badge signal-bullish">å¼·æ°</span>
+                        <span id="macd-status" class="signal-badge signal-bullish">強気</span>
                     </div>
                 </div>
 
                 <div class="sidebar-section">
-                    <div class="sidebar-title">ð S/Råæ</div>
+                    <div class="sidebar-title">📍 S/R分析</div>
                     <div class="indicator-item">
-                        <span class="indicator-label">ã¬ã¸ã¹ã¿ã³ã¹</span>
+                        <span class="indicator-label">レジスタンス</span>
                         <span class="indicator-value" id="resistance-value">195.0</span>
                     </div>
                     <div class="indicator-item">
-                        <span class="indicator-label">ãµãã¼ã</span>
+                        <span class="indicator-label">サポート</span>
                         <span class="indicator-value" id="support-value">168.0</span>
                     </div>
                     <div class="indicator-item">
-                        <span class="indicator-label">ããªãã³è·é¢</span>
-                        <span class="indicator-value" id="bb-status">ä¸­å¤®</span>
+                        <span class="indicator-label">ボリバン距離</span>
+                        <span class="indicator-value" id="bb-status">中央</span>
                     </div>
                 </div>
 
                 <div class="sidebar-section">
-                    <div class="sidebar-title">ð¨ ãã©ãã£ãªãã£</div>
+                    <div class="sidebar-title">💨 ボラティリティ</div>
                     <div class="indicator-item">
                         <span class="indicator-label">ATR(14)</span>
                         <span class="indicator-value" id="atr-value">2.8</span>
                     </div>
                     <div class="indicator-item">
-                        <span class="indicator-label">å¤åæ§</span>
-                        <span class="indicator-value" id="volatility-level">ä¸­</span>
+                        <span class="indicator-label">変動性</span>
+                        <span class="indicator-value" id="volatility-level">中</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- è©³ç´°åæã»ã¯ã·ã§ã³ -->
+        <!-- 詳細分析セクション -->
         <div class="analysis-section">
-            <!-- ãã¯ãã«ã«åæ -->
+            <!-- テクニカル分析 -->
             <div class="analysis-box">
-                <div class="analysis-title">ð ãã¯ãã«ã«åæ</div>
+                <div class="analysis-title">📈 テクニカル分析</div>
                 <div class="analysis-content" id="technical-analysis">
                     <div class="analysis-item">
-                        <span class="analysis-key">ãã¬ã³ãå¤å®:</span>
-                        <span class="analysis-value" id="tech-trend">ä¸æãã¬ã³ãç¶ç¶</span>
+                        <span class="analysis-key">トレンド判定:</span>
+                        <span class="analysis-value" id="tech-trend">上昇トレンド継続</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">SMAè©ä¾¡:</span>
-                        <span class="analysis-value" id="tech-sma">SMA20 > SMA50 > SMA200ã§ã´ã¼ã«ãã³ã¯ã­ã¹ç¢ºèª</span>
+                        <span class="analysis-key">SMA評価:</span>
+                        <span class="analysis-value" id="tech-sma">SMA20 > SMA50 > SMA200でゴールデンクロス確認</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">RSIæè¦:</span>
-                        <span class="analysis-value" id="tech-rsi">65ï¼è²·ããããæªæºãä¸æå§åããï¼</span>
+                        <span class="analysis-key">RSI所見:</span>
+                        <span class="analysis-value" id="tech-rsi">65（買われすぎ未満、上昇圧力あり）</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">MACDã·ã°ãã«:</span>
-                        <span class="analysis-value" id="tech-macd">ãã¸ãã£ãããã¹ãã°ã©ã å¢å å¾å</span>
+                        <span class="analysis-key">MACDシグナル:</span>
+                        <span class="analysis-value" id="tech-macd">ポジティブ、ヒストグラム増加傾向</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">S/Rå¤æ­:</span>
-                        <span class="analysis-value" id="tech-sr">ã¬ã¸ã¹ã¿ã³ã¹195.0ãä¸å¤ç®å®ããµãã¼ã168.0ãä¸å¤æ¯æ</span>
+                        <span class="analysis-key">S/R判断:</span>
+                        <span class="analysis-value" id="tech-sr">レジスタンス195.0が上値目安、サポート168.0が下値支持</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">çµè«:</span>
-                        <span class="analysis-value" id="tech-conclusion" style="color: #10b981;">è²·ãå ´é¢ããã ã195.0å°éæã«å©çç¢ºå®ãæ¤è¨</span>
+                        <span class="analysis-key">結論:</span>
+                        <span class="analysis-value" id="tech-conclusion" style="color: #10b981;">買い場面。ただし195.0到達時に利益確定も検討</span>
                     </div>
                 </div>
             </div>
 
-            <!-- ãã¡ã³ãã¡ã³ã¿ã«åæ -->
+            <!-- ファンダメンタル分析 -->
             <div class="analysis-box fundamental">
-                <div class="analysis-title">ð¡ ãã¡ã³ãã¡ã³ã¿ã«åæ</div>
+                <div class="analysis-title">💡 ファンダメンタル分析</div>
                 <div class="analysis-content" id="fundamental-analysis">
                     <div class="analysis-item">
-                        <span class="analysis-key">ãã¥ã¼ã¹è©ä¾¡:</span>
-                        <span class="analysis-value" id="fund-news">AIæ¡ç¨å éï¼å¥½ææï¼</span>
+                        <span class="analysis-key">ニュース評価:</span>
+                        <span class="analysis-value" id="fund-news">AI採用加速（好材料）</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">æé·æ§:</span>
-                        <span class="analysis-value" id="fund-growth">ã¨ã³ã¿ã¼ãã©ã¤ãºã»ã¯ã¿ã¼ã§ã®éè¦æ¡å¤§ã§å èª¿</span>
+                        <span class="analysis-key">成長性:</span>
+                        <span class="analysis-value" id="fund-growth">エンタープライズセクターでの需要拡大で堅調</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">è²·ããããè­¦å:</span>
-                        <span class="analysis-value" id="fund-overbought">RSI65ã§è¯ããã¥ã¼ã¹ã«å¯¾ãå·éãªåå¿ãããã«ä¸æä½å°ãã</span>
+                        <span class="analysis-key">買われすぎ警告:</span>
+                        <span class="analysis-value" id="fund-overbought">RSI65で良いニュースに対し冷静な反応。さらに上昇余地あり</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">ãªã¹ã¯è©ä¾¡:</span>
-                        <span class="analysis-value" id="fund-risk">ã»ãã³ã³ãã¯ã¿ã»ã¯ã¿ã¼å¨ä½ãå¥½æ³ãªãããã»ã¯ã¿ã¼èª¿æ´æã¯å½±é¿åããå¯è½æ§</span>
+                        <span class="analysis-key">リスク評価:</span>
+                        <span class="analysis-value" id="fund-risk">セミコンダクタセクター全体が好況なため、セクター調整時は影響受ける可能性</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">ç«¶äºç°å¢:</span>
-                        <span class="analysis-value" id="fund-competition">AIé¢é£ãã­ã»ããµã®éè¦å¢ã§å¸å ´ã·ã§ã¢ç¢ºä¿ä¸­</span>
+                        <span class="analysis-key">競争環境:</span>
+                        <span class="analysis-value" id="fund-competition">AI関連プロセッサの需要増で市場シェア確保中</span>
                     </div>
                     <div class="analysis-item">
-                        <span class="analysis-key">çµè«:</span>
-                        <span class="analysis-value" id="fund-conclusion" style="color: #f59e0b;">ãã¥ã¼ã¹å¥½ææ + ãã¯ãã«ã«ä¸æãã¬ã³ããä¸æç¢ºåº¦80% / ä¸éãªã¹ã¯20%</span>
+                        <span class="analysis-key">結論:</span>
+                        <span class="analysis-value" id="fund-conclusion" style="color: #f59e0b;">ニュース好材料 + テクニカル上昇トレンド。上昇確度80% / 下降リスク20%</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ããã¿ã¼ -->
+        <!-- フッター -->
         <div class="footer">
-            â ï¸ ãã®ãã¼ã¸ã¯æè²ç®çã®åæã§ããå®éã®æè³å¤æ­ã¯ãèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã
-            éå»ã®ããã©ã¼ãã³ã¹ã¯å°æ¥ãä¿è¨¼ãã¾ããã
+            ⚠️ このページは教育目的の分析です。実際の投資判断はご自身の責任で行ってください。
+            過去のパフォーマンスは将来を保証しません。
         </div>
     </div>
 
     <script>
-        // sessionStorageãããã¼ã¿ãèª­ã¿è¾¼ã
+        // sessionStorageからデータを読み込む
         let detailData = {};
         let tickerData = {};
         let currentTimeframe = 'daily';
         let charts = {};
 
-        // ãã¼ã¸åæå
+        // ページ初期化
         async function initializePage() {
-            // technical_data.jsonãéåæã§èª­è¾¼
+            // technical_data.jsonを非同期で読込
             let technicalDataFromJson = {};
             try {
                 const response = await fetch('technical_data.json');
                 if (response.ok) {
                     technicalDataFromJson = await response.json();
-                    console.log('â OHLCå±¥æ­´ãã¼ã¿èª­è¾¼å®äº');
+                    console.log('✅ OHLC履歴データ読込完了');
                 }
             } catch (error) {
-                console.warn('â ï¸ technical_data.jsonèª­è¾¼å¤±æ:', error);
+                console.warn('⚠️ technical_data.json読込失敗:', error);
             }
 
-            // sessionStorageãããã¼ã¿ãåå¾
+            // sessionStorageからデータを取得
             const storedData = sessionStorage.getItem('detailData');
             if (storedData) {
                 detailData = JSON.parse(storedData);
 
-                // technical_data.jsonããOHLCå±¥æ­´ãè¿½å 
+                // technical_data.jsonからOHLC履歴を追加
                 const ticker = detailData.ticker;
                 const ohlcHistory = technicalDataFromJson[ticker]?.ohlcHistory || [];
 
@@ -505,12 +505,12 @@
                     news: detailData.newsSentiment,
                     technicalAnalysis: detailData.technicalAnalysis,
                     fundamentalAnalysis: detailData.fundamentalAnalysis,
-                    ohlcHistory: ohlcHistory  // OHLCå±¥æ­´ãè¿½å 
+                    ohlcHistory: ohlcHistory  // OHLC履歴を追加
                 };
 
-                // ãã¼ã¸ã¿ã¤ãã«ã¨ãããã¼ãæ´æ°
-                document.title = `${detailData.ticker} - è©³ç´°ãã¯ãã«ã«åæ`;
-                document.getElementById('page-title').textContent = `${detailData.ticker} - è©³ç´°ãã¯ãã«ã«åæ`;
+                // ページタイトルとヘッダーを更新
+                document.title = `${detailData.ticker} - 詳細テクニカル分析`;
+                document.getElementById('page-title').textContent = `${detailData.ticker} - 詳細テクニカル分析`;
                 document.getElementById('ticker-display').textContent = detailData.ticker;
                 document.getElementById('current-price').textContent = detailData.price;
                 document.getElementById('change-rate').textContent = detailData.changeRate;
@@ -522,22 +522,22 @@
             updateSidebarMetrics();
         }
 
-        // ã¿ã¤ã ãã¬ã¼ã åãæ¿ã
+        // タイムフレーム切り替え
         function switchTimeframe(timeframe) {
             currentTimeframe = timeframe;
 
-            // ã¿ããæ´æ°ï¼ãã©ã¡ã¼ã¿ã«åºã¥ãã¦æ­£ç¢ºã«å¦çï¼
+            // タブを更新（パラメータに基づいて正確に処理）
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
                 const btnText = btn.textContent.trim().toLowerCase();
-                if ((timeframe === 'daily' && btnText.includes('æ¥è¶³')) ||
-                    (timeframe === 'weekly' && btnText.includes('é±è¶³')) ||
-                    (timeframe === 'monthly' && btnText.includes('æè¶³'))) {
+                if ((timeframe === 'daily' && btnText.includes('日足')) ||
+                    (timeframe === 'weekly' && btnText.includes('週足')) ||
+                    (timeframe === 'monthly' && btnText.includes('月足'))) {
                     btn.classList.add('active');
                 }
             });
 
-            // ãã£ã¼ããåæç»
+            // チャートを再描画
             if (charts.main) charts.main.destroy();
             if (charts.rsi) charts.rsi.destroy();
             if (charts.macd) charts.macd.destroy();
@@ -545,28 +545,28 @@
             renderCharts();
         }
 
-        // ãã£ã¼ãæç»
+        // チャート描画
         function renderCharts() {
             const ticker = detailData.ticker || "AAPL";
             const data = tickerData[ticker];
 
-            if (!data) return; // ãã¼ã¿ããªãå ´åã¯ã¹ã­ãã
+            if (!data) return; // データがない場合はスキップ
 
-            // ãµã³ãã«ãã¼ã¿çæï¼å®è£ç°å¢ã§ã¯å®ãã¼ã¿ãä½¿ç¨ï¼
+            // サンプルデータ生成（実装環境では実データを使用）
             const dates = generateDates(currentTimeframe);
             const prices = generatePriceData(data.price, dates.length, currentTimeframe);
 
-            // ã¡ã¤ã³ãã£ã¼ã
+            // メインチャート
             renderMainChart(ticker, dates, prices, data);
 
-            // RSIãã£ã¼ã
+            // RSIチャート
             renderRSIChart(ticker, dates, data.rsi);
 
-            // MACDãã£ã¼ã
+            // MACDチャート
             renderMACDChart(ticker, dates, data.macd);
         }
 
-        // ã­ã£ã³ãã«ã¹ãã£ãã¯ãã£ã¼ãæç»
+        // キャンドルスティックチャート描画
         function renderCandlestickChart(ticker, data) {
             const ctx = document.getElementById('mainChart');
             if (!ctx) return;
@@ -574,7 +574,7 @@
             const ohlcData = data.ohlcHistory || [];
             if (ohlcData.length === 0) return;
 
-            // OHLCä¾¡æ ¼ãã¼ã¿ãæºå
+            // OHLC価格データを準備
             const ohlcChartData = ohlcData.map(candle => ({
                 x: candle.date,
                 o: candle.open,
@@ -583,7 +583,7 @@
                 c: candle.close
             }));
 
-            // SMAç·ç¨ã®ãã¼ã¿
+            // SMA線用のデータ
             const closes = ohlcData.map(c => c.close);
             const highs = ohlcData.map(c => c.high);
             const lows = ohlcData.map(c => c.low);
@@ -593,9 +593,9 @@
                 data: {
                     labels: ohlcData.map(c => c.date),
                     datasets: [
-                        // çµå¤ã©ã¤ã³ãã£ã¼ãï¼ã­ã£ã³ãã«ã®ä»£ããï¼
+                        // 終値ラインチャート（キャンドルの代わり）
                         {
-                            label: `${ticker} çµå¤`,
+                            label: `${ticker} 終値`,
                             data: closes,
                             borderColor: '#3b82f6',
                             backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -607,9 +607,9 @@
                             ),
                             borderWidth: 2
                         },
-                        // é«å¤
+                        // 高値
                         {
-                            label: 'é«å¤',
+                            label: '高値',
                             data: highs,
                             borderColor: 'rgba(16, 185, 129, 0.4)',
                             borderDash: [2, 2],
@@ -617,9 +617,9 @@
                             pointRadius: 0,
                             borderWidth: 1
                         },
-                        // å®å¤
+                        // 安値
                         {
-                            label: 'å®å¤',
+                            label: '安値',
                             data: lows,
                             borderColor: 'rgba(239, 68, 68, 0.4)',
                             borderDash: [2, 2],
@@ -657,7 +657,7 @@
                         },
                         title: {
                             display: true,
-                            text: `${ticker} - ã­ã£ã³ãã«ãã£ã¼ãï¼éå»60æ¥ï¼`,
+                            text: `${ticker} - キャンドルチャート（過去60日）`,
                             color: '#fff'
                         }
                     },
@@ -673,18 +673,18 @@
             });
         }
 
-        // ã¡ã¤ã³ãã£ã¼ãæç»ï¼OHLCå¯¾å¿ï¼
+        // メインチャート描画（OHLC対応）
         function renderMainChart(ticker, dates, prices, data) {
             const ctx = document.getElementById('mainChart');
             if (!ctx) return;
 
-            // OHLCå±¥æ­´ãããå ´åã¯ã­ã£ã³ãã«ãã£ã¼ããä½¿ç¨
+            // OHLC履歴がある場合はキャンドルチャートを使用
             if (data.ohlcHistory && data.ohlcHistory.length > 0) {
                 renderCandlestickChart(ticker, data);
                 return;
             }
 
-            // ããªã³ã¸ã£ã¼ãã³ãã®ä¸ä¸
+            // ボリンジャーバンドの上下
             const bbUpper = Array(dates.length).fill(data.bbUpper);
             const bbLower = Array(dates.length).fill(data.bbLower);
             const bbMiddle = Array(dates.length).fill((data.bbUpper + data.bbLower) / 2);
@@ -700,7 +700,7 @@
                     labels: dates,
                     datasets: [
                         {
-                            label: `${ticker} çµå¤`,
+                            label: `${ticker} 終値`,
                             data: prices,
                             borderColor: '#3b82f6',
                             backgroundColor: 'rgba(59, 130, 246, 0.1)',
@@ -737,7 +737,7 @@
                             borderWidth: 1.5
                         },
                         {
-                            label: 'ããªãã³ä¸',
+                            label: 'ボリバン上',
                             data: bbUpper,
                             borderColor: '#ef4444',
                             borderDash: [5, 5],
@@ -746,7 +746,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: 'ããªãã³ä¸',
+                            label: 'ボリバン下',
                             data: bbLower,
                             borderColor: '#10b981',
                             borderDash: [5, 5],
@@ -755,7 +755,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: 'ã¬ã¸ã¹ã¿ã³ã¹',
+                            label: 'レジスタンス',
                             data: Array(dates.length).fill(data.resistance),
                             borderColor: '#ef4444',
                             borderDash: [2, 4],
@@ -764,7 +764,7 @@
                             borderWidth: 2
                         },
                         {
-                            label: 'ãµãã¼ã',
+                            label: 'サポート',
                             data: Array(dates.length).fill(data.support),
                             borderColor: '#10b981',
                             borderDash: [2, 4],
@@ -791,7 +791,7 @@
             });
         }
 
-        // RSIãã£ã¼ãæç»
+        // RSIチャート描画
         function renderRSIChart(ticker, dates, rsiValue) {
             const ctx = document.getElementById('rsiChart');
             const rsiLine = Array(dates.length).fill(rsiValue);
@@ -814,7 +814,7 @@
                             borderWidth: 2
                         },
                         {
-                            label: 'è²·ãããã(70)',
+                            label: '買われすぎ(70)',
                             data: overbought,
                             borderColor: '#ef4444',
                             borderDash: [5, 5],
@@ -823,7 +823,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: 'å£²ãããã(30)',
+                            label: '売られすぎ(30)',
                             data: oversold,
                             borderColor: '#10b981',
                             borderDash: [5, 5],
@@ -845,7 +845,7 @@
             });
         }
 
-        // MACDãã£ã¼ãæç»
+        // MACDチャート描画
         function renderMACDChart(ticker, dates, macdSignal) {
             const ctx = document.getElementById('macdChart');
             const macdValue = macdSignal === 'BULLISH' ? 2 : -2;
@@ -858,7 +858,7 @@
                     labels: dates,
                     datasets: [
                         {
-                            label: 'ãã¹ãã°ã©ã ',
+                            label: 'ヒストグラム',
                             data: macdLine,
                             backgroundColor: macdSignal === 'BULLISH' ? '#10b98180' : '#ef444480',
                             borderColor: macdSignal === 'BULLISH' ? '#10b981' : '#ef4444',
@@ -866,7 +866,7 @@
                             barPercentage: 1
                         },
                         {
-                            label: 'ã·ã°ãã«',
+                            label: 'シグナル',
                             data: signalLine,
                             borderColor: '#f59e0b',
                             type: 'line',
@@ -888,52 +888,52 @@
             });
         }
 
-        // ãµã¤ããã¼ææ¨ãæ´æ°
+        // サイドバー指標を更新
         function updateSidebarMetrics() {
             const ticker = detailData.ticker || "AAPL";
             const data = tickerData[ticker];
 
-            if (!data) return; // ãã¼ã¿ããªãå ´åã¯ã¹ã­ãã
+            if (!data) return; // データがない場合はスキップ
 
-            // ç·åå¤å®ãæ´æ°
+            // 総合判定を更新
             document.getElementById('overall-signal').textContent = data.signal;
             document.getElementById('overall-confidence').textContent = data.confidence + '%';
             document.getElementById('overall-score').style.width = data.confidence + '%';
 
-            // ãã¬ã³ãåæãæ´æ°
+            // トレンド分析を更新
             document.getElementById('sma-signal').textContent =
                 (data.sma20 > data.sma50 && data.sma50 > data.sma200) ? 'BUL' : 'BER';
             document.getElementById('trend-strength').textContent =
-                data.confidence > 80 ? 'å¼·' : data.confidence > 60 ? 'ä¸­' : 'å¼±';
+                data.confidence > 80 ? '強' : data.confidence > 60 ? '中' : '弱';
 
-            // ãªã·ã¬ã¼ã¿ã¼
+            // オシレーター
             document.getElementById('rsi-value').textContent = data.rsi;
             document.getElementById('rsi-status').textContent =
-                data.rsi > 70 ? 'è²·ãããã' : data.rsi < 30 ? 'å£²ãããã' : data.rsi > 50 ? 'å¼·æ°' : 'å¼±æ°';
+                data.rsi > 70 ? '買われすぎ' : data.rsi < 30 ? '売られすぎ' : data.rsi > 50 ? '強気' : '弱気';
             document.getElementById('rsi-status').className =
                 data.rsi > 70 ? 'signal-badge signal-bearish' :
                 data.rsi < 30 ? 'signal-badge signal-bullish' :
                 data.rsi > 50 ? 'signal-badge signal-bullish' : 'signal-badge signal-bearish';
 
-            document.getElementById('macd-signal').textContent = data.macd === 'BULLISH' ? 'â' : 'â';
-            document.getElementById('macd-status').textContent = data.macd === 'BULLISH' ? 'å¼·æ°' : 'å¼±æ°';
+            document.getElementById('macd-signal').textContent = data.macd === 'BULLISH' ? '↑' : '↓';
+            document.getElementById('macd-status').textContent = data.macd === 'BULLISH' ? '強気' : '弱気';
             document.getElementById('macd-status').className =
                 data.macd === 'BULLISH' ? 'signal-badge signal-bullish' : 'signal-badge signal-bearish';
 
-            // S/Råæ
+            // S/R分析
             document.getElementById('resistance-value').textContent = data.resistance;
             document.getElementById('support-value').textContent = data.support;
 
-            const bbDistance = data.price > (data.bbUpper + data.bbLower) / 2 ? 'ä¸' : 'ä¸';
-            document.getElementById('bb-status').textContent = bbDistance + 'å¯ã';
+            const bbDistance = data.price > (data.bbUpper + data.bbLower) / 2 ? '上' : '下';
+            document.getElementById('bb-status').textContent = bbDistance + '寄り';
 
-            // ãã©ãã£ãªãã£
+            // ボラティリティ
             document.getElementById('atr-value').textContent = data.atr;
             document.getElementById('volatility-level').textContent =
-                data.atr > 3 ? 'é«' : data.atr > 1.5 ? 'ä¸­' : 'ä½';
+                data.atr > 3 ? '高' : data.atr > 1.5 ? '中' : '低';
         }
 
-        // æ¥ä»ãçæï¼ã¿ã¤ã ãã¬ã¼ã å¥ï¼
+        // 日付を生成（タイムフレーム別）
         function generateDates(timeframe) {
             const dates = [];
             let count = timeframe === 'daily' ? 20 : timeframe === 'weekly' ? 13 : 12;
@@ -950,7 +950,7 @@
             return dates;
         }
 
-        // ä¾¡æ ¼ãã¼ã¿ãçæ
+        // 価格データを生成
         function generatePriceData(basePrice, count, timeframe) {
             const prices = [];
             const volatility = timeframe === 'daily' ? 0.02 : timeframe === 'weekly' ? 0.04 : 0.06;
@@ -962,7 +962,7 @@
             return prices;
         }
 
-        // ãã¼ã¸ã­ã¼ãæã«åæå
+        // ページロード時に初期化
         window.addEventListener('load', initializePage);
     </script>
 </body>
