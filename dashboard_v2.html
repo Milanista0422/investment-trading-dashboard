@@ -970,7 +970,7 @@
   function sRenderLegend() {
     const wrap = document.getElementById('s-legend');
     wrap.innerHTML = SECTORS.filter(function(s){return sAllData[s.ticker];}).map(function(s) {
-      return '<div class="legend-item ' + (sHidden.has(s.ticker)?'hidden':'') + '" onclick="sToggle('' + s.ticker + '')">' +
+      return '<div class="legend-item ' + (sHidden.has(s.ticker)?'hidden':'') + '" onclick="sToggle(\'' + s.ticker + '\')">' +
              '<span class="legend-dot" style="background:' + s.color + '"></span>' + s.ticker + '</div>';
     }).join('');
   }
@@ -990,7 +990,7 @@
       const cls=perf>0?'pos':perf<0?'neg':'neu', sign=perf>0?'+':'';
       const dayChg=d.currentPrice&&d.prevClose?((d.currentPrice-d.prevClose)/d.prevClose*100).toFixed(2):null;
       const dayCls=dayChg>0?'pos':dayChg<0?'neg':'neu', daySign=dayChg>0?'+':'';
-      return '<div class="sector-card ' + (!sHidden.has(s.ticker)?'active-card':'') + '" onclick="sToggle('' + s.ticker + '')">' +
+      return '<div class="sector-card ' + (!sHidden.has(s.ticker)?'active-card':'') + '" onclick="sToggle(\'' + s.ticker + '\')">' +
         '<div class="sc-header"><div><div class="sc-name-ja">' + s.jaName + '</div><div class="sc-ticker-sm">' + s.ticker + '</div></div>' +
         '<div style="text-align:right"><div class="sc-pct ' + cls + '">' + sign + perf.toFixed(1) + '%</div>' +
         '<div class="sc-price">$' + (d.currentPrice?d.currentPrice.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):'—') + '</div></div></div>' +
