@@ -600,8 +600,8 @@
 
             let dates, closes;
             if (ohlc && ohlc.length > 0) {
-                dates = ohlc.map(function(d) { return d.t; });
-                closes = ohlc.map(function(d) { return d.c; });
+                dates = ohlc.map(function(d) { return d.t || d.date; });
+                closes = ohlc.map(function(d) { return d.c !== undefined ? d.c : d.close; });
             } else {
                 dates = generateDates(currentTimeframe);
                 closes = generatePriceData(data.price, dates.length, currentTimeframe);
