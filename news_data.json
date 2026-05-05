@@ -1,70 +1,503 @@
 {
-  "date": "20260504",
-  "updated_at": "2026-05-04T06:04:23.944Z",
-  "note": "Populated daily by trading signals task",
+  "date": "20260506",
+  "updated_at": "2026-05-05T19:05:18.996218+09:00",
   "tickers": {
     "NVDA": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "The Best Dividend Stock to Own During a Market Crash",
+          "url": "https://www.fool.com/investing/2026/05/05/the-best-dividend-stock-to-own-during-a-market/?.tsrc=rss",
+          "summary": "This consumer staples stock should remain resilient no matter what happens with the market.",
+          "sentiment": "negative",
+          "impact": "high"
+        },
+        {
+          "headline": "Industrial-Strength Rally: Why Caterpillar Is Up 53% and GE Vernova Is Up 65% in 2026",
+          "url": "https://247wallst.com/investing/2026/05/05/industrial-strength-rally-why-caterpillar-is-up-53-and-ge-vernova-is-up-65-in-2026/?.tsrc=rss",
+          "summary": "Two industrial bellwethers are putting up tech-like returns in 2026, and the catalyst is hiding in plain sight: power for the AI buildout. Caterpillar",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Tesla vs Ford: One Is a Disrupter While One Is Quietly Building Legacy",
+          "url": "https://247wallst.com/investing/2026/05/05/tesla-vs-ford-one-is-a-disrupter-while-one-is-quietly-building-legacy/?.tsrc=rss",
+          "summary": "Tesla (NASDAQ: TSLA) and Ford (NYSE: F) just reported first quarter results that crystallize the EV split. Tesla leaned into autonomy, AI compute, and",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "AMD": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "AMD Faces Earnings Test After 74% April Surge",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/amd-faces-earnings-test-74-184729005.html?.tsrc=rss",
+          "summary": "AMD enters first-quarter earnings with high AI expectations, premium valuation, and limited room for disappointment after its sharp rally.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "AMD traders brace for big earnings move",
+          "url": "https://finance.yahoo.com/markets/options/articles/amd-traders-brace-big-earnings-183853999.html?.tsrc=rss",
+          "summary": "Traders brace for big move on results",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "AMD, Intel and Micron Lead Chip Stocks Rally on U.S--Iran Ceasefire Optimism",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/amd-intel-micron-lead-chip-182825335.html?.tsrc=rss",
+          "summary": "Semiconductor Stocks Surge on AI Demand and Risk-On Wave",
+          "sentiment": "positive",
+          "impact": "high"
+        }
+      ]
     },
     "AVGO": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Dow Jones Tech Titan Apple Breaks Out; AI Chipmaker Broadcom In Buy Zone",
+          "url": "https://finance.yahoo.com/m/3ab41948-f6d6-3049-8f8d-a5be13fcfc14/dow-jones-tech-titan-apple.html?.tsrc=rss",
+          "summary": "Dow Jones tech titan Apple, along with AI chipmaker Broadcom, are in buy zones amid strong advances in recent weeks.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "The chip trade is no longer just about Nvidia",
+          "url": "https://finance.yahoo.com/markets/article/the-chip-trade-is-no-longer-just-about-nvidia-175900816.html?.tsrc=rss",
+          "summary": "Investors are no longer just chasing the GPUs that train AI models. They're also chasing the memory and storage needed to keep those systems running.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Oracle Stock Is Still Down Year to Date, As Many AI Stocks Soar. Here's What's Going On.",
+          "url": "https://www.fool.com/investing/2026/05/05/oracle-stock-is-still-down-year-to-date-as-many-ai/?.tsrc=rss",
+          "summary": "A major artificial intelligence customer has come to dominate the database giant's story. And that's not the only issue.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "QCOM": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "AMD, Intel and Micron Lead Chip Stocks Rally on U.S--Iran Ceasefire Optimism",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/amd-intel-micron-lead-chip-182825335.html?.tsrc=rss",
+          "summary": "Semiconductor Stocks Surge on AI Demand and Risk-On Wave",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Sanford Burnham Prebys Medical Discovery Institute receives $5 million from Qualcomm co-founder Andrew Viterbi to advance AI-powered research",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/sanford-burnham-prebys-medical-discovery-170000782.html?.tsrc=rss",
+          "summary": "Sanford Burnham Prebys Medical Discovery Institute today announced that Andrew Viterbi, a visionary communications pioneer and co-founder of Qualcomm ",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "The Next Leg Of The AI Trade Is On. Which Stocks To Pick?",
+          "url": "https://www.trefis.com/articles/598319/the-next-leg-of-the-ai-trade-is-on-which-stocks-to-pick/2026-05-05?.tsrc=rss",
+          "summary": "Markets price the obvious AI winners first.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "MU": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "AMD, Intel and Micron Lead Chip Stocks Rally on U.S--Iran Ceasefire Optimism",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/amd-intel-micron-lead-chip-182825335.html?.tsrc=rss",
+          "summary": "Semiconductor Stocks Surge on AI Demand and Risk-On Wave",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Apple CEO has stark message for Micron stock investors",
+          "url": "https://www.thestreet.com/investing/stocks/apple-ceo-has-stark-message-for-micron-stock-investors?.tsrc=rss",
+          "summary": "It’s unusual for Apple (AAPL) to signal anything about its suppliers, but Tim Cook broke from that pattern, a move that has clear implications for Mic",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "The chip trade is no longer just about Nvidia",
+          "url": "https://finance.yahoo.com/markets/article/the-chip-trade-is-no-longer-just-about-nvidia-175900816.html?.tsrc=rss",
+          "summary": "Investors are no longer just chasing the GPUs that train AI models. They're also chasing the memory and storage needed to keep those systems running.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "ASML": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Forget AMD: 4 AI Stocks That Could Beat the Crowd",
+          "url": "https://247wallst.com/investing/2026/05/05/forget-amd-4-ai-stocks-that-could-beat-the-crowd/?.tsrc=rss",
+          "summary": "Advanced Micro Devices (NASDAQ:AMD) keeps grabbing headlines as the consensus “NVDA alternative” in AI GPUs, the trade every retail account and hedge ",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Roblox downgraded, Chipotle upgraded: Wall Street's top analyst calls",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/qorvo-downgraded-ulta-beauty-upgraded-133354484.html?.tsrc=rss",
+          "summary": "Roblox downgraded, Chipotle upgraded: Wall Street's top analyst calls",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Bernstein Analyst: AI Agents Drive Chip Demand ‘Off the Charts,’ Supply Can’t Keep Up",
+          "url": "https://247wallst.com/investing/2026/05/04/bernstein-analyst-ai-agents-drive-chip-demand-off-the-charts-supply-cant-keep-up/?.tsrc=rss",
+          "summary": "Bernstein Research’s Stacy Rasgon has been making the rounds with a deceptively simple thesis: stop arguing about market share. On a recent Marketplac",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "TSM": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Dow Jones Tech Titan Apple Breaks Out; AI Chipmaker Broadcom In Buy Zone",
+          "url": "https://finance.yahoo.com/m/3ab41948-f6d6-3049-8f8d-a5be13fcfc14/dow-jones-tech-titan-apple.html?.tsrc=rss",
+          "summary": "Dow Jones tech titan Apple, along with AI chipmaker Broadcom, are in buy zones amid strong advances in recent weeks.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "The chip trade is no longer just about Nvidia",
+          "url": "https://finance.yahoo.com/markets/article/the-chip-trade-is-no-longer-just-about-nvidia-175900816.html?.tsrc=rss",
+          "summary": "Investors are no longer just chasing the GPUs that train AI models. They're also chasing the memory and storage needed to keep those systems running.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Everyone’s Talking About TSMC’s AI Boom. Smart Money Is Watching UMC Instead",
+          "url": "https://247wallst.com/investing/2026/05/05/everyones-talking-about-tsmcs-ai-boom-smart-money-is-watching-umc-instead/?.tsrc=rss",
+          "summary": "Taiwan Semiconductor Manufacturing (NYSE:TSM) is the headline name in every AI portfolio chatroom, and after a 143% one-year run that carried the worl",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "AMAT": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Will Applied Materials (AMAT) Beat Estimates Again in Its Next Earnings Report?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-materials-amat-beat-estimates-161002704.html?.tsrc=rss",
+          "summary": "Applied Materials (AMAT) has an impressive earnings surprise history and currently possesses the right combination of the two key ingredients for a li",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Roblox downgraded, Chipotle upgraded: Wall Street's top analyst calls",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/qorvo-downgraded-ulta-beauty-upgraded-133354484.html?.tsrc=rss",
+          "summary": "Roblox downgraded, Chipotle upgraded: Wall Street's top analyst calls",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Is Applied Materials (AMAT) Stock Outpacing Its Computer and Technology Peers This Year?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-materials-amat-stock-outpacing-134004755.html?.tsrc=rss",
+          "summary": "Here is how Applied Materials (AMAT) and Ametek (AME) have performed compared to their sector so far this year.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "LRCX": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Lam Research, IBD Stock Of The Day, Clears Buy Point On Chip-Gear Investments",
+          "url": "https://finance.yahoo.com/m/710a5aa6-c1e8-317e-b898-e9ff62f7dac4/lam-research%2C-ibd-stock-of.html?.tsrc=rss",
+          "summary": "Lam Research is basking in the glow of its recent beat-and-raise earnings report. LRCX stock hit a high, clearing a buy point.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Roblox downgraded, Chipotle upgraded: Wall Street's top analyst calls",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/qorvo-downgraded-ulta-beauty-upgraded-133354484.html?.tsrc=rss",
+          "summary": "Roblox downgraded, Chipotle upgraded: Wall Street's top analyst calls",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Lam Research (LRCX): The Top AI Stock with Potential to Rise 1000 Percent",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/lam-research-lrcx-top-ai-125816425.html?.tsrc=rss",
+          "summary": "Lam Research Corporation (NASDAQ:LRCX) is one of the 10 AI Stocks with Potential to Rise 1000 Percent. On April 23, 2026, Oppenheimer analyst Edward Y",
+          "sentiment": "positive",
+          "impact": "high"
+        }
+      ]
     },
     "MSFT": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Hon Hai Reports 29.7% Revenue Jump As AI Hardware Demand Holds",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/hon-hai-reports-29-7-182209805.html?.tsrc=rss",
+          "summary": "April revenue reached NT$832.1 billion as Hon Hai expects second-quarter sales to grow sequentially and year-over-year.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Microsoft’s Portugal AI Build Out Adds Scale To Undervalued Growth Story",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-portugal-ai-build-adds-181825549.html?.tsrc=rss",
+          "summary": "Microsoft (NasdaqGS:MSFT), Nscale, and Start Campus are launching a multi year AI data center expansion in Portugal and the EU. The project includes m",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "ServiceNow Aims To Orchestrate Enterprise AI With Otto And New Partnerships",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/servicenow-aims-orchestrate-enterprise-ai-181612732.html?.tsrc=rss",
+          "summary": "ServiceNow (NYSE:NOW) used its Knowledge 2026 event to introduce major AI platform advances, including autonomous agents and an upgraded AI Control To",
+          "sentiment": "positive",
+          "impact": "high"
+        }
+      ]
     },
     "GOOGL": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Hon Hai Reports 29.7% Revenue Jump As AI Hardware Demand Holds",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/hon-hai-reports-29-7-182209805.html?.tsrc=rss",
+          "summary": "April revenue reached NT$832.1 billion as Hon Hai expects second-quarter sales to grow sequentially and year-over-year.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "A Bigger 2027 Capex Wave May Be Coming — and Google’s Hint Could Be the First Real Tell From the Hyperscalers",
+          "url": "https://247wallst.com/investing/2026/05/05/a-bigger-2027-capex-wave-may-be-coming-and-googles-hint-could-be-the-first-real-tell-from-the-hyperscalers/?.tsrc=rss",
+          "summary": "Maybe the hundreds of billions that some of the big tech titans are investing in CapEx will prove too little. At least, that’s what the latest quarter",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Alphabet Returns to Euro Debt Market for Latest AI Megabond Deal",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-kicks-off-six-part-063629225.html?.tsrc=rss",
+          "summary": "(Bloomberg) -- Alphabet Inc. needs to borrow heavily to fund investments in artificial intelligence, and it’s increasingly tapping every market to do ",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "META": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Hon Hai Reports 29.7% Revenue Jump As AI Hardware Demand Holds",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/hon-hai-reports-29-7-182209805.html?.tsrc=rss",
+          "summary": "April revenue reached NT$832.1 billion as Hon Hai expects second-quarter sales to grow sequentially and year-over-year.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Alphabet Returns to Euro Debt Market for Latest AI Megabond Deal",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-kicks-off-six-part-063629225.html?.tsrc=rss",
+          "summary": "(Bloomberg) -- Alphabet Inc. needs to borrow heavily to fund investments in artificial intelligence, and it’s increasingly tapping every market to do ",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Why Entergy (ETR) Is Expanding Its Grid for Meta’s Data Center Boom",
+          "url": "https://finance.yahoo.com/sectors/energy/articles/why-entergy-etr-expanding-grid-173015049.html?.tsrc=rss",
+          "summary": "Entergy Corporation (NYSE:ETR) is one of the utility stocks riding the 2026 “Reliability Shock.” The latest relevant development came on April 29, 202",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "AMZN": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Amazon’s AWS-Like Logistics Play Puts 3PLs on Notice",
+          "url": "https://wwd.com/sourcing-journal/logistics/amazon-supply-chain-services-3pl-logistics-aeo-lands-end-freight-distribution-warehousing-fedex-ups-dhl-1238943475/?.tsrc=rss",
+          "summary": "American Eagle Outfitters and Lands’ End are among the first adopters as Amazon opens its logistics network to all businesses and intensifies competit",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Hon Hai Reports 29.7% Revenue Jump As AI Hardware Demand Holds",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/hon-hai-reports-29-7-182209805.html?.tsrc=rss",
+          "summary": "April revenue reached NT$832.1 billion as Hon Hai expects second-quarter sales to grow sequentially and year-over-year.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Sector Update: Financial Stocks Mixed Tuesday Afternoon",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-mixed-tuesday-180308871.html?.tsrc=rss",
+          "summary": "Financial stocks were mixed in Tuesday afternoon trading with the NYSE Financial Index rising 0.3% a",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "PLTR": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Palantir falls despite strong earnings report",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/palantir-falls-despite-strong-earnings-184000982.html?.tsrc=rss",
+          "summary": "Commercial miss and valuation weigh on reaction",
+          "sentiment": "negative",
+          "impact": "high"
+        },
+        {
+          "headline": "Why Palantir's Beat-and-Raise Quarter Did Absolutely Nothing for the Stock. 2 Issues Plaguing the Company Right Now",
+          "url": "https://www.fool.com/investing/2026/05/05/why-palantirs-beat-and-raise-quarter-did-absolutel/?.tsrc=rss",
+          "summary": "Palantir's 2026 first-quarter earnings results beat Wall Street estimates on both the top and bottom lines.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Equities Rise Intraday as Hegseth Says US-Iran Ceasefire Still Holds",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/equities-rise-intraday-hegseth-says-180735097.html?.tsrc=rss",
+          "summary": "US benchmark equity indexes were higher intraday as oil prices fell after Defense Secretary Pete Heg",
+          "sentiment": "positive",
+          "impact": "high"
+        }
+      ]
     },
     "ORCL": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Intel Rips As Semiconductor Rally Has Wall Street Seeing Green",
+          "url": "https://app.moby.co/home/news/news-intel-rips-as-semiconductor-rally-has-wall-street-seeing-green?utm_source=yahoo_finance&utm_medium=rss&.tsrc=rss",
+          "summary": "Intel soared on Tuesday on reports of a new partnership with Apple.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Wedbush Brushes Off AI Concerns, Sticks With Oracle Corporation (ORCL)",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/wedbush-brushes-off-ai-concerns-173805910.html?.tsrc=rss",
+          "summary": "Oracle Corporation (NYSE:ORCL) is among the best software infrastructure stocks to buy now. On April 28, Wedbush reaffirmed an Outperform rating on Or",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Oracle Stock Is Still Down Year to Date, As Many AI Stocks Soar. Here's What's Going On.",
+          "url": "https://www.fool.com/investing/2026/05/05/oracle-stock-is-still-down-year-to-date-as-many-ai/?.tsrc=rss",
+          "summary": "A major artificial intelligence customer has come to dominate the database giant's story. And that's not the only issue.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "SOXL": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Up 160% in One Month, This AI ETF Can Still 5X",
+          "url": "https://247wallst.com/investing/2026/05/05/up-160-in-one-month-this-ai-etf-can-still-5x/?.tsrc=rss",
+          "summary": "The Direxion Daily Semiconductor Bull 3X Shares (NYSEARCA:SOXL) made a 160%-plus move in thirty days, and the fund added another 15% today to trade ne",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "US Stocks Reclaim the Lead in April's $174B ETF Haul",
+          "url": "http://www.etf.com/sections/monthly-etf-flows/us-stocks-reclaim-lead-aprils-174b-etf-haul?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+          "summary": "<p>US equity ETFs pulled in $103 billion in April, flipping Q1's script when international stocks led the way.</p>",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Top Performing Leveraged/Inverse ETFs: 04/26/2026",
+          "url": "https://finance.yahoo.com/markets/options/articles/top-performing-leveraged-inverse-etfs-184911091.html?.tsrc=rss",
+          "summary": "Top Performing Leveraged/Inverse ETFs Last Week These were last week’s top performing leveraged and inverse ETFs. Note that because of leverage, these",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "SMH": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Why the VanEck Semiconductor ETF Rallied Over 30% in April",
+          "url": "https://www.fool.com/investing/2026/05/05/why-the-vaneck-semiconductor-etf-rallied-over-30-i/?.tsrc=rss",
+          "summary": "Semiconductors had a very good month on the back of several earnings blowouts and a tentative U.S.-Iran ceasefire.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "2 Semiconductor Stocks to Own in May",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/2-semiconductor-stocks-own-may-183706075.html?.tsrc=rss",
+          "summary": "AVGO and AMAT tend outperform in May over the last decade",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "XSD Delivers 1,138% in Ten Years, Yet Trails SOXX in the AI Boom",
+          "url": "https://247wallst.com/investing/2026/05/04/xsd-delivers-1138-in-ten-years-yet-trails-soxx-in-the-ai-boom/?.tsrc=rss",
+          "summary": "The standard way to own semiconductors is to buy a cap-weighted fund and accept that NVIDIA, Broadcom, and TSMC will dominate the returns. SPDR S&amp;",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "QQQ": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "This ETF Is Are Outpacing Tech Stocks While Paying High Dividends",
+          "url": "https://247wallst.com/investing/2026/05/05/this-etf-is-are-outpacing-tech-stocks-while-paying-high-dividends/?.tsrc=rss",
+          "summary": "You wouldn’t expect a fund stuffed with European utilities, tobacco companies, and Canadian fertilizer to keep pace with the Nasdaq-100 in 2026, but h",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "Exchange-Traded Funds Rise as US Equities Advance After Midday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-rise-us-171308787.html?.tsrc=rss",
+          "summary": "Broad Market Indicators Broad-market exchange-traded fund IWM and IVV were higher. Actively tr",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Gratus Wealth Trims QQEW Stake by $22 Million -- Is Equal-Weight Nasdaq Still Worth Holding?",
+          "url": "https://www.fool.com/coverage/filings/2026/05/05/gratus-wealth-trims-qqew-stake-by-usd22-million-is-equal-weight-nasdaq-still-worth-holding/?.tsrc=rss",
+          "summary": "This ETF tracks the Nasdaq-100 with an equal-weight strategy, offering diversified exposure to large-cap U.S. growth equities.",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "TECL": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "本日のニュースなし",
+          "url": "",
+          "summary": "特段の材料なし",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     },
     "ARKK": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "Cathie Wood Is Shrugging Off CapEx Fears and Buying the Dip in Meta Platforms Stock",
+          "url": "https://www.barchart.com/story/news/1694323/cathie-wood-is-shrugging-off-capex-fears-and-buying-the-dip-in-meta-platforms-stock?.tsrc=rss",
+          "summary": "Cathie Wood's move signals that the market may be treating the spending surge as a temporary overhang on an otherwise intact long-term growth thesis.",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "headline": "Cathie Wood Dumps $72 Million of AMD, Doubles Down on Alphabet and Meta",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cathie-wood-dumps-72-million-172108035.html?.tsrc=rss",
+          "summary": "Cathie Wood's Latest Move Sparks Questions for Advanced Micro Devices Bulls",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "headline": "3 ETFs to Play the Enterprise Software Slump",
+          "url": "https://www.marketbeat.com/originals/3-etfs-to-play-the-enterprise-software-slump/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "summary": "Enterprise software providers have reached a major hurdle with AI, but this could mean a buy opportunity for investors willing to take on risk.",
+          "sentiment": "positive",
+          "impact": "high"
+        }
+      ]
     },
     "1570.T": {
-      "top_news": []
+      "top_news": [
+        {
+          "headline": "本日のニュースなし",
+          "url": "",
+          "summary": "特段の材料なし",
+          "sentiment": "neutral",
+          "impact": "medium"
+        }
+      ]
     }
   }
 }
