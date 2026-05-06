@@ -595,8 +595,9 @@
 
             // Resolve ohlcHistory: may be an array or nested object
             let ohlc = null;
-            if (Array.isArray(ohlcHistory) && ohlcHistory.length > 0) {
-                ohlc = ohlcHistory;
+            var _sd = JSON.parse(sessionStorage.getItem('detailData') || '{}');
+            if (_sd.ohlcHistory && _sd.ohlcHistory.length > 0) {
+                ohlc = _sd.ohlcHistory;
             } else if (data && Array.isArray(data.ohlcHistory) && data.ohlcHistory.length > 0) {
                 ohlc = data.ohlcHistory;
             }
