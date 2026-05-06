@@ -950,5 +950,114 @@ document.addEventListener('DOMContentLoaded', function() {
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 </style>
+
+<script id="detail-page-injector">
+(function(){
+var TICKER_DATA={'SPY':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'QQQ':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'NVDA':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'TSLA':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'AAPL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'MSFT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'META':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'AMZN':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'GOOGL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'AMD':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'SOXL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'MSTR':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'COIN':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'PLTR':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'IBIT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'TQQQ':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'UPRO':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'GLD':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'TLT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'AVGO':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'QCOM':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'MU':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'ASML':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'TSM':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'AMAT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'LRCX':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'ORCL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'SMH':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'TECL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'ARKK':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
+'1570.T':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]}};
+
+window.TICKER_DATA=TICKER_DATA;
+
+window.openDetailPage=function(ticker){
+  var d=TICKER_DATA[ticker]||{};
+  var det={
+    ticker:ticker,
+    signal:d.signal||'HOLD',
+    confidence:d.confidence||50,
+    price:d.price||null,
+    changeRate:d.changeRate||null,
+    changeColor:d.changeColor||'neutral',
+    rsi:d.rsi||50,
+    macdSignal:d.macdSignal||'NEUTRAL',
+    sma20:d.sma20||null,
+    sma50:d.sma50||null,
+    sma200:d.sma200||null,
+    resistance:d.resistance||null,
+    support:d.support||null,
+    bbUpper:d.bbUpper||null,
+    bbLower:d.bbLower||null,
+    atr:d.atr||null,
+    newsSentiment:d.newsSentiment||50,
+    updateTime:d.updateTime||'--',
+    technicalAnalysis:d.technicalAnalysis||'データなし',
+    fundamentalAnalysis:d.fundamentalAnalysis||'データなし',
+    topNews:d.topNews||[],
+    ohlcHistory:d.ohlcHistory||[]
+  };
+  try{
+    sessionStorage.setItem('detailData',JSON.stringify(det));
+    window.open('detail_template.html','_blank');
+  }catch(e){
+    alert('詳細ページを開けませんでした: '+e.message);
+  }
+};
+
+// Button CSS
+var style=document.createElement('style');
+style.textContent='.detail-analysis-btn{display:block;width:calc(100% - 0px);margin-top:10px;padding:9px 12px;background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#bfdbfe;border:1px solid #2563eb;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;text-align:center;transition:all .2s;}.detail-analysis-btn:hover{background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;border-color:#3b82f6;}';
+document.head.appendChild(style);
+
+// Inject buttons after DOM ready
+function injectButtons(){
+  var tickerEls=document.querySelectorAll('.ticker-name');
+  tickerEls.forEach(function(el){
+    var ticker=el.textContent.trim();
+    if(!TICKER_DATA[ticker]) return;
+    // Walk up to find card container (up to 6 levels)
+    var card=el;
+    for(var i=0;i<6;i++){
+      card=card.parentElement;
+      if(!card) break;
+      var cls=card.className||'';
+      if(cls.indexOf('ticker-card')>=0||cls.indexOf('stock-card')>=0||cls.indexOf('watch-card')>=0) break;
+      if(i===5) { card=el.parentElement.parentElement.parentElement.parentElement; }
+    }
+    if(!card) return;
+    if(card.querySelector('.detail-analysis-btn')) return; // already added
+    var btn=document.createElement('button');
+    btn.className='detail-analysis-btn';
+    btn.innerHTML='📊 詳細分析';
+    btn.setAttribute('onclick','openDetailPage(\'' + ticker + '\')');
+    card.appendChild(btn);
+  });
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',injectButtons);
+} else {
+  injectButtons();
+}
+})();
+</script>
+
 </body>
 </html>
