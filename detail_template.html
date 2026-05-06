@@ -595,10 +595,10 @@
 
             // Resolve ohlcHistory: may be an array or nested object
             let ohlc = null;
-            if (Array.isArray(data.ohlcHistory)) {
+            if (Array.isArray(ohlcHistory) && ohlcHistory.length > 0) {
+                ohlc = ohlcHistory;
+            } else if (data && Array.isArray(data.ohlcHistory) && data.ohlcHistory.length > 0) {
                 ohlc = data.ohlcHistory;
-            } else if (data.ohlcHistory && Array.isArray(data.ohlcHistory.ohlcHistory)) {
-                ohlc = data.ohlcHistory.ohlcHistory;
             }
 
             let dates, closes;
@@ -813,8 +813,8 @@
                     for (var bi = 0; bi < closes.length - 1; bi++) {
                         if (closes[bi] == null || ma50[bi] == null) continue;
                         cc.fillStyle = closes[bi] >= ma50[bi] ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.10)';
-                        var bx0 = xA.getPixelForIndex(bi);
-                        var bx1 = xA.getPixelForIndex(bi+1);
+                        var bx0 = xA.getPixelForValue(bi);
+                        var bx1 = xA.getPixelForValue(bi+1);
                         cc.fillRect(bx0, yA.top, bx1-bx0, yA.bottom-yA.top);
                     }
                     cc.restore();
