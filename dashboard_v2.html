@@ -19,6 +19,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
 .section-title{font-size:12px;font-weight:700;color:#6e7681;margin:16px 0 8px;text-transform:uppercase;letter-spacing:.08em}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:16px}
 .card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;transition:border-color .15s}
+.card:hover{box-shadow:0 0 0 2px #3b82f6;transform:translateY(-2px);transition:all 0.2s}
 .card:hover{border-color:#58a6ff}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .ticker-name{font-size:20px;font-weight:700;color:#e6edf3;line-height:1}
@@ -57,7 +58,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
     </div>
     <div class="section-title">📋 ウォッチリスト全銘柄 (31 tickers)</div>
     <div class="cards-grid">
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('SPY')">
         <div class="card-header">
           <div>
             <div class="ticker-name">SPY</div>
@@ -72,7 +73,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('QQQ')">
         <div class="card-header">
           <div>
             <div class="ticker-name">QQQ</div>
@@ -87,7 +88,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('NVDA')">
         <div class="card-header">
           <div>
             <div class="ticker-name">NVDA</div>
@@ -102,7 +103,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('TSLA')">
         <div class="card-header">
           <div>
             <div class="ticker-name">TSLA</div>
@@ -117,7 +118,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('AAPL')">
         <div class="card-header">
           <div>
             <div class="ticker-name">AAPL</div>
@@ -132,7 +133,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('MSFT')">
         <div class="card-header">
           <div>
             <div class="ticker-name">MSFT</div>
@@ -147,7 +148,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('META')">
         <div class="card-header">
           <div>
             <div class="ticker-name">META</div>
@@ -162,11 +163,11 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('AMZN')">
         <div class="card-header">
           <div>
             <div class="ticker-name">AMZN</div>
-            <div class="ticker-sector">EC/クラウド</div>
+            <div class="ticker-sector">EC/クルウド</div>
           </div>
           <div style="text-align:right">
             <span class="signal-badge badge-hold">HOLD</span>
@@ -177,7 +178,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('GOOGL')">
         <div class="card-header">
           <div>
             <div class="ticker-name">GOOGL</div>
@@ -192,7 +193,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('AMD')">
         <div class="card-header">
           <div>
             <div class="ticker-name">AMD</div>
@@ -207,7 +208,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('SOXL')">
         <div class="card-header">
           <div>
             <div class="ticker-name">SOXL</div>
@@ -222,7 +223,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('MSTR')">
         <div class="card-header">
           <div>
             <div class="ticker-name">MSTR</div>
@@ -237,7 +238,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('COIN')">
         <div class="card-header">
           <div>
             <div class="ticker-name">COIN</div>
@@ -252,7 +253,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('PLTR')">
         <div class="card-header">
           <div>
             <div class="ticker-name">PLTR</div>
@@ -267,7 +268,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('IBIT')">
         <div class="card-header">
           <div>
             <div class="ticker-name">IBIT</div>
@@ -282,7 +283,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('TQQQ')">
         <div class="card-header">
           <div>
             <div class="ticker-name">TQQQ</div>
@@ -297,7 +298,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('UPRO')">
         <div class="card-header">
           <div>
             <div class="ticker-name">UPRO</div>
@@ -312,7 +313,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('GLD')">
         <div class="card-header">
           <div>
             <div class="ticker-name">GLD</div>
@@ -327,7 +328,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('TLT')">
         <div class="card-header">
           <div>
             <div class="ticker-name">TLT</div>
@@ -342,7 +343,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('AVGO')">
         <div class="card-header">
           <div>
             <div class="ticker-name">AVGO</div>
@@ -357,7 +358,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('QCOM')">
         <div class="card-header">
           <div>
             <div class="ticker-name">QCOM</div>
@@ -372,7 +373,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('MU')">
         <div class="card-header">
           <div>
             <div class="ticker-name">MU</div>
@@ -387,7 +388,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('ASML')">
         <div class="card-header">
           <div>
             <div class="ticker-name">ASML</div>
@@ -402,7 +403,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('TSM')">
         <div class="card-header">
           <div>
             <div class="ticker-name">TSM</div>
@@ -417,7 +418,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('AMAT')">
         <div class="card-header">
           <div>
             <div class="ticker-name">AMAT</div>
@@ -432,7 +433,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('LRCX')">
         <div class="card-header">
           <div>
             <div class="ticker-name">LRCX</div>
@@ -447,11 +448,11 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('ORCL')">
         <div class="card-header">
           <div>
             <div class="ticker-name">ORCL</div>
-            <div class="ticker-sector">クラウド/DB</div>
+            <div class="ticker-sector">クラヰド/DB</div>
           </div>
           <div style="text-align:right">
             <span class="signal-badge badge-hold">HOLD</span>
@@ -462,7 +463,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('SMH')">
         <div class="card-header">
           <div>
             <div class="ticker-name">SMH</div>
@@ -477,7 +478,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('TECL')">
         <div class="card-header">
           <div>
             <div class="ticker-name">TECL</div>
@@ -492,7 +493,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('ARKK')">
         <div class="card-header">
           <div>
             <div class="ticker-name">ARKK</div>
@@ -507,7 +508,7 @@ body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFo
         <div class="card-price">$--</div>
         <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
       </div>
-      <div class="card">
+      <div class="card" style="cursor:pointer" onclick="openDetailPage('1570.T')">
         <div class="card-header">
           <div>
             <div class="ticker-name">1570.T</div>
@@ -941,6 +942,57 @@ document.addEventListener('DOMContentLoaded', function() {
   var signalsPanel = document.getElementById('tab-signals');
   if (signalsPanel) signalsPanel.style.display = 'block';
 });
+
+function openDetailPage(ticker) {
+  // Build or reuse detail overlay
+  var overlay = document.getElementById('detail-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'detail-overlay';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:flex-start;justify-content:center;padding-top:40px';
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.style.display = 'none';
+    });
+    document.body.appendChild(overlay);
+  }
+  // Find card data for this ticker
+  var card = null;
+  document.querySelectorAll('.card').forEach(function(c) {
+    var tn = c.querySelector('.ticker-name');
+    if (tn && tn.textContent.trim() === ticker) card = c;
+  });
+  var signal = card ? (card.querySelector('.signal-badge') || {textContent:'--'}).textContent : '--';
+  var price  = card ? (card.querySelector('.card-price')  || {textContent:'--'}).textContent : '--';
+  var name   = card ? (card.querySelector('.card-name')   || {textContent:ticker}).textContent : ticker;
+  var conf   = card ? (card.querySelector('.card-confidence') || {textContent:'--'}).textContent : '--';
+  overlay.innerHTML =
+    '<div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:28px;width:520px;max-width:96vw;color:#c9d1d9;font-family:inherit">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">' +
+        '<div>' +
+          '<span style="font-size:22px;font-weight:700;color:#e6edf3">' + ticker + '</span>' +
+          '<span style="margin-left:10px;font-size:14px;color:#8b949e">' + name + '</span>' +
+        '</div>' +
+        '<button onclick="document.getElementById('detail-overlay').style.display='none'" ' +
+          'style="background:none;border:1px solid #30363d;color:#8b949e;font-size:18px;cursor:pointer;border-radius:6px;width:32px;height:32px;line-height:1">×</button>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">' +
+        '<div style="background:#0d1117;border-radius:8px;padding:14px">' +
+          '<div style="font-size:11px;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">シグナル</div>' +
+          '<div style="font-size:20px;font-weight:700;color:#e6edf3">' + signal + '</div>' +
+        '</div>' +
+        '<div style="background:#0d1117;border-radius:8px;padding:14px">' +
+          '<div style="font-size:11px;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">価格</div>' +
+          '<div style="font-size:20px;font-weight:700;color:#e6edf3">' + price + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:16px">' +
+        '<div style="font-size:11px;color:#8b949e;margin-bottom:4px">信頼度</div>' +
+        '<div style="font-size:15px;color:#e6edf3">' + conf + '</div>' +
+      '</div>' +
+      '<p style="font-size:12px;color:#6e7681;text-align:center;margin:0">クリックで閉じる</p>' +
+    '</div>';
+  overlay.style.display = 'flex';
+}
 </script>
 <style>
 .tab-nav{display:flex;background:#111827;border-bottom:2px solid #1e3a8a;position:sticky;top:0;z-index:1000;padding:0 20px}
@@ -950,110 +1002,5 @@ document.addEventListener('DOMContentLoaded', function() {
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 </style>
-
-<script id="detail-page-injector">
-(function(){
-var TICKER_DATA={'SPY':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'QQQ':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'NVDA':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'TSLA':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'AAPL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'MSFT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'META':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'AMZN':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'GOOGL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'AMD':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'SOXL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'MSTR':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'COIN':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'PLTR':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'IBIT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'TQQQ':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'UPRO':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'GLD':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'TLT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'AVGO':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'QCOM':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'MU':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'ASML':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'TSM':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'AMAT':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'LRCX':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'ORCL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'SMH':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'TECL':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'ARKK':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]},
-'1570.T':{"signal":"HOLD","signalClass":"hold","confidence":50,"price":null,"changeRate":null,"changeColor":"neutral","rsi":50,"macdSignal":"NEUTRAL","sma20":null,"sma50":null,"sma200":null,"resistance":null,"support":null,"bbUpper":null,"bbLower":null,"atr":null,"newsSentiment":50,"updateTime":"次回 04:00 JST 更新予定","technicalAnalysis":"データ取得待ち（04:00 JST の自動更新後に表示）","fundamentalAnalysis":"データ取得待ち","topNews":[],"ohlcHistory":[]}};
-
-window.TICKER_DATA=TICKER_DATA;
-
-window.openDetailPage=function(ticker){
-  var d=TICKER_DATA[ticker]||{};
-  var det={
-    ticker:ticker,
-    signal:d.signal||'HOLD',
-    confidence:d.confidence||50,
-    price:d.price||null,
-    changeRate:d.changeRate||null,
-    changeColor:d.changeColor||'neutral',
-    rsi:d.rsi||50,
-    macdSignal:d.macdSignal||'NEUTRAL',
-    sma20:d.sma20||null,
-    sma50:d.sma50||null,
-    sma200:d.sma200||null,
-    resistance:d.resistance||null,
-    support:d.support||null,
-    bbUpper:d.bbUpper||null,
-    bbLower:d.bbLower||null,
-    atr:d.atr||null,
-    newsSentiment:d.newsSentiment||50,
-    updateTime:d.updateTime||'--',
-    technicalAnalysis:d.technicalAnalysis||'データなし',
-    fundamentalAnalysis:d.fundamentalAnalysis||'データなし',
-    topNews:d.topNews||[],
-    ohlcHistory:d.ohlcHistory||[]
-  };
-  try{
-    sessionStorage.setItem('detailData',JSON.stringify(det));
-    window.open('detail_template.html','_blank');
-  }catch(e){
-    alert('詳細ページを開けませんでした: '+e.message);
-  }
-};
-
-// Button CSS
-var style=document.createElement('style');
-style.textContent='.detail-analysis-btn{display:block;width:calc(100% - 0px);margin-top:10px;padding:9px 12px;background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#bfdbfe;border:1px solid #2563eb;border-radius:7px;cursor:pointer;font-size:13px;font-weight:600;text-align:center;transition:all .2s;}.detail-analysis-btn:hover{background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;border-color:#3b82f6;}';
-document.head.appendChild(style);
-
-// Inject buttons after DOM ready
-function injectButtons(){
-  var tickerEls=document.querySelectorAll('.ticker-name');
-  tickerEls.forEach(function(el){
-    var ticker=el.textContent.trim();
-    if(!TICKER_DATA[ticker]) return;
-    // Walk up to find card container (up to 6 levels)
-    var card=el;
-    for(var i=0;i<6;i++){
-      card=card.parentElement;
-      if(!card) break;
-      var cls=card.className||'';
-      if(cls==='card'||cls.indexOf('card ')>=0||cls.indexOf(' card')>=0||cls.indexOf('ticker-card')>=0||cls.indexOf('stock-card')>=0||cls.indexOf('watch-card')>=0) break;
-    }
-    if(!card) return;
-    if(card.dataset.detailWired) return; // already wired
-    card.dataset.detailWired='1';
-    card.style.cursor='pointer';
-    card.onclick=function(){ window.openDetailPage(ticker); };
-  });
-}
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',injectButtons);
-} else {
-  injectButtons();
-}
-})();
-</script>
-
 </body>
 </html>
