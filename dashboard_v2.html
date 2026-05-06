@@ -1038,19 +1038,15 @@ function injectButtons(){
       card=card.parentElement;
       if(!card) break;
       var cls=card.className||'';
-      if(cls.indexOf('ticker-card')>=0||cls.indexOf('stock-card')>=0||cls.indexOf('watch-card')>=0) break;
-      if(i===5) { card=el.parentElement.parentElement.parentElement.parentElement; }
+      if(cls==='card'||cls.indexOf('card ')>=0||cls.indexOf(' card')>=0||cls.indexOf('ticker-card')>=0||cls.indexOf('stock-card')>=0||cls.indexOf('watch-card')>=0) break;
     }
     if(!card) return;
-    if(card.querySelector('.detail-analysis-btn')) return; // already added
-    var btn=document.createElement('button');
-    btn.className='detail-analysis-btn';
-    btn.innerHTML='📊 詳細分析';
-    btn.setAttribute('onclick','openDetailPage(\'' + ticker + '\')');
-    card.appendChild(btn);
+    if(card.dataset.detailWired) return; // already wired
+    card.dataset.detailWired='1';
+    card.style.cursor='pointer';
+    card.onclick=function(){ window.openDetailPage(ticker); };
   });
 }
-
 if(document.readyState==='loading'){
   document.addEventListener('DOMContentLoaded',injectButtons);
 } else {
