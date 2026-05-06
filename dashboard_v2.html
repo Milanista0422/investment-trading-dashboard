@@ -1,72 +1,954 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Signals v2</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; }
-        .tab-nav { display: flex; background: #111827; border-bottom: 2px solid #1e3a8a; position: sticky; top: 0; z-index: 1000; padding: 0 20px; }
-        .tab-btn { padding: 14px 24px; font-size: 14px; font-weight: 600; color: #6b7280; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; transition: all 0.2s; margin-bottom: -2px; white-space: nowrap; }
-        .tab-btn:hover { color: #93c5fd; }
-        .tab-btn.active { color: #3b82f6; border-bottom-color: #3b82f6; }
-        .container { padding: 20px; max-width: 1200px; margin: 0 auto; }
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; }
-        .summary-banner { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 8px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #3b82f6; }
-        .summary-header { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-        .signal-distribution { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px; margin: 12px 0; }
-        .signal-item { background: rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 6px; font-size: 12px; text-align: center; border-left: 3px solid; }
-        .signal-item.strong-buy { border-color: #10b981; }
-        .signal-item.buy { border-color: #34d399; }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-        .card { background: #1e293b; border-radius: 8px; padding: 16px; border-left: 4px solid #10b981; }
-        .card-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
-        .ticker-name { font-size: 16px; font-weight: 700; }
-        .card-price { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-        @media (max-width: 600px) { .container { padding: 12px; } .cards-grid { grid-template-columns: 1fr; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Signals Dashboard v2</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.summary-banner{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:12px}
+.summary-header{font-size:17px;font-weight:700;color:#e6edf3;margin-bottom:6px}
+.summary-date{font-size:12px;color:#8b949e;margin-bottom:10px}
+.signal-distribution{display:flex;gap:6px;flex-wrap:wrap}
+.signal-item{padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600}
+.signal-item.hold{background:#2e2a0e;color:#fbbf24}
+.update-notice{background:#1f1108;border:1px solid #f0883e;border-radius:6px;padding:10px 14px;font-size:12px;color:#f0883e;margin-bottom:14px;line-height:1.6}
+.section-title{font-size:12px;font-weight:700;color:#6e7681;margin:16px 0 8px;text-transform:uppercase;letter-spacing:.08em}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:16px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;transition:border-color .15s}
+.card:hover{border-color:#58a6ff}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.ticker-name{font-size:20px;font-weight:700;color:#e6edf3;line-height:1}
+.ticker-sector{font-size:11px;color:#6e7681;margin-top:3px}
+.card-name{font-size:12px;color:#8b949e;margin-bottom:6px}
+.signal-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.card-confidence{font-size:10px;color:#6e7681;margin-top:3px;text-align:right}
+.badge-strong-buy{background:#0e3a2e;color:#10b981}
+.badge-buy{background:#0a2e26;color:#34d399}
+.badge-hold{background:#2e2a0e;color:#fbbf24}
+.badge-sell{background:#2e0e0e;color:#f87171}
+.badge-strong-sell{background:#1f0000;color:#dc2626}
+.card-price{font-size:15px;font-weight:600;color:#e6edf3;margin-bottom:8px}
+.card-placeholder{font-size:11px;color:#6e7681;border-top:1px solid #21262d;padding-top:8px}
+</style>
 </head>
 <body>
-    <nav class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('signals',this)">📊 シグナル</button>
-        <button class="tab-btn" onclick="switchTab('sector',this)">🏭 セクター ETF</button>
-    </nav>
 
-    <div id="tab-signals" class="tab-panel active" style="display:block">
-        <div class="container">
-            <div class="summary-banner">
-                <div class="summary-header">📊 Trading Signals Dashboard v2</div>
-                <div class="summary-date" style="color:#cbd5e1; font-size:12px;">更新日時: 2026-05-06 04:00 JST</div>
-                <div class="signal-distribution">
-                    <div class="signal-item strong-buy">🟢 STRONG_BUY: 16</div>
-                    <div class="signal-item buy">🔵 BUY: 5</div>
-                </div>
-            </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-header"><div class="ticker-name">NVDA</div></div>
-                    <div class="card-price">$196.52</div>
-                    <canvas id="chart-nvda" width="250" height="120"></canvas>
-                </div>
-            </div>
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('signals',this)">📊 シグナル</button>
+  <button class="tab-btn" onclick="switchTab('sector',this)">🏭 セクター ETF</button>
+</nav>
+
+<div id="tab-signals" class="tab-panel active" style="display:block">
+  <div class="container">
+    <div class="summary-banner">
+      <div class="summary-header">📊 Trading Signals Dashboard v2</div>
+      <div class="summary-date">更新日: 2026-05-06 ｜ 手動構造修正版 ｜ 全31銘柄</div>
+      <div class="signal-distribution">
+        <div class="signal-item hold">🔧 手動修正版 — 次回 04:00 JST 更新でシグナルが表示されます</div>
+      </div>
+    </div>
+    <div class="update-notice">
+      ⚠️ <strong>構造修正版</strong>: セクターETFタブの修正（バンドル埋め込み・_sectorInit連携）と全銘柄カードの追加を実施しました。<br>
+      シグナルデータは毎日 04:00 JST の自動更新で反映されます。全31銘柄を監視中。
+    </div>
+    <div class="section-title">📋 ウォッチリスト全銘柄 (31 tickers)</div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">SPY</div>
+            <div class="ticker-sector">ETF</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
         </div>
+        <div class="card-name">S&P 500 ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">QQQ</div>
+            <div class="ticker-sector">ETF</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Nasdaq 100 ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">NVDA</div>
+            <div class="ticker-sector">半導体</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">NVIDIA</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">TSLA</div>
+            <div class="ticker-sector">自動車/EV</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Tesla</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">AAPL</div>
+            <div class="ticker-sector">テクノロジー</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Apple</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">MSFT</div>
+            <div class="ticker-sector">テクノロジー</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Microsoft</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">META</div>
+            <div class="ticker-sector">SNS/AI</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Meta Platforms</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">AMZN</div>
+            <div class="ticker-sector">EC/クラウド</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Amazon</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">GOOGL</div>
+            <div class="ticker-sector">テクノロジー</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Alphabet</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">AMD</div>
+            <div class="ticker-sector">半導体</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">AMD</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">SOXL</div>
+            <div class="ticker-sector">ETF/レバ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Semicon Bull 3x</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">MSTR</div>
+            <div class="ticker-sector">ビットコイン</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">MicroStrategy</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">COIN</div>
+            <div class="ticker-sector">暗号資産</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Coinbase</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">PLTR</div>
+            <div class="ticker-sector">AI/データ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Palantir</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">IBIT</div>
+            <div class="ticker-sector">BTC ETF</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">iShares BTC ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">TQQQ</div>
+            <div class="ticker-sector">ETF/レバ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Nasdaq 3x Bull</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">UPRO</div>
+            <div class="ticker-sector">ETF/レバ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">S&P 3x Bull</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">GLD</div>
+            <div class="ticker-sector">コモディティ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Gold ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">TLT</div>
+            <div class="ticker-sector">債券</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">20Y Treasury ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">AVGO</div>
+            <div class="ticker-sector">半導体</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Broadcom</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">QCOM</div>
+            <div class="ticker-sector">半導体</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Qualcomm</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">MU</div>
+            <div class="ticker-sector">半導体</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Micron</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">ASML</div>
+            <div class="ticker-sector">半導体装置</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">ASML</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">TSM</div>
+            <div class="ticker-sector">半導体</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">TSMC</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">AMAT</div>
+            <div class="ticker-sector">半導体装置</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Applied Materials</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">LRCX</div>
+            <div class="ticker-sector">半導体装置</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Lam Research</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">ORCL</div>
+            <div class="ticker-sector">クラウド/DB</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Oracle</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">SMH</div>
+            <div class="ticker-sector">ETF</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Semicon ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">TECL</div>
+            <div class="ticker-sector">ETF/レバ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">Tech Bull 3x</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">ARKK</div>
+            <div class="ticker-sector">ETF</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">ARK Innovation</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="ticker-name">1570.T</div>
+            <div class="ticker-sector">ETF/レバ</div>
+          </div>
+          <div style="text-align:right">
+            <span class="signal-badge badge-hold">HOLD</span>
+            <div class="card-confidence">--</div>
+          </div>
+        </div>
+        <div class="card-name">日経レバ ETF</div>
+        <div class="card-price">$--</div>
+        <div class="card-placeholder">次回 04:00 JST 更新待ち</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tab-signals -->
+
+<!-- ============================================================
+     SECTOR ETF TAB BUNDLE
+     このファイルは daily-trading-signals-prod タスクで dashboard_v2.html に
+     verbatim 埋め込みされます。直接編集することで ETF タブの内容を更新できます。
+     Chart.js が必要です（dashboard_v2.html の <head> で読み込むこと）。
+     ============================================================ -->
+
+<!-- ===== Sector ETF CSS ===== -->
+<style id="sector-styles">
+.s-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 14px;background:#161b22;border:1px solid #30363d;border-radius:8px;margin-bottom:12px}
+.s-header h1{font-size:15px;font-weight:700;color:#e6edf3;margin:0}
+.periods{display:flex;gap:4px;flex-wrap:wrap}
+.period-btn{padding:4px 10px;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:11px;cursor:pointer;transition:.15s}
+.period-btn.active,.period-btn:hover{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.refresh-dot{width:8px;height:8px;border-radius:50%;background:#3fb950;display:inline-block;margin-right:4px;flex-shrink:0}
+.refresh-dot.spin{animation:spin 1s linear infinite;background:#f0883e}
+@keyframes spin{to{transform:rotate(360deg)}}
+.s-chart-wrap{position:relative;height:260px;margin-bottom:12px}
+.s-chart-wrap canvas{width:100%!important}
+.s-chart-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8b949e;font-size:13px}
+.s-legend-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;font-size:11px;color:#8b949e}
+.s-legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;font-size:11px;font-weight:600;color:#8b949e;cursor:pointer;transition:.15s}
+.s-legend-item:hover{border-color:#58a6ff;color:#e6edf3}
+.s-legend-item.s-hidden{opacity:.4}
+.s-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.sort-wrap{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:11px;color:#8b949e}
+.sort-btn{padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:11px;cursor:pointer;transition:.15s}
+.sort-btn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:12px}
+.sector-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px;transition:border-color .15s}
+.sector-card:hover{border-color:#58a6ff}
+.sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.sc-name-ja{font-size:13px;font-weight:700;color:#e6edf3;margin-bottom:3px;line-height:1.2}
+.sc-ticker-sm{font-size:11px;font-weight:600;color:#58a6ff}
+.sc-pct{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.sc-price{font-size:11px;color:#8b949e;font-variant-numeric:tabular-nums}
+.s-error{padding:8px 12px;background:#1f1108;border:1px solid #f0883e;border-radius:6px;color:#f0883e;font-size:12px;margin-bottom:8px}
+.s-footer{font-size:11px;color:#6e7681;padding:10px 0;border-top:1px solid #21262d;margin-top:4px;line-height:1.6}
+.pos{color:#3fb950}.neg{color:#f85149}.neu{color:#8b949e}
+</style>
+
+<!-- ===== Sector ETF Tab Pane ===== -->
+<div id="tab-sector" class="tab-panel">
+  <div style="max-width:900px;margin:0 auto;padding:16px">
+
+    <!-- Header -->
+    <div class="s-header">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="refresh-dot" id="s-refresh-dot"></span>
+        <h1>US Sector ETF Dashboard</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div id="period-btns" class="periods">
+          <button class="period-btn" data-range="1mo">1M</button>
+          <button class="period-btn" data-range="3mo">3M</button>
+          <button class="period-btn active" data-range="6mo">6M</button>
+          <button class="period-btn" data-range="ytd">YTD</button>
+          <button class="period-btn" data-range="1y">1Y</button>
+        </div>
+        <button class="period-btn" onclick="sectorLoadAll()">Refresh</button>
+      </div>
     </div>
 
-    <div id="tab-sector" class="tab-panel" style="display:none">
-        <div class="container" style="padding:40px;text-align:center;color:#94a3b8;">セクター ETF 準備中...</div>
+    <!-- Update time -->
+    <div style="font-size:11px;color:#8b949e;margin-bottom:8px">
+      <span id="s-last-update">--</span>&nbsp;&nbsp;
+      <span id="s-refresh-label">Loading...</span>
     </div>
 
-    <script>
-        function switchTab(name, btn) {
-            document.querySelectorAll('.tab-panel').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            var panel = document.getElementById('tab-' + name);
-            if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
-            if (btn) btn.classList.add('active');
+    <!-- Line chart -->
+    <div class="s-chart-wrap">
+      <canvas id="s-main-chart"></canvas>
+      <div class="s-chart-loading" id="s-chart-loading">Fetching data...</div>
+    </div>
+
+    <!-- Legend -->
+    <div class="s-legend-wrap" id="s-legend">Normalized performance (period start=100). Click to show/hide.</div>
+
+    <!-- Sort -->
+    <div class="sort-wrap">
+      Sort:
+      <button class="sort-btn active" data-sort="perf">Performance</button>
+      <button class="sort-btn" data-sort="price">Price</button>
+      <button class="sort-btn" data-sort="ticker">Ticker</button>
+    </div>
+
+    <!-- Sector cards -->
+    <div class="sector-grid" id="s-sector-grid"></div>
+
+    <!-- Error area -->
+    <div id="s-error-area"></div>
+
+    <!-- Footer -->
+    <div class="s-footer">
+      Data via Yahoo Finance API. Delays may occur. Invest at your own risk.<br>
+      Auto-refreshes on open and every 5 minutes.
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== Sector ETF JavaScript ===== -->
+<script id="sector-script">
+(function() {
+  var SECTORS = [
+    {ticker:'SPY',  jaName:'S&P500',       color:'#6366f1'},
+    {ticker:'QQQ',  jaName:'Nasdaq100',    color:'#8b5cf6'},
+    {ticker:'XLK',  jaName:'Tech',         color:'#3b82f6'},
+    {ticker:'SOXX', jaName:'Semicon',      color:'#06b6d4'},
+    {ticker:'XLC',  jaName:'Comm Svc',    color:'#10b981'},
+    {ticker:'XLF',  jaName:'Finance',      color:'#f59e0b'},
+    {ticker:'XLE',  jaName:'Energy',       color:'#ef4444'},
+    {ticker:'XLV',  jaName:'Health',       color:'#ec4899'},
+    {ticker:'XLY',  jaName:'Cons Disc',   color:'#f97316'},
+    {ticker:'XLP',  jaName:'Cons Stpl',   color:'#84cc16'},
+    {ticker:'XLI',  jaName:'Industrials',  color:'#a78bfa'},
+    {ticker:'ARKK', jaName:'Innovation',   color:'#d946ef'}
+  ];
+  var PROXY = 'https://corsproxy.io/?';
+
+  var sCurrentRange = '6mo';
+  var sAllData = {};
+  var sMainChart = null;
+  var sHidden = {};
+  var sSortMode = 'perf';
+  var sRefreshTimer = null;
+  var sReady = false;
+
+  window._sectorInit = function() {
+    if (sReady) return;
+    sReady = true;
+    sectorLoadAll();
+  };
+
+  function sectorFetch(ticker, range) {
+    var url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=' + range + '&events=div';
+    return fetch(url, {headers: {'Accept': 'application/json'}})
+      .then(function(r) {
+        if (!r.ok) throw new Error('direct failed');
+        return r.json();
+      })
+      .catch(function() {
+        return fetch(PROXY + encodeURIComponent(url))
+          .then(function(r2) {
+            if (!r2.ok) throw new Error('HTTP ' + r2.status);
+            return r2.json();
+          });
+      });
+  }
+
+  function sectorParse(json) {
+    var result = json && json.chart && json.chart.result && json.chart.result[0];
+    if (!result) throw new Error('No data');
+    var ts = result.timestamp;
+    var closes = result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close;
+    var dates = ts.map(function(t) {
+      var d = new Date(t * 1000);
+      return (d.getMonth() + 1) + '/' + d.getDate();
+    });
+    var meta = result.meta;
+    return {
+      dates: dates,
+      closes: closes,
+      currentPrice: meta.regularMarketPrice,
+      prevClose: meta.chartPreviousClose
+    };
+  }
+
+  function sNormalize(closes) {
+    var base = null;
+    for (var i = 0; i < closes.length; i++) {
+      if (closes[i] != null) { base = closes[i]; break; }
+    }
+    if (!base) return closes;
+    return closes.map(function(v) { return v == null ? null : (v / base) * 100; });
+  }
+
+  function sPerfPct(closes) {
+    var valid = closes.filter(function(v) { return v != null; });
+    if (valid.length < 2) return 0;
+    return (valid[valid.length - 1] - valid[0]) / valid[0] * 100;
+  }
+
+  window.sectorLoadAll = function() {
+    sSetRefreshing(true);
+    document.getElementById('s-error-area').innerHTML = '';
+    var errors = [];
+    var pending = SECTORS.length;
+
+    SECTORS.forEach(function(s) {
+      sectorFetch(s.ticker, sCurrentRange)
+        .then(function(json) { sAllData[s.ticker] = sectorParse(json); })
+        .catch(function(e) {
+          errors.push(s.ticker + ': ' + e.message);
+          sAllData[s.ticker] = null;
+        })
+        .then(function() {
+          pending--;
+          if (pending > 0) return;
+          if (errors.length) {
+            document.getElementById('s-error-area').innerHTML =
+              '<div class="s-error">Some tickers failed: ' + errors.join(', ') + '</div>';
+          }
+          sRenderMainChart();
+          sRenderCards();
+          document.getElementById('s-last-update').textContent =
+            'Updated: ' + new Date().toLocaleString();
+          sSetRefreshing(false);
+          clearInterval(sRefreshTimer);
+          sRefreshTimer = setInterval(sectorLoadAll, 5 * 60 * 1000);
+          sUpdateRefreshLabel();
+        });
+    });
+  };
+
+  function sSetRefreshing(on) {
+    var dot = document.getElementById('s-refresh-dot');
+    if (dot) dot.className = 'refresh-dot' + (on ? ' spin' : '');
+    var lbl = document.getElementById('s-refresh-label');
+    if (lbl) lbl.textContent = on ? 'Refreshing...' : 'Auto-refresh in 5min';
+  }
+
+  function sUpdateRefreshLabel() {
+    var next = Date.now() + 5 * 60 * 1000;
+    var iv = setInterval(function() {
+      var sec = Math.max(0, Math.round((next - Date.now()) / 1000));
+      var el = document.getElementById('s-refresh-label');
+      if (el) el.textContent = 'Next: ' + Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+      if (sec <= 0) clearInterval(iv);
+    }, 1000);
+  }
+
+  function sRenderMainChart() {
+    var loading = document.getElementById('s-chart-loading');
+    if (loading) loading.style.display = 'none';
+
+    var ref = null;
+    for (var i = 0; i < SECTORS.length; i++) {
+      if (sAllData[SECTORS[i].ticker]) { ref = SECTORS[i].ticker; break; }
+    }
+    if (!ref) return;
+
+    var dates = sAllData[ref].dates;
+    var datasets = SECTORS.filter(function(s) { return sAllData[s.ticker]; })
+      .map(function(s) {
+        return {
+          label: s.ticker,
+          data: sNormalize(sAllData[s.ticker].closes),
+          borderColor: s.color,
+          backgroundColor: s.color + '18',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          tension: 0.2,
+          hidden: !!sHidden[s.ticker]
+        };
+      });
+
+    if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
+    var canvas = document.getElementById('s-main-chart');
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    sMainChart = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {labels: dates, datasets: datasets},
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {mode: 'index', intersect: false},
+        plugins: {
+          legend: {display: false},
+          tooltip: {
+            backgroundColor: '#161b22',
+            borderColor: '#30363d',
+            borderWidth: 1,
+            titleColor: '#8b949e',
+            bodyColor: '#e6edf3',
+            callbacks: {
+              label: function(ctx) {
+                return ' ' + ctx.dataset.label + ': ' + (ctx.parsed.y ? ctx.parsed.y.toFixed(1) : '--');
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: {color: '#21262d'},
+            ticks: {color: '#8b949e', font: {size: 10}, maxTicksLimit: 8, maxRotation: 0}
+          },
+          y: {
+            grid: {color: '#21262d'},
+            ticks: {
+              color: '#8b949e', font: {size: 10},
+              callback: function(v) { return v.toFixed(0); }
+            }
+          }
         }
-    </script>
+      }
+    });
+    sRenderLegend();
+  }
+
+  function sRenderLegend() {
+    var wrap = document.getElementById('s-legend');
+    if (!wrap) return;
+    var items = SECTORS.filter(function(s) { return sAllData[s.ticker]; });
+    wrap.innerHTML = items.map(function(s) {
+      var hiddenClass = sHidden[s.ticker] ? ' s-hidden' : '';
+      return '<div class="s-legend-item' + hiddenClass + '" onclick="sToggleSector(\'' + s.ticker + '\')">' +
+             '<span class="s-legend-dot" style="background:' + s.color + '"></span>' +
+             s.ticker +
+             '</div>';
+    }).join('');
+  }
+
+  window.sToggleSector = function(ticker) {
+    sHidden[ticker] = !sHidden[ticker];
+    if (sMainChart) {
+      for (var i = 0; i < sMainChart.data.datasets.length; i++) {
+        if (sMainChart.data.datasets[i].label === ticker) {
+          sMainChart.data.datasets[i].hidden = !!sHidden[ticker];
+          sMainChart.update();
+          break;
+        }
+      }
+    }
+    sRenderLegend();
+  };
+
+  function sRenderCards() {
+    var grid = document.getElementById('s-sector-grid');
+    if (!grid) return;
+    var entries = SECTORS
+      .filter(function(s) { return sAllData[s.ticker]; })
+      .map(function(s) {
+        return {s: s, d: sAllData[s.ticker], perf: sPerfPct(sAllData[s.ticker].closes)};
+      });
+
+    if (sSortMode === 'perf') entries.sort(function(a, b) { return b.perf - a.perf; });
+    else if (sSortMode === 'price') entries.sort(function(a, b) { return b.d.currentPrice - a.d.currentPrice; });
+    else entries.sort(function(a, b) { return a.s.ticker.localeCompare(b.s.ticker); });
+
+    grid.innerHTML = entries.map(function(e) {
+      var s = e.s, d = e.d, perf = e.perf;
+      var perfCls = perf > 0 ? 'pos' : perf < 0 ? 'neg' : 'neu';
+      var perfSign = perf > 0 ? '+' : '';
+      var dayChg = (d.currentPrice && d.prevClose)
+        ? ((d.currentPrice - d.prevClose) / d.prevClose * 100).toFixed(2)
+        : null;
+      var dayCls = dayChg > 0 ? 'pos' : dayChg < 0 ? 'neg' : 'neu';
+      var daySign = dayChg > 0 ? '+' : '';
+      var priceStr = d.currentPrice
+        ? '$' + d.currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        : '--';
+      var dayRow = dayChg != null
+        ? '<div style="font-size:10px" class="' + dayCls + '">Day: ' + daySign + dayChg + '%</div>'
+        : '';
+      return '<div class="sector-card">' +
+             '<div class="sc-header">' +
+             '<div>' +
+             '<div class="sc-name-ja">' + s.jaName + '</div>' +
+             '<div class="sc-ticker-sm">' + s.ticker + '</div>' +
+             '</div>' +
+             '<div style="text-align:right">' +
+             '<div class="sc-pct ' + perfCls + '">' + perfSign + perf.toFixed(1) + '%</div>' +
+             '<div class="sc-price">' + priceStr + '</div>' +
+             '</div>' +
+             '</div>' +
+             dayRow +
+             '</div>';
+    }).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('#period-btns [data-range]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#period-btns [data-range]').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        sCurrentRange = btn.dataset.range;
+        sAllData = {};
+        sHidden = {};
+        if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
+        sectorLoadAll();
+      });
+    });
+    document.querySelectorAll('[data-sort]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.sort-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        sSortMode = btn.dataset.sort;
+        sRenderCards();
+      });
+    });
+  });
+
+})();
+</script>
+
+
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(function(p) {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  var panel = document.getElementById('tab-' + name);
+  if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
+  if (btn) btn.classList.add('active');
+  if (name === 'sector') window._sectorInit && window._sectorInit();
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var signalsPanel = document.getElementById('tab-signals');
+  if (signalsPanel) signalsPanel.style.display = 'block';
+});
+</script>
+<style>
+.tab-nav{display:flex;background:#111827;border-bottom:2px solid #1e3a8a;position:sticky;top:0;z-index:1000;padding:0 20px}
+.tab-btn{padding:14px 24px;font-size:14px;font-weight:600;color:#6b7280;background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all .2s;margin-bottom:-2px;white-space:nowrap}
+.tab-btn:hover{color:#93c5fd}
+.tab-btn.active{color:#3b82f6;border-bottom-color:#3b82f6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+</style>
 </body>
 </html>
