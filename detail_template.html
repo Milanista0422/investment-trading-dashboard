@@ -494,7 +494,9 @@
 
                 // technical_data.jsonからOHLC履歴を追加
                 const ticker = detailData.ticker;
-                const ohlcHistory = technicalDataFromJson[ticker]?.ohlcHistory || [];
+                const ohlcHistory = (detailData.ohlcHistory && detailData.ohlcHistory.length > 0)
+                    ? detailData.ohlcHistory
+                    : (technicalDataFromJson[ticker]?.ohlcHistory || []);
 
                 tickerData[ticker] = {
                     signal: detailData.signal,
