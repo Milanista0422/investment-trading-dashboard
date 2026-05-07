@@ -1,156 +1,455 @@
-<div id="tab-sector" class="tab-panel" style="display:none;padding:20px">
-  <h2 style="color:#f9fafb;font-size:20px;margin-bottom:8px">🏭 セクター ETF</h2>
-  <p id="sector-update-time" style="color:#6b7280;font-size:12px;margin-bottom:16px">読み込み中...</p>
-  <div id="sector-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
+<!-- ============================================================
+     SECTOR ETF TAB BUNDLE
+     上部: 正規化比較チャート（期間開始=100、height:420px）
+     下部: 個別ETFカード（価格・当日変化率・変化額）
+     Chart.js が dashboard_v2.html の <head> で読み込まれること
+============================================================ -->
+
+<!-- ===== Sector ETF CSS ===== -->
+<style id="sector-styles">
+.s-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 14px;background:#161b22;border:1px solid #30363d;border-radius:8px;margin-bottom:12px}
+.s-header h1{font-size:15px;font-weight:700;color:#e6edf3;margin:0}
+.periods{display:flex;gap:4px;flex-wrap:wrap}
+.period-btn{padding:4px 10px;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:11px;cursor:pointer;transition:.15s}
+.period-btn.active,.period-btn:hover{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.refresh-dot{width:8px;height:8px;border-radius:50%;background:#3fb950;display:inline-block;margin-right:4px;flex-shrink:0}
+.refresh-dot.spin{animation:spin 1s linear infinite;background:#f0883e}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* 正規化チャートエリア */
+.s-chart-wrap{position:relative;height:420px;margin-bottom:10px}
+.s-chart-wrap canvas{width:100%!important}
+.s-chart-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8b949e;font-size:13px;background:rgba(13,17,23,.85);border-radius:8px}
+/* 凡例 */
+.s-legend-wrap{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;font-size:11px}
+.s-legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;font-size:11px;font-weight:600;color:#8b949e;cursor:pointer;transition:.15s;user-select:none}
+.s-legend-item:hover{border-color:#58a6ff;color:#e6edf3}
+.s-legend-item.s-hidden{opacity:.35}
+.s-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+/* ソート */
+.sort-wrap{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:11px;color:#8b949e}
+.sort-btn{padding:3px 8px;background:#21262d;border:1px solid #30363d;border-radius:4px;color:#8b949e;font-size:11px;cursor:pointer;transition:.15s}
+.sort-btn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
+/* ETF カードグリッド */
+.sector-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:12px}
+.sector-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:11px 12px;transition:border-color .15s}
+.sector-card:hover{border-color:#58a6ff}
+.sc-ticker{font-size:16px;font-weight:700;color:#e6edf3;line-height:1.2;margin-bottom:2px}
+.sc-name{font-size:11px;color:#8b949e;margin-bottom:8px}
+.sc-price{font-size:15px;font-weight:700;color:#e6edf3;font-variant-numeric:tabular-nums;margin-bottom:4px}
+.sc-day-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.sc-day-pct{font-size:13px;font-weight:700}
+.sc-day-amt{font-size:11px;opacity:.85}
+/* エラー */
+.s-error{padding:8px 12px;background:#1f1108;border:1px solid #f0883e;border-radius:6px;color:#f0883e;font-size:12px;margin-bottom:8px}
+/* フッター */
+.s-footer{font-size:11px;color:#6e7681;padding:10px 0;border-top:1px solid #21262d;margin-top:4px;line-height:1.6}
+.s-pos{color:#3fb950}.s-neg{color:#f85149}.s-neu{color:#8b949e}
+</style>
+
+<!-- ===== Sector ETF Tab Pane ===== -->
+<div id="tab-sector" class="tab-panel">
+  <div style="max-width:960px;margin:0 auto;padding:16px">
+
+    <!-- Header -->
+    <div class="s-header">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="refresh-dot" id="s-refresh-dot"></span>
+        <h1>📈 US Sector ETF — 相対パフォーマンス（正規化）</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div id="period-btns" class="periods">
+          <button class="period-btn" data-range="1mo">1M</button>
+          <button class="period-btn active" data-range="3mo">3M</button>
+          <button class="period-btn" data-range="6mo">6M</button>
+          <button class="period-btn" data-range="ytd">YTD</button>
+          <button class="period-btn" data-range="1y">1Y</button>
+        </div>
+        <button class="period-btn" onclick="sectorLoadAll()" style="border-color:#3fb950;color:#3fb950">↻ 更新</button>
+      </div>
+    </div>
+
+    <!-- Update time -->
+    <div style="font-size:11px;color:#8b949e;margin-bottom:8px;display:flex;gap:14px">
+      <span id="s-last-update">--</span>
+      <span id="s-refresh-label" style="color:#6e7681">Loading...</span>
+    </div>
+
+    <!-- 正規化比較チャート -->
+    <div class="s-chart-wrap">
+      <canvas id="s-main-chart"></canvas>
+      <div class="s-chart-loading" id="s-chart-loading">データ取得中...</div>
+    </div>
+
+    <!-- 凡例（クリックで表示/非表示） -->
+    <div class="s-legend-wrap" id="s-legend">
+      <span style="color:#6e7681;font-size:10px;align-self:center">凡例（クリックで表示切替）：</span>
+    </div>
+
+    <!-- 個別ETFカード ソート -->
+    <div class="sort-wrap">
+      並び替え:
+      <button class="sort-btn active" data-sort="day">当日騰落率</button>
+      <button class="sort-btn" data-sort="perf">期間リターン</button>
+      <button class="sort-btn" data-sort="price">価格</button>
+      <button class="sort-btn" data-sort="ticker">Ticker</button>
+    </div>
+
+    <!-- 個別ETFカードグリッド -->
+    <div class="sector-grid" id="s-sector-grid">
+      <div style="color:#6e7681;font-size:12px;grid-column:1/-1;padding:20px 0">読み込み中...</div>
+    </div>
+
+    <!-- エラー表示 -->
+    <div id="s-error-area"></div>
+
+    <!-- フッター -->
+    <div class="s-footer">
+      データ: Yahoo Finance API（遅延あり）。正規化チャートは期間開始日 = 100 として各ETFのリターンを比較。<br>
+      ⚠️ 本ツールは教育・情報提供目的です。投資判断はご自身の責任で行ってください。
+    </div>
+
+  </div>
 </div>
-<script>
+
+<!-- ===== Sector ETF JavaScript ===== -->
+<script id="sector-script">
 (function() {
-  var SECTOR_ETFS = [
-    { ticker: 'XLK',  name: 'テクノロジー',       color: '#3b82f6' },
-    { ticker: 'XLF',  name: '金融',               color: '#10b981' },
-    { ticker: 'XLV',  name: 'ヘルスケア',         color: '#f59e0b' },
-    { ticker: 'XLE',  name: 'エネルギー',         color: '#ef4444' },
-    { ticker: 'XLI',  name: '資本財',             color: '#8b5cf6' },
-    { ticker: 'XLC',  name: 'コミュニケーション', color: '#06b6d4' },
-    { ticker: 'XLY',  name: '一般消費財',         color: '#f97316' },
-    { ticker: 'XLP',  name: '生活必需品',         color: '#84cc16' },
-    { ticker: 'XLU',  name: '公益事業',           color: '#ec4899' },
-    { ticker: 'XLRE', name: '不動産',             color: '#a78bfa' },
-    { ticker: 'XLB',  name: '素材',               color: '#fb923c' },
-    { ticker: 'GLD',  name: 'ゴールド',           color: '#fbbf24' },
-    { ticker: 'TLT',  name: '米国長期国債',       color: '#94a3b8' }
+  var SECTORS = [
+    {ticker:'SPY',  jaName:'S&P 500',      color:'#6366f1'},
+    {ticker:'QQQ',  jaName:'Nasdaq 100',   color:'#8b5cf6'},
+    {ticker:'XLK',  jaName:'Tech',         color:'#3b82f6'},
+    {ticker:'SOXX', jaName:'Semicon',      color:'#06b6d4'},
+    {ticker:'XLC',  jaName:'Comm Svc',     color:'#10b981'},
+    {ticker:'XLF',  jaName:'Finance',      color:'#f59e0b'},
+    {ticker:'XLE',  jaName:'Energy',       color:'#ef4444'},
+    {ticker:'XLV',  jaName:'Health',       color:'#ec4899'},
+    {ticker:'XLY',  jaName:'Cons Disc',    color:'#f97316'},
+    {ticker:'XLP',  jaName:'Cons Stpl',    color:'#84cc16'},
+    {ticker:'XLI',  jaName:'Industrials',  color:'#a78bfa'},
+    {ticker:'ARKK', jaName:'Innovation',   color:'#d946ef'}
   ];
 
-  function extractData(parsed) {
-    var result = parsed && parsed.chart && parsed.chart.result && parsed.chart.result[0];
-    if (!result) return null;
-    var meta = result.meta;
-    var closes = (result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close) || [];
-    var timestamps = result.timestamp || [];
-    var validCloses = closes.filter(function(v) { return v != null && !isNaN(v); });
-    var validDates = timestamps
-      .map(function(t, i) { return closes[i] != null ? new Date(t * 1000).toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' }) : null; })
-      .filter(function(d) { return d != null; });
-    var price = meta.regularMarketPrice;
-    var prevClose = meta.chartPreviousClose;
-    return {
-      price: price,
-      prevClose: prevClose,
-      change: price - prevClose,
-      changePct: (price - prevClose) / prevClose * 100,
-      closes: validCloses,
-      dates: validDates
-    };
+  var PROXY  = 'https://corsproxy.io/?';
+  var PROXY2 = 'https://api.allorigins.win/raw?url=';
+  var sCurrentRange = '3mo';
+  var sAllData = {};
+  var sMainChart = null;
+  var sHidden = {};
+  var sSortMode = 'day';
+  var sRefreshTimer = null;
+  var sReady = false;
+
+  /* ========== 初期化 ========== */
+  window._sectorInit = function() {
+    if (sReady) return;
+    sReady = true;
+    sectorLoadAll();
+  };
+
+  /* ========== データ取得 ========== */
+  function sectorFetch(ticker, range) {
+    var url = 'https://query1.finance.yahoo.com/v8/finance/chart/' +
+              ticker + '?interval=1d&range=' + range + '&events=div';
+    return fetch(url, {headers: {'Accept': 'application/json'}})
+      .then(function(r) { if (!r.ok) throw new Error('direct ' + r.status); return r.json(); })
+      .catch(function() {
+        return fetch(PROXY2 + encodeURIComponent(url))
+          .then(function(r2) { if (!r2.ok) throw new Error('p2 ' + r2.status); return r2.json(); });
+      })
+      .catch(function() {
+        return fetch(PROXY + encodeURIComponent(url))
+          .then(function(r3) { if (!r3.ok) throw new Error('p3 ' + r3.status); return r3.json(); });
+      });
   }
 
-  async function fetchPrice(ticker) {
-    var base = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=3mo';
-    var url1 = 'https://api.allorigins.win/get?url=' + encodeURIComponent(base);
-    var url2 = 'https://corsproxy.io/?' + encodeURIComponent(base);
-    try {
-      var res = await fetch(url1, { signal: AbortSignal.timeout(8000) });
-      if (!res.ok) throw new Error('allorigins failed');
-      var data = await res.json();
-      var parsed = JSON.parse(data.contents);
-      return extractData(parsed);
-    } catch(e1) {
-      try {
-        var res2 = await fetch(url2, { signal: AbortSignal.timeout(8000) });
-        if (!res2.ok) throw new Error('corsproxy failed');
-        var parsed2 = await res2.json();
-        return extractData(parsed2);
-      } catch(e2) {
-        return null;
+  function sectorParse(json) {
+    var result = json && json.chart && json.chart.result && json.chart.result[0];
+    if (!result) throw new Error('No result');
+    var ts = result.timestamp;
+    var closes = result.indicators && result.indicators.quote &&
+                 result.indicators.quote[0] && result.indicators.quote[0].close;
+    if (!ts || !closes) throw new Error('No arrays');
+    var dates = ts.map(function(t) {
+      var d = new Date(t * 1000);
+      return (d.getMonth() + 1) + '/' + d.getDate();
+    });
+    var meta = result.meta || {};
+    var cur = meta.regularMarketPrice || null;
+    var prev = meta.chartPreviousClose || null;
+    return {dates: dates, closes: closes, currentPrice: cur, prevClose: prev};
+  }
+
+  function sNormalize(closes) {
+    var base = null;
+    for (var i = 0; i < closes.length; i++) {
+      if (closes[i] != null && closes[i] > 0) { base = closes[i]; break; }
+    }
+    if (!base) return closes;
+    return closes.map(function(v) {
+      return v == null ? null : parseFloat(((v / base) * 100).toFixed(2));
+    });
+  }
+
+  function sPerfPct(closes) {
+    var valid = closes.filter(function(v) { return v != null; });
+    if (valid.length < 2) return 0;
+    return (valid[valid.length - 1] - valid[0]) / valid[0] * 100;
+  }
+
+  /* ========== 全データ取得 ========== */
+  window.sectorLoadAll = function() {
+    sSetRefreshing(true);
+    document.getElementById('s-error-area').innerHTML = '';
+    var errors = [];
+    var pending = SECTORS.length;
+
+    SECTORS.forEach(function(s) {
+      sectorFetch(s.ticker, sCurrentRange)
+        .then(function(json) { sAllData[s.ticker] = sectorParse(json); })
+        .catch(function(e) {
+          errors.push(s.ticker + ': ' + e.message);
+          sAllData[s.ticker] = null;
+        })
+        .then(function() {
+          pending--;
+          if (pending > 0) return;
+          if (errors.length) {
+            document.getElementById('s-error-area').innerHTML =
+              '<div class="s-error">⚠️ 取得失敗: ' + errors.join(', ') + '</div>';
+          }
+          sRenderMainChart();
+          sRenderCards();
+          document.getElementById('s-last-update').textContent =
+            '更新: ' + new Date().toLocaleString('ja-JP');
+          sSetRefreshing(false);
+          clearInterval(sRefreshTimer);
+          sRefreshTimer = setInterval(sectorLoadAll, 5 * 60 * 1000);
+          sUpdateRefreshLabel();
+        });
+    });
+  };
+
+  function sSetRefreshing(on) {
+    var dot = document.getElementById('s-refresh-dot');
+    if (dot) dot.className = 'refresh-dot' + (on ? ' spin' : '');
+    var lbl = document.getElementById('s-refresh-label');
+    if (lbl) lbl.textContent = on ? '更新中...' : '5分ごと自動更新';
+    var ld = document.getElementById('s-chart-loading');
+    if (ld) ld.style.display = on ? 'flex' : 'none';
+  }
+
+  function sUpdateRefreshLabel() {
+    var next = Date.now() + 5 * 60 * 1000;
+    var iv = setInterval(function() {
+      var sec = Math.max(0, Math.round((next - Date.now()) / 1000));
+      var el = document.getElementById('s-refresh-label');
+      if (el) el.textContent = '次回更新: ' + Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+      if (sec <= 0) clearInterval(iv);
+    }, 1000);
+  }
+
+  /* ========== チャート描画 ========== */
+  function sRenderMainChart() {
+    // 最も長いデータセットを日付ラベルの基準とする
+    var refDates = [];
+    SECTORS.forEach(function(s) {
+      if (sAllData[s.ticker] && sAllData[s.ticker].dates.length > refDates.length) {
+        refDates = sAllData[s.ticker].dates;
       }
-    }
-  }
+    });
+    if (!refDates.length) return;
 
-  function buildCard(etf, d) {
-    var card = document.createElement('div');
-    card.style.cssText = 'background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155';
-    if (!d) {
-      card.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-          '<div><span style="font-size:16px;font-weight:700;color:#f9fafb">' + etf.ticker + '</span>' +
-          '<span style="font-size:12px;color:#94a3b8;margin-left:8px">' + etf.name + '</span></div>' +
-          '<span style="font-size:18px;font-weight:700;color:#6b7280">--</span>' +
-        '</div>' +
-        '<div style="color:#6b7280;font-size:13px;margin-bottom:12px">取得失敗</div>' +
-        '<canvas id="chart-' + etf.ticker + '" height="80"></canvas>';
-      return card;
-    }
-    var isPos = d.changePct >= 0;
-    var arrow = isPos ? '▲' : '▼';
-    var col = isPos ? '#10b981' : '#ef4444';
-    var sign = isPos ? '+' : '';
-    card.innerHTML =
-      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
-        '<div><span style="font-size:16px;font-weight:700;color:#f9fafb">' + etf.ticker + '</span>' +
-        '<span style="font-size:12px;color:#94a3b8;margin-left:8px">' + etf.name + '</span></div>' +
-        '<span style="font-size:18px;font-weight:700;color:#f9fafb">$' + d.price.toFixed(2) + '</span>' +
-      '</div>' +
-      '<div style="color:' + col + ';font-size:13px;margin-bottom:12px">' +
-        arrow + ' ' + sign + d.change.toFixed(2) + ' (' + sign + d.changePct.toFixed(2) + '%)' +
-      '</div>' +
-      '<div style="position:relative;height:80px"><canvas id="chart-' + etf.ticker + '"></canvas></div>';
-    return card;
-  }
-
-  function drawChart(etf, d) {
-    var canvas = document.getElementById('chart-' + etf.ticker);
-    if (!canvas || !d || d.closes.length < 2) return;
-    if (canvas._chartInstance) canvas._chartInstance.destroy();
-    var ctx = canvas.getContext('2d');
-    var instance = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: d.dates,
-        datasets: [{
-          data: d.closes,
-          borderColor: etf.color,
+    var datasets = SECTORS
+      .filter(function(s) { return sAllData[s.ticker]; })
+      .map(function(s) {
+        var norm = sNormalize(sAllData[s.ticker].closes);
+        // 短いデータは先頭をnullパディングして日付軸を揃える
+        var diff = refDates.length - norm.length;
+        var padded = diff > 0 ? new Array(diff).fill(null).concat(norm) : norm;
+        return {
+          label: s.ticker,
+          data: padded,
+          borderColor: s.color,
+          backgroundColor: 'transparent',
           borderWidth: 2,
           pointRadius: 0,
-          fill: true,
-          backgroundColor: etf.color + '20',
-          tension: 0.3
-        }]
-      },
+          pointHoverRadius: 5,
+          tension: 0.25,
+          hidden: !!sHidden[s.ticker],
+          spanGaps: true
+        };
+      });
+
+    if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
+    var canvas = document.getElementById('s-main-chart');
+    if (!canvas || typeof Chart === 'undefined') return;
+
+    sMainChart = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: {labels: refDates, datasets: datasets},
       options: {
-        animation: { duration: 0 },
+        animation: {duration: 0},
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false }, tooltip: { enabled: false } },
-        scales: { x: { display: false }, y: { display: false } }
+        interaction: {mode: 'index', intersect: false},
+        plugins: {
+          legend: {display: false},
+          tooltip: {
+            backgroundColor: '#1c2128',
+            borderColor: '#30363d',
+            borderWidth: 1,
+            titleColor: '#8b949e',
+            bodyColor: '#e6edf3',
+            padding: 10,
+            callbacks: {
+              label: function(ctx) {
+                if (ctx.parsed.y == null) return null;
+                var delta = (ctx.parsed.y - 100).toFixed(1);
+                var sign = delta >= 0 ? '+' : '';
+                return ' ' + ctx.dataset.label + ':  ' +
+                       ctx.parsed.y.toFixed(1) + '  (' + sign + delta + '%)';
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: {color: '#21262d'},
+            ticks: {color: '#8b949e', font: {size: 10}, maxTicksLimit: 10, maxRotation: 0}
+          },
+          y: {
+            grid: {color: '#21262d'},
+            ticks: {
+              color: '#8b949e', font: {size: 10},
+              callback: function(v) { return v.toFixed(0); }
+            }
+          }
+        }
       }
     });
-    canvas._chartInstance = instance;
+    sRenderLegend();
   }
 
-  window._sectorInit = async function() {
-    if (window._sectorInitDone) return;
-    window._sectorInitDone = true;
-    var grid = document.getElementById('sector-grid');
-    var timeEl = document.getElementById('sector-update-time');
-    if (!grid) return;
-    grid.innerHTML = '<div style="color:#6b7280;font-size:14px;grid-column:1/-1">Yahoo Finance から取得中...</div>';
-    var results = await Promise.allSettled(SECTOR_ETFS.map(function(etf) { return fetchPrice(etf.ticker); }));
-    grid.innerHTML = '';
-    results.forEach(function(res, i) {
-      var etf = SECTOR_ETFS[i];
-      var d = res.status === 'fulfilled' ? res.value : null;
-      var card = buildCard(etf, d);
-      grid.appendChild(card);
-    });
-    setTimeout(function() {
-      results.forEach(function(res, i) {
-        var etf = SECTOR_ETFS[i];
-        var d = res.status === 'fulfilled' ? res.value : null;
-        drawChart(etf, d);
-      });
-    }, 50);
-    if (timeEl) {
-      timeEl.textContent = '最終更新: ' + new Date().toLocaleString('ja-JP') + ' (リアルタイム取得)';
+  function sRenderLegend() {
+    var wrap = document.getElementById('s-legend');
+    if (!wrap) return;
+    var leading = '<span style="color:#6e7681;font-size:10px;align-self:center">凡例：</span>';
+    var items = SECTORS.filter(function(s) { return sAllData[s.ticker]; });
+    wrap.innerHTML = leading + items.map(function(s) {
+      var hiddenClass = sHidden[s.ticker] ? ' s-hidden' : '';
+      return '<div class="s-legend-item' + hiddenClass +
+             '" onclick="sToggleSector(\'' + s.ticker + '\')">' +
+             '<span class="s-legend-dot" style="background:' + s.color + '"></span>' +
+             s.ticker + '</div>';
+    }).join('');
+  }
+
+  window.sToggleSector = function(ticker) {
+    sHidden[ticker] = !sHidden[ticker];
+    if (sMainChart) {
+      for (var i = 0; i < sMainChart.data.datasets.length; i++) {
+        if (sMainChart.data.datasets[i].label === ticker) {
+          sMainChart.data.datasets[i].hidden = !!sHidden[ticker];
+          sMainChart.update();
+          break;
+        }
+      }
     }
+    sRenderLegend();
   };
+
+  /* ========== カード描画 ========== */
+  function sRenderCards() {
+    var grid = document.getElementById('s-sector-grid');
+    if (!grid) return;
+
+    var entries = SECTORS
+      .filter(function(s) { return sAllData[s.ticker]; })
+      .map(function(s) {
+        var d = sAllData[s.ticker];
+        var cur = d.currentPrice;
+        var prev = d.prevClose;
+        var dayChgPct = (cur && prev) ? ((cur - prev) / prev * 100) : null;
+        var dayChgAmt = (cur && prev) ? (cur - prev) : null;
+        var perf = sPerfPct(d.closes);
+        return {s: s, d: d, dayChgPct: dayChgPct, dayChgAmt: dayChgAmt, perf: perf};
+      });
+
+    // ソート
+    if (sSortMode === 'day') {
+      entries.sort(function(a, b) {
+        var av = a.dayChgPct != null ? a.dayChgPct : -9999;
+        var bv = b.dayChgPct != null ? b.dayChgPct : -9999;
+        return bv - av;
+      });
+    } else if (sSortMode === 'perf') {
+      entries.sort(function(a, b) { return b.perf - a.perf; });
+    } else if (sSortMode === 'price') {
+      entries.sort(function(a, b) {
+        return (b.d.currentPrice || 0) - (a.d.currentPrice || 0);
+      });
+    } else {
+      entries.sort(function(a, b) { return a.s.ticker.localeCompare(b.s.ticker); });
+    }
+
+    grid.innerHTML = entries.map(function(e) {
+      var s = e.s;
+      var cur = e.d.currentPrice;
+      var pct = e.dayChgPct;
+      var amt = e.dayChgAmt;
+
+      // 色クラス
+      var cls = pct == null ? 's-neu' : pct > 0 ? 's-pos' : pct < 0 ? 's-neg' : 's-neu';
+      var sign = pct != null && pct > 0 ? '+' : '';
+      var amtSign = amt != null && amt > 0 ? '+' : '';
+
+      // カード枠色（上昇=緑、下落=赤）
+      var borderClr = pct == null ? '#30363d' : pct > 0 ? '#3fb950' : pct < 0 ? '#f85149' : '#30363d';
+
+      var priceStr = cur
+        ? '$' + cur.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        : '--';
+      var pctStr = pct != null ? sign + pct.toFixed(2) + '%' : '--';
+      var amtStr = amt != null ? amtSign + '$' + Math.abs(amt).toFixed(2) : '';
+
+      return '<div class="sector-card" style="border-color:' + borderClr + '">' +
+             '<div class="sc-ticker">' + s.ticker + '</div>' +
+             '<div class="sc-name">' + s.jaName + '</div>' +
+             '<div class="sc-price">' + priceStr + '</div>' +
+             '<div class="sc-day-row">' +
+             '<span class="sc-day-pct ' + cls + '">' + pctStr + '</span>' +
+             '<span class="sc-day-amt ' + cls + '">' + amtStr + '</span>' +
+             '</div>' +
+             '</div>';
+    }).join('');
+  }
+
+  /* ========== イベント登録 ========== */
+  document.addEventListener('DOMContentLoaded', function() {
+    // 期間ボタン
+    document.querySelectorAll('#period-btns [data-range]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#period-btns [data-range]').forEach(function(b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+        sCurrentRange = btn.dataset.range;
+        sAllData = {};
+        sHidden = {};
+        if (sMainChart) { sMainChart.destroy(); sMainChart = null; }
+        sectorLoadAll();
+      });
+    });
+    // ソートボタン
+    document.querySelectorAll('[data-sort]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.sort-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        sSortMode = btn.dataset.sort;
+        sRenderCards();
+      });
+    });
+  });
+
 })();
 </script>
