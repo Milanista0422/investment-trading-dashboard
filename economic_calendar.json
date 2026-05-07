@@ -1,0 +1,126 @@
+{
+  "generated_at": "2026-05-07T11:05:31.495360",
+  "events": [
+    {
+      "date": "2026-05-05",
+      "time_jst": "22:59",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "New Home Sales",
+      "event_ja": "新築住宅販売件数",
+      "forecast": "",
+      "previous": "587K",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-05",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "ISM Services PMI",
+      "event_ja": "ISM非製造業景況指数",
+      "forecast": "53.7",
+      "previous": "54.0",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-05",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "JOLTS Job Openings",
+      "event_ja": "JOLT求人件数",
+      "forecast": "6.86M",
+      "previous": "6.88M",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-05",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "New Home Sales",
+      "event_ja": "新築住宅販売件数",
+      "forecast": "652K",
+      "previous": "635K",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-06",
+      "time_jst": "21:15",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "ADP Non-Farm Employment Change",
+      "event_ja": "ADP雇用統計",
+      "forecast": "118K",
+      "previous": "62K",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-07",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "205K",
+      "previous": "189K",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-08",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Average Hourly Earnings m/m",
+      "event_ja": "平均時給",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-08",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Non-Farm Employment Change",
+      "event_ja": "非農業部門雇用者数(NFP)",
+      "forecast": "65K",
+      "previous": "178K",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-08",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Unemployment Rate",
+      "event_ja": "失業率",
+      "forecast": "4.3%",
+      "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-08",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Prelim UoM Consumer Sentiment",
+      "event_ja": "ミシガン大学消費者信頼感指数(速報値)",
+      "forecast": "49.7",
+      "previous": "47.6",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-08",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Prelim UoM Inflation Expectations",
+      "event_ja": "Prelim UoM Inflation Expectations",
+      "forecast": "",
+      "previous": "4.8%",
+      "actual": ""
+    }
+  ]
+}
