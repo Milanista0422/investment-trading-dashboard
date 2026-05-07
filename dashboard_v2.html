@@ -628,46 +628,163 @@ a{color:#93c5fd}
   </div>
 </div>
 
-<div id="tab-sector" class="tab-panel" style="display:none;padding:20px;max-width:900px;margin:0 auto">
-  <h2 style="color:#f9fafb;font-size:20px;margin-bottom:16px">🏭 セクター ETF モメンタム</h2>
-  <div id="sector-content" style="color:#94a3b8">読み込み中...</div>
+<div id="tab-sector" class="tab-panel" style="display:none;padding:20px">
+  <h2 style="color:#f9fafb;font-size:20px;margin-bottom:8px">🏭 セクター ETF</h2>
+  <p id="sector-update-time" style="color:#6b7280;font-size:12px;margin-bottom:16px">読み込み中...</p>
+  <div id="sector-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
 </div>
 <script>
-window._sectorInit = function() {
-  // Use macro.sectors data embedded in MACRO_DATA
-  if (!window.MACRO_DATA || !window.MACRO_DATA.sectors) {
-    document.getElementById('sector-content').innerHTML = '<p>セクターデータ未取得</p>';
-    return;
+(function() {
+  var SECTOR_ETFS = [
+    { ticker: 'XLK',  name: 'テクノロジー',       color: '#3b82f6' },
+    { ticker: 'XLF',  name: '金融',               color: '#10b981' },
+    { ticker: 'XLV',  name: 'ヘルスケア',         color: '#f59e0b' },
+    { ticker: 'XLE',  name: 'エネルギー',         color: '#ef4444' },
+    { ticker: 'XLI',  name: '資本財',             color: '#8b5cf6' },
+    { ticker: 'XLC',  name: 'コミュニケーション', color: '#06b6d4' },
+    { ticker: 'XLY',  name: '一般消費財',         color: '#f97316' },
+    { ticker: 'XLP',  name: '生活必需品',         color: '#84cc16' },
+    { ticker: 'XLU',  name: '公益事業',           color: '#ec4899' },
+    { ticker: 'XLRE', name: '不動産',             color: '#a78bfa' },
+    { ticker: 'XLB',  name: '素材',               color: '#fb923c' },
+    { ticker: 'GLD',  name: 'ゴールド',           color: '#fbbf24' },
+    { ticker: 'TLT',  name: '米国長期国債',       color: '#94a3b8' }
+  ];
+
+  function extractData(parsed) {
+    var result = parsed && parsed.chart && parsed.chart.result && parsed.chart.result[0];
+    if (!result) return null;
+    var meta = result.meta;
+    var closes = (result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close) || [];
+    var timestamps = result.timestamp || [];
+    var validCloses = closes.filter(function(v) { return v != null && !isNaN(v); });
+    var validDates = timestamps
+      .map(function(t, i) { return closes[i] != null ? new Date(t * 1000).toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' }) : null; })
+      .filter(function(d) { return d != null; });
+    var price = meta.regularMarketPrice;
+    var prevClose = meta.chartPreviousClose;
+    return {
+      price: price,
+      prevClose: prevClose,
+      change: price - prevClose,
+      changePct: (price - prevClose) / prevClose * 100,
+      closes: validCloses,
+      dates: validDates
+    };
   }
-  var SECTOR_NAMES = {
-    XLK: 'テクノロジー', XLE: 'エネルギー', XLF: '金融', XLV: 'ヘルスケア',
-    XLY: '一般消費財', XLP: '生活必需品', XLI: '資本財', XLU: '公共事業',
-    XLB: '素材', XLRE: '不動産', XLC: 'コミュニケーション'
+
+  async function fetchPrice(ticker) {
+    var base = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=3mo';
+    var url1 = 'https://api.allorigins.win/get?url=' + encodeURIComponent(base);
+    var url2 = 'https://corsproxy.io/?' + encodeURIComponent(base);
+    try {
+      var res = await fetch(url1, { signal: AbortSignal.timeout(8000) });
+      if (!res.ok) throw new Error('allorigins failed');
+      var data = await res.json();
+      var parsed = JSON.parse(data.contents);
+      return extractData(parsed);
+    } catch(e1) {
+      try {
+        var res2 = await fetch(url2, { signal: AbortSignal.timeout(8000) });
+        if (!res2.ok) throw new Error('corsproxy failed');
+        var parsed2 = await res2.json();
+        return extractData(parsed2);
+      } catch(e2) {
+        return null;
+      }
+    }
+  }
+
+  function buildCard(etf, d) {
+    var card = document.createElement('div');
+    card.style.cssText = 'background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155';
+    if (!d) {
+      card.innerHTML =
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+          '<div><span style="font-size:16px;font-weight:700;color:#f9fafb">' + etf.ticker + '</span>' +
+          '<span style="font-size:12px;color:#94a3b8;margin-left:8px">' + etf.name + '</span></div>' +
+          '<span style="font-size:18px;font-weight:700;color:#6b7280">--</span>' +
+        '</div>' +
+        '<div style="color:#6b7280;font-size:13px;margin-bottom:12px">取得失敗</div>' +
+        '<canvas id="chart-' + etf.ticker + '" height="80"></canvas>';
+      return card;
+    }
+    var isPos = d.changePct >= 0;
+    var arrow = isPos ? '▲' : '▼';
+    var col = isPos ? '#10b981' : '#ef4444';
+    var sign = isPos ? '+' : '';
+    card.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">' +
+        '<div><span style="font-size:16px;font-weight:700;color:#f9fafb">' + etf.ticker + '</span>' +
+        '<span style="font-size:12px;color:#94a3b8;margin-left:8px">' + etf.name + '</span></div>' +
+        '<span style="font-size:18px;font-weight:700;color:#f9fafb">$' + d.price.toFixed(2) + '</span>' +
+      '</div>' +
+      '<div style="color:' + col + ';font-size:13px;margin-bottom:12px">' +
+        arrow + ' ' + sign + d.change.toFixed(2) + ' (' + sign + d.changePct.toFixed(2) + '%)' +
+      '</div>' +
+      '<div style="position:relative;height:80px"><canvas id="chart-' + etf.ticker + '"></canvas></div>';
+    return card;
+  }
+
+  function drawChart(etf, d) {
+    var canvas = document.getElementById('chart-' + etf.ticker);
+    if (!canvas || !d || d.closes.length < 2) return;
+    if (canvas._chartInstance) canvas._chartInstance.destroy();
+    var ctx = canvas.getContext('2d');
+    var instance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: d.dates,
+        datasets: [{
+          data: d.closes,
+          borderColor: etf.color,
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: true,
+          backgroundColor: etf.color + '20',
+          tension: 0.3
+        }]
+      },
+      options: {
+        animation: { duration: 0 },
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: { x: { display: false }, y: { display: false } }
+      }
+    });
+    canvas._chartInstance = instance;
+  }
+
+  window._sectorInit = async function() {
+    if (window._sectorInitDone) return;
+    window._sectorInitDone = true;
+    var grid = document.getElementById('sector-grid');
+    var timeEl = document.getElementById('sector-update-time');
+    if (!grid) return;
+    grid.innerHTML = '<div style="color:#6b7280;font-size:14px;grid-column:1/-1">Yahoo Finance から取得中...</div>';
+    var results = await Promise.allSettled(SECTOR_ETFS.map(function(etf) { return fetchPrice(etf.ticker); }));
+    grid.innerHTML = '';
+    results.forEach(function(res, i) {
+      var etf = SECTOR_ETFS[i];
+      var d = res.status === 'fulfilled' ? res.value : null;
+      var card = buildCard(etf, d);
+      grid.appendChild(card);
+    });
+    setTimeout(function() {
+      results.forEach(function(res, i) {
+        var etf = SECTOR_ETFS[i];
+        var d = res.status === 'fulfilled' ? res.value : null;
+        drawChart(etf, d);
+      });
+    }, 50);
+    if (timeEl) {
+      timeEl.textContent = '最終更新: ' + new Date().toLocaleString('ja-JP') + ' (リアルタイム取得)';
+    }
   };
-  var sectors = window.MACRO_DATA.sectors;
-  var arr = Object.entries(sectors).map(function(p) {
-    return {ticker: p[0], name: SECTOR_NAMES[p[0]] || p[0], data: p[1]};
-  }).filter(function(s) { return s.data; });
-  arr.sort(function(a, b) { return (b.data.change_5d_pct || 0) - (a.data.change_5d_pct || 0); });
-  var html = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">';
-  arr.forEach(function(s) {
-    var c5 = s.data.change_5d_pct.toFixed(2);
-    var c1 = s.data.change_1d_pct.toFixed(2);
-    var col5 = c5 >= 0 ? '#10b981' : '#ef4444';
-    var col1 = c1 >= 0 ? '#10b981' : '#ef4444';
-    html += '<div style="background:#1f2937;border-radius:8px;padding:14px;border-left:4px solid ' + col5 + '">';
-    html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">';
-    html += '<span style="color:#f9fafb;font-weight:700;font-size:16px">' + s.ticker + '</span>';
-    html += '<span style="color:#94a3b8;font-size:11px">' + s.name + '</span></div>';
-    html += '<div style="color:#f9fafb;font-size:18px;font-weight:600">$' + s.data.last.toFixed(2) + '</div>';
-    html += '<div style="color:' + col1 + ';font-size:12px;margin-top:4px">1日: ' + (c1 >= 0 ? '+' : '') + c1 + '%</div>';
-    html += '<div style="color:' + col5 + ';font-size:12px">5日: ' + (c5 >= 0 ? '+' : '') + c5 + '%</div>';
-    html += '</div>';
-  });
-  html += '</div>';
-  document.getElementById('sector-content').innerHTML = html;
-};
+})();
 </script>
+
 
 
 <div id="tab-calendar" class="tab-panel" style="display:none;padding:20px;max-width:900px;margin:0 auto">
