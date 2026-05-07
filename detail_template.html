@@ -785,6 +785,21 @@
                     borderColor: 'rgba(156,163,175,0.35)', backgroundColor: 'transparent',
                     fill: false, pointRadius: 0, borderWidth: 1, borderDash: [4,4] });
             }
+            if (data.support) {
+                datasets.push({ label: 'Support', data: new Array(dates.length).fill(data.support),
+                    borderColor: '#22c55e', borderWidth: 1.5, borderDash: [6,3],
+                    pointRadius: 0, fill: false, tension: 0 });
+            }
+            if (data.resistance) {
+                datasets.push({ label: 'Resistance', data: new Array(dates.length).fill(data.resistance),
+                    borderColor: '#ef4444', borderWidth: 1.5, borderDash: [6,3],
+                    pointRadius: 0, fill: false, tension: 0 });
+            }
+            if (data.sma20) {
+                datasets.push({ label: 'SMA20', data: new Array(dates.length).fill(data.sma20),
+                    borderColor: 'rgba(251,191,36,0.7)', borderWidth: 1, borderDash: [4,2],
+                    pointRadius: 0, fill: false, tension: 0 });
+            }
 
             charts.main = new Chart(ctx, {
                 type: 'line',
