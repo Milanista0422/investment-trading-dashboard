@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07T11:05:31.495360",
+  "generated_at": "2026-05-08T21:48:56.358403+09:00",
   "events": [
     {
       "date": "2026-05-05",
@@ -29,7 +29,7 @@
       "currency": "USD",
       "impact": "High",
       "event_en": "JOLTS Job Openings",
-      "event_ja": "JOLT求人件数",
+      "event_ja": "雇用動態調査(JOLTS)",
       "forecast": "6.86M",
       "previous": "6.88M",
       "actual": ""
@@ -76,7 +76,7 @@
       "event_ja": "平均時給",
       "forecast": "0.3%",
       "previous": "0.2%",
-      "actual": ""
+      "actual": "0.3%"
     },
     {
       "date": "2026-05-08",
@@ -87,7 +87,7 @@
       "event_ja": "非農業部門雇用者数(NFP)",
       "forecast": "65K",
       "previous": "178K",
-      "actual": ""
+      "actual": "115K"
     },
     {
       "date": "2026-05-08",
@@ -98,7 +98,7 @@
       "event_ja": "失業率",
       "forecast": "4.3%",
       "previous": "4.3%",
-      "actual": ""
+      "actual": "4.3%"
     },
     {
       "date": "2026-05-08",
@@ -120,6 +120,17 @@
       "event_ja": "Prelim UoM Inflation Expectations",
       "forecast": "",
       "previous": "4.8%",
+      "actual": ""
+    },
+    {
+      "date": "2026-05-09",
+      "time_jst": "01:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
+      "forecast": "",
+      "previous": "",
       "actual": ""
     }
   ]
