@@ -1,17 +1,6 @@
 {
-  "generated_at": "2026-05-11T22:47:01.645639+09:00",
+  "generated_at": "2026-05-12T21:11:02.780944+09:00",
   "events": [
-    {
-      "date": "2026-05-09",
-      "time_jst": "01:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-05-12",
       "time_jst": "21:30",
@@ -85,7 +74,7 @@
       "impact": "High",
       "event_en": "Core Retail Sales m/m",
       "event_ja": "コア小売売上高",
-      "forecast": "0.6%",
+      "forecast": "0.7%",
       "previous": "1.9%",
       "actual": ""
     },
@@ -96,7 +85,7 @@
       "impact": "High",
       "event_en": "Retail Sales m/m",
       "event_ja": "小売売上高",
-      "forecast": "0.6%",
+      "forecast": "0.5%",
       "previous": "1.7%",
       "actual": ""
     },
@@ -107,7 +96,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "206K",
+      "forecast": "205K",
       "previous": "200K",
       "actual": ""
     }
