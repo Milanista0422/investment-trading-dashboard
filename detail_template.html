@@ -501,6 +501,10 @@
                     sma200: detailData.sma200,
                     resistance: detailData.resistance,
                     support: detailData.support,
+                    resistanceLevels: detailData.resistanceLevels
+                                   || technicalDataFromJson.tickers?.[ticker]?.resistanceLevels || [],
+                    supportLevels: detailData.supportLevels
+                                 || technicalDataFromJson.tickers?.[ticker]?.supportLevels || [],
                     bbUpper: detailData.bbUpper,
                     bbLower: detailData.bbLower,
                     atr: detailData.atr,
@@ -568,7 +572,21 @@
             renderMACDChart(ticker, dates, data.macd);
         }
 
-        // キャンドルスティックチャート描画
+        // 将来の営業日を生成（土日スキップ）
+        function genFutureDates(lastDateStr, count) {
+            const dates = [];
+            const d = new Date(lastDateStr + 'T00:00:00');
+            while (dates.length < count) {
+                d.setDate(d.getDate() + 1);
+                const dow = d.getDay();
+                if (dow !== 0 && dow !== 6) {
+                    dates.push(d.toISOString().slice(0, 10));
+                }
+            }
+            return dates;
+        }
+
+        // キャンドルスティックチャート描画（S/Rライン将来延伸対応）
         function renderCandlestickChart(ticker, data) {
             const ctx = document.getElementById('mainChart');
             if (!ctx) return;
@@ -576,77 +594,157 @@
             const ohlcData = data.ohlcHistory || [];
             if (ohlcData.length === 0) return;
 
-            // OHLC価格データを準備
-            const ohlcChartData = ohlcData.map(candle => ({
-                x: candle.date,
-                o: candle.open,
-                h: candle.high,
-                l: candle.low,
-                c: candle.close
+            // 将来20営業日分のラベルを生成
+            const FUTURE_DAYS = 20;
+            const lastDateStr = ohlcData[ohlcData.length - 1].date;
+            const futureDates = genFutureDates(lastDateStr, FUTURE_DAYS);
+            const allLabels = [...ohlcData.map(c => c.date), ...futureDates];
+            const nHist = ohlcData.length;
+            const nTotal = allLabels.length;
+
+            // 価格データ：過去のみ（将来はnull）
+            const closes = [...ohlcData.map(c => c.close), ...Array(FUTURE_DAYS).fill(null)];
+            const highs  = [...ohlcData.map(c => c.high),  ...Array(FUTURE_DAYS).fill(null)];
+            const lows   = [...ohlcData.map(c => c.low),   ...Array(FUTURE_DAYS).fill(null)];
+
+            // S/Rライン：過去＋将来すべてに延伸
+            const res = data.resistance || 0;
+            const sup = data.support || 0;
+            const resLevels = (data.resistanceLevels || []).filter(v => Math.abs(v - res) > 0.5);
+            const supLevels = (data.supportLevels || []).filter(v => Math.abs(v - sup) > 0.5);
+
+            const datasets = [
+                // 終値ライン
+                {
+                    label: `${ticker} 終値`,
+                    data: closes,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.08)',
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: ohlcData.map((_, i) => i === nHist - 1 ? 4 : 1).concat(Array(FUTURE_DAYS).fill(0)),
+                    pointBackgroundColor: ohlcData.map((c, i) =>
+                        i > 0 && c.close > ohlcData[i-1].close ? '#10b981' : '#ef4444'
+                    ).concat(Array(FUTURE_DAYS).fill('transparent')),
+                    borderWidth: 2,
+                    spanGaps: false
+                },
+                // 高値・安値レンジ
+                {
+                    label: '高値',
+                    data: highs,
+                    borderColor: 'rgba(16, 185, 129, 0.35)',
+                    borderDash: [2, 3],
+                    fill: false,
+                    pointRadius: 0,
+                    borderWidth: 1,
+                    spanGaps: false
+                },
+                {
+                    label: '安値',
+                    data: lows,
+                    borderColor: 'rgba(239, 68, 68, 0.35)',
+                    borderDash: [2, 3],
+                    fill: false,
+                    pointRadius: 0,
+                    borderWidth: 1,
+                    spanGaps: false
+                }
+            ];
+
+            // メインS/Rライン（太め・将来延伸）
+            if (res > 0) datasets.push({
+                label: `▲ レジスタンス $${res}`,
+                data: Array(nTotal).fill(res),
+                borderColor: 'rgba(239, 68, 68, 0.95)',
+                borderDash: [6, 4],
+                pointRadius: 0,
+                fill: false,
+                borderWidth: 2.5
+            });
+            if (sup > 0) datasets.push({
+                label: `▼ サポート $${sup}`,
+                data: Array(nTotal).fill(sup),
+                borderColor: 'rgba(16, 185, 129, 0.95)',
+                borderDash: [6, 4],
+                pointRadius: 0,
+                fill: false,
+                borderWidth: 2.5
+            });
+
+            // 追加S/Rレベル（細め・将来延伸）
+            resLevels.forEach((level, i) => datasets.push({
+                label: `R${i+2} $${level}`,
+                data: Array(nTotal).fill(level),
+                borderColor: 'rgba(239, 68, 68, 0.45)',
+                borderDash: [3, 6],
+                pointRadius: 0,
+                fill: false,
+                borderWidth: 1.2
+            }));
+            supLevels.forEach((level, i) => datasets.push({
+                label: `S${i+2} $${level}`,
+                data: Array(nTotal).fill(level),
+                borderColor: 'rgba(16, 185, 129, 0.45)',
+                borderDash: [3, 6],
+                pointRadius: 0,
+                fill: false,
+                borderWidth: 1.2
             }));
 
-            // SMA線用のデータ
-            const closes = ohlcData.map(c => c.close);
-            const highs = ohlcData.map(c => c.high);
-            const lows = ohlcData.map(c => c.low);
+            // 将来ゾーンの境界線（縦の区切り）をannotationsで表示するため
+            // 将来エリアを薄くハイライトするための透明ライン（先頭nullデータ）
+            const futureZoneOverlay = Array(nHist).fill(null).concat(
+                Array(FUTURE_DAYS).fill(Math.max(res || 0, sup || 0) * 1.02 || 0)
+            );
 
             charts.main = new Chart(ctx, {
                 type: 'line',
-                data: {
-                    labels: ohlcData.map(c => c.date),
-                    datasets: [
-                        // 終値ラインチャート（キャンドルの代わり）
-                        {
-                            label: `${ticker} 終値`,
-                            data: closes,
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            pointRadius: 2,
-                            pointBackgroundColor: closes.map((c, i) =>
-                                i > 0 && c > closes[i-1] ? '#10b981' : '#ef4444'
-                            ),
-                            borderWidth: 2
-                        },
-                        // 高値
-                        {
-                            label: '高値',
-                            data: highs,
-                            borderColor: 'rgba(16, 185, 129, 0.4)',
-                            borderDash: [2, 2],
-                            fill: false,
-                            pointRadius: 0,
-                            borderWidth: 1
-                        },
-                        // 安値
-                        {
-                            label: '安値',
-                            data: lows,
-                            borderColor: 'rgba(239, 68, 68, 0.4)',
-                            borderDash: [2, 2],
-                            fill: false,
-                            pointRadius: 0,
-                            borderWidth: 1
-                        }
-                    ]
-                },
+                data: { labels: allLabels, datasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            labels: { color: '#cbd5e1', font: { size: 11 } },
+                            labels: { color: '#cbd5e1', font: { size: 10 } },
                             position: 'top'
                         },
                         title: {
                             display: true,
-                            text: `${ticker} - キャンドルチャート（過去60日）`,
-                            color: '#fff'
+                            text: `${ticker} - 価格チャート（過去${nHist}日 ＋ 将来${FUTURE_DAYS}営業日）`,
+                            color: '#e2e8f0',
+                            font: { size: 13 }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: ctx => {
+                                    if (ctx.parsed.y === null) return null;
+                                    return `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(2)}`;
+                                }
+                            }
                         }
                     },
                     scales: {
-                        x: { ticks: { color: '#a0aec0' }, grid: { color: '#374151' } },
+                        x: {
+                            ticks: {
+                                color: '#a0aec0',
+                                maxTicksLimit: 18,
+                                maxRotation: 45,
+                                callback: function(val, idx) {
+                                    // 将来ゾーンに入ったら日付に〔▶〕マーク
+                                    const label = allLabels[idx];
+                                    return idx >= nHist ? `→${label}` : label;
+                                }
+                            },
+                            grid: {
+                                color: ctx => {
+                                    // 将来ゾーンのグリッドを薄くする
+                                    return ctx.index >= nHist ? 'rgba(255,255,255,0.04)' : '#374151';
+                                }
+                            }
+                        },
                         y: {
                             ticks: { color: '#a0aec0' },
                             grid: { color: '#374151' },
