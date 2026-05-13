@@ -292,14 +292,12 @@
                 <div class="chart-container">
                     <canvas id="mainChart"></canvas>
                 </div>
-                <div id="pullback-badge" style="margin:8px 4px 12px 4px;padding:10px 14px;background:#1a2332;border-radius:8px;border-left:4px solid #374151;font-size:13px;line-height:1.5;"><span style="color:#6b7280;">🔍 押し目買い判定: 計算中...</span></div>
 
                 <!-- オシレーター -->
                 <div class="oscillator-charts">
                     <div class="oscillator-chart">
                         <div class="oscillator-title">RSI(14)</div>
                         <canvas id="rsiChart"></canvas>
-                <div id="rsi-commentary" style="font-size:12px;color:#fbbf24;padding:6px 10px;background:rgba(251,191,36,0.08);border-left:3px solid #fbbf24;border-radius:4px;margin-top:8px;min-height:18px;"></div>
                     </div>
                     <div class="oscillator-chart">
                         <div class="oscillator-title">MACD</div>
@@ -452,13 +450,6 @@
             </div>
         </div>
 
-
-        <!-- 関連ニュース -->
-        <div class="analysis-box" id="news-links-box" style="display:none; background:rgba(15,30,60,0.85); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:16px; margin-bottom:16px;">
-            <div class="analysis-title" style="font-size:14px; font-weight:700; color:#93c5fd; margin-bottom:12px;">📰 関連ニュース</div>
-            <div id="news-links-content"></div>
-        </div>
-
         <!-- フッター -->
         <div class="footer">
             ⚠️ このページは教育目的の分析です。実際の投資判断はご自身の責任で行ってください。
@@ -494,9 +485,9 @@
 
                 // technical_data.jsonからOHLC履歴を追加
                 const ticker = detailData.ticker;
-                const ohlcHistory = (detailData.ohlcHistory && detailData.ohlcHistory.length > 0)
-                    ? detailData.ohlcHistory
-                    : (technicalDataFromJson[ticker]?.ohlcHistory || []);
+                // FIX: technical_data.json の構造は {date, updated_at, tickers:{...}} なので .tickers 経由でアクセス
+                const ohlcHistory = technicalDataFromJson.tickers?.[ticker]?.ohlcHistory
+                                 || detailData.ohlcHistory || [];
 
                 tickerData[ticker] = {
                     signal: detailData.signal,
@@ -531,37 +522,6 @@
 
             renderCharts();
             updateSidebarMetrics();
-            await loadNewsLinks();
-        }
-
-        async function loadNewsLinks() {
-            try {
-                const resp = await fetch('news_data.json');
-                if (!resp.ok) return;
-                const data = await resp.json();
-                const tk = detailData.ticker;
-                if (data.tickers && data.tickers[tk] && data.tickers[tk].top_news) {
-                    renderNewsLinks(data.tickers[tk].top_news);
-                }
-            } catch(e) { /* not available */ }
-        }
-
-        function renderNewsLinks(items) {
-            if (!items || !items.length) return;
-            var box = document.getElementById('news-links-box');
-            var content = document.getElementById('news-links-content');
-            if (!box || !content) return;
-            box.style.display = '';
-            var html = items.map(function(n) {
-                var sc = n.sentiment === 'positive' ? '#10b981' : n.sentiment === 'negative' ? '#f87171' : '#fbbf24';
-                var imp = n.impact === 'high' ? '<span style="background:#dc2626;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;margin-left:6px;">🔥 HIGH</span>' : '<span style="background:#374151;color:#d1d5db;font-size:10px;padding:2px 6px;border-radius:4px;margin-left:6px;">📌 MED</span>';
-                return '<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);">' +
-                    '<a href="' + n.url + '" target="_blank" rel="noopener" style="color:#60a5fa;font-size:13px;line-height:1.5;text-decoration:none;display:block;margin-bottom:4px;">' + n.headline + '</a>' +
-                    '<div style="color:#9ca3af;font-size:12px;margin-bottom:6px;line-height:1.4;">' + (n.summary || '') + '</div>' +
-                    '<span style="color:' + sc + ';font-size:11px;font-weight:600;">● ' + (n.sentiment || '') + '</span>' + imp +
-                    '</div>';
-            }).join('');
-            content.innerHTML = html;
         }
 
         // タイムフレーム切り替え
@@ -588,32 +548,24 @@
         }
 
         // チャート描画
-                function renderCharts() {
-            const ticker = detailData.ticker || 'AAPL';
+        function renderCharts() {
+            const ticker = detailData.ticker || "AAPL";
             const data = tickerData[ticker];
-            if (!data) return;
 
-            // Resolve ohlcHistory: may be an array or nested object
-            let ohlc = null;
-            var _sd = JSON.parse(sessionStorage.getItem('detailData') || '{}');
-            if (_sd.ohlcHistory && _sd.ohlcHistory.length > 0) {
-                ohlc = _sd.ohlcHistory;
-            } else if (data && Array.isArray(data.ohlcHistory) && data.ohlcHistory.length > 0) {
-                ohlc = data.ohlcHistory;
-            }
+            if (!data) return; // データがない場合はスキップ
 
-            let dates, closes;
-            if (ohlc && ohlc.length > 0) {
-                dates = ohlc.map(function(d) { return d.t || d.date; });
-                closes = ohlc.map(function(d) { return d.c !== undefined ? d.c : d.close; });
-            } else {
-                dates = generateDates(currentTimeframe);
-                closes = generatePriceData(data.price, dates.length, currentTimeframe);
-            }
+            // サンプルデータ生成（実装環境では実データを使用）
+            const dates = generateDates(currentTimeframe);
+            const prices = generatePriceData(data.price, dates.length, currentTimeframe);
 
-            renderMainChart(ticker, dates, closes, data, ohlc);
-            renderRSIChart(ticker, dates, closes, data.rsi, data.news);
-            renderMACDChart(ticker, dates, closes, data.macd);
+            // メインチャート
+            renderMainChart(ticker, dates, prices, data);
+
+            // RSIチャート
+            renderRSIChart(ticker, dates, data.rsi);
+
+            // MACDチャート
+            renderMACDChart(ticker, dates, data.macd);
         }
 
         // キャンドルスティックチャート描画
@@ -676,40 +628,7 @@
                             fill: false,
                             pointRadius: 0,
                             borderWidth: 1
-                        },
-                    ...((function() {
-                        var n = closes.length;
-                        var ohlc = ohlcData || [];
-                        var cp = closes[n - 1];
-                        var maxH = Math.max.apply(null, ohlc.map(function(d){return d.high;}));
-                        var minL = Math.min.apply(null, ohlc.map(function(d){return d.low;}));
-                        var range = maxH - minL;
-                        function clusterLvls(prices, pct) {
-                            var sorted = prices.slice().sort(function(a,b){return a-b;});
-                            var groups = [];
-                            for (var pi=0; pi<sorted.length; pi++) {
-                                var p=sorted[pi], found=null;
-                                for(var gi=0;gi<groups.length;gi++){if(Math.abs(groups[gi].price-p)/groups[gi].price<pct){found=groups[gi];break;}}
-                                if(found){found.count++;found.price=(found.price*(found.count-1)+p)/found.count;}else groups.push({price:p,count:1});
-                            }
-                            return groups.sort(function(a,b){return b.count-a.count;});
                         }
-                        var swingH=[], swingL=[];
-                        for(var i=3;i<ohlc.length-3;i++){var h=ohlc[i].high,l=ohlc[i].low,isH=true,isL=true;for(var j=i-3;j<i+4;j++){if(j===i)continue;if(ohlc[j].high>h)isH=false;if(ohlc[j].low<l)isL=false;}if(isH)swingH.push(h);if(isL)swingL.push(l);}
-                        var aboveHighs = swingH.filter(function(p){return p>=cp;});
-                        var clusteredR = clusterLvls(aboveHighs,0.02).sort(function(a,b){return a.price-b.price;});
-                        if(clusteredR.length===0) clusteredR=[{price:maxH,count:1}];
-                        var resistances = clusteredR.slice(0,3);
-                        var fibLevels=[{key:'23.6',price:maxH-range*0.236},{key:'38.2',price:maxH-range*0.382},{key:'50.0',price:maxH-range*0.5},{key:'61.8',price:maxH-range*0.618}];
-                        var nearSwingL = clusterLvls(swingL.filter(function(l){return l<cp&&l>cp*0.85;}),0.02).sort(function(a,b){return b.price-a.price;}).slice(0,2);
-                        var ds=[], rC=['rgba(239,68,68,0.9)','rgba(239,68,68,0.65)','rgba(239,68,68,0.45)'];
-                        resistances.forEach(function(lv,i){ds.push({label:'R'+(i+1)+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:rC[i],borderWidth:i===0?2:1.5,borderDash:[6,3],fill:false,pointRadius:0});});
-                        var sIdx=1;
-                        nearSwingL.forEach(function(lv){ds.push({label:'S'+sIdx+' '+lv.price.toFixed(1),data:Array(n).fill(lv.price),borderColor:'rgba(34,197,94,0.85)',borderWidth:2,borderDash:[6,3],fill:false,pointRadius:0});sIdx++;});
-                        var fc=['rgba(251,191,36,0.55)','rgba(251,191,36,0.65)','rgba(251,191,36,0.75)','rgba(251,191,36,0.85)'];
-                        fibLevels.filter(function(f){return f.price<cp;}).forEach(function(f,i){ds.push({label:'Fib'+f.key+'% '+f.price.toFixed(1),data:Array(n).fill(f.price),borderColor:fc[i]||'rgba(251,191,36,0.6)',borderWidth:1.5,borderDash:[3,5],fill:false,pointRadius:0});});
-                        return ds;
-                    })())
                     ]
                 },
                 options: {
@@ -739,371 +658,215 @@
         }
 
         // メインチャート描画（OHLC対応）
-                function renderMainChart(ticker, dates, closes, data, ohlc) {
-            var ctx = document.getElementById('mainChart');
+        function renderMainChart(ticker, dates, prices, data) {
+            const ctx = document.getElementById('mainChart');
             if (!ctx) return;
-            if (charts.main) { charts.main.destroy(); charts.main = null; }
 
-            function computeSMA(prices, period) {
-                var result = new Array(prices.length).fill(null);
-                if (prices.length < period) return result;
-                var sum = 0;
-                for (var i = 0; i < period; i++) sum += prices[i];
-                result[period - 1] = sum / period;
-                for (var j = period; j < prices.length; j++) {
-                    sum += prices[j] - prices[j - period];
-                    result[j] = sum / period;
-                }
-                return result;
+            // OHLC履歴がある場合はキャンドルチャートを使用
+            if (data.ohlcHistory && data.ohlcHistory.length > 0) {
+                renderCandlestickChart(ticker, data);
+                return;
             }
 
-            var ma50 = closes.length >= 50
-                ? computeSMA(closes, 50)
-                : new Array(closes.length).fill(data.sma50 || null);
-            var ma200 = closes.length >= 200
-                ? computeSMA(closes, 200)
-                : new Array(closes.length).fill(data.sma200 || null);
+            // ボリンジャーバンドの上下
+            const bbUpper = Array(dates.length).fill(data.bbUpper);
+            const bbLower = Array(dates.length).fill(data.bbLower);
+            const bbMiddle = Array(dates.length).fill((data.bbUpper + data.bbLower) / 2);
 
-            var datasets = [
-                { label: ticker + ' 終値', data: closes, borderColor: '#3b82f6',
-                  backgroundColor: 'rgba(59,130,246,0.06)', tension: 0.3,
-                  fill: false, pointRadius: 0, borderWidth: 2,
-                  segment: { borderColor: function(ctx) { return ctx.p1.parsed.y >= ctx.p0.parsed.y ? '#22c55e' : '#ef4444'; } } },
-                { label: 'MA50', data: ma50, borderColor: '#f59e0b',
-                  backgroundColor: 'transparent', tension: 0.3, fill: false,
-                  pointRadius: 0, borderWidth: 1.5, spanGaps: true },
-                { label: 'MA200', data: ma200, borderColor: '#ef4444',
-                  backgroundColor: 'transparent', tension: 0.3, fill: false,
-                  pointRadius: 0, borderWidth: 1.5, spanGaps: true }
-            ];
-
-            if (data.bbUpper && data.bbLower) {
-                datasets.push({ label: 'BB上限', data: new Array(dates.length).fill(data.bbUpper),
-                    borderColor: 'rgba(156,163,175,0.35)', backgroundColor: 'transparent',
-                    fill: false, pointRadius: 0, borderWidth: 1, borderDash: [4,4] });
-                datasets.push({ label: 'BB下限', data: new Array(dates.length).fill(data.bbLower),
-                    borderColor: 'rgba(156,163,175,0.35)', backgroundColor: 'transparent',
-                    fill: false, pointRadius: 0, borderWidth: 1, borderDash: [4,4] });
-            }
-            // ====== SMA20水平線（固定値、維持）======
-            if (data.sma20) {
-                datasets.push({ label: 'SMA20', data: new Array(dates.length).fill(data.sma20),
-                    borderColor: 'rgba(251,191,36,0.7)', borderWidth: 1, borderDash: [4,2],
-                    pointRadius: 0, fill: false, tension: 0 });
-            }
-
-            // ====== 精細S/R算出（ohlcHistoryから複数レベルを動的計算）======
-            (function() {
-                function calcSRLevels(ohlcArr) {
-                    if (!ohlcArr || ohlcArr.length < 10) return { supports: [], resistances: [] };
-                    var lookback = 5;
-                    var clusterPct = 0.015;
-                    var highs = [], lows = [];
-                    for (var i = lookback; i < ohlcArr.length - lookback; i++) {
-                        var h = ohlcArr[i].high;
-                        var l = ohlcArr[i].low;
-                        var isHigh = true;
-                        for (var j = i - lookback; j <= i + lookback; j++) {
-                            if (j !== i && ohlcArr[j].high >= h) { isHigh = false; break; }
-                        }
-                        if (isHigh) highs.push({ price: h, idx: i });
-                        var isLow = true;
-                        for (var k = i - lookback; k <= i + lookback; k++) {
-                            if (k !== i && ohlcArr[k].low <= l) { isLow = false; break; }
-                        }
-                        if (isLow) lows.push({ price: l, idx: i });
-                    }
-                    function cluster(points) {
-                        if (!points.length) return [];
-                        var sorted = points.slice().sort(function(a, b) { return a.price - b.price; });
-                        var groups = [];
-                        var g = [sorted[0]];
-                        for (var i = 1; i < sorted.length; i++) {
-                            var ref = g[0].price;
-                            if (Math.abs(sorted[i].price - ref) / ref < clusterPct) {
-                                g.push(sorted[i]);
-                            } else {
-                                groups.push(g);
-                                g = [sorted[i]];
-                            }
-                        }
-                        groups.push(g);
-                        return groups.map(function(gr) {
-                            return {
-                                price: gr.reduce(function(s, p) { return s + p.price; }, 0) / gr.length,
-                                touches: gr.length
-                            };
-                        }).sort(function(a, b) { return b.touches - a.touches; });
-                    }
-                    var currentPrice = ohlcArr[ohlcArr.length - 1].close;
-                    var allResistances = cluster(highs)
-                        .filter(function(c) { return c.price > currentPrice; })
-                        .sort(function(a, b) { return a.price - b.price; })
-                        .slice(0, 3);
-                    var allSupports = cluster(lows)
-                        .filter(function(c) { return c.price < currentPrice; })
-                        .sort(function(a, b) { return b.price - a.price; })
-                        .slice(0, 3);
-                    return { supports: allSupports, resistances: allResistances };
-                }
-
-                var srLevels = calcSRLevels(ohlc);
-                var n = dates.length;
-
-                var resColors = ['rgba(239,68,68,0.9)', 'rgba(239,68,68,0.55)', 'rgba(239,68,68,0.3)'];
-                var resWidths = [2, 1.5, 1];
-                srLevels.resistances.forEach(function(r, i) {
-                    datasets.push({
-                        label: 'R' + (i+1) + ' 
+            // SMA
+            const sma20 = Array(dates.length).fill(data.sma20);
+            const sma50 = Array(dates.length).fill(data.sma50);
+            const sma200 = Array(dates.length).fill(data.sma200);
 
             charts.main = new Chart(ctx, {
                 type: 'line',
-                data: { labels: dates, datasets: datasets },
+                data: {
+                    labels: dates,
+                    datasets: [
+                        {
+                            label: `${ticker} 終値`,
+                            data: prices,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'SMA(20)',
+                            data: sma20,
+                            borderColor: '#f59e0b',
+                            borderDash: [0],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1.5
+                        },
+                        {
+                            label: 'SMA(50)',
+                            data: sma50,
+                            borderColor: '#10b981',
+                            borderDash: [0],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1.5
+                        },
+                        {
+                            label: 'SMA(200)',
+                            data: sma200,
+                            borderColor: '#8b5cf6',
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1.5
+                        },
+                        {
+                            label: 'ボリバン上',
+                            data: bbUpper,
+                            borderColor: '#ef4444',
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'ボリバン下',
+                            data: bbLower,
+                            borderColor: '#10b981',
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'レジスタンス',
+                            data: Array(dates.length).fill(data.resistance),
+                            borderColor: '#ef4444',
+                            borderDash: [2, 4],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'サポート',
+                            data: Array(dates.length).fill(data.support),
+                            borderColor: '#10b981',
+                            borderDash: [2, 4],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 2
+                        }
+                    ]
+                },
                 options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: true, position: 'top',
-                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
-                        tooltip: { mode: 'index', intersect: false }
+                        legend: {
+                            labels: { color: '#cbd5e1', font: { size: 11 } },
+                            position: 'top'
+                        }
                     },
                     scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { ticks: { color: '#9ca3af', maxTicksLimit: 6 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } }
+                        x: { ticks: { color: '#a0aec0' }, grid: { color: '#374151' } },
+                        y: { ticks: { color: '#a0aec0' }, grid: { color: '#374151' } }
                     }
-            },
-            plugins: [{
-                id: 'trendBg',
-                beforeDraw: function(chart) {
-                    var cc = chart.ctx;
-                    var xA = chart.scales.x;
-                    var yA = chart.scales.y;
-                    if (!xA || !yA) return;
-                    cc.save();
-                    for (var bi = 0; bi < closes.length - 1; bi++) {
-                        if (closes[bi] == null || ma50[bi] == null) continue;
-                        cc.fillStyle = closes[bi] >= ma50[bi] ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.10)';
-                        var bx0 = xA.getPixelForValue(bi);
-                        var bx1 = xA.getPixelForValue(bi+1);
-                        cc.fillRect(bx0, yA.top, bx1-bx0, yA.bottom-yA.top);
-                    }
-                    cc.restore();
                 }
-            }]
             });
-            // === Pullback buy detection ===
-            var _lc = closes.length > 0 ? closes[closes.length-1] : null;
-            var _lm5 = ma50.length > 0 ? ma50[ma50.length-1] : null;
-            var _lm200 = ma200.length > 0 ? ma200[ma200.length-1] : null;
-            var _rsi = 50;
-            if (closes.length >= 16) {
-                var _g=0,_l=0;
-                for(var _i=closes.length-14;_i<closes.length;_i++){var _d=closes[_i]-closes[_i-1];if(_d>=0)_g+=_d;else _l+=-_d;}
-                var _rs=_l===0?100:_g/_l;
-                _rsi=100-(100/(1+_rs));
-            }
-            var _pb=document.getElementById('pullback-badge');
-            if(_pb&&_lc&&_lm5&&_lm200){
-                var _gc=_lm5>_lm200,_abv=_lc>_lm200,_near=Math.abs(_lc-_lm5)/_lm5<0.03,_rOk=_rsi>=38&&_rsi<=62;
-                var _sc=(_gc?1:0)+(_abv?1:0)+(_near?1:0)+(_rOk?1:0);
-                var _rFmt=Math.round(_rsi*10)/10;
-                if(_sc===4){
-                    _pb.innerHTML='<span style="font-weight:700;color:#22c55e;">📍 現在は押し目買いポイント付近</span> <small style="color:#6b7280;">（MA50付近 ・ RSI:'+_rFmt+' ・ GC確認）</small>';
-                    _pb.style.borderLeftColor='#22c55e';
-                }else if(_sc>=3){
-                    _pb.innerHTML='<span style="font-weight:700;color:#f59e0b;">📍 押し目買い候補 ('+_sc+'/4)</span> <small style="color:#6b7280;">RSI:'+_rFmt+'</small>';
-                    _pb.style.borderLeftColor='#f59e0b';
-                }else if(!_gc){
-                    _pb.innerHTML='<span style="font-weight:700;color:#ef4444;">⚠️ 押し目ではない（GC未確認）</span> <small style="color:#6b7280;">MA50<MA200</small>';
-                    _pb.style.borderLeftColor='#ef4444';
-                }else{
-                    _pb.innerHTML='<span style="font-weight:700;color:#ef4444;">⚠️ 押し目条件不足 ('+_sc+'/4)</span> <small style="color:#6b7280;">RSI:'+_rFmt+'</small>';
-                    _pb.style.borderLeftColor='#ef4444';
-                }
-            }
-
         }
 
         // RSIチャート描画
-                function renderRSIChart(ticker, dates, closes, rsiSingle, newsSentiment) {
-            var ctx = document.getElementById('rsiChart');
-            if (!ctx) return;
-            if (charts.rsi) { charts.rsi.destroy(); charts.rsi = null; }
-
-            function computeRSI(prices, period) {
-                var result = new Array(prices.length).fill(null);
-                if (prices.length <= period) return result;
-                var gains = 0, losses = 0;
-                for (var i = 1; i <= period; i++) {
-                    var d = prices[i] - prices[i-1];
-                    if (d > 0) gains += d; else losses += Math.abs(d);
-                }
-                var ag = gains / period, al = losses / period;
-                result[period] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
-                for (var j = period + 1; j < prices.length; j++) {
-                    var diff = prices[j] - prices[j-1];
-                    var g = diff > 0 ? diff : 0, l = diff < 0 ? -diff : 0;
-                    ag = (ag * (period - 1) + g) / period;
-                    al = (al * (period - 1) + l) / period;
-                    result[j] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
-                }
-                return result;
-            }
-
-            var rsiData = (closes && closes.length > 14)
-                ? computeRSI(closes, 14)
-                : new Array(dates.length).fill(parseFloat(rsiSingle) || 50);
-
-            // RSI + News sentiment commentary
-            var latestRSI = parseFloat(rsiSingle) || 50;
-            var newsScore = parseFloat(newsSentiment) || 50;
-            var commentary = '';
-            if (latestRSI >= 70) {
-                if (newsScore > 60)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。ニュースは強気だが利確の引き金待ち。';
-                else if (newsScore < 40)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏 + ネガティブニュース。反落リスク大。';
-                else
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。押し目エントリーを待ちたい局面。';
-            } else if (latestRSI <= 30) {
-                if (newsScore > 60)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏 + 強気ニュース。反発エントリー候補。';
-                else if (newsScore < 40)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。ニュースも弱気、下値模索に注意。';
-                else
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。反発タイミングを見極めたい。';
-            } else if (latestRSI >= 55) {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや強め。トレンドフォロー継続圏。';
-            } else if (latestRSI <= 45) {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや弱め。反発か下落継続か見極め中。';
-            } else {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 中立圏。方向感に欠ける。他指標を参照。';
-            }
-            var commentEl = document.getElementById('rsi-commentary');
-            if (commentEl) commentEl.textContent = commentary;
+        function renderRSIChart(ticker, dates, rsiValue) {
+            const ctx = document.getElementById('rsiChart');
+            const rsiLine = Array(dates.length).fill(rsiValue);
+            const overbought = Array(dates.length).fill(70);
+            const oversold = Array(dates.length).fill(30);
 
             charts.rsi = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: dates,
                     datasets: [
-                        { label: 'RSI(14)', data: rsiData, borderColor: '#a78bfa',
-                          backgroundColor: 'rgba(167,139,250,0.08)', tension: 0.3,
-                          fill: false, pointRadius: 0, borderWidth: 2, spanGaps: true },
-                        { label: '過買(70)', data: new Array(dates.length).fill(70),
-                          borderColor: 'rgba(239,68,68,0.65)', borderDash: [6,3],
-                          pointRadius: 0, fill: false, borderWidth: 1.5 },
-                        { label: '過売(30)', data: new Array(dates.length).fill(30),
-                          borderColor: 'rgba(52,211,153,0.65)', borderDash: [6,3],
-                          pointRadius: 0, fill: false, borderWidth: 1.5 }
+                        {
+                            label: 'RSI(14)',
+                            data: rsiLine,
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            tension: 0,
+                            fill: true,
+                            pointRadius: 0,
+                            borderWidth: 2
+                        },
+                        {
+                            label: '買われすぎ(70)',
+                            data: overbought,
+                            borderColor: '#ef4444',
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1
+                        },
+                        {
+                            label: '売られすぎ(30)',
+                            data: oversold,
+                            borderColor: '#10b981',
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false,
+                            borderWidth: 1
+                        }
                     ]
                 },
                 options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#cbd5e1', font: { size: 10 } } } },
                     scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { min: 0, max: 100,
-                             ticks: { color: '#9ca3af', stepSize: 10 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } }
+                        x: { ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } },
+                        y: { min: 0, max: 100, ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } }
                     }
                 }
             });
         }
 
         // MACDチャート描画
-                function renderMACDChart(ticker, dates, closes, macdSignalStr) {
-            var ctx = document.getElementById('macdChart');
-            if (!ctx) return;
-            if (charts.macd) { charts.macd.destroy(); charts.macd = null; }
-
-            function computeEMA(prices, period) {
-                var ema = new Array(prices.length).fill(null);
-                if (prices.length < period) return ema;
-                var k = 2 / (period + 1), sum = 0;
-                for (var i = 0; i < period; i++) sum += prices[i];
-                ema[period - 1] = sum / period;
-                for (var j = period; j < prices.length; j++)
-                    ema[j] = prices[j] * k + ema[j-1] * (1 - k);
-                return ema;
-            }
-
-            var macdLine = new Array(dates.length).fill(null);
-            var signalLine = new Array(dates.length).fill(null);
-            var histogram = new Array(dates.length).fill(null);
-
-            if (closes && closes.length > 26) {
-                var ema12 = computeEMA(closes, 12);
-                var ema26 = computeEMA(closes, 26);
-                var macdVals = [], macdIdxs = [];
-                for (var i = 0; i < closes.length; i++) {
-                    if (ema12[i] !== null && ema26[i] !== null) {
-                        macdLine[i] = ema12[i] - ema26[i];
-                        macdVals.push(macdLine[i]); macdIdxs.push(i);
-                    }
-                }
-                if (macdVals.length >= 9) {
-                    var k2 = 2 / 10, sigSum = 0;
-                    for (var s = 0; s < 9; s++) sigSum += macdVals[s];
-                    signalLine[macdIdxs[8]] = sigSum / 9;
-                    for (var m = 9; m < macdVals.length; m++) {
-                        var mi = macdIdxs[m], pi = macdIdxs[m-1];
-                        signalLine[mi] = macdVals[m] * k2 + signalLine[pi] * (1 - k2);
-                        histogram[mi] = macdLine[mi] - signalLine[mi];
-                    }
-                }
-            } else {
-                var fv = macdSignalStr === 'BULLISH' ? 1.5 : macdSignalStr === 'BEARISH' ? -1.5 : 0.1;
-                for (var d = 0; d < dates.length; d++) { macdLine[d] = fv; signalLine[d] = 0; histogram[d] = fv; }
-            }
-
-            var histColors = histogram.map(function(v) {
-                if (v === null) return 'transparent';
-                return v >= 0 ? 'rgba(52,211,153,0.65)' : 'rgba(248,113,113,0.65)';
-            });
-
-            var datasets = [];
-            if (closes && closes.length === dates.length) {
-                datasets.push({ label: '終値', data: closes, type: 'line', yAxisID: 'yPrice',
-                    borderColor: 'rgba(148,163,184,0.45)', backgroundColor: 'transparent',
-                    pointRadius: 0, borderWidth: 1, fill: false, tension: 0.2, spanGaps: true });
-            }
-            datasets.push({ label: 'MACD', data: macdLine, type: 'line', yAxisID: 'yMACD',
-                borderColor: '#60a5fa', backgroundColor: 'transparent',
-                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
-            datasets.push({ label: 'Signal', data: signalLine, type: 'line', yAxisID: 'yMACD',
-                borderColor: '#f97316', backgroundColor: 'transparent',
-                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
-            datasets.push({ label: 'Hist', data: histogram, type: 'bar', yAxisID: 'yMACD',
-                backgroundColor: histColors, borderWidth: 0 });
+        function renderMACDChart(ticker, dates, macdSignal) {
+            const ctx = document.getElementById('macdChart');
+            const macdValue = macdSignal === 'BULLISH' ? 2 : -2;
+            const macdLine = Array(dates.length).fill(macdValue);
+            const signalLine = Array(dates.length).fill(0);
 
             charts.macd = new Chart(ctx, {
                 type: 'bar',
-                data: { labels: dates, datasets: datasets },
+                data: {
+                    labels: dates,
+                    datasets: [
+                        {
+                            label: 'ヒストグラム',
+                            data: macdLine,
+                            backgroundColor: macdSignal === 'BULLISH' ? '#10b98180' : '#ef444480',
+                            borderColor: macdSignal === 'BULLISH' ? '#10b981' : '#ef4444',
+                            borderWidth: 0,
+                            barPercentage: 1
+                        },
+                        {
+                            label: 'シグナル',
+                            data: signalLine,
+                            borderColor: '#f59e0b',
+                            type: 'line',
+                            fill: false,
+                            pointRadius: 0,
+                            borderWidth: 2
+                        }
+                    ]
+                },
                 options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true, position: 'top',
-                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#cbd5e1', font: { size: 10 } } } },
                     scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        yPrice: { position: 'right', display: true,
-                            ticks: { color: 'rgba(148,163,184,0.4)', maxTicksLimit: 4 },
-                            grid: { display: false } },
-                        yMACD: { position: 'left',
-                            ticks: { color: '#9ca3af', maxTicksLimit: 5 },
-                            grid: { color: 'rgba(255,255,255,0.05)' } }
+                        x: { ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } },
+                        y: { ticks: { color: '#a0aec0', font: { size: 10 } }, grid: { color: '#374151' } }
                     }
                 }
             });
@@ -1152,703 +915,47 @@
             document.getElementById('atr-value').textContent = data.atr;
             document.getElementById('volatility-level').textContent =
                 data.atr > 3 ? '高' : data.atr > 1.5 ? '中' : '低';
-        }
 
-        // 日付を生成（タイムフレーム別）
-        function generateDates(timeframe) {
-            const dates = [];
-            let count = timeframe === 'daily' ? 20 : timeframe === 'weekly' ? 13 : 12;
-            const now = new Date();
-
-            for (let i = count - 1; i >= 0; i--) {
-                let date = new Date(now);
-                if (timeframe === 'daily') date.setDate(date.getDate() - i);
-                else if (timeframe === 'weekly') date.setDate(date.getDate() - (i * 7));
-                else date.setMonth(date.getMonth() - i);
-
-                dates.push(date.toLocaleDateString('ja-JP', { month: '2-digit', day: '2-digit' }));
+            // ── 分析テキスト欄をリアルデータで更新 ──────────────────────────
+            // トレンド判定
+            const trend = (data.sma20 > data.sma50 && data.sma50 > data.sma200)
+                ? '上昇トレンド継続（SMA20>50>200）'
+                : (data.sma20 < data.sma50 && data.sma50 < data.sma200)
+                ? '下降トレンド継続（SMA20<50<200）'
+                : 'トレンド混在（SMA配列が不完全）';
+            const el = id => document.getElementById(id);
+            if (el('tech-trend')) el('tech-trend').textContent = trend;
+            if (el('tech-sma')) el('tech-sma').textContent =
+                `SMA20: $${data.sma20.toFixed(2)} / SMA50: $${data.sma50.toFixed(2)} / SMA200: $${data.sma200.toFixed(2)}`;
+            if (el('tech-rsi')) el('tech-rsi').textContent =
+                `${data.rsi} (${data.rsi > 70 ? '買われすぎ注意' : data.rsi < 30 ? '売られすぎ — 反発注意' : data.rsi > 50 ? '強気域' : '弱気域'})`;
+            if (el('tech-macd')) el('tech-macd').textContent =
+                data.macd === 'BULLISH' ? 'ゴールデンクロス — ポジティブ' :
+                data.macd === 'BEARISH' ? 'デッドクロス — ネガティブ' : 'クロスなし（中立）';
+            if (el('tech-sr')) el('tech-sr').textContent =
+                `レジスタンス: $${data.resistance.toFixed(2)} / サポート: $${data.support.toFixed(2)}`;
+            if (el('tech-conclusion')) {
+                el('tech-conclusion').textContent = data.technicalAnalysis || `信頼度 ${data.confidence}%`;
+                el('tech-conclusion').style.color = data.signal === 'STRONG_BUY' || data.signal === 'BUY'
+                    ? '#10b981' : data.signal === 'STRONG_SELL' || data.signal === 'SELL' ? '#ef4444' : '#fbbf24';
             }
-            return dates;
-        }
-
-        // 価格データを生成
-        function generatePriceData(basePrice, count, timeframe) {
-            const prices = [];
-            const volatility = timeframe === 'daily' ? 0.02 : timeframe === 'weekly' ? 0.04 : 0.06;
-
-            for (let i = 0; i < count; i++) {
-                const change = (Math.random() - 0.5) * volatility * basePrice;
-                prices.push(basePrice + change);
+            // ファンダメンタル分析欄
+            const fa = data.fundamentalAnalysis || '';
+            if (el('fund-news')) el('fund-news').textContent =
+                data.news > 60 ? `センチメント良好 (スコア${data.news})` :
+                data.news < 40 ? `センチメント悪化 (スコア${data.news})` : `センチメント中立 (スコア${data.news})`;
+            if (el('fund-growth')) el('fund-growth').textContent =
+                `信頼度 ${data.confidence}% — ${data.signal}`;
+            if (el('fund-overbought')) el('fund-overbought').textContent =
+                data.rsi > 70 ? `RSI ${data.rsi}: 買われすぎ警戒` :
+                data.rsi < 30 ? `RSI ${data.rsi}: 売られすぎ — 反発警戒` : `RSI ${data.rsi}: 正常レンジ`;
+            if (el('fund-risk')) el('fund-risk').textContent = fa || 'リスク情報なし';
+            if (el('fund-competition')) el('fund-competition').textContent =
+                `BB上限: $${data.bbUpper.toFixed(2)} / BB下限: $${data.bbLower.toFixed(2)}`;
+            if (el('fund-conclusion')) {
+                el('fund-conclusion').textContent = fa || `${data.signal} — 信頼度 ${data.confidence}%`;
+                el('fund-conclusion').style.color = data.confidence > 75 ? '#10b981' : '#f59e0b';
             }
-            return prices;
-        }
-
-        // ページロード時に初期化
-        window.addEventListener('load', initializePage);
-    </script>
-</body>
-</html>
- + r.price.toFixed(2),
-                        data: new Array(n).fill(r.price),
-                        borderColor: resColors[i] || 'rgba(239,68,68,0.3)',
-                        borderWidth: resWidths[i] || 1,
-                        borderDash: [6, 3],
-                        pointRadius: 0,
-                        fill: false,
-                        tension: 0,
-                        animation: { duration: 0 },
-                        order: 10
-                    });
-                });
-
-                var supColors = ['rgba(34,197,94,0.9)', 'rgba(34,197,94,0.55)', 'rgba(34,197,94,0.3)'];
-                var supWidths = [2, 1.5, 1];
-                srLevels.supports.forEach(function(s, i) {
-                    datasets.push({
-                        label: 'S' + (i+1) + ' 
-
-            charts.main = new Chart(ctx, {
-                type: 'line',
-                data: { labels: dates, datasets: datasets },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true, position: 'top',
-                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { ticks: { color: '#9ca3af', maxTicksLimit: 6 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-            },
-            plugins: [{
-                id: 'trendBg',
-                beforeDraw: function(chart) {
-                    var cc = chart.ctx;
-                    var xA = chart.scales.x;
-                    var yA = chart.scales.y;
-                    if (!xA || !yA) return;
-                    cc.save();
-                    for (var bi = 0; bi < closes.length - 1; bi++) {
-                        if (closes[bi] == null || ma50[bi] == null) continue;
-                        cc.fillStyle = closes[bi] >= ma50[bi] ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.10)';
-                        var bx0 = xA.getPixelForValue(bi);
-                        var bx1 = xA.getPixelForValue(bi+1);
-                        cc.fillRect(bx0, yA.top, bx1-bx0, yA.bottom-yA.top);
-                    }
-                    cc.restore();
-                }
-            }]
-            });
-            // === Pullback buy detection ===
-            var _lc = closes.length > 0 ? closes[closes.length-1] : null;
-            var _lm5 = ma50.length > 0 ? ma50[ma50.length-1] : null;
-            var _lm200 = ma200.length > 0 ? ma200[ma200.length-1] : null;
-            var _rsi = 50;
-            if (closes.length >= 16) {
-                var _g=0,_l=0;
-                for(var _i=closes.length-14;_i<closes.length;_i++){var _d=closes[_i]-closes[_i-1];if(_d>=0)_g+=_d;else _l+=-_d;}
-                var _rs=_l===0?100:_g/_l;
-                _rsi=100-(100/(1+_rs));
-            }
-            var _pb=document.getElementById('pullback-badge');
-            if(_pb&&_lc&&_lm5&&_lm200){
-                var _gc=_lm5>_lm200,_abv=_lc>_lm200,_near=Math.abs(_lc-_lm5)/_lm5<0.03,_rOk=_rsi>=38&&_rsi<=62;
-                var _sc=(_gc?1:0)+(_abv?1:0)+(_near?1:0)+(_rOk?1:0);
-                var _rFmt=Math.round(_rsi*10)/10;
-                if(_sc===4){
-                    _pb.innerHTML='<span style="font-weight:700;color:#22c55e;">📍 現在は押し目買いポイント付近</span> <small style="color:#6b7280;">（MA50付近 ・ RSI:'+_rFmt+' ・ GC確認）</small>';
-                    _pb.style.borderLeftColor='#22c55e';
-                }else if(_sc>=3){
-                    _pb.innerHTML='<span style="font-weight:700;color:#f59e0b;">📍 押し目買い候補 ('+_sc+'/4)</span> <small style="color:#6b7280;">RSI:'+_rFmt+'</small>';
-                    _pb.style.borderLeftColor='#f59e0b';
-                }else if(!_gc){
-                    _pb.innerHTML='<span style="font-weight:700;color:#ef4444;">⚠️ 押し目ではない（GC未確認）</span> <small style="color:#6b7280;">MA50<MA200</small>';
-                    _pb.style.borderLeftColor='#ef4444';
-                }else{
-                    _pb.innerHTML='<span style="font-weight:700;color:#ef4444;">⚠️ 押し目条件不足 ('+_sc+'/4)</span> <small style="color:#6b7280;">RSI:'+_rFmt+'</small>';
-                    _pb.style.borderLeftColor='#ef4444';
-                }
-            }
-
-        }
-
-        // RSIチャート描画
-                function renderRSIChart(ticker, dates, closes, rsiSingle, newsSentiment) {
-            var ctx = document.getElementById('rsiChart');
-            if (!ctx) return;
-            if (charts.rsi) { charts.rsi.destroy(); charts.rsi = null; }
-
-            function computeRSI(prices, period) {
-                var result = new Array(prices.length).fill(null);
-                if (prices.length <= period) return result;
-                var gains = 0, losses = 0;
-                for (var i = 1; i <= period; i++) {
-                    var d = prices[i] - prices[i-1];
-                    if (d > 0) gains += d; else losses += Math.abs(d);
-                }
-                var ag = gains / period, al = losses / period;
-                result[period] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
-                for (var j = period + 1; j < prices.length; j++) {
-                    var diff = prices[j] - prices[j-1];
-                    var g = diff > 0 ? diff : 0, l = diff < 0 ? -diff : 0;
-                    ag = (ag * (period - 1) + g) / period;
-                    al = (al * (period - 1) + l) / period;
-                    result[j] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
-                }
-                return result;
-            }
-
-            var rsiData = (closes && closes.length > 14)
-                ? computeRSI(closes, 14)
-                : new Array(dates.length).fill(parseFloat(rsiSingle) || 50);
-
-            // RSI + News sentiment commentary
-            var latestRSI = parseFloat(rsiSingle) || 50;
-            var newsScore = parseFloat(newsSentiment) || 50;
-            var commentary = '';
-            if (latestRSI >= 70) {
-                if (newsScore > 60)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。ニュースは強気だが利確の引き金待ち。';
-                else if (newsScore < 40)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏 + ネガティブニュース。反落リスク大。';
-                else
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。押し目エントリーを待ちたい局面。';
-            } else if (latestRSI <= 30) {
-                if (newsScore > 60)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏 + 強気ニュース。反発エントリー候補。';
-                else if (newsScore < 40)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。ニュースも弱気、下値模索に注意。';
-                else
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。反発タイミングを見極めたい。';
-            } else if (latestRSI >= 55) {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや強め。トレンドフォロー継続圏。';
-            } else if (latestRSI <= 45) {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや弱め。反発か下落継続か見極め中。';
-            } else {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 中立圏。方向感に欠ける。他指標を参照。';
-            }
-            var commentEl = document.getElementById('rsi-commentary');
-            if (commentEl) commentEl.textContent = commentary;
-
-            charts.rsi = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        { label: 'RSI(14)', data: rsiData, borderColor: '#a78bfa',
-                          backgroundColor: 'rgba(167,139,250,0.08)', tension: 0.3,
-                          fill: false, pointRadius: 0, borderWidth: 2, spanGaps: true },
-                        { label: '過買(70)', data: new Array(dates.length).fill(70),
-                          borderColor: 'rgba(239,68,68,0.65)', borderDash: [6,3],
-                          pointRadius: 0, fill: false, borderWidth: 1.5 },
-                        { label: '過売(30)', data: new Array(dates.length).fill(30),
-                          borderColor: 'rgba(52,211,153,0.65)', borderDash: [6,3],
-                          pointRadius: 0, fill: false, borderWidth: 1.5 }
-                    ]
-                },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { min: 0, max: 100,
-                             ticks: { color: '#9ca3af', stepSize: 10 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-                }
-            });
-        }
-
-        // MACDチャート描画
-                function renderMACDChart(ticker, dates, closes, macdSignalStr) {
-            var ctx = document.getElementById('macdChart');
-            if (!ctx) return;
-            if (charts.macd) { charts.macd.destroy(); charts.macd = null; }
-
-            function computeEMA(prices, period) {
-                var ema = new Array(prices.length).fill(null);
-                if (prices.length < period) return ema;
-                var k = 2 / (period + 1), sum = 0;
-                for (var i = 0; i < period; i++) sum += prices[i];
-                ema[period - 1] = sum / period;
-                for (var j = period; j < prices.length; j++)
-                    ema[j] = prices[j] * k + ema[j-1] * (1 - k);
-                return ema;
-            }
-
-            var macdLine = new Array(dates.length).fill(null);
-            var signalLine = new Array(dates.length).fill(null);
-            var histogram = new Array(dates.length).fill(null);
-
-            if (closes && closes.length > 26) {
-                var ema12 = computeEMA(closes, 12);
-                var ema26 = computeEMA(closes, 26);
-                var macdVals = [], macdIdxs = [];
-                for (var i = 0; i < closes.length; i++) {
-                    if (ema12[i] !== null && ema26[i] !== null) {
-                        macdLine[i] = ema12[i] - ema26[i];
-                        macdVals.push(macdLine[i]); macdIdxs.push(i);
-                    }
-                }
-                if (macdVals.length >= 9) {
-                    var k2 = 2 / 10, sigSum = 0;
-                    for (var s = 0; s < 9; s++) sigSum += macdVals[s];
-                    signalLine[macdIdxs[8]] = sigSum / 9;
-                    for (var m = 9; m < macdVals.length; m++) {
-                        var mi = macdIdxs[m], pi = macdIdxs[m-1];
-                        signalLine[mi] = macdVals[m] * k2 + signalLine[pi] * (1 - k2);
-                        histogram[mi] = macdLine[mi] - signalLine[mi];
-                    }
-                }
-            } else {
-                var fv = macdSignalStr === 'BULLISH' ? 1.5 : macdSignalStr === 'BEARISH' ? -1.5 : 0.1;
-                for (var d = 0; d < dates.length; d++) { macdLine[d] = fv; signalLine[d] = 0; histogram[d] = fv; }
-            }
-
-            var histColors = histogram.map(function(v) {
-                if (v === null) return 'transparent';
-                return v >= 0 ? 'rgba(52,211,153,0.65)' : 'rgba(248,113,113,0.65)';
-            });
-
-            var datasets = [];
-            if (closes && closes.length === dates.length) {
-                datasets.push({ label: '終値', data: closes, type: 'line', yAxisID: 'yPrice',
-                    borderColor: 'rgba(148,163,184,0.45)', backgroundColor: 'transparent',
-                    pointRadius: 0, borderWidth: 1, fill: false, tension: 0.2, spanGaps: true });
-            }
-            datasets.push({ label: 'MACD', data: macdLine, type: 'line', yAxisID: 'yMACD',
-                borderColor: '#60a5fa', backgroundColor: 'transparent',
-                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
-            datasets.push({ label: 'Signal', data: signalLine, type: 'line', yAxisID: 'yMACD',
-                borderColor: '#f97316', backgroundColor: 'transparent',
-                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
-            datasets.push({ label: 'Hist', data: histogram, type: 'bar', yAxisID: 'yMACD',
-                backgroundColor: histColors, borderWidth: 0 });
-
-            charts.macd = new Chart(ctx, {
-                type: 'bar',
-                data: { labels: dates, datasets: datasets },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true, position: 'top',
-                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        yPrice: { position: 'right', display: true,
-                            ticks: { color: 'rgba(148,163,184,0.4)', maxTicksLimit: 4 },
-                            grid: { display: false } },
-                        yMACD: { position: 'left',
-                            ticks: { color: '#9ca3af', maxTicksLimit: 5 },
-                            grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-                }
-            });
-        }
-
-        // サイドバー指標を更新
-        function updateSidebarMetrics() {
-            const ticker = detailData.ticker || "AAPL";
-            const data = tickerData[ticker];
-
-            if (!data) return; // データがない場合はスキップ
-
-            // 総合判定を更新
-            document.getElementById('overall-signal').textContent = data.signal;
-            document.getElementById('overall-confidence').textContent = data.confidence + '%';
-            document.getElementById('overall-score').style.width = data.confidence + '%';
-
-            // トレンド分析を更新
-            document.getElementById('sma-signal').textContent =
-                (data.sma20 > data.sma50 && data.sma50 > data.sma200) ? 'BUL' : 'BER';
-            document.getElementById('trend-strength').textContent =
-                data.confidence > 80 ? '強' : data.confidence > 60 ? '中' : '弱';
-
-            // オシレーター
-            document.getElementById('rsi-value').textContent = data.rsi;
-            document.getElementById('rsi-status').textContent =
-                data.rsi > 70 ? '買われすぎ' : data.rsi < 30 ? '売られすぎ' : data.rsi > 50 ? '強気' : '弱気';
-            document.getElementById('rsi-status').className =
-                data.rsi > 70 ? 'signal-badge signal-bearish' :
-                data.rsi < 30 ? 'signal-badge signal-bullish' :
-                data.rsi > 50 ? 'signal-badge signal-bullish' : 'signal-badge signal-bearish';
-
-            document.getElementById('macd-signal').textContent = data.macd === 'BULLISH' ? '↑' : '↓';
-            document.getElementById('macd-status').textContent = data.macd === 'BULLISH' ? '強気' : '弱気';
-            document.getElementById('macd-status').className =
-                data.macd === 'BULLISH' ? 'signal-badge signal-bullish' : 'signal-badge signal-bearish';
-
-            // S/R分析
-            document.getElementById('resistance-value').textContent = data.resistance;
-            document.getElementById('support-value').textContent = data.support;
-
-            const bbDistance = data.price > (data.bbUpper + data.bbLower) / 2 ? '上' : '下';
-            document.getElementById('bb-status').textContent = bbDistance + '寄り';
-
-            // ボラティリティ
-            document.getElementById('atr-value').textContent = data.atr;
-            document.getElementById('volatility-level').textContent =
-                data.atr > 3 ? '高' : data.atr > 1.5 ? '中' : '低';
-        }
-
-        // 日付を生成（タイムフレーム別）
-        function generateDates(timeframe) {
-            const dates = [];
-            let count = timeframe === 'daily' ? 20 : timeframe === 'weekly' ? 13 : 12;
-            const now = new Date();
-
-            for (let i = count - 1; i >= 0; i--) {
-                let date = new Date(now);
-                if (timeframe === 'daily') date.setDate(date.getDate() - i);
-                else if (timeframe === 'weekly') date.setDate(date.getDate() - (i * 7));
-                else date.setMonth(date.getMonth() - i);
-
-                dates.push(date.toLocaleDateString('ja-JP', { month: '2-digit', day: '2-digit' }));
-            }
-            return dates;
-        }
-
-        // 価格データを生成
-        function generatePriceData(basePrice, count, timeframe) {
-            const prices = [];
-            const volatility = timeframe === 'daily' ? 0.02 : timeframe === 'weekly' ? 0.04 : 0.06;
-
-            for (let i = 0; i < count; i++) {
-                const change = (Math.random() - 0.5) * volatility * basePrice;
-                prices.push(basePrice + change);
-            }
-            return prices;
-        }
-
-        // ページロード時に初期化
-        window.addEventListener('load', initializePage);
-    </script>
-</body>
-</html>
- + s.price.toFixed(2),
-                        data: new Array(n).fill(s.price),
-                        borderColor: supColors[i] || 'rgba(34,197,94,0.3)',
-                        borderWidth: supWidths[i] || 1,
-                        borderDash: [6, 3],
-                        pointRadius: 0,
-                        fill: false,
-                        tension: 0,
-                        animation: { duration: 0 },
-                        order: 10
-                    });
-                });
-            })();
-
-            charts.main = new Chart(ctx, {
-                type: 'line',
-                data: { labels: dates, datasets: datasets },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true, position: 'top',
-                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { ticks: { color: '#9ca3af', maxTicksLimit: 6 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-            },
-            plugins: [{
-                id: 'trendBg',
-                beforeDraw: function(chart) {
-                    var cc = chart.ctx;
-                    var xA = chart.scales.x;
-                    var yA = chart.scales.y;
-                    if (!xA || !yA) return;
-                    cc.save();
-                    for (var bi = 0; bi < closes.length - 1; bi++) {
-                        if (closes[bi] == null || ma50[bi] == null) continue;
-                        cc.fillStyle = closes[bi] >= ma50[bi] ? 'rgba(34,197,94,0.10)' : 'rgba(239,68,68,0.10)';
-                        var bx0 = xA.getPixelForValue(bi);
-                        var bx1 = xA.getPixelForValue(bi+1);
-                        cc.fillRect(bx0, yA.top, bx1-bx0, yA.bottom-yA.top);
-                    }
-                    cc.restore();
-                }
-            }]
-            });
-            // === Pullback buy detection ===
-            var _lc = closes.length > 0 ? closes[closes.length-1] : null;
-            var _lm5 = ma50.length > 0 ? ma50[ma50.length-1] : null;
-            var _lm200 = ma200.length > 0 ? ma200[ma200.length-1] : null;
-            var _rsi = 50;
-            if (closes.length >= 16) {
-                var _g=0,_l=0;
-                for(var _i=closes.length-14;_i<closes.length;_i++){var _d=closes[_i]-closes[_i-1];if(_d>=0)_g+=_d;else _l+=-_d;}
-                var _rs=_l===0?100:_g/_l;
-                _rsi=100-(100/(1+_rs));
-            }
-            var _pb=document.getElementById('pullback-badge');
-            if(_pb&&_lc&&_lm5&&_lm200){
-                var _gc=_lm5>_lm200,_abv=_lc>_lm200,_near=Math.abs(_lc-_lm5)/_lm5<0.03,_rOk=_rsi>=38&&_rsi<=62;
-                var _sc=(_gc?1:0)+(_abv?1:0)+(_near?1:0)+(_rOk?1:0);
-                var _rFmt=Math.round(_rsi*10)/10;
-                if(_sc===4){
-                    _pb.innerHTML='<span style="font-weight:700;color:#22c55e;">📍 現在は押し目買いポイント付近</span> <small style="color:#6b7280;">（MA50付近 ・ RSI:'+_rFmt+' ・ GC確認）</small>';
-                    _pb.style.borderLeftColor='#22c55e';
-                }else if(_sc>=3){
-                    _pb.innerHTML='<span style="font-weight:700;color:#f59e0b;">📍 押し目買い候補 ('+_sc+'/4)</span> <small style="color:#6b7280;">RSI:'+_rFmt+'</small>';
-                    _pb.style.borderLeftColor='#f59e0b';
-                }else if(!_gc){
-                    _pb.innerHTML='<span style="font-weight:700;color:#ef4444;">⚠️ 押し目ではない（GC未確認）</span> <small style="color:#6b7280;">MA50<MA200</small>';
-                    _pb.style.borderLeftColor='#ef4444';
-                }else{
-                    _pb.innerHTML='<span style="font-weight:700;color:#ef4444;">⚠️ 押し目条件不足 ('+_sc+'/4)</span> <small style="color:#6b7280;">RSI:'+_rFmt+'</small>';
-                    _pb.style.borderLeftColor='#ef4444';
-                }
-            }
-
-        }
-
-        // RSIチャート描画
-                function renderRSIChart(ticker, dates, closes, rsiSingle, newsSentiment) {
-            var ctx = document.getElementById('rsiChart');
-            if (!ctx) return;
-            if (charts.rsi) { charts.rsi.destroy(); charts.rsi = null; }
-
-            function computeRSI(prices, period) {
-                var result = new Array(prices.length).fill(null);
-                if (prices.length <= period) return result;
-                var gains = 0, losses = 0;
-                for (var i = 1; i <= period; i++) {
-                    var d = prices[i] - prices[i-1];
-                    if (d > 0) gains += d; else losses += Math.abs(d);
-                }
-                var ag = gains / period, al = losses / period;
-                result[period] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
-                for (var j = period + 1; j < prices.length; j++) {
-                    var diff = prices[j] - prices[j-1];
-                    var g = diff > 0 ? diff : 0, l = diff < 0 ? -diff : 0;
-                    ag = (ag * (period - 1) + g) / period;
-                    al = (al * (period - 1) + l) / period;
-                    result[j] = al === 0 ? 100 : 100 - (100 / (1 + ag / al));
-                }
-                return result;
-            }
-
-            var rsiData = (closes && closes.length > 14)
-                ? computeRSI(closes, 14)
-                : new Array(dates.length).fill(parseFloat(rsiSingle) || 50);
-
-            // RSI + News sentiment commentary
-            var latestRSI = parseFloat(rsiSingle) || 50;
-            var newsScore = parseFloat(newsSentiment) || 50;
-            var commentary = '';
-            if (latestRSI >= 70) {
-                if (newsScore > 60)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。ニュースは強気だが利確の引き金待ち。';
-                else if (newsScore < 40)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏 + ネガティブニュース。反落リスク大。';
-                else
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 買われすぎ圏。押し目エントリーを待ちたい局面。';
-            } else if (latestRSI <= 30) {
-                if (newsScore > 60)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏 + 強気ニュース。反発エントリー候補。';
-                else if (newsScore < 40)
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。ニュースも弱気、下値模索に注意。';
-                else
-                    commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 売られすぎ圏。反発タイミングを見極めたい。';
-            } else if (latestRSI >= 55) {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや強め。トレンドフォロー継続圏。';
-            } else if (latestRSI <= 45) {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → やや弱め。反発か下落継続か見極め中。';
-            } else {
-                commentary = 'RSI ' + latestRSI.toFixed(0) + ' → 中立圏。方向感に欠ける。他指標を参照。';
-            }
-            var commentEl = document.getElementById('rsi-commentary');
-            if (commentEl) commentEl.textContent = commentary;
-
-            charts.rsi = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [
-                        { label: 'RSI(14)', data: rsiData, borderColor: '#a78bfa',
-                          backgroundColor: 'rgba(167,139,250,0.08)', tension: 0.3,
-                          fill: false, pointRadius: 0, borderWidth: 2, spanGaps: true },
-                        { label: '過買(70)', data: new Array(dates.length).fill(70),
-                          borderColor: 'rgba(239,68,68,0.65)', borderDash: [6,3],
-                          pointRadius: 0, fill: false, borderWidth: 1.5 },
-                        { label: '過売(30)', data: new Array(dates.length).fill(30),
-                          borderColor: 'rgba(52,211,153,0.65)', borderDash: [6,3],
-                          pointRadius: 0, fill: false, borderWidth: 1.5 }
-                    ]
-                },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { min: 0, max: 100,
-                             ticks: { color: '#9ca3af', stepSize: 10 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-                }
-            });
-        }
-
-        // MACDチャート描画
-                function renderMACDChart(ticker, dates, closes, macdSignalStr) {
-            var ctx = document.getElementById('macdChart');
-            if (!ctx) return;
-            if (charts.macd) { charts.macd.destroy(); charts.macd = null; }
-
-            function computeEMA(prices, period) {
-                var ema = new Array(prices.length).fill(null);
-                if (prices.length < period) return ema;
-                var k = 2 / (period + 1), sum = 0;
-                for (var i = 0; i < period; i++) sum += prices[i];
-                ema[period - 1] = sum / period;
-                for (var j = period; j < prices.length; j++)
-                    ema[j] = prices[j] * k + ema[j-1] * (1 - k);
-                return ema;
-            }
-
-            var macdLine = new Array(dates.length).fill(null);
-            var signalLine = new Array(dates.length).fill(null);
-            var histogram = new Array(dates.length).fill(null);
-
-            if (closes && closes.length > 26) {
-                var ema12 = computeEMA(closes, 12);
-                var ema26 = computeEMA(closes, 26);
-                var macdVals = [], macdIdxs = [];
-                for (var i = 0; i < closes.length; i++) {
-                    if (ema12[i] !== null && ema26[i] !== null) {
-                        macdLine[i] = ema12[i] - ema26[i];
-                        macdVals.push(macdLine[i]); macdIdxs.push(i);
-                    }
-                }
-                if (macdVals.length >= 9) {
-                    var k2 = 2 / 10, sigSum = 0;
-                    for (var s = 0; s < 9; s++) sigSum += macdVals[s];
-                    signalLine[macdIdxs[8]] = sigSum / 9;
-                    for (var m = 9; m < macdVals.length; m++) {
-                        var mi = macdIdxs[m], pi = macdIdxs[m-1];
-                        signalLine[mi] = macdVals[m] * k2 + signalLine[pi] * (1 - k2);
-                        histogram[mi] = macdLine[mi] - signalLine[mi];
-                    }
-                }
-            } else {
-                var fv = macdSignalStr === 'BULLISH' ? 1.5 : macdSignalStr === 'BEARISH' ? -1.5 : 0.1;
-                for (var d = 0; d < dates.length; d++) { macdLine[d] = fv; signalLine[d] = 0; histogram[d] = fv; }
-            }
-
-            var histColors = histogram.map(function(v) {
-                if (v === null) return 'transparent';
-                return v >= 0 ? 'rgba(52,211,153,0.65)' : 'rgba(248,113,113,0.65)';
-            });
-
-            var datasets = [];
-            if (closes && closes.length === dates.length) {
-                datasets.push({ label: '終値', data: closes, type: 'line', yAxisID: 'yPrice',
-                    borderColor: 'rgba(148,163,184,0.45)', backgroundColor: 'transparent',
-                    pointRadius: 0, borderWidth: 1, fill: false, tension: 0.2, spanGaps: true });
-            }
-            datasets.push({ label: 'MACD', data: macdLine, type: 'line', yAxisID: 'yMACD',
-                borderColor: '#60a5fa', backgroundColor: 'transparent',
-                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
-            datasets.push({ label: 'Signal', data: signalLine, type: 'line', yAxisID: 'yMACD',
-                borderColor: '#f97316', backgroundColor: 'transparent',
-                pointRadius: 0, borderWidth: 2, fill: false, tension: 0.2, spanGaps: true });
-            datasets.push({ label: 'Hist', data: histogram, type: 'bar', yAxisID: 'yMACD',
-                backgroundColor: histColors, borderWidth: 0 });
-
-            charts.macd = new Chart(ctx, {
-                type: 'bar',
-                data: { labels: dates, datasets: datasets },
-                options: {
-                    animation: { duration: 0 },
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true, position: 'top',
-                            labels: { color: '#9ca3af', boxWidth: 10, font: { size: 11 } } },
-                        tooltip: { mode: 'index', intersect: false }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#9ca3af', maxTicksLimit: 8, maxRotation: 0 },
-                             grid: { color: 'rgba(255,255,255,0.05)' } },
-                        yPrice: { position: 'right', display: true,
-                            ticks: { color: 'rgba(148,163,184,0.4)', maxTicksLimit: 4 },
-                            grid: { display: false } },
-                        yMACD: { position: 'left',
-                            ticks: { color: '#9ca3af', maxTicksLimit: 5 },
-                            grid: { color: 'rgba(255,255,255,0.05)' } }
-                    }
-                }
-            });
-        }
-
-        // サイドバー指標を更新
-        function updateSidebarMetrics() {
-            const ticker = detailData.ticker || "AAPL";
-            const data = tickerData[ticker];
-
-            if (!data) return; // データがない場合はスキップ
-
-            // 総合判定を更新
-            document.getElementById('overall-signal').textContent = data.signal;
-            document.getElementById('overall-confidence').textContent = data.confidence + '%';
-            document.getElementById('overall-score').style.width = data.confidence + '%';
-
-            // トレンド分析を更新
-            document.getElementById('sma-signal').textContent =
-                (data.sma20 > data.sma50 && data.sma50 > data.sma200) ? 'BUL' : 'BER';
-            document.getElementById('trend-strength').textContent =
-                data.confidence > 80 ? '強' : data.confidence > 60 ? '中' : '弱';
-
-            // オシレーター
-            document.getElementById('rsi-value').textContent = data.rsi;
-            document.getElementById('rsi-status').textContent =
-                data.rsi > 70 ? '買われすぎ' : data.rsi < 30 ? '売られすぎ' : data.rsi > 50 ? '強気' : '弱気';
-            document.getElementById('rsi-status').className =
-                data.rsi > 70 ? 'signal-badge signal-bearish' :
-                data.rsi < 30 ? 'signal-badge signal-bullish' :
-                data.rsi > 50 ? 'signal-badge signal-bullish' : 'signal-badge signal-bearish';
-
-            document.getElementById('macd-signal').textContent = data.macd === 'BULLISH' ? '↑' : '↓';
-            document.getElementById('macd-status').textContent = data.macd === 'BULLISH' ? '強気' : '弱気';
-            document.getElementById('macd-status').className =
-                data.macd === 'BULLISH' ? 'signal-badge signal-bullish' : 'signal-badge signal-bearish';
-
-            // S/R分析
-            document.getElementById('resistance-value').textContent = data.resistance;
-            document.getElementById('support-value').textContent = data.support;
-
-            const bbDistance = data.price > (data.bbUpper + data.bbLower) / 2 ? '上' : '下';
-            document.getElementById('bb-status').textContent = bbDistance + '寄り';
-
-            // ボラティリティ
-            document.getElementById('atr-value').textContent = data.atr;
-            document.getElementById('volatility-level').textContent =
-                data.atr > 3 ? '高' : data.atr > 1.5 ? '中' : '低';
         }
 
         // 日付を生成（タイムフレーム別）
