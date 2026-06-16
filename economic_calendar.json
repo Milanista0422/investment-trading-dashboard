@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T08:03:03.572012+09:00",
+  "generated_at": "2026-06-16T20:02:15.250840+09:00",
   "events": [
     {
       "date": "2026-06-17",
@@ -101,12 +101,34 @@
       "actual": ""
     },
     {
+      "date": "2026-06-24",
+      "time_jst": "本引け後",
+      "currency": "MU",
+      "impact": "High",
+      "event_en": "MU Earnings",
+      "event_ja": "MU 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "date": "2026-06-25",
       "time_jst": "本引け後",
       "currency": "MU",
       "impact": "High",
       "event_en": "MU Earnings",
       "event_ja": "MU 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-22",
+      "time_jst": "本引け後",
+      "currency": "TSLA",
+      "impact": "High",
+      "event_en": "TSLA Earnings",
+      "event_ja": "TSLA 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
@@ -123,12 +145,45 @@
       "actual": ""
     },
     {
+      "date": "2026-07-23",
+      "time_jst": "本引け後",
+      "currency": "GOOGL",
+      "impact": "High",
+      "event_en": "GOOGL Earnings",
+      "event_ja": "GOOGL 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "date": "2026-07-24",
       "time_jst": "本引け後",
       "currency": "GOOGL",
       "impact": "High",
       "event_en": "GOOGL Earnings",
       "event_ja": "GOOGL 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-29",
+      "time_jst": "本引け後",
+      "currency": "MSFT",
+      "impact": "High",
+      "event_en": "MSFT Earnings",
+      "event_ja": "MSFT 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-29",
+      "time_jst": "本引け後",
+      "currency": "META",
+      "impact": "High",
+      "event_en": "META Earnings",
+      "event_ja": "META 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
@@ -156,6 +211,28 @@
       "actual": ""
     },
     {
+      "date": "2026-07-30",
+      "time_jst": "本引け後",
+      "currency": "AAPL",
+      "impact": "High",
+      "event_en": "AAPL Earnings",
+      "event_ja": "AAPL 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "本引け後",
+      "currency": "AMZN",
+      "impact": "High",
+      "event_en": "AMZN Earnings",
+      "event_ja": "AMZN 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "date": "2026-07-31",
       "time_jst": "本引け後",
       "currency": "AAPL",
@@ -178,6 +255,17 @@
       "actual": ""
     },
     {
+      "date": "2026-08-12",
+      "time_jst": "本引け後",
+      "currency": "LITE",
+      "impact": "High",
+      "event_en": "LITE Earnings",
+      "event_ja": "LITE 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "date": "2026-08-13",
       "time_jst": "本引け後",
       "currency": "LITE",
@@ -189,12 +277,34 @@
       "actual": ""
     },
     {
+      "date": "2026-08-24",
+      "time_jst": "本引け後",
+      "currency": "SNDK",
+      "impact": "High",
+      "event_en": "SNDK Earnings",
+      "event_ja": "SNDK 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "date": "2026-08-25",
       "time_jst": "本引け後",
       "currency": "SNDK",
       "impact": "High",
       "event_en": "SNDK Earnings",
       "event_ja": "SNDK 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-26",
+      "time_jst": "本引け後",
+      "currency": "NVDA",
+      "impact": "High",
+      "event_en": "NVDA Earnings",
+      "event_ja": "NVDA 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
