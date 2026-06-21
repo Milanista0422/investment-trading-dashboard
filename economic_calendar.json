@@ -1,50 +1,6 @@
 {
-  "generated_at": "2026-06-19T20:43:25.247279+09:00",
+  "generated_at": "2026-06-21T22:30:33.735952+09:00",
   "events": [
-    {
-      "date": "2026-06-17",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Core Retail Sales m/m",
-      "event_ja": "コア小売売上高",
-      "forecast": "0.6%",
-      "previous": "0.7%",
-      "actual": ""
-    },
-    {
-      "date": "2026-06-17",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Retail Sales m/m",
-      "event_ja": "小売売上高",
-      "forecast": "0.5%",
-      "previous": "0.5%",
-      "actual": ""
-    },
-    {
-      "date": "2026-06-17",
-      "time_jst": "22:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-06-17",
-      "time_jst": "23:45",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-06-18",
       "time_jst": "03:00",
@@ -112,6 +68,28 @@
       "actual": ""
     },
     {
+      "date": "2026-06-23",
+      "time_jst": "22:45",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Flash Manufacturing PMI",
+      "event_ja": "Flash Manufacturing PMI",
+      "forecast": "54.6",
+      "previous": "55.3",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-23",
+      "time_jst": "22:45",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Flash Services PMI",
+      "event_ja": "Flash Services PMI",
+      "forecast": "51.0",
+      "previous": "50.9",
+      "actual": ""
+    },
+    {
       "date": "2026-06-24",
       "time_jst": "本引け後",
       "currency": "MU",
@@ -124,6 +102,50 @@
     },
     {
       "date": "2026-06-25",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core PCE Price Index m/m",
+      "event_ja": "コアPCE物価指数",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-25",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Final GDP q/q",
+      "event_ja": "GDP確定値",
+      "forecast": "1.6%",
+      "previous": "1.6%",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-25",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Final GDP Price Index q/q",
+      "event_ja": "Final GDP Price Index q/q",
+      "forecast": "3.5%",
+      "previous": "3.5%",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-25",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "226K",
+      "previous": "229K",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-25",
       "time_jst": "本引け後",
       "currency": "MU",
       "impact": "High",
@@ -131,6 +153,28 @@
       "event_ja": "MU 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-26",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Revised UoM Consumer Sentiment",
+      "event_ja": "ミシガン大学消費者信頼感（改定）",
+      "forecast": "50.0",
+      "previous": "48.9",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-26",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Revised UoM Inflation Expectations",
+      "event_ja": "Revised UoM Inflation Expectations",
+      "forecast": "",
+      "previous": "4.6%",
       "actual": ""
     },
     {
