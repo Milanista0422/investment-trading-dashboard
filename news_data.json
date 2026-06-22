@@ -1,6 +1,6 @@
 {
-  "date": "20260621",
-  "updated_at": "2026-06-21T22:31:11.255204+09:00",
+  "date": "20260622",
+  "updated_at": "2026-06-22T21:10:44.412659+09:00",
   "tickers": {
     "SOXL": {
       "top_news": [
@@ -78,11 +78,11 @@
         },
         {
           "ticker": "QQQ",
-          "headline": "Why JEPI Investors Gave Up $3,379 in Five-Year Gains",
-          "url": "https://247wallst.com/investing/2026/06/18/why-jepi-investors-gave-up-3379-in-five-year-gains/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "low"
+          "headline": "SPY vs. QQQ: Which ETF Looks Best for Your Portfolio in 2026?",
+          "url": "https://www.fool.com/coverage/etfs/2026/06/21/spy-and-qqq-which-looks-best-for-your-portfolio-in-2026/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立",
+          "sentiment": "neutral",
+          "impact": "medium"
         }
       ]
     },
@@ -90,26 +90,26 @@
       "top_news": [
         {
           "ticker": "NVDA",
-          "headline": "GM’s CEO: Humans Aren’t Coding Self-Driving Cars Anymore, AI Is",
-          "url": "https://247wallst.com/investing/2026/06/21/gms-ceo-humans-arent-coding-self-driving-cars-anymore-ai-is/?.tsrc=rss",
-          "summary": "CEO変更→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
-        },
-        {
-          "ticker": "NVDA",
-          "headline": "Is XRP (Ripple) a Strong Buy at $1.15?",
-          "url": "https://247wallst.com/investing/cryptocurrency/2026/06/21/is-xrp-ripple-a-strong-buy-at-1-15/?.tsrc=rss",
+          "headline": "SK Hynix surpasses Samsung as South Korea's most valuable company",
+          "url": "https://qz.com/sk-hynix-overtakes-samsung-south-korea-most-valuable-company-062226?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "low"
         },
         {
           "ticker": "NVDA",
-          "headline": "Is ServiceNow the Biggest AI Winner Nobody Is Talking About?",
-          "url": "https://www.fool.com/investing/2026/06/21/is-servicenow-the-biggest-ai-winner-nobody-is-talk/?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ",
-          "sentiment": "negative",
+          "headline": "Energy’s Hottest Trade: 6 High-Yielding Integrateds and Midstream Giants Are All Strong Buys",
+          "url": "https://247wallst.com/investing/2026/06/22/energys-hottest-trade-6-high-yielding-integrateds-and-midstream-giants-are-all-strong-buys/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "low"
+        },
+        {
+          "ticker": "NVDA",
+          "headline": "AI Chips Update - AI Drives Next-Level Network Operations Innovation",
+          "url": "https://finance.yahoo.com/technology/ai/articles/ai-chips-ai-drives-next-113752607.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
           "impact": "low"
         }
       ]
@@ -118,26 +118,26 @@
       "top_news": [
         {
           "ticker": "TSLA",
-          "headline": "After Nvidia And Tesla, Trump Confirms Apple Has Agreed To Build Chips With Intel Amid US Manufacturing Push: 'When Was The Last Time...'",
-          "url": "https://finance.yahoo.com/technology/articles/nvidia-tesla-trump-confirms-apple-120206149.html?.tsrc=rss",
+          "headline": "Jefferies Lowers Tesla Target and Highlights Potential SpaceX Tracking Stock Risk",
+          "url": "https://investorshub.advfn.com/market-news/article/30842/jefferies-lowers-tesla-target-and-highlights-potential-spacex-tracking-stock-risk?.tsrc=rss",
           "summary": "ニュース→ 株価にネガティブ（高インパクト）",
           "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "TSLA",
-          "headline": "Tesla (TSLA) Faces EU FSD Split As Musk Lifts Voting Stake To 20%",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/tesla-tsla-faces-eu-fsd-100821251.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "Jefferies sees downside risk for Tesla stock, warns of SpaceX tracker risk",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jefferies-sees-downside-risk-tesla-090840198.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
+          "impact": "high"
         },
         {
           "ticker": "TSLA",
-          "headline": "Elon Musk Nears 20% Voting Power In Tesla After Exercising Stock Options",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/elon-musk-nears-20-voting-233111023.html?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
+          "headline": "ACHR Stock Slips Premarket: Archer Aviation CEO Reportedly Pitches Tesla-Like Future For Air Taxis",
+          "url": "https://stocktwits.com/news-articles/markets/equity/achr-stock-slips-premarket-archer-aviation-ceo-tesla-like-future-for-air-taxis/cZKtYeHR7BO?.tsrc=rss",
+          "summary": "CEO変更→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         }
       ]
@@ -146,26 +146,26 @@
       "top_news": [
         {
           "ticker": "AAPL",
-          "headline": "Apple Will Raise Prices Due To Soaring Memory Costs: CEO Tim Cook Says 'This Is A 100-Year Flood'",
-          "url": "https://finance.yahoo.com/technology/articles/apple-raise-prices-due-soaring-100146728.html?.tsrc=rss",
-          "summary": "CEO変更→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "Why Apple (AAPL) Is Tying Its AI Comeback to Devices, Services, and Siri",
+          "url": "https://finance.yahoo.com/technology/ai/articles/why-apple-aapl-tying-ai-075229929.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "'Sad' That No One Will Tell Snap CEO The Truth, Says Analyst On Company's 'Horrendous' Product Design For $2,195 AR Glasses",
-          "url": "https://finance.yahoo.com/technology/articles/sad-no-one-tell-snap-213113740.html?.tsrc=rss",
-          "summary": "CEO変更→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "Is Apple (AAPL) One of the Top 12 Dividend Stocks to Buy According to Billionaire Cliff Asness?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/apple-aapl-one-top-12-025329940.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "After Nvidia And Tesla, Trump Confirms Apple Has Agreed To Build Chips With Intel Amid US Manufacturing Push: 'When Was The Last Time...'",
-          "url": "https://finance.yahoo.com/technology/articles/nvidia-tesla-trump-confirms-apple-120206149.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "New ETF Turns Stock Dividends Into Bitcoin DCA: Bitcoin Microtransactions Explode",
+          "url": "https://99bitcoins.com/news/bitcoin-btc/bitcoin-news-today-drip-etf-franklin-templeton-sec-filing/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
           "impact": "high"
         }
       ]
@@ -174,25 +174,25 @@
       "top_news": [
         {
           "ticker": "MSFT",
-          "headline": "Apple Will Raise Prices Due To Soaring Memory Costs: CEO Tim Cook Says 'This Is A 100-Year Flood'",
-          "url": "https://finance.yahoo.com/technology/articles/apple-raise-prices-due-soaring-100146728.html?.tsrc=rss",
-          "summary": "CEO変更→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "ICON selects Microsoft as a preferred technology partner to power AI-enabled clinical development",
+          "url": "https://finance.yahoo.com/technology/ai/articles/icon-selects-microsoft-preferred-technology-110000087.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "MSFT",
-          "headline": "Prediction: Will Dell Hit $500 This Year?",
-          "url": "https://247wallst.com/investing/2026/06/20/prediction-will-dell-hit-500-this-year/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
+          "headline": "Adcore Enters Strategic Partnership with TikTok as a Channel Sales Partner",
+          "url": "https://finance.yahoo.com/media-advertising/articles/adcore-enters-strategic-partnership-tiktok-120000486.html?.tsrc=rss",
+          "summary": "提携・契約→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "MSFT",
-          "headline": "Peter Thiel’s secret society talks AI takeover, World War III and ‘cult-building’ — a hacker just revealed who’s in it",
-          "url": "https://finance.yahoo.com/technology/ai/articles/peter-thiel-secret-society-talks-123000645.html?.tsrc=rss",
-          "summary": "訴訟/規制→ 株価への影響は中立（高インパクト）",
+          "headline": "New ETF Turns Stock Dividends Into Bitcoin DCA: Bitcoin Microtransactions Explode",
+          "url": "https://99bitcoins.com/news/bitcoin-btc/bitcoin-news-today-drip-etf-franklin-templeton-sec-filing/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
           "impact": "high"
         }
@@ -210,19 +210,19 @@
         },
         {
           "ticker": "META",
-          "headline": "'Sad' That No One Will Tell Snap CEO The Truth, Says Analyst On Company's 'Horrendous' Product Design For $2,195 AR Glasses",
-          "url": "https://finance.yahoo.com/technology/articles/sad-no-one-tell-snap-213113740.html?.tsrc=rss",
-          "summary": "CEO変更→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
-          "impact": "high"
+          "headline": "Adcore Enters Strategic Partnership with TikTok as a Channel Sales Partner",
+          "url": "https://finance.yahoo.com/media-advertising/articles/adcore-enters-strategic-partnership-tiktok-120000486.html?.tsrc=rss",
+          "summary": "提携・契約→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         },
         {
           "ticker": "META",
-          "headline": "Meta’s CEO Just Promised Superintelligence. He Thinks Everyone Will Have It",
-          "url": "https://247wallst.com/investing/2026/06/20/metas-ceo-just-promised-superintelligence-he-thinks-everyone-will-have-it/?.tsrc=rss",
-          "summary": "CEO変更→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "The One Stock Now Controlling DIA’s Next Move: Why Caterpillar’s Power Generation Backlog Matters More Than Apple",
+          "url": "https://247wallst.com/investing/2026/06/22/the-one-stock-now-controlling-dias-next-move-why-caterpillars-power-generation-backlog-matters-more-than-apple/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "low"
         }
       ]
     },
@@ -230,24 +230,24 @@
       "top_news": [
         {
           "ticker": "AMZN",
-          "headline": "Apple Will Raise Prices Due To Soaring Memory Costs: CEO Tim Cook Says 'This Is A 100-Year Flood'",
-          "url": "https://finance.yahoo.com/technology/articles/apple-raise-prices-due-soaring-100146728.html?.tsrc=rss",
-          "summary": "CEO変更→ 株価にネガティブ（高インパクト）",
+          "headline": "Market Chatter: Trump Says Anthropic Briefly Seen as National Security Risk, Signals Tensions Easing",
+          "url": "https://finance.yahoo.com/technology/ai/articles/market-chatter-trump-says-anthropic-102954122.html?.tsrc=rss",
+          "summary": "訴訟/規制→ 株価にネガティブ",
           "sentiment": "negative",
-          "impact": "high"
-        },
-        {
-          "ticker": "AMZN",
-          "headline": "Amazon quietly building a moat to outlast the AI boom",
-          "url": "https://www.thestreet.com/investing/amazon-aws-quantum-plans-outlast-ai-boom?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "AMZN",
-          "headline": "Murdoch’s $23 Billion Bet Could Change Everything for Fox",
-          "url": "https://247wallst.com/investing/2026/06/21/murdochs-23-billion-bet-could-change-everything-for-fox/?.tsrc=rss",
+          "headline": "Billionaire Money Managers Have Chosen Their Favorite AI Stock (and It's Not Nvidia or Alphabet)",
+          "url": "https://www.fool.com/investing/2026/06/22/billionaires-chose-favorite-ai-stock-not-nvda-goog/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "low"
+        },
+        {
+          "ticker": "AMZN",
+          "headline": "The $725 Billion AI Capex Cycle Has 3 Bottlenecks: Power, Memory, and Optical Bandwidth. 3 Stocks Poised to Win Big.",
+          "url": "https://www.fool.com/investing/2026/06/22/ai-capex-cycle-bottleneck-memory-stock-win/?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "low"
@@ -258,32 +258,40 @@
       "top_news": [
         {
           "ticker": "GOOGL",
-          "headline": "Forget Ads: Alphabet’s CEO Says This Is Now the Biggest Growth Driver",
-          "url": "https://247wallst.com/investing/2026/06/21/forget-ads-alphabets-ceo-says-this-is-now-the-biggest-growth-driver/?.tsrc=rss",
-          "summary": "CEO変更→ 株価にポジティブ（高インパクト）",
+          "headline": "Why Alphabet (GOOGL) Is Building Its Enterprise AI Case Around Google Cloud and HSBC",
+          "url": "https://finance.yahoo.com/technology/ai/articles/why-alphabet-googl-building-enterprise-075242739.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "GOOGL",
-          "headline": "Apple Will Raise Prices Due To Soaring Memory Costs: CEO Tim Cook Says 'This Is A 100-Year Flood'",
-          "url": "https://finance.yahoo.com/technology/articles/apple-raise-prices-due-soaring-100146728.html?.tsrc=rss",
-          "summary": "CEO変更→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
-          "impact": "high"
+          "headline": "Adcore Enters Strategic Partnership with TikTok as a Channel Sales Partner",
+          "url": "https://finance.yahoo.com/media-advertising/articles/adcore-enters-strategic-partnership-tiktok-120000486.html?.tsrc=rss",
+          "summary": "提携・契約→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         },
         {
           "ticker": "GOOGL",
-          "headline": "Anthropic Eyes South Korea Growth Ahead Of IPO With Seoul Office, New Partnerships",
-          "url": "https://finance.yahoo.com/technology/ai/articles/anthropic-eyes-south-korea-growth-180051493.html?.tsrc=rss",
-          "summary": "提携・契約→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
+          "headline": "Explainer-Three ways Trump could get a stake in AI firms for the US",
+          "url": "https://finance.yahoo.com/technology/ai/articles/explainer-three-ways-trump-could-100622199.html?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
           "impact": "high"
         }
       ]
     },
     "GLD": {
       "top_news": [
+        {
+          "ticker": "GLD",
+          "headline": "Gold faces hurdle on path to $5,200 as hawkish Fed dampens ETF demand, MS says",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-faces-hurdle-path-5-122241269.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
+        },
         {
           "ticker": "GLD",
           "headline": "Gold Extends Losses as Fed Rate-Hike Outlook Supports Dollar",
@@ -299,14 +307,6 @@
           "summary": "ニュース→ 株価への影響は中立",
           "sentiment": "neutral",
           "impact": "medium"
-        },
-        {
-          "ticker": "GLD",
-          "headline": "Update: Gold Falls, Dollar Rises as Half of Fed Members Expect a Rate Increase in 2026",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-falls-dollar-rises-half-183040779.html?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立",
-          "sentiment": "neutral",
-          "impact": "medium"
         }
       ]
     },
@@ -314,25 +314,25 @@
       "top_news": [
         {
           "ticker": "MU",
-          "headline": "The Memory Boom Has Been a Gift to Micron. For Apple, It's Becoming a Problem. Or Is It?",
-          "url": "https://www.fool.com/investing/2026/06/19/the-memory-boom-has-been-a-gift-to-micron-for-appl/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
+          "headline": "Micron Stock Jumps Again But Analyst Warns Memory Chips Won’t Rise Forever",
+          "url": "https://finance.yahoo.com/m/c45f3a1f-bfb6-3ee2-ab8e-4136c3d551c9/micron-stock-jumps-again-but.html?.tsrc=rss",
+          "summary": "株価急上昇→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "MU",
-          "headline": "Micron Faces a Big Earnings Test",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-faces-big-earnings-test-174441041.html?.tsrc=rss",
-          "summary": "決算関連→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "US Equity Investors to Watch Out for Micron Technology's Earnings, PCE Inflation, Iran Peace Talks This Week",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/us-equity-investors-watch-micron-093712823.html?.tsrc=rss",
+          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         },
         {
           "ticker": "MU",
-          "headline": "Micron Stock Gets Stunning Double Upgrade -- Analysts Predict Triple-Digit DRAM Surge",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-stock-gets-stunning-double-170307553.html?.tsrc=rss",
-          "summary": "アナリスト格上げ・株価急上昇→ 株価にポジティブ",
+          "headline": "DRAM ETF Climbs 3% Premarket: Ahead Of Potential US IPO, SK Hynix Beats Samsung As South Korea’s Most Valuable Company",
+          "url": "https://stocktwits.com/news-articles/markets/equity/dram-etf-climbs-3-premarket-ahead-of-potential-us-ipo-sk-hynix-beats-samsung-as-south-korea-s-most-valuable-company/cZKtqJeR7BW?.tsrc=rss",
+          "summary": "予想を上回る→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         }
@@ -342,25 +342,25 @@
       "top_news": [
         {
           "ticker": "SNDK",
-          "headline": "MU Hits Record High, SNDK Jumps Nearly 12% — What’s Behind The Memory Stock Rally?",
-          "url": "https://stocktwits.com/news-articles/markets/equity/mu-hits-record-high-sndk-jumps-12-percent-whats-apple-connection/cZKZrL9R77z?.tsrc=rss",
-          "summary": "株価急上昇→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "SNDK",
-          "headline": "Sandisk AI Memory Boom Is Far From Over",
-          "url": "https://www.barchart.com/story/news/2566847/sandisk-stock-looks-wildly-overbought-but-sndks-chart-and-fundamentals-say-it-can-keep-climbing?.tsrc=rss",
+          "headline": "US Stock Market Today: S&P 500 Futures Dip As Global Rate Pressures Persist",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/us-stock-market-today-p-081053716.html?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "SNDK",
-          "headline": "Up 700% YTD, How High Can SanDisk Rally?",
-          "url": "https://247wallst.com/investing/2026/06/19/up-700-ytd-how-high-can-sandisk-rally/?.tsrc=rss",
+          "headline": "Sandisk (SNDK) Stock Could Be 579% Overvalued After Its Recent Share Price Surge",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sandisk-sndk-stock-could-579-081017922.html?.tsrc=rss",
           "summary": "株価急上昇→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
+        },
+        {
+          "ticker": "SNDK",
+          "headline": "Sandisk AI Memory Boom Is Far From Over",
+          "url": "https://www.barchart.com/story/news/2566847/sandisk-stock-looks-wildly-overbought-but-sndks-chart-and-fundamentals-say-it-can-keep-climbing?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         }
