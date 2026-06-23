@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T21:10:44.412659+09:00",
+  "generated_at": "2026-06-23T20:04:48.284200+09:00",
   "events": [
     {
       "date": "2026-06-23",
@@ -19,7 +19,7 @@
       "impact": "Medium",
       "event_en": "Flash Services PMI",
       "event_ja": "Flash Services PMI",
-      "forecast": "51.0",
+      "forecast": "51.1",
       "previous": "50.9",
       "actual": ""
     },
@@ -74,8 +74,8 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "226K",
-      "previous": "229K",
+      "forecast": "225K",
+      "previous": "226K",
       "actual": ""
     },
     {
