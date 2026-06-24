@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T20:04:48.284200+09:00",
+  "generated_at": "2026-06-24T20:02:22.812152+09:00",
   "events": [
     {
       "date": "2026-06-23",
@@ -21,6 +21,17 @@
       "event_ja": "Flash Services PMI",
       "forecast": "51.1",
       "previous": "50.9",
+      "actual": ""
+    },
+    {
+      "date": "2026-06-24",
+      "time_jst": "03:05",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
+      "forecast": "",
+      "previous": "",
       "actual": ""
     },
     {
