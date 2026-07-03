@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 3Dインテリアデザイナー</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1923;color:#e0e0e0;height:100vh;display:flex;flex-direction:column;overflow:hidden;user-select:none}
+
+/* TOP BAR */
+.topbar{height:50px;background:#141f2e;border-bottom:1px solid #1e3a5f;display:flex;align-items:center;padding:0 14px;gap:10px;z-index:100;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.4)}
+.logo{font-size:16px;font-weight:800;color:#e94560;margin-right:8px;white-space:nowrap}
+.sep{width:1px;height:28px;background:#1e3a5f;margin:0 4px}
+.top-label{font-size:11px;color:#7a9abf;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.top-label input[type=range]{width:70px;accent-color:#e94560;cursor:pointer}
+.top-label span{font-size:11px;color:#aaccee;min-width:28px}
+.top-label input[type=color]{width:26px;height:22px;border:1px solid #1e3a5f;border-radius:3px;cursor:pointer;padding:1px;background:none}
+.top-label input[type=checkbox]{cursor:pointer;accent-color:#e94560}
+.spacer{flex:1}
+.vbtn{background:#1e3a5f;border:1px solid #2a5080;color:#aaccee;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:11px;transition:all .15s}
+.vbtn:hover{background:#2a5080;color:#fff}
+.vbtn.active{background:#e94560;border-color:#e94560;color:#fff}
+.tbtn{background:#1e3a5f;border:1px solid #2a5080;color:#aaccee;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:12px;transition:all .15s}
+.tbtn:hover{background:#2a5080}
+.tbtn.red{background:#7a1a2a;border-color:#a02030}
+.tbtn.red:hover{background:#a02030}
+
+/* LAYOUT */
+.main{display:flex;flex:1;overflow:hidden}
+
+/* LEFT SIDEBAR */
+.sidebar{width:190px;background:#141f2e;border-right:1px solid #1e3a5f;display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
+.sb-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#4a7a9f;padding:10px 12px 6px}
+.furn-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px 8px;overflow-y:auto;flex:1}
+.furn-grid::-webkit-scrollbar{width:4px}
+.furn-grid::-webkit-scrollbar-track{background:#0a1520}
+.furn-grid::-webkit-scrollbar-thumb{background:#2a4060;border-radius:2px}
+.fi{background:#0f1e30;border:1px solid #1a3050;border-radius:8px;padding:8px 4px 6px;cursor:pointer;text-align:center;transition:all .15s}
+.fi:hover{background:#1a3a5a;border-color:#e94560;transform:scale(1.04)}
+.fi:active{transform:scale(0.97)}
+.fi .icon{font-size:22px;line-height:1}
+.fi .name{font-size:9px;color:#7a9abf;margin-top:3px;line-height:1.2}
+
+/* CANVAS */
+#cvs{flex:1;position:relative;overflow:hidden;cursor:default}
+canvas{display:block}
+.helpbar{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.65);color:#88aacc;font-size:10px;padding:5px 14px;border-radius:20px;pointer-events:none;white-space:nowrap;backdrop-filter:blur(4px)}
+.snap-badge{position:absolute;top:10px;right:10px;background:rgba(233,69,96,0.85);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;pointer-events:none;display:none}
+
+/* RIGHT PANEL */
+.panel{width:196px;background:#141f2e;border-left:1px solid #1e3a5f;display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
+.panel::-webkit-scrollbar{width:4px}
+.panel::-webkit-scrollbar-track{background:#0a1520}
+.panel::-webkit-scrollbar-thumb{background:#2a4060;border-radius:2px}
+.panel-inner{padding:12px}
+.ptitle{font-size:12px;font-weight:700;color:#e94560;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #1e3a5f}
+.pname{font-size:13px;font-weight:600;color:#ddeeff;margin-bottom:12px}
+.prow{margin-bottom:10px}
+.plabel{font-size:10px;color:#7a9abf;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.plabel span{color:#aaccee;font-weight:600}
+.prow input[type=range]{width:100%;accent-color:#e94560;cursor:pointer}
+.prow input[type=color]{width:100%;height:30px;border:1px solid #2a5080;border-radius:5px;cursor:pointer;background:none;padding:2px}
+.rot-row{display:flex;gap:4px}
+.rbtn{flex:1;background:#0f1e30;border:1px solid #2a5080;color:#aaccee;padding:5px;border-radius:5px;cursor:pointer;font-size:15px;text-align:center;transition:background .15s}
+.rbtn:hover{background:#2a5080}
+.delbtn{width:100%;background:#5a0f1a;border:1px solid #8a1f2a;color:#ffaaaa;padding:7px;border-radius:5px;cursor:pointer;font-size:12px;margin-top:8px;transition:all .15s}
+.delbtn:hover{background:#8a1f2a}
+.nosel{color:#3a5a7a;font-size:11px;text-align:center;line-height:1.8;padding:20px 0}
+.hint{font-size:10px;color:#3a5070;text-align:center;margin-top:6px}
+.room-section{border-top:1px solid #1e3a5f;padding:10px 12px;margin-top:auto}
+.room-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:11px;color:#7a9abf}
+.room-row input[type=color]{width:24px;height:20px;border:1px solid #2a5080;border-radius:3px;cursor:pointer;padding:1px;background:none;flex-shrink:0}
+
+/* ── Desktop: toproom wrapper is just a flex row ── */
+.toproom{display:flex;align-items:center;gap:10px}
+/* ── Desktop: hide mobile-only elements ── */
+.mob-bar,.mob-overlay{display:none!important}
+
+/* ================================================================
+   MOBILE  (≤768px)
+   ================================================================ */
+@media(max-width:768px){
+  /* Hide desktop sidebars & some topbar controls */
+  .sidebar,.panel,.toproom,.mob-hide{display:none!important}
+
+  /* Topbar: keep logo + view-buttons + cam-reset only */
+  .topbar{height:44px;padding:0 8px;gap:6px}
+  .logo{font-size:13px}
+  .vbtn{font-size:10px;padding:4px 8px}
+  .tbtn{font-size:10px;padding:4px 8px}
+
+  /* Help text */
+  .helpbar{font-size:9px;white-space:normal;text-align:center;width:90%;padding:4px 10px}
+
+  /* ── Mobile bottom bar (in normal flex flow so canvas shrinks) ── */
+  .mob-bar{
+    display:flex!important;height:60px;flex-shrink:0;
+    background:#141f2e;border-top:1px solid #1e3a5f;
+    padding:4px 4px env(safe-area-inset-bottom,0);
+    align-items:stretch;justify-content:space-around;gap:3px;
+    z-index:200
+  }
+  .mob-btn{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:#1e3a5f;border:1px solid #2a5080;border-radius:8px;
+    color:#aaccee;font-size:9px;cursor:pointer;gap:1px;user-select:none;
+    -webkit-tap-highlight-color:transparent
+  }
+  .mob-btn .micon{font-size:20px;line-height:1.1}
+  .mob-btn.act{background:#e94560;border-color:#e94560;color:#fff}
+
+  /* ── Slide-up overlay panels ── */
+  .mob-overlay{
+    display:none!important;
+    position:fixed;bottom:60px;left:0;right:0;
+    background:#141f2e;border-top:2px solid #e94560;
+    max-height:56vh;overflow-y:auto;z-index:150;
+    -webkit-overflow-scrolling:touch
+  }
+  .mob-overlay.open{display:block!important}
+
+  /* Catalog grid inside overlay */
+  .mob-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px}
+  .mob-ov-title{font-size:11px;font-weight:700;color:#e94560;text-transform:uppercase;letter-spacing:1px;padding:10px 12px 4px}
+
+  /* Room settings rows */
+  .mob-rm-row{display:flex;align-items:center;gap:8px;margin:0 12px 10px;font-size:12px;color:#aaccee}
+  .mob-rm-row label{min-width:40px}
+  .mob-rm-row input[type=range]{flex:1;accent-color:#e94560}
+  .mob-rm-row .val{min-width:36px;text-align:right;color:#fff;font-weight:600}
+  .mob-rm-row input[type=color]{width:32px;height:28px;border:1px solid #2a5080;border-radius:4px;cursor:pointer;padding:2px;background:none}
+  .mob-rm-row input[type=checkbox]{accent-color:#e94560;width:18px;height:18px}
+
+  /* Props inside overlay */
+  .mob-props-pad{padding:10px 14px}
+}
+</style>
+</head>
+<b0{
+y
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo">🏠 3Dインテリア</div>
+  <div class="toproom">
+  <div class="sep"></div>
+  <div class="top-label">幅 <input type="range" id="roomW" min="3" max="12" value="6" step="0.5"> <span id="lblW">6m</span></div>
+  <div class="top-label">奥行 <input type="range" id="roomD" min="3" max="12" value="5" step="0.5"> <span id="lblD">5m</span></div>
+  <div class="top-label">天井高 <input type="range" id="roomH" min="2" max="4" value="2.5" step="0.1"> <span id="lblH">2.5m</span></div>
+  <div class="sep"></div>
+  <div class="top-label">床 <input type="color" id="floorClr" value="#c8a87a"></div>
+  <div class="top-label">壁 <input type="color" id="wallClr" value="#f0ede8"></div>
+  <div class="top-label">天井 <input type="checkbox" id="showCeil"></div>
+  <div class="top-label">スナップ <input type="checkbox" id="snapGrid" checked></div>
+  </div>
+  <div class="spacer"></div>
+  <div style="display:flex;gap:4px">
+    <button class="vbtn active" id="v3d" onclick="setView('3d',this)">3D</button>
+    <button class="vbtn" id="vtop" onclick="setView('top',this)">上面</button>
+  </div>
+  <button class="tbtn" onclick="resetCam()">📷リセット</button>
+  <button class="tbtn red mob-hide" onclick="clearAll()">🗑 全削除</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- LEFT: Furniture catalog -->
+  <div class="sidebar">
+    <div class="sb-title">家具を追加</div>
+    <div class="furn-grid">
+      <div class="fi" onclick="addFurn('sofa')"><div class="icon">🛋️</div><div class="name">ソファ</div></div>
+      <div class="fi" onclick="addFurn('sofa_l')"><div class="icon">🛋️</div><div class="name">Lソファ</div></div>
+      <div class="fi" onclick="addFurn('bed_q')"><div class="icon">🛏️</div><div class="name">ベッドQ</div></div>
+      <div class="fi" onclick="addFurn('bed_s')"><div class="icon">🛏️</div><div class="name">ベッドS</div></div>
+      <div class="fi" onclick="addFurn('dtable')"><div class="icon">🍽️</div><div class="name">ダイーング</div></div>
+      <div class="fi" onclick="addFurn('chair')"><div class="icon">🪑</div><div class="name">チェア</div></div>
+      <div class="fi" onclick="addFurn('desk')"><div class="icon">💻</div><div class="name">デスク</div></div>
+      <div class="fi" onclick="addFurn('dchair')"><div class="icon">🪑</div><div class="name">オフィス椅子</div></div>
+      <div class="fi" onclick="addFurn('wardrobe')"><div class="icon">🚪</div><div class="name">ワードローブ</div></div>
+      <div class="fi" onclick="addFurn('tvstand')"><div class="icon">📺</div><div class="name">TV台</div></div>
+      <div class="fi" onclick="addFurn('shelf')"><div class="icon">📚</div><div class="name">本棚</div></div>
+      <div class="fi" onclick="addFurn('ctable')"><div class="icon">☕</div><div class="name">コーヒーTBL</div></div>
+      <div class="fi" onclick="addFurn('stable')"><div class="icon">🪵</div><div class="name">サイドTBL</div></div>
+      <div class="fi" onclick="addFurn('plant')"><div class="icon">🌿</div><div class="name">観葉植物</div></div>
+      <div class="fi" onclick="addFurn('lamp')"><div class="icon">💡</div><div class="name">フロアランプ</div></div>
+      <div class="fi" onclick="addFurn('rug')"><div class="icon">🟫</div><div class="name">ラグ</div></div>
+      <div class="fi" onclick="addFurn('bathtub')"><div class="icon">🛁</div><div class="name">バスタブ</div></div>
+      <div class="fi" onclick="addFurn('toilet')"><div class="icon">🚽</div><div class="name">トイレ</div></div>
+    </div>
+  </div>
+
+  <!-- CENTER: 3D canvas -->
+  <div id="cvs">
+    <div class="helpbar">左ドラッグ：回転 ｜ 右ドラッグ：パン ｜ ホイール：ズーム ｜ 家具クリック→ドラッグ：移動</div>
+    <div class="snap-badge" id="snapBadge">📐 SNAP ON</div>
+  </div>
+
+  <!-- RIGHT: Properties -->
+  <div class="panel">
+    <div class="panel-inner">
+      <div class="ptitle">プロパティ</div>
+      <div id="nosel" class="nosel">家具を選択すると<br>ここに設定が<br>表示されます<br><br>💡 左クリックで<br>家具を選択<br>ドラッグで移動</div>
+      <div id="props" style="display:none">
+        <div class="pname" id="pname">ソファ</div>
+        <div class="prow">
+          <div class="plabel">カラー</div>
+          <input type="color" id="pcolor" onchange="onColorChange(this.value)">
+        </div>
+        <div class="prow">
+          <div class="plabel">回転 <span id="prot">0°</span></div>
+          <div class="rot-row">
+            <div class="rbtn" onclick="rotateSel(-45)" title="反時計回り45°">↺</div>
+            <div class="rbtn" onclick="rotateSel(-15)" title="反時計回り15°">↺<sub style="font-size:8px">15</sub></div>
+            <div class="rbtn" onclick="rotateSel(15)" title="時計回り15°">↻<sub style="font-size:8px">15</sub></div>
+            <div class="rbtn" onclick="rotateSel(45)" title="時計回り45°">↻</div>
+          </div>
+        </div>
+        <div class="prow">
+          <div class="plabel">サイズ <span id="pscale">100%</span></div>
+          <input type="range" id="pscale_r" min="40" max="200" value="100" oninput="onScaleChange(this.value)">
+        </div>
+        <div class="prow">
+          <div class="plabel">高さオフセット <span id="pheight">0cm</span></div>
+          <input type="range" id="pheight_r" min="-20" max="80" value="0" oninput="onHeightChange(this.value)">
+        </div>
+        <button class="delbtn" onclick="delSel()">🗑 削除 [Delete]</button>
+        <div class="hint">[R] 45°回転 ｜ [Esc] 選択解除</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MOBILE BOTTOM BAR  (hidden on desktop via CSS)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="mob-bar" id="mobBar">
+  <div class="mob-btn" id="mobCatBtn" onclick="mobToggle('cat')">
+    <span class="mico">🛋️</span><span>家具追加</span>
+  </div>
+  <div class="mob-btn" id="mobRoomBtn" onclick="mobToggle('room')">
+    <span class="mico">🏠</span><span>部屋設定</span>
+  </div>
+  <div class="mob-btn" id="mobPropsBtn" onclick="mobToggle('props')">
+    <span class="mico">⚙️</span><span>プロパティ</span>
+  </div>
+  <div class="mob-btn" onclick="resetCam()">
+    <span class="mico">📷</span><span>カメラ</span>
+  </div>
+  <div class="mob-btn" id="mobViewBtn" onclick="mobToggleView()">
+    <span class="mico" id="mobViewIco">📐</span><span id="mobViewLbl">上面</span>
+  </div>
+</div>
+
+<!-- CATALOG OVERLAY -->
+<div class="mob-overlay" id="mobCat">
+  <div class="mob-ov-title">家具を追加</div>
+  <div class="mob-cat-grid">
+    <div class="fi" onclick="addFurn('sofa');mobClose()"><div class="icon">🛋️</div><div class="name">ソファ</div></div>
+    <div class="fi" onclick="addFurn('sofa_l');mobClose()"><div class="icon">🛋️</div><div class="name">Lソファ</div></div>
+    <div class="fi" onclick="addFurn('bed_q');mobClose()"><div class="icon">🛏️</div><div class="name">ベッドQ</div></div>
+    <div class="fi" onclick="addFurn('bed_s');mobClose()"><div class="icon">🛏️</div><div class="name">ベッドS</div></div>
+    <div class="fi" onclick="addFurn('dtable');mobClose()"><div class="icon">🍽️</div><div class="name">ダイニング</div></div>
+    <div class="fi" onclick="addFurn('chair');mobClose()"><div class="icon">🪑</div><div class="name">チェア</div></div>
+    <div class="fi" onclick="addFurn('desk');mobClose()"><div class="icon">💻</div><div class="name">デスク</div></div>
+    <div class="fi" onclick="addFurn('dchair');mobClose()"><div class="icon">🪑</div><div class="name">オフィス椅子</div></div>
+    <div class="fi" onclick="addFurn('wardrobe');mobClose()"><div class="icon">🚪</div><div class="name">ワードローブ</div></div>
+    <div class="fi" onclick="addFurn('tvstand');mobClose()"><div class="icon">📺</div><div class="name">TV台</div></div>
+    <div class="fi" onclick="addFurn('shelf');mobClose()"><div class="icon">📚</div><div class="name">本棚</div></div>
+    <div class="fi" onclick="addFurn('ctable');mobClose()"><div class="icon">☕</div><div class="name">コーヒーTBL</div></div>
+    <div class="fi" onclick="addFurn('stable');mobClose()"><div class="icon">🪵</div><div class="name">サイドTBL</div></div>
+    <div class="fi" onclick="addFurn('plant');mobClose()"><div class="icon">🌿</div><div class="name">観葉植物</div></div>
+    <div class="fi" onclick="addFurn('lamp');mobClose()"><div class="icon">💡</div><div class="name">フロアランプ</div></div>
+    <div class="fi" onclick="addFurn('rug');mobClose()"><div class="icon">🟫</div><div class="name">ラグ</div></div>
+    <div class="fi" onclick="addFurn('bathtub');mobClose()"><div class="icon">🛁</div><div class="name">バスタブ</div></div>
+    <div class="fi" onclick="addFurn('toilet');mobClose()"><div class="icon">🚽</div><div class="name">トイレ</div></div>
+  </div>
+</div>
+
+<!-- ROOM SETTINGS OVERLAY -->
+<div class="mob-overlay" id="mobRoom">
+  <div style="padding-top:6px">
+  <div class="mob-ov-title">部屋設定</div>
+  <div class="mob-rm-row"><label>幅</label><input type="range" id="mobRW" min="3" max="12" value="6" step="0.5" oninput="mobRoom('W',this.value)"><span class="val" id="mobLW">6m</span></div>
+  <div class="mob-rm-row"><label>奥行</label><input type="range" id="mobRD" min="3" max="12" value="5" step="0.5" oninput="mobRoom('D',this.value)"><span class="val" id="mobLD">5m</span></div>
+  <div class="mob-rm-row"><label>天井高</label><input type="range" id="mobRH" min="2" max="4" value="2.5" step="0.1" oninput="mobRoom('H',this.value)"><span class="val" id="mobLH">2.5m</span></div>
+  <div class="mob-rm-row"><label>床色</label><input type="color" id="mobFClr" value="#c8a87a" oninput="floorClr=this.value;if(floorMesh)floorMesh.material.color.set(floorClr)"></div>
+  <div class="mob-rm-row"><label>壁色</label><input type="color" id="mobWClr" value="#f0ede8" oninput="wallClr=this.value;if(wallGroup)wallGroup.traverse(c=>{if(c.isMesh)c.material.color.set(wallClr)})"></div>
+  <div class="mob-rm-row"><label>天井表示</label><input type="checkbox" id="mobCeil" onchange="if(ceilMesh)ceilMesh.visible=this.checked"></div>
+  <div style="margin:6px 12px 10px"><button class="tbtn red" style="width:100%" onclick="clearAll()">🗑 全削除</button></div>
+  </div>
+</div>
+
+<!-- PROPERTIES OVERLAY -->
+<div class="mob-overlay" id="mobProps">
+  <div class="mob-props-pad">
+    <div class="ptitle" style="margin-bottom:8px">プロパティ</div>
+    <div id="mobNoSel" class="nosel" style="padding:12px 0">家具を選択してください</div>
+    <div id="mobPropCont" style="display:none">
+      <div class="pname" id="mobPName"></div>
+      <div class="prow">
+        <div class="plabel">カラー</div>
+        <input type="color" id="mobPColor" style="width:100%;height:34px;border:1px solid #2a5080;border-radius:5px;cursor:pointer;background:none;padding:2px" onchange="onColorChange(this.value);syncMobProps()">
+      </div>
+      <div class="prow">
+        <div class="plabel">回転 <span id="mobPRot">0°</span></div>
+        <div class="rot-row">
+          <div class="rbtn" onclick="rotateSel(-45);syncMobProps()">↺</div>
+          <div class="rbtn" onclick="rotateSel(-15);syncMobProps()">↺<sub style="font-size:8px">15</sub></div>
+          <div class="rbtn" onclick="rotateSel(15);syncMobProps()">↻<sub style="font-size:8px">15</sub></div>
+          <div class="rbtn" onclick="rotateSel(45);syncMobProps()">↻</div>
+        </div>
+      </div>
+      <div class="prow">
+        <div class="plabel">サイズ <span id="mobPScale">100%</span></div>
+        <input type="range" id="mobPScaleR" min="40" max="200" value="100" oninput="onScaleChange(this.value);syncMobProps()" style="width:100%;accent-color:#e94560">
+      </div>
+      <button class="delbtn" onclick="delSel();mobClose()">🗑 削除</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ============================================================
+// SCENE SETUP
+// ============================================================
+const cvsEl = document.getElementById('cvs');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a2030);
+scene.fog = new THREE.FogExp2(0x1a2030, 0.0006);
+
+const camera = new THREE.PerspectiveCamera(45, 1, 1, 5000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+cvsEl.appendChild(renderer.domElement);
+
+// LIGHTS
+const ambLight = new THREE.AmbientLight(0xeef0ff, 0.55);
+scene.add(ambLight);
+
+const sunLight = new THREE.DirectionalLight(0xfff8e8, 0.9);
+sunLight.position.set(500, 800, 400);
+sunLight.castShadow = true;
+sunLight.shadow.mapSize.set(2048, 2048);
+sunLight.shadow.bias = -0.0003;
+scene.add(sunLight);
+
+const fillLight = new THREE.DirectionalLight(0xd0e8ff, 0.25);
+fillLight.position.set(-400, 300, -300);
+scene.add(fillLight);
+
+// Ceiling light simulation
+const ceilLight = new THREE.PointLight(0xfff5e0, 0.4, 1200);
+ceilLight.position.set(0, 250, 0);
+scene.add(ceilLight);
+
+// ============================================================
+// STATE
+// ============================================================
+let RW = 600, RD = 500, RH = 260; // room in cm (1 unit = 1cm)
+let floorClr = '#c8a87a', wallClr = '#f0ede8';
+let snapOn = true;
+
+let floorMesh, ceilMesh, wallGroup;
+let gridMesh;
+const furnList = [];
+let sel = null; // selected furniture item
+
+// ============================================================
+// CAMERA CONTROL
+// ============================================================
+let sph = { theta: 0.85, phi: 0.55, r: 900 };
+let camTarget = new THREE.Vector3(0, 80, 0);
+let viewMode = '3d';
+
+function camUpdate() {
+  if (viewMode === 'top') {
+    camera.position.set(camTarget.x, camTarget.y + sph.r, camTarget.z);
+    camera.up.set(0, 0, -1);
+  } else {
+    const x = sph.r * Math.sin(sph.phi) * Math.sin(sph.theta);
+    const y = sph.r * Math.cos(sph.phi);
+    const z = sph.r * Math.sin(sph.phi) * Math.cos(sph.theta);
+    camera.position.set(camTarget.x + x, camTarget.y + y, camTarget.z + z);
+    camera.up.set(0, 1, 0);
+  }
+  camera.lookAt(camTarget);
+}
+
+function resetCam() {
+  sph = { theta: 0.85, phi: 0.55, r: 900 };
+  camTarget.set(0, 80, 0);
+  camUpdate();
+}
+
+function setView(mode, btnEl) {
+  viewMode = mode;
+  document.querySelectorAll('.vbtn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  if (mode === 'top') sph.r = Math.max(RW, RD) * 1.4;
+  camUpdate();
+}
+
+// ============================================================
+// MOUSE INPUT
+// ============================================================
+const mouse2d = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
+const floorPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+
+let mDown = false, mBtn = -1;
+let mLast = { x: 0, y: 0 };
+let draggingFurn = false;
+let orbitDrag = false;
+let panDrag = false;
+let dragOffset = new THREE.Vector3();
+let didMove = false;
+
+function clientToNDC(e) {
+  const r = renderer.domElement.getBoundingClientRect();
+  return {
+    x: ((e.clientX - r.left) / r.width) * 2 - 1,
+    y: -((e.clientY - r.top) / r.height) * 2 + 1
+  };
+}
+
+function rayFloor(e) {
+  const n = clientToNDC(e);
+  mouse2d.set(n.x, n.y);
+  raycaster.setFromCamera(mouse2d, camera);
+  const pt = new THREE.Vector3();
+  raycaster.ray.intersectPlane(floorPlane, pt);
+  return pt;
+}
+
+function hitFurn(e) {
+  const n = clientToNDC(e);
+  mouse2d.set(n.x, n.y);
+  raycaster.setFromCamera(mouse2d, camera);
+  const meshes = [];
+  furnList.forEach(f => f.group.traverse(c => { if (c.isMesh && !c.userData.noHit) meshes.push(c); }));
+  const hits = raycaster.intersectObjects(meshes);
+  if (!hits.length) return null;
+  const hit = hits[0].object;
+  for (const f of furnList) {
+    let found = false;
+    f.group.traverse(c => { if (c === hit) found = true; });
+    if (found) return f;
+  }
+  return null;
+}
+
+renderer.domElement.addEventListener('mousedown', e => {
+  mDown = true; mBtn = e.button; didMove = false;
+  mLast = { x: e.clientX, y: e.clientY };
+  if (e.button === 0) {
+    const f = hitFurn(e);
+    if (f) {
+      selectFurn(f);
+      draggingFurn = true;
+      const fp = rayFloor(e);
+      if (fp) dragOffset.set(f.group.position.x - fp.x, 0, f.group.position.z - fp.z);
+    } else {
+      orbitDrag = true;
+      if (sel) selectFurn(null);
+    }
+  } else if (e.button === 2) {
+    panDrag = true;
+  }
+  e.preventDefault();
+});
+
+renderer.domElement.addEventListener('mousemove', e => {
+  if (!mDown) return;
+  const dx = e.clientX - mLast.x;
+  const dy = e.clientY - mLast.y;
+  if (Math.abs(dx) > 2 || Math.abs(dy) > 2) didMove = true;
+
+  if (draggingFurn && sel) {
+    const fp = rayFloor(e);
+    if (fp) {
+      let nx = fp.x + dragOffset.x;
+      let nz = fp.z + dragOffset.z;
+      if (snapOn) {
+        const snap = 25; // 25cm grid
+        nx = Math.round(nx / snap) * snap;
+        nz = Math.round(nz / snap) * snap;
+      }
+      const hw = RW / 2 - 5, hd = RD / 2 - 5;
+      sel.group.position.x = Math.max(-hw, Math.min(hw, nx));
+      sel.group.position.z = Math.max(-hd, Math.min(hd, nz));
+    }
+  } else if (orbitDrag && viewMode === '3d') {
+    sph.theta -= dx * 0.008;
+    sph.phi = Math.max(0.05, Math.min(Math.PI * 0.47, sph.phi - dy * 0.008));
+    camUpdate();
+  } else if (panDrag) {
+    const speed = sph.r * 0.0008;
+    const rx = Math.cos(sph.theta), rz = -Math.sin(sph.theta);
+    const fx = -Math.sin(sph.theta), fz = -Math.cos(sph.theta);
+    camTarget.x -= rx * dx * speed + fx * dy * speed;
+    camTarget.z -= rz * dx * speed + fz * dy * speed;
+    camUpdate();
+  }
+  mLast = { x: e.clientX, y: e.clientY };
+});
+
+renderer.domElement.addEventListener('mouseup', e => {
+  mDown = false; draggingFurn = false; orbitDrag = false; panDrag = false;
+});
+
+renderer.domElement.addEventListener('wheel', e => {
+  e.preventDefault();
+  sph.r = Math.max(80, Math.min(1800, sph.r * (1 + e.deltaY * 0.001)));
+  camUpdate();
+}, { passive: false });
+
+renderer.domElement.addEventListener('contextmenu', e => e.preventDefault());
+
+document.addEventListener('keydown', e => {
+  if (['Delete','Backspace'].includes(e.key) && document.activeElement.tagName !== 'INPUT') delSel();
+  if ((e.key === 'r' || e.key === 'R') && document.activeElement.tagName !== 'INPUT') rotateSel(45);
+  if (e.key === 'Escape') selectFurn(null);
+});
+
+// ============================================================
+// ROOM CREATION
+// ============================================================
+function buildRoom() {
+  // Remove old
+  if (floorMesh) scene.remove(floorMesh);
+  if (ceilMesh) scene.remove(ceilMesh);
+  if (wallGroup) scene.remove(wallGroup);
+  if (gridMesh) scene.remove(gridMesh);
+
+  const hw = RW / 2, hd = RD / 2;
+
+  // Floor
+  const fg = new THREE.PlaneGeometry(RW, RD);
+  floorMesh = new THREE.Mesh(fg, new THREE.MeshLambertMaterial({ color: new THREE.Color(floorClr) }));
+  floorMesh.rotation.x = -Math.PI / 2;
+  floorMesh.receiveShadow = true;
+  scene.add(floorMesh);
+
+  // Grid overlay
+  const gDiv = Math.round(Math.max(RW, RD) / 25);
+  gridMesh = new THREE.GridHelper(Math.max(RW, RD) * 1.02, gDiv, 0x334455, 0x223344);
+  gridMesh.position.y = 1;
+  gridMesh.material.opacity = 0.4;
+  gridMesh.material.transparent = true;
+  scene.add(gridMesh);
+
+  // Walls
+  wallGroup = new THREE.Group();
+  const wm = new THREE.MeshLambertMaterial({ color: new THREE.Color(wallClr), side: THREE.BackSide });
+
+  const makeWall = (w, h, x, y, z, ry) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), wm.clone());
+    m.position.set(x, y, z);
+    m.rotation.y = ry;
+    m.receiveShadow = true;
+    wallGroup.add(m);
+  };
+
+  makeWall(RW, RH, 0, RH / 2, -hd, 0);           // back
+  makeWall(RW, RH, 0, RH / 2, hd, Math.PI);       // front
+  makeWall(RD, RH, -hw, RH / 2, 0, Math.PI / 2);  // left
+  makeWall(RD, RH, hw, RH / 2, 0, -Math.PI / 2);  // right
+
+  // Baseboards
+  const bm = new THREE.MeshLambertMaterial({ color: 0xffffff });
+  [[RW, 0, -hd, 0], [RW, 0, hd, 0], [RD, -hw, 0, 1], [RD, hw, 0, 1]].forEach(([len, x, z, axis]) => {
+    const bb = new THREE.Mesh(new THREE.BoxGeometry(axis ? 5 : len, 8, axis ? len : 5), bm);
+    bb.position.set(x, 4, z);
+    wallGroup.add(bb);
+  });
+
+  scene.add(wallGroup);
+
+  // Ceiling
+  ceilMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(RW, RD),
+    new THREE.MeshLambertMaterial({ color: 0xfafafa, side: THREE.DoubleSide })
+  );
+  ceilMesh.rotation.x = Math.PI / 2;
+  ceilMesh.position.y = RH;
+  ceilMesh.visible = document.getElementById('showCeil').checked;
+  scene.add(ceilMesh);
+
+  // Update shadow
+  const ext = Math.max(RW, RD) * 0.7;
+  sunLight.shadow.camera.left = -ext; sunLight.shadow.camera.right = ext;
+  sunLight.shadow.camera.top = ext; sunLight.shadow.camera.bottom = -ext;
+  sunLight.shadow.camera.far = 2000;
+  sunLight.shadow.camera.updateProjectionMatrix();
+  ceilLight.position.set(0, RH - 10, 0);
+}
+
+// ============================================================
+// MATERIAL HELPERS
+// ============================================================
+function ml(color, opts = {}) {
+  return new THREE.MeshLambertMaterial({ color: new THREE.Color(color), ...opts });
+}
+function mp(color, shininess = 40) {
+  return new THREE.MeshPhongMaterial({ color: new THREE.Color(color), shininess });
+}
+function dark(color, f = 0.65) {
+  return new THREE.Color(color).multiplyScalar(f);
+}
+function light(color, f = 1.35) {
+  const c = new THREE.Color(color);
+  return c.setRGB(Math.min(1, c.r * f), Math.min(1, c.g * f), Math.min(1, c.b * f));
+}
+
+function addShadow(mesh) {
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  return mesh;
+}
+
+function box(w, h, d, mat, cx = 0, cy = 0, cz = 0) {
+  const m = addShadow(new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat));
+  m.position.set(cx, cy, cz);
+  return m;
+}
+function cyl(rt, rb, h, seg, mat, cx = 0, cy = 0, cz = 0) {
+  const m = addShadow(new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg), mat));
+  m.position.set(cx, cy, cz);
+  return m;
+}
+function sph3(r, seg, mat, cx = 0, cy = 0, cz = 0) {
+  const m = addShadow(new THREE.Mesh(new THREE.SphereGeometry(r, seg, seg), mat));
+  m.position.set(cx, cy, cz);
+  return m;
+}
+
+// ============================================================
+// FURNITURE BUILDERS
+// ============================================================
+const DEFAULTS = {
+  sofa:'#9b8466', sofa_l:'#9b8466', bed_q:'#c8d8e0', bed_s:'#c8d8e0',
+  dtable:'#9b7840', chair:'#9b7840', desk:'#d4b896', dchair:'#222222',
+  wardrobe:'#d9cdb8', tvstand:'#2a1e14', shelf:'#c8a87a', ctable:'#9b7840',
+  stable:'#b08c60', plant:'#2d7a2d', lamp:'#d4b896', rug:'#9b5030',
+  bathtub:'#e8f4ff', toilet:'#f0f0f0'
+};
+
+function mkSofa(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), dm = ml(dark(c)), fm = ml(0x5c3a1e);
+  // Legs
+  [[-82, -5], [-82, 28], [82, -5], [82, 28]].forEach(([x, z]) => g.add(box(8, 8, 8, fm, x, 4, z)));
+  // Seat
+  g.add(box(190, 36, 85, cm, 0, 18, 4));
+  // Cushions
+  [-58, 0, 58].forEach(x => g.add(box(52, 12, 65, ml(light(c)), x, 40, 4)));
+  // Back
+  g.add(box(190, 58, 20, dm, 0, 58, -37));
+  // Armrests
+  [-92, 92].forEach(x => g.add(box(22, 52, 85, dm, x, 42, 4)));
+  // Back cushions
+  [-58, 0, 58].forEach(x => g.add(box(50, 42, 8, ml(c), x, 58, -27)));
+  g.userData = { type: 'sofa', name: 'ソファ', baseColor: c };
+  return g;
+}
+
+function mkSofaL(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), dm = ml(dark(c)), lm = ml(light(c));
+  // Main section
+  g.add(box(180, 36, 80, cm, 0, 18, 0));
+  g.add(box(180, 58, 18, dm, 0, 57, -37));
+  [-87, 87].forEach(x => g.add(box(20, 52, 80, dm, x, 40, 0)));
+  [-55, 0, 55].forEach(x => g.add(box(50, 12, 60, lm, x, 40, 0)));
+  // Extension section
+  g.add(box(80, 36, 120, cm, -127, 18, -22));
+  g.add(box(18, 58, 120, dm, -163, 57, -22));
+  g.add(box(20, 52, 18, dm, -127, 40, -78));
+  // Corner
+  g.add(box(18, 58, 18, dm, -163, 57, -37));
+  g.userData = { type: 'sofa_l', name: 'Lソファ', baseColor: c };
+  return g;
+}
+
+function mkBed(size, c) {
+  const g = new THREE.Group();
+  const bw = size === 'q' ? 160 : 100, bl = 200;
+  const fm = ml(0x5a3520), mm = ml(0xfafafe), pm = ml(c), dm = ml(dark(c, 0.55));
+  // Legs
+  [[-bw/2, -bl/2], [bw/2, -bl/2], [-bw/2, bl/2], [bw/2, bl/2]].forEach(([x, z]) =>
+    g.add(cyl(5, 5, 22, 8, fm, x, 11, z)));
+  // Frame
+  g.add(box(bw + 24, 20, bl + 24, fm, 0, 10, 0));
+  // Mattress
+  g.add(box(bw, 22, bl, mm, 0, 29, 0));
+  // Headboard
+  g.add(box(bw + 24, 80, 18, fm, 0, 58, -(bl + 22) / 2));
+  // Duvet
+  g.add(box(bw - 4, 16, bl * 0.62, pm, 0, 45, bl * 0.18));
+  // Pillows
+  (size === 'q' ? [-36, 36] : [0]).forEach(x => {
+    g.add(box(size === 'q' ? 58 : 70, 14, 40, ml(light(c, 1.3)), x, 44, -bl / 2 + 26));
+  });
+  g.userData = { type: size === 'q' ? 'bed_q' : 'bed_s', name: size === 'q' ? 'ベッドQ' : 'ベッドS', baseColor: c };
+  return g;
+}
+
+function mkDTable(c) {
+  const g = new THREE.Group();
+  const tm = ml(c), lm = ml(dark(c, 0.8));
+  g.add(box(160, 8, 90, tm, 0, 75, 0));
+  [[-68, -37], [68, -37], [-68, 37], [68, 37]].forEach(([x, z]) => g.add(cyl(5, 5, 70, 8, lm, x, 36, z)));
+  g.userData = { type: 'dtable', name: 'ダイニングテーブル', baseColor: c };
+  return g;
+}
+
+function mkChair(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), dm = ml(dark(c, 0.7));
+  g.add(box(46, 6, 46, cm, 0, 45, 0));
+  [[-19, -19], [19, -19], [-19, 19], [19, 19]].forEach(([x, z]) => g.add(cyl(3, 3, 44, 6, cm, x, 22, z)));
+  g.add(box(46, 42, 6, dm, 0, 68, -20));
+  g.add(box(46, 6, 6, dm, 0, 84, -18)); // top rail
+  g.userData = { type: 'chair', name: 'チェア', baseColor: c };
+  return g;
+}
+
+function mkDesk(c) {
+  const g = new THREE.Group();
+  const tm = ml(c), lm = ml(0x555555), scr = ml(0x111128);
+  g.add(box(140, 5, 70, tm, 0, 75, 0));
+  [[-63, -30], [63, -30], [-63, 30], [63, 30]].forEach(([x, z]) => g.add(box(4, 70, 4, lm, x, 37, z)));
+  // Monitor
+  g.add(box(28, 4, 14, lm, 0, 78, -26));       // stand base
+  g.add(box(3, 22, 3, lm, 0, 88, -26));         // stand pole
+  g.add(box(46, 30, 3, scr, 0, 102, -26));      // screen
+  g.add(box(50, 33, 2, ml(0x1a1a3a, {emissive:new THREE.Color(0x0a0a1a)}), 0, 102, -25)); // glow
+  // Keyboard
+  g.add(box(45, 2, 18, lm, 0, 77, 10));
+  g.userData = { type: 'desk', name: 'デスク', baseColor: c };
+  return g;
+}
+
+function mkDChair(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), gm = ml(0x888888), dm = ml(dark(c, 0.65));
+  g.add(cyl(6, 6, 40, 8, gm, 0, 26, 0));   // pole
+  g.add(cyl(22, 22, 5, 5, gm, 0, 7, 0));    // star base
+  g.add(cyl(22, 19, 8, 16, cm, 0, 50, 0));  // seat
+  g.add(box(40, 46, 7, cm, 0, 74, -18));    // back
+  g.add(box(28, 16, 7, dm, 0, 98, -18));    // headrest
+  [-22, 22].forEach(x => g.add(box(5, 5, 24, dm, x, 61, -5))); // armrests
+  g.userData = { type: 'dchair', name: 'オフィス椅子', baseColor: c };
+  return g;
+}
+
+function mkWardrobe(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), dm = ml(dark(c, 0.72)), hm = ml(0xd4a84c);
+  g.add(box(160, 220, 60, cm, 0, 110, 0));
+  g.add(box(4, 220, 62, dm, 0, 110, 0));   // center divider
+  g.add(box(162, 8, 62, dm, 0, 224, 0));   // top
+  [-30, 30].forEach(x => g.add(box(3, 22, 4, hm, x, 116, 31))); // handles
+  // Feet
+  [-68, 68].forEach(x => g.add(box(16, 8, 58, dm, x, 4, 0)));
+  g.userData = { type: 'wardrobe', name: 'ワードローブ', baseColor: c };
+  return g;
+}
+
+function mkTVStand(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), dm = ml(dark(c, 0.7));
+  g.add(box(180, 48, 46, cm, 0, 24, 0));
+  g.add(box(4, 46, 44, dm, 0, 24, 0));     // divider
+  [-80, 80].forEach(x => g.add(box(8, 6, 44, dm, x, 3, 0))); // feet
+  [16, 32].forEach(x => g.add(box(176, 2, 1, dm, 0, x, -22))); // door lines
+  // TV
+  g.add(box(162, 92, 6, ml(0x111111), 0, 101, -18));
+  g.add(box(152, 84, 3, ml(0x1a2040, {emissive:new THREE.Color(0x05080f),emissiveIntensity:0.6}), 0, 101, -16));
+  g.add(box(40, 6, 12, ml(0x333333), 0, 51, -18)); // TV base
+  g.userData = { type: 'tvstand', name: 'TV台', baseColor: c };
+  return g;
+}
+
+function mkShelf(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), dm = ml(dark(c, 0.75));
+  // Sides, top, bottom
+  [-47, 47].forEach(x => g.add(box(6, 200, 30, cm, x, 100, 0)));
+  g.add(box(100, 6, 30, cm, 0, 200, 0));
+  g.add(box(100, 6, 30, cm, 0, 3, 0));
+  // Shelves
+  [55, 108, 155].forEach(y => g.add(box(94, 4, 28, dm, 0, y, 0)));
+  // Books
+  const bc = [0xc0392b, 0x2980b9, 0x27ae60, 0xf39c12, 0x8e44ad, 0xe67e22, 0x16a085, 0xd35400];
+  let bx = -38;
+  for (let i = 0; i < 8; i++) {
+    const h = 28 + (i * 7) % 22;
+    g.add(box(9, h, 20, ml(bc[i % bc.length]), bx, 113 + h / 2, 0));
+    g.add(box(9, h - 4, 20, ml(bc[(i+3) % bc.length]), bx, 63 + (h-4)/2, 0));
+    bx += 11;
+  }
+  g.userData = { type: 'shelf', name: '本棚', baseColor: c };
+  return g;
+}
+
+function mkCTable(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), gm = ml(0xaaccee, { transparent: true, opacity: 0.6 });
+  [[-46, -23], [46, -23], [-46, 23], [46, 23]].forEach(([x, z]) => g.add(box(5, 38, 5, cm, x, 19, z)));
+  g.add(box(90, 4, 52, gm, 0, 40, 0)); // glass top
+  g.add(box(82, 3, 44, ml(dark(c, 0.8)), 0, 17, 0)); // lower shelf
+  g.userData = { type: 'ctable', name: 'コーヒーテーブル', baseColor: c };
+  return g;
+}
+
+function mkSTable(c) {
+  const g = new THREE.Group();
+  const cm = ml(c);
+  g.add(cyl(24, 24, 4, 16, cm, 0, 55, 0));
+  g.add(cyl(4, 6, 50, 8, cm, 0, 29, 0));
+  g.add(cyl(17, 17, 4, 16, cm, 0, 4, 0));
+  g.userData = { type: 'stable', name: 'サイドテーブル', baseColor: c };
+  return g;
+}
+
+function mkPlant(c) {
+  const g = new THREE.Group();
+  const pm = ml(0xc87040), sm = ml(0x3d2b1f), lm = ml(c), dm = ml(dark(c, 0.65));
+  g.add(cyl(18, 12, 32, 16, pm, 0, 16, 0));
+  g.add(cyl(17, 17, 4, 16, sm, 0, 31, 0)); // soil
+  g.add(cyl(2, 3, 42, 6, sm, 0, 52, 0));   // stem
+  g.add(sph3(30, 12, lm, 0, 82, 0));
+  g.add(sph3(20, 10, dm, 24, 65, 10));
+  g.add(sph3(18, 10, dm, -20, 60, -8));
+  g.add(sph3(16, 8, lm, 8, 96, 16));
+  g.userData = { type: 'plant', name: '観葉植物', baseColor: c };
+  return g;
+}
+
+function mkLamp(c) {
+  const g = new THREE.Group();
+  const bm = ml(0x333333), pm = ml(0xb0b0b0), sm = ml(c, { side: THREE.DoubleSide });
+  g.add(cyl(18, 18, 5, 16, bm, 0, 2.5, 0));
+  g.add(cyl(3, 3, 165, 8, pm, 0, 85, 0));
+  g.add(cyl(30, 18, 32, 16, sm, 0, 168, 0));
+  g.add(cyl(16, 16, 3, 16, ml(0xfffbe0, { emissive: new THREE.Color(0xffee88), emissiveIntensity: 0.8 }), 0, 152, 0));
+  g.userData = { type: 'lamp', name: 'フロアランプ', baseColor: c };
+  return g;
+}
+
+function mkRug(c) {
+  const g = new THREE.Group();
+  const cm = ml(c), bm = ml(dark(c, 0.7));
+  g.add(box(220, 3, 150, cm, 0, 1.5, 0));
+  g.add(box(200, 3.5, 130, bm, 0, 2, 0));
+  g.add(box(180, 4, 110, ml(light(c, 1.15)), 0, 2.5, 0));
+  g.userData = { type: 'rug', name: 'ラグ', baseColor: c };
+  return g;
+}
+
+function mkBathtub(c) {
+  const g = new THREE.Group();
+  const wm = ml(c), cm = ml(0x88bbcc, { transparent: true, opacity: 0.5 });
+  // Outer shell
+  g.add(box(175, 65, 80, wm, 0, 32, 0));
+  // Inner
+  g.add(box(155, 55, 60, ml(0xddeeff), 0, 40, 0));
+  // Water
+  g.add(box(152, 3, 57, cm, 0, 62, 0));
+  // Feet
+  [[-78, -34], [78, -34], [-78, 34], [78, 34]].forEach(([x, z]) => g.add(cyl(5, 5, 12, 8, ml(0xcccccc), x, 6, z)));
+  // Tap
+  g.add(box(10, 20, 5, ml(0xbbbbbb), 0, 68, -37));
+  g.userData = { type: 'bathtub', name: 'バスタブ', baseColor: c };
+  return g;
+}
+
+function mkToilet(c) {
+  const g = new THREE.Group();
+  const wm = ml(c);
+  // Base
+  g.add(box(44, 40, 60, wm, 0, 20, 0));
+  // Tank
+  g.add(box(40, 34, 16, wm, 0, 47, -27));
+  // Lid
+  g.add(box(42, 4, 52, ml(dark(c, 0.85)), 0, 41, 0));
+  // Seat
+  g.add(box(38, 3, 46, wm, 0, 44, 2));
+  g.userData = { type: 'toilet', name: 'トイレ', baseColor: c };
+  return g;
+}
+
+function mkFurn(type, color) {
+  const c = color || DEFAULTS[type] || '#888888';
+  switch (type) {
+    case 'sofa': return mkSofa(c);
+    case 'sofa_l': return mkSofaL(c);
+    case 'bed_q': return mkBed('q', c);
+    case 'bed_s': return mkBed('s', c);
+    case 'dtable': return mkDTable(c);
+    case 'chair': return mkChair(c);
+    case 'desk': return mkDesk(c);
+    case 'dchair': return mkDChair(c);
+    case 'wardrobe': return mkWardrobe(c);
+    case 'tvstand': return mkTVStand(c);
+    case 'shelf': return mkShelf(c);
+    case 'ctable': return mkCTable(c);
+    case 'stable': return mkSTable(c);
+    case 'plant': return mkPlant(c);
+    case 'lamp': return mkLamp(c);
+    case 'rug': return mkRug(c);
+    case 'bathtub': return mkBathtub(c);
+    case 'toilet': return mkToilet(c);
+    default: return null;
+  }
+}
+
+// ============================================================
+// ADD / SELECT / MANAGE FURNITURE
+// ============================================================
+function addFurn(type) {
+  const grp = mkFurn(type);
+  if (!grp) return;
+  grp.position.set((Math.random() - 0.5) * 80, 0, (Math.random() - 0.5) * 80);
+  scene.add(grp);
+  const item = { group: grp, type, color: grp.userData.baseColor, name: grp.userData.name, selBox: null };
+  furnList.push(item);
+  selectFurn(item);
+}
+
+let selBoxMesh = null;
+
+function selectFurn(item) {
+  // Remove old selection box
+  if (sel && sel.selBox) { sel.group.remove(sel.selBox); sel.selBox = null; }
+
+  sel = item;
+
+  if (item) {
+    // Create wireframe bounding box
+    const box3 = new THREE.Box3().setFromObject(item.group);
+    const size = new THREE.Vector3(); box3.getSize(size);
+    const center = new THREE.Vector3(); box3.getCenter(center);
+    const localCenter = center.clone().sub(item.group.position);
+
+    const geo = new THREE.BoxGeometry(size.x + 6, size.y + 6, size.z + 6);
+    const mat = new THREE.MeshBasicMaterial({ color: 0x44aaff, wireframe: true, transparent: true, opacity: 0.5 });
+    const sbMesh = new THREE.Mesh(geo, mat);
+    sbMesh.userData.noHit = true;
+    sbMesh.position.copy(localCenter);
+    item.group.add(sbMesh);
+    item.selBox = sbMesh;
+
+    // Update UI
+    document.getElementById('nosel').style.display = 'none';
+    document.getElementById('props').style.display = 'block';
+    document.getElementById('pname').textContent = item.name;
+    document.getElementById('pcolor').value = toHex(item.color);
+    const sc = Math.round(item.group.scale.x * 100);
+    document.getElementById('pscale_r').value = sc;
+    document.getElementById('pscale').textContent = sc + '%';
+    const ry = Math.round(THREE.MathUtils.radToDeg(item.group.rotation.y) % 360);
+    document.getElementById('prot').textContent = ((ry % 360) + 360) % 360 + '°';
+    const hy = Math.round(item.group.position.y);
+    document.getElementById('pheight_r').value = hy;
+    document.getElementById('pheight').textContent = hy + 'cm';
+  } else {
+    document.getElementById('nosel').style.display = 'block';
+    document.getElementById('props').style.display = 'none';
+  }
+}
+
+function toHex(color) {
+  if (typeof color === 'string' && color.startsWith('#')) return color;
+  const c = new THREE.Color(color);
+  return '#' + [c.r, c.g, c.b].map(v => Math.round(v * 255).toString(16).padStart(2, '0')).join('');
+}
+
+function onColorChange(hex) {
+  if (!sel) return;
+  sel.color = hex;
+  const pos = sel.group.position.clone();
+  const rot = sel.group.rotation.clone();
+  const sc = sel.group.scale.clone();
+  const idx = furnList.indexOf(sel);
+  scene.remove(sel.group);
+  const grp = mkFurn(sel.type, hex);
+  grp.position.copy(pos);
+  grp.rotation.copy(rot);
+  grp.scale.copy(sc);
+  scene.add(grp);
+  const newItem = { group: grp, type: sel.type, color: hex, name: grp.userData.name, selBox: null };
+  furnList[idx] = newItem;
+  sel = null;
+  selectFurn(newItem);
+}
+
+function rotateSel(deg) {
+  if (!sel) return;
+  sel.group.rotation.y += THREE.MathUtils.degToRad(deg);
+  const ry = Math.round(THREE.MathUtils.radToDef(sel.group.rotation.y));
+  document.getElementById('prot').textContent = ((ry % 360) + 360) % 360 + '°';
+  // Refresh selection box
+  selectFurn(sel);
+}
+
+function onScaleChange(val) {
+  if (!sel) return;
+  const s = val / 100;
+  sel.group.scale.set(s, s, s);
+  document.getElementById('pscale').textContent = val + '%';
+  selectFurn(sel);
+}
+
+function onHeightChange(val) {
+  if (!sel) return;
+  sel.group.position.y = parseInt(val);
+  document.getElementById('pheight').textContent = val + 'cm';
+}
+
+function delSel() {
+  if (!sel) return;
+  if (sel.selBox) sel.group.remove(sel.selBox);
+  scene.remove(sel.group);
+  furnList.splice(furnList.indexOf(sel), 1);
+  selectFurn(null);
+}
+
+function clearAll() {
+  if (!confirm('すべての家具を削除しますか？')) return;
+  selectFurn(null);
+  furnList.forEach(f => { if (f.selBox) f.group.remove(f.selBox); scene.remove(f.group); });
+  furnList.length = 0;
+}
+
+// ============================================================
+// UI EVENT HANDLERS
+// ============================================================
+document.getElementById('roomW').addEventListener('input', e => {
+  RW = Math.round(parseFloat(e.target.value) * 100);
+  document.getElementById('lblW').textContent = e.target.value + 'm';
+  buildRoom();
+});
+document.getElementById('roomD').addEventListener('input', e => {
+  RD = Math.round(parseFloat(e.target.value) * 100);
+  document.getElementById('lblD').textContent = e.target.value + 'm';
+  buildRoom();
+});
+document.getElementById('roomH').addEventListener('input', e => {
+  RH = Math.round(parseFloat(e.target.value) * 100);
+  document.getElementById('lblH').textContent = e.target.value + 'm';
+  buildRoom();
+});
+document.getElementById('floorClr').addEventListener('input', e => {
+  floorClr = e.target.value;
+  if (floorMesh) floorMesh.material.color.set(floorClr);
+});
+document.getElementById('wallClr').addEventListener('input', e => {
+  wallClr = e.target.value;
+  if (wallGroup) wallGroup.traverse(c => { if (c.isMesh) c.material.color.set(wallClr); });
+});
+document.getElementById('showCeil').addEventListener('change', e => {
+  if (ceilMesh) ceilMesh.visible = e.target.checked;
+});
+document.getElementById('snapGrid').addEventListener('change', e => {
+  snapOn = e.target.checked;
+  document.getElementById('snapBadge').style.display = snapOn ? 'block' : 'none';
+});
+
+// ============================================================
+// RESIZE
+// ============================================================
+function onResize() {
+  const w = cvsEl.clientWidth, h = cvsEl.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+}
+window.addEventListener('resize', onResize);
+
+// ============================================================
+// RENDER LOOP
+// ============================================================
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+buildRoom();
+resetCam();
+onResize();
+animate();
+
+// Show snap badge
+if (snapOn) document.getElementById('snapBadge').style.display = 'block';
+
+// ============================================================
+// TOUCH SUPPORT
+// ============================================================
+let touchPrevDist = 0, touchPrevR = 900;
+let touchPrevMid = null;
+let nTouches = 0;
+
+function getTDist(t) {
+  const dx = t[0].clientX - t[1].clientX, dy = t[0].clientY - t[1].clientY;
+  return Math.sqrt(dx*dx + dy*dy);
+}
+function getTMid(t) {
+  return { x: (t[0].clientX+t[1].clientX)/2, y: (t[0].clientY+t[1].clientY)/2 };
+}
+
+renderer.domElement.addEventListener('touchstart', e => {
+  e.preventDefault();
+  nTouches = e.touches.length;
+  if (e.touches.length === 1) {
+    const t = e.touches[0];
+    mLast = { x: t.clientX, y: t.clientY };
+    mDown = true; mBtn = 0; didMove = false;
+    const synth = { clientX: t.clientX, clientY: t.clientY, button: 0 };
+    const f = hitFurn(synth);
+    if (f) {
+      selectFurn(f);
+      draggingFurn = true;
+      const fp = rayFloor(synth);
+      if (fp) dragOffset.set(f.group.position.x - fp.x, 0, f.group.position.z - fp.z);
+    } else {
+      orbitDrag = true;
+      if (sel) selectFurn(null);
+    }
+  } else if (e.touches.length === 2) {
+    draggingFurn = false; orbitDrag = false; panDrag = false; mDown = false;
+    touchPrevDist = getTDist(e.touches);
+    touchPrevR = sph.r;
+    touchPrevMid = getTMid(e.touches);
+  }
+}, { passive: false });
+
+renderer.domElement.addEventListener('touchmove', e => {
+  e.preventDefault();
+  if (e.touches.length === 1 && mDown) {
+    const t = e.touches[0];
+    const dx = t.clientX - mLast.x, dy = t.clientY - mLast.y;
+    if (Math.abs(dx) > 2 || Math.abs(dy) > 2) didMove = true;
+    const synth = { clientX: t.clientX, clientY: t.clientY };
+    if (draggingFurn && sel) {
+      const fp = rayFloor(synth);
+      if (fp) {
+        let nx = fp.x + dragOffset.x, nz = fp.z + dragOffset.z;
+        if (snapOn) { const s=25; nx=Math.round(nx/s)*s; nz=Math.round(nz/s)*s; }
+        const hw=RW/2-5, hd=RD/2-5;
+        sel.group.position.x = Math.max(-hw, Math.min(hw, nx));
+        sel.group.position.z = Math.max(-hd, Math.min(hd, nz));
+      }
+    } else if (orbitDrag && viewMode === '3d') {
+      sph.theta -= dx * 0.008;
+      sph.phi = Math.max(0.05, Math.min(Math.PI * 0.47, sph.phi - dy * 0.008));
+      camUpdate();
+    }
+    mLast = { x: t.clientX, y: t.clientY };
+  } else if (e.touches.length === 2) {
+    // Pinch zoom
+    const dist = getTDist(e.touches);
+    sph.r = Math.max(80, Math.min(1800, touchPrevR * (touchPrevDist / dist)));
+    // Two-finger pan
+    const mid = getTMid(e.touches);
+    if (touchPrevMid) {
+      const dx = mid.x - touchPrevMid.x, dy = mid.y - touchPrevMid.y;
+      const sp = sph.r * 0.001;
+      const rx = Math.cos(sph.theta), rz = -Math.sin(sph.theta);
+      const fx = -Math.sin(sph.theta), fz = -Math.cos(sph.theta);
+      camTarget.x -= rx*dx*sp + fx*dy*sp;
+      camTarget.z -= rz*dx*sp + fz*dy*sp;
+      touchPrevMid = mid;
+    }
+    camUpdate();
+  }
+}, { passive: false });
+
+renderer.domElement.addEventListener('touchend', e => {
+  if (e.touches.length === 0) {
+    mDown = false; draggingFurn = false; orbitDrag = false; touchPrevMid = null;
+  } else if (e.touches.length === 1) {
+    // Reverted from 2-finger to 1-finger
+    const t = e.touches[0];
+    mLast = { x: t.clientX, y: t.clientY };
+    mDown = true; orbitDrag = true; draggingFurn = false; touchPrevMid = null;
+  }
+  nTouches = e.touches.length;
+}, { passive: false });
+
+// Update helpbar text for touch devices
+if ('ontouchstart' in window) {
+  document.querySelector('.helpbar').textContent = '1本指：カメラ回転 ｜ 2本指：ズーム/パン ｜ 家具タップ→ドラッ���：移動';
+}
+
+// ============================================================
+// MOBILE UI
+// ============================================================
+let mobActive = null;
+const MOB_PANELS = { cat:'mobCat', room:'mobRoom', props:'mobProps' };
+const MOB_BTNS   = { cat:'mobCatBtn', room:'mobRoomBtn', props:'mobPropsBtn' };
+
+function mobToggle(key) {
+  if (mobActive === key) { mobClose(); return; }
+  mobClose();
+  document.getElementById(MOB_PANELS[key]).classList.add('open');
+  document.getElementById(MOB_BTNS[key]).classList.add('act');
+  mobActive = key;
+  if (key === 'props') syncMobProps();
+}
+
+function mobClose() {
+  if (!mobActive) return;
+  document.getElementById(MOB_PANELS[mobActive]).classList.remove('open');
+  document.getElementById(MOB_BTNS[mobActive]).classList.remove('act');
+  mobActive = null;
+}
+
+function syncMobProps() {
+  const nosel = document.getElementById('mobNoSel');
+  const cont  = document.getElementById('mobPropCont');
+  if (!nosel) return;
+  if (sel) {
+    nosel.style.display = 'none'; cont.style.display = 'block';
+    document.getElementById('mobPName').textContent = sel.name;
+    document.getElementById('mobPColor').value = toHex(sel.color);
+    const sc = Math.round(sel.group.scale.x * 100);
+    document.getElementById('mobPScaleR').value = sc;
+    document.getElementById('mobPScale').textContent = sc + '%';
+    const ry = Math.round(THREE.MathUtils.radToDef(sel.group.rotation.y));
+    document.getElementById('mobPRot').textContent = ((ry % 360) + 360) % 360 + '°';
+  } else {
+    nosel.style.display = 'block'; cont.style.display = 'none';
+  }
+}
+
+// Patch rotateSel to keep mobile props in sync
+const _origRotate = rotateSel;
+// Use wrapper approach via the existing calls — just add syncMobProps() after rotateSel body
+// Actually: monkey-patch
+const _rSel = rotateSel;
+// Function declarations can't be directly re-assigned, so use an event-based approach:
+// We'll call syncMobProps from the mobile rotate buttons directly (already done in HTML)
+// And after selectFurn() we also call it:
+
+// Patch selectFurn post-hook via a small shim
+const _sfOrig = selectFurn;
+// Can't re-declare selectFurn, so schedule sync on next frame after any selection change
+renderer.domElement.addEventListener('mouseup', () => { if(mobActive==='props') syncMobProps(); });
+renderer.domElement.addEventListener('touchend', () => { if(mobActive==='props') syncMobProps(); }, {passive:true});
+
+let mobIs3d = true;
+function mobToggleView() {
+  mobIs3d = !mobIs3d;
+  document.getElementById('mobViewIco').textContent = mobIs3d ? '📐' : '🧊';
+  document.getElementById('mobViewLbl').textContent = mobIs3d ? '上面' : '3D';
+  if (mobIs3d) setView('3d', document.getElementById('v3d'));
+  else         setView('top', document.getElementById('vtop'));
+}
+
+function mobRoom(dim, val) {
+  const n = Math.round(parseFloat(val) * 100);
+  if (dim==='W') { RW=n; document.getElementById('mobLW').textContent=val+'m'; document.getElementById('roomW').value=val; document.getElementById('lblW').textContent=val+'m'; }
+  if (dim==='D') { RD=n; document.getElementById('mobLD').textContent=val+'m'; document.getElementById('roomD').value=val; document.getElementById('lblD').textContent=val+'m'; }
+  if (dim==='H') { RH=n; document.getElementById('mobLH').textContent=val+'m'; document.getElementById('roomH').value=val; document.getElementById('lblH').textContent=val+'m'; }
+  buildRoom();
+}
+</script>
+</body>
+</html>
