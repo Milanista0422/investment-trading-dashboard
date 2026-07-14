@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-13T21:08:45.355924+09:00",
+  "generated_at": "2026-07-14T20:06:07.116166+09:00",
   "events": [
     {
       "date": "2026-07-14",
@@ -63,7 +63,7 @@
       "impact": "High",
       "event_en": "Core PPI m/m",
       "event_ja": "コアPPI",
-      "forecast": "0.3%",
+      "forecast": "0.4%",
       "previous": "0.4%",
       "actual": ""
     },
@@ -96,7 +96,7 @@
       "impact": "Medium",
       "event_en": "Core Retail Sales m/m",
       "event_ja": "コア小売売上高",
-      "forecast": "-0.1%",
+      "forecast": "0.0%",
       "previous": "0.8%",
       "actual": ""
     },
@@ -107,7 +107,7 @@
       "impact": "Medium",
       "event_en": "Philly Fed Manufacturing Index",
       "event_ja": "フィラデルフィア連銀製造業景気指数",
-      "forecast": "12.1",
+      "forecast": "12.7",
       "previous": "10.3",
       "actual": ""
     },
@@ -118,7 +118,7 @@
       "impact": "Medium",
       "event_en": "Retail Sales m/m",
       "event_ja": "小売売上高",
-      "forecast": "0.3%",
+      "forecast": "0.2%",
       "previous": "0.9%",
       "actual": ""
     },
@@ -129,7 +129,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "215K",
+      "forecast": "216K",
       "previous": "215K",
       "actual": ""
     },
@@ -140,7 +140,7 @@
       "impact": "Medium",
       "event_en": "Prelim UoM Consumer Sentiment",
       "event_ja": "ミシガン大学消費者信頼感（速報）",
-      "forecast": "51.4",
+      "forecast": "51.0",
       "previous": "48.9",
       "actual": ""
     },
