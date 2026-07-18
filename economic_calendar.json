@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T20:06:07.116166+09:00",
+  "generated_at": "2026-07-18T20:04:13.422026+09:00",
   "events": [
     {
       "date": "2026-07-14",
@@ -63,7 +63,7 @@
       "impact": "High",
       "event_en": "Core PPI m/m",
       "event_ja": "コアPPI",
-      "forecast": "0.4%",
+      "forecast": "0.3%",
       "previous": "0.4%",
       "actual": ""
     },
@@ -131,6 +131,17 @@
       "event_ja": "新規失業保険申請件数",
       "forecast": "216K",
       "previous": "215K",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-17",
+      "time_jst": "10:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
+      "forecast": "",
+      "previous": "",
       "actual": ""
     },
     {
