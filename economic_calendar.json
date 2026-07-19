@@ -1,94 +1,6 @@
 {
-  "generated_at": "2026-07-18T20:04:13.422026+09:00",
+  "generated_at": "2026-07-19T20:05:51.603307+09:00",
   "events": [
-    {
-      "date": "2026-07-14",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Core CPI m/m",
-      "event_ja": "コアCPI 前月比",
-      "forecast": "0.2%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-14",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Core CPI y/y",
-      "event_ja": "Core CPI y/y",
-      "forecast": "2.8%",
-      "previous": "2.9%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-14",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "CPI m/m",
-      "event_ja": "消費者物価指数(CPI) 前月比",
-      "forecast": "-0.1%",
-      "previous": "0.5%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-14",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "CPI y/y",
-      "event_ja": "消費者物価指数(CPI) 前年比",
-      "forecast": "3.8%",
-      "previous": "4.2%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-14",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Fed Chairman Warsh Testifies",
-      "event_ja": "Fed Chairman Warsh Testifies",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-15",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Core PPI m/m",
-      "event_ja": "コアPPI",
-      "forecast": "0.3%",
-      "previous": "0.4%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-15",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "PPI m/m",
-      "event_ja": "生産者物価指数(PPI)",
-      "forecast": "0.0%",
-      "previous": "1.1%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-15",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Fed Chairman Warsh Testifies",
-      "event_ja": "Fed Chairman Warsh Testifies",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-07-16",
       "time_jst": "21:30",
@@ -175,6 +87,17 @@
       "event_ja": "TSLA 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-23",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "211K",
+      "previous": "208K",
       "actual": ""
     },
     {
