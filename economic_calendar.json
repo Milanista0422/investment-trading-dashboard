@@ -1,50 +1,6 @@
 {
-  "generated_at": "2026-07-19T20:05:51.603307+09:00",
+  "generated_at": "2026-07-20T21:43:37.253987+09:00",
   "events": [
-    {
-      "date": "2026-07-16",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Core Retail Sales m/m",
-      "event_ja": "コア小売売上高",
-      "forecast": "0.0%",
-      "previous": "0.8%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-16",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Philly Fed Manufacturing Index",
-      "event_ja": "フィラデルフィア連銀製造業景気指数",
-      "forecast": "12.7",
-      "previous": "10.3",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-16",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Retail Sales m/m",
-      "event_ja": "小売売上高",
-      "forecast": "0.2%",
-      "previous": "0.9%",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-16",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Unemployment Claims",
-      "event_ja": "新規失業保険申請件数",
-      "forecast": "216K",
-      "previous": "215K",
-      "actual": ""
-    },
     {
       "date": "2026-07-17",
       "time_jst": "10:00",
