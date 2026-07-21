@@ -1,39 +1,6 @@
 {
-  "generated_at": "2026-07-20T21:43:37.253987+09:00",
+  "generated_at": "2026-07-21T20:04:40.428496+09:00",
   "events": [
-    {
-      "date": "2026-07-17",
-      "time_jst": "10:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-17",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Prelim UoM Consumer Sentiment",
-      "event_ja": "ミシガン大学消費者信頼感（速報）",
-      "forecast": "51.0",
-      "previous": "48.9",
-      "actual": ""
-    },
-    {
-      "date": "2026-07-17",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Prelim UoM Inflation Expectations",
-      "event_ja": "ミシガン大期待インフレ率（速報）",
-      "forecast": "",
-      "previous": "4.6%",
-      "actual": ""
-    },
     {
       "date": "2026-07-22",
       "time_jst": "本引け後",
