@@ -1,17 +1,6 @@
 {
-  "generated_at": "2026-07-25T20:48:45.137574+09:00",
+  "generated_at": "2026-07-26T22:10:24.570105+09:00",
   "events": [
-    {
-      "date": "2026-07-22",
-      "time_jst": "本引け後",
-      "currency": "TSLA",
-      "impact": "High",
-      "event_en": "TSLA Earnings",
-      "event_ja": "TSLA 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-07-23",
       "time_jst": "04:00",
@@ -79,6 +68,17 @@
       "actual": ""
     },
     {
+      "date": "2026-07-28",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "CB Consumer Confidence",
+      "event_ja": "消費者信頼感指数(CB)",
+      "forecast": "92.1",
+      "previous": "91.2",
+      "actual": ""
+    },
+    {
       "date": "2026-07-29",
       "time_jst": "本引け後",
       "currency": "MSFT",
@@ -98,6 +98,83 @@
       "event_ja": "META 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Federal Funds Rate",
+      "event_ja": "FF金利決定",
+      "forecast": "3.75%",
+      "previous": "3.75%",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Statement",
+      "event_ja": "FOMC声明・政策金利決定",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "03:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Press Conference",
+      "event_ja": "FOMC議長記者会見",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Advance GDP q/q",
+      "event_ja": "GDP速報値",
+      "forecast": "2.3%",
+      "previous": "2.0%",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core PCE Price Index m/m",
+      "event_ja": "コアPCE物価指数",
+      "forecast": "0.1%",
+      "previous": "0.3%",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Advance GDP Price Index q/q",
+      "event_ja": "Advance GDP Price Index q/q",
+      "forecast": "3.7%",
+      "previous": "3.6%",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-30",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "206K",
+      "previous": "187K",
       "actual": ""
     },
     {
@@ -142,6 +219,39 @@
       "event_ja": "AMZN 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-31",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Employment Cost Index q/q",
+      "event_ja": "Employment Cost Index q/q",
+      "forecast": "0.8%",
+      "previous": "0.9%",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-31",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Revised UoM Consumer Sentiment",
+      "event_ja": "ミシガン大学消費者信頼感（改定）",
+      "forecast": "54.2",
+      "previous": "54.4",
+      "actual": ""
+    },
+    {
+      "date": "2026-07-31",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Revised UoM Inflation Expectations",
+      "event_ja": "Revised UoM Inflation Expectations",
+      "forecast": "",
+      "previous": "4.2%",
       "actual": ""
     },
     {
