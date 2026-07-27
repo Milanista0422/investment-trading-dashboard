@@ -1,6 +1,6 @@
 {
-  "date": "20260726",
-  "updated_at": "2026-07-26T22:10:50.542993+09:00",
+  "date": "20260727",
+  "updated_at": "2026-07-27T20:06:25.463775+09:00",
   "tickers": {
     "SOXL": {
       "top_news": [
@@ -62,6 +62,14 @@
       "top_news": [
         {
           "ticker": "QQQ",
+          "headline": "Nasdaq, S&P 500, Dow Futures Rise As Iran Pause Eases Oil Fears Ahead Of Big Tech Earnings, Fed Meeting: ORCL, NVDA, VG, DEL In Focus",
+          "url": "https://stocktwits.com/news-articles/markets/equity/nasdaq-s-and-p-500-dow-futures-rise-as-iran-pause-eases-oil-fears-ahead-of-big-tech-earnings-fed-meeting-orcl-nvda-vg-del-in-focus/cZZxGxcR7Cc?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "ticker": "QQQ",
           "headline": "AMD Stock Slips Despite Wave Of Price Target Hikes – Retail Traders Say Chip Rally Is 'Starting To Look Exhausted'",
           "url": "https://stocktwits.com/news-articles/markets/equity/amd-stock-slips-price-target-hikes-retail-chip-rally-looking-exhausted/cZZpTwzR7z4?.tsrc=rss",
           "summary": "株価急上昇→ 株価にポジティブ",
@@ -75,14 +83,6 @@
           "summary": "株価急落→ 株価にネガティブ",
           "sentiment": "negative",
           "impact": "medium"
-        },
-        {
-          "ticker": "QQQ",
-          "headline": "After Comparing Every Covered Call Nasdaq-100 ETF These 3 Pay Up to 14 Percent Without Capping Your AI Upside",
-          "url": "https://247wallst.com/investing/2026/07/25/after-comparing-every-covered-call-nasdaq-100-etf-these-3-pay-up-to-14-percent-without-capping-your-ai-upside/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "low"
         }
       ]
     },
@@ -90,27 +90,27 @@
       "top_news": [
         {
           "ticker": "NVDA",
-          "headline": "If I Were Starting My Portfolio From Scratch Today, This Is the First ETF I'd Buy",
-          "url": "https://www.fool.com/investing/2026/07/26/if-i-were-starting-my-portfolio-from-scratch-today/?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立",
-          "sentiment": "neutral",
-          "impact": "medium"
+          "headline": "Why is Bernstein bullish on memory stocks after Samsung, Nvidia deals?",
+          "url": "https://finance.yahoo.com/technology/articles/why-bernstein-bullish-memory-stocks-095139149.html?.tsrc=rss",
+          "summary": "提携・契約→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
+          "impact": "high"
         },
         {
           "ticker": "NVDA",
-          "headline": "3 High-Yielding Dividend Stocks Worth Loading Up On Now (1 Yields Over 5.5%)",
-          "url": "https://www.fool.com/investing/2026/07/26/3-high-yielding-dividend-stocks-worth-loading-up-o/?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立",
+          "headline": "SpaceX Stock Is Down 49% — Elon Musk Says That’s Exactly What Investors Should Expect",
+          "url": "https://247wallst.com/investing/2026/07/27/spacex-stock-is-down-49-elon-musk-says-thats-exactly-what-investors-should-expect/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
-          "impact": "medium"
+          "impact": "high"
         },
         {
           "ticker": "NVDA",
-          "headline": "One Billionaire Fund Has Nearly 80% of Its Portfolio in a Single Stock",
-          "url": "https://247wallst.com/investing/2026/07/26/one-billionaire-fund-has-nearly-80-of-its-portfolio-in-a-single-stock/?.tsrc=rss",
+          "headline": "Zacks Investment Ideas feature highlights: Vertiv, Nvidia and EMCOR Group",
+          "url": "https://finance.yahoo.com/technology/ai/articles/zacks-investment-ideas-feature-highlights-094700651.html?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
-          "impact": "low"
+          "impact": "medium"
         }
       ]
     },
@@ -118,25 +118,25 @@
       "top_news": [
         {
           "ticker": "TSLA",
-          "headline": "Tesla's Revenue Beat Hid The Number That Actually Sank The Stock",
-          "url": "https://www.trefis.com/articles/608801/teslas-revenue-beat-hid-the-number-that-actually-sank-the-stock/2026-07-25?.tsrc=rss",
-          "summary": "決算関連・予想を上回る→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
+          "headline": "Cybertruck Called the Biggest Flop in Automotive History, as Tesla Shares Plummet",
+          "url": "https://247wallst.com/investing/2026/07/27/cybertruck-called-the-biggest-flop-in-automotive-history-as-tesla-shares-plummet/?.tsrc=rss",
+          "summary": "株価急落→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "medium"
         },
         {
           "ticker": "TSLA",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "Cathie Wood's Ark Bought $21.3 Million of SpaceX Stock as Shares Fell 45% From Their Record High. Wall Street's Median Price Target Is $243.81, 111.5% Above the Current Close.",
+          "url": "https://www.fool.com/investing/2026/07/27/cathie-woods-ark-bought-213-million-of-spacex-stoc/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "TSLA",
-          "headline": "'The AI trade is still on': Wall Street sees Big Tech's spending as positive for semiconductor stocks",
-          "url": "https://finance.yahoo.com/markets/article/the-ai-trade-is-still-on-wall-street-sees-big-techs-spending-as-positive-for-semiconductor-stocks-121056519.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
+          "headline": "Dow Jones Futures Rise, Oil Prices Dive On Iran Hopes; Apple Leads Earnings Wave, Fed Meeting Ahead",
+          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures-rise%2C-oil.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         }
@@ -146,27 +146,27 @@
       "top_news": [
         {
           "ticker": "AAPL",
-          "headline": "MarketBeat Week in Review – 07/20- 07/24",
-          "url": "https://www.marketbeat.com/articles/marketbeat-week-in-review-07-20-07-24/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
-          "summary": "予想を上回る→ 株価にネガティブ（高インパクト）",
+          "headline": "Fed Decision, Tech Earnings and Other Can't Miss Items this Week",
+          "url": "https://www.barchart.com/story/news/3470026/fed-decision-tech-earnings-and-other-can-t-miss-items-this-week?.tsrc=rss",
+          "summary": "決算関連・予想を下回る→ 株価にネガティブ（高インパクト）",
           "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "Alphabet, Microsoft, Meta Platforms, Apple and Amazon are part of Zacks Earnings Preview",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-microsoft-meta-platforms-apple-071700392.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "AAPL",
-          "headline": "Morgan Stanley resets Microsoft stock forecast ahead of earnings",
-          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-microsoft-stock-forecast-ahead-of-earnings?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "Dow Jones Futures Rise, Oil Prices Dive On Iran Hopes; Apple Leads Earnings Wave, Fed Meeting Ahead",
+          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures-rise%2C-oil.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -174,27 +174,27 @@
       "top_news": [
         {
           "ticker": "MSFT",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "Corsair Gaming and AngloGold Ashanti have been highlighted as Zacks Bull and Bear of the Day",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/corsair-gaming-anglogold-ashanti-highlighted-065700702.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         },
         {
           "ticker": "MSFT",
-          "headline": "3M (MMM) Teams Up With Microsoft To Bring Optical Tech Into Azure AI Data Centers",
-          "url": "https://finance.yahoo.com/technology/ai/articles/3m-mmm-teams-microsoft-bring-070828834.html?.tsrc=rss",
+          "headline": "The Growth That Has to Land for Palantir Stock to Make Sense",
+          "url": "https://www.trefis.com/articles/608955/the-growth-that-has-to-land-for-palantir-stock-to-make-sense/2026-07-27?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "MSFT",
-          "headline": "Morgan Stanley resets Microsoft stock forecast ahead of earnings",
-          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-microsoft-stock-forecast-ahead-of-earnings?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "Alphabet, Microsoft, Meta Platforms, Apple and Amazon are part of Zacks Earnings Preview",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-microsoft-meta-platforms-apple-071700392.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -202,27 +202,27 @@
       "top_news": [
         {
           "ticker": "META",
-          "headline": "Meta (META) Launches Lightspeed Tie Up To Track In Store Sales From Ads",
-          "url": "https://finance.yahoo.com/media-advertising/articles/meta-meta-launches-lightspeed-tie-171012283.html?.tsrc=rss",
-          "summary": "新製品/新サービス→ 株価にポジティブ（高インパクト）",
+          "headline": "Morgan Stanley’s Wilson Says AI Adoption Key to Profit Outlook",
+          "url": "https://finance.yahoo.com/technology/ai/articles/morgan-stanley-wilson-says-ai-092445879.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "META",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "Alphabet, Microsoft, Meta Platforms, Apple and Amazon are part of Zacks Earnings Preview",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-microsoft-meta-platforms-apple-071700392.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "META",
-          "headline": "Morgan Stanley resets Microsoft stock forecast ahead of earnings",
-          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-microsoft-stock-forecast-ahead-of-earnings?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "Dow Jones Futures Rise, Oil Prices Dive On Iran Hopes; Apple Leads Earnings Wave, Fed Meeting Ahead",
+          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures-rise%2C-oil.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -230,26 +230,26 @@
       "top_news": [
         {
           "ticker": "AMZN",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "China’s Moonshot to Release Breakthrough AI Model for Download",
+          "url": "https://finance.yahoo.com/technology/ai/articles/china-moonshot-release-breakthrough-ai-010035301.html?.tsrc=rss",
+          "summary": "新製品/新サービス・対中政策・関税→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "ticker": "AMZN",
+          "headline": "The Growth That Has to Land for Palantir Stock to Make Sense",
+          "url": "https://www.trefis.com/articles/608955/the-growth-that-has-to-land-for-palantir-stock-to-make-sense/2026-07-27?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "AMZN",
-          "headline": "Amazon vs. Booking: Comparing Revenue Trends Between a Retail Giant and a Travel Titan",
-          "url": "https://www.fool.com/coverage/charts/2026/07/25/amazon-vs-booking-comparing-revenue-trends-between-a-retail-giant-and-a-travel-titan/?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
-        },
-        {
-          "ticker": "AMZN",
-          "headline": "Warner Bros. lawsuit accuses Amazon of illegally poaching executives",
-          "url": "https://finance.yahoo.com/media-advertising/articles/warner-bros-lawsuit-accuses-amazon-205511970.html?.tsrc=rss",
-          "summary": "訴訟/規制→ 株価にネガティブ",
-          "sentiment": "negative",
+          "headline": "Alphabet, Microsoft, Meta Platforms, Apple and Amazon are part of Zacks Earnings Preview",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-microsoft-meta-platforms-apple-071700392.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
+          "sentiment": "positive",
           "impact": "medium"
         }
       ]
@@ -258,24 +258,24 @@
       "top_news": [
         {
           "ticker": "GOOGL",
-          "headline": "Google (GOOGL) Faces $1 Billion EU Antitrust Fine And New Trade Friction",
-          "url": "https://finance.yahoo.com/technology/articles/google-googl-faces-1-billion-010946968.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "Morgan Stanley’s Wilson Says AI Adoption Key to Profit Outlook",
+          "url": "https://finance.yahoo.com/technology/ai/articles/morgan-stanley-wilson-says-ai-092445879.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "GOOGL",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "Corsair Gaming and AngloGold Ashanti have been highlighted as Zacks Bull and Bear of the Day",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/corsair-gaming-anglogold-ashanti-highlighted-065700702.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         },
         {
           "ticker": "GOOGL",
-          "headline": "'The AI trade is still on': Wall Street sees Big Tech's spending as positive for semiconductor stocks",
-          "url": "https://finance.yahoo.com/markets/article/the-ai-trade-is-still-on-wall-street-sees-big-techs-spending-as-positive-for-semiconductor-stocks-121056519.html?.tsrc=rss",
+          "headline": "Zacks Investment Ideas feature highlights: Vertiv, Nvidia and EMCOR Group",
+          "url": "https://finance.yahoo.com/technology/ai/articles/zacks-investment-ideas-feature-highlights-094700651.html?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
@@ -302,11 +302,11 @@
         },
         {
           "ticker": "GLD",
-          "headline": "Gold Trading Higher Early, Finds Support at $4,000 Even as Dollar and Yields Rise",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-trading-higher-early-finds-134333760.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "A Crash in Your First Year of Retirement Can Wreck All 30. These 3 ETFs Soften the Blow",
+          "url": "https://247wallst.com/investing/etf/2026/07/26/a-crash-in-your-first-year-of-retirement-can-wreck-all-30-these-3-etfs-soften-the-blow/?.tsrc=rss",
+          "summary": "株価急落→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "low"
         }
       ]
     },
@@ -314,27 +314,27 @@
       "top_news": [
         {
           "ticker": "MU",
-          "headline": "Memory Frenzy Primes China Champion CXMT for Historic Debut",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/memory-frenzy-primes-china-champion-000000045.html?.tsrc=rss",
+          "headline": "CXMT Can Rally More Than 1,200% on Market Share Win, Nomura Says",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cxmt-rally-more-1-200-041450630.html?.tsrc=rss",
+          "summary": "株価急上昇→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
+          "impact": "high"
+        },
+        {
+          "ticker": "MU",
+          "headline": "China Memory Champion CXMT Set to Debut After $9.8 Billion IPO",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/china-memory-champion-cxmt-set-230000143.html?.tsrc=rss",
           "summary": "対中政策・関税→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "MU",
-          "headline": "'The AI trade is still on': Wall Street sees Big Tech's spending as positive for semiconductor stocks",
-          "url": "https://finance.yahoo.com/markets/article/the-ai-trade-is-still-on-wall-street-sees-big-techs-spending-as-positive-for-semiconductor-stocks-121056519.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
+          "headline": "Traders Are Getting a New Tool to Wager on the Biggest US Stocks",
+          "url": "https://finance.yahoo.com/markets/options/articles/traders-are-getting-a-new-tool-to-wager-on-the-biggest-us-stocks-140000194.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
-        },
-        {
-          "ticker": "MU",
-          "headline": "Apple’s Fight With Micron Just Took a Wild Turn — And It Could Reshape the Memory Market",
-          "url": "https://247wallst.com/investing/2026/07/25/apples-fight-with-micron-just-took-a-wild-turn-and-it-could-reshape-the-memory-market/?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ",
-          "sentiment": "negative",
-          "impact": "medium"
+          "impact": "high"
         }
       ]
     },
@@ -350,18 +350,18 @@
         },
         {
           "ticker": "SNDK",
-          "headline": "'The AI trade is still on': Wall Street sees Big Tech's spending as positive for semiconductor stocks",
-          "url": "https://finance.yahoo.com/markets/article/the-ai-trade-is-still-on-wall-street-sees-big-techs-spending-as-positive-for-semiconductor-stocks-121056519.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
+          "headline": "MU, SNDK, SKHY, DRAM: Memory Chip Stocks Surge In Relief Rally As U.S.-Iran Reportedly Halt Strikes",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-sndk-skhy-dram-memory-chip-stocks-surge-in-relief-rally-as-u-s-iran-reportedly-halt-strikes/cZZxOajR7CN?.tsrc=rss",
+          "summary": "株価急上昇→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "SNDK",
-          "headline": "SpaceX, Micron, SAP, Verizon, Amex, Tenet, and More Stocks That Explain Today’s Market",
-          "url": "https://finance.yahoo.com/m/e191a137-6116-3870-ad52-6df45ebfb4df/spacex%2C-micron%2C-sap%2C-verizon%2C.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ",
-          "sentiment": "negative",
+          "headline": "'The AI trade is still on': Wall Street sees Big Tech's spending as positive for semiconductor stocks",
+          "url": "https://finance.yahoo.com/markets/article/the-ai-trade-is-still-on-wall-street-sees-big-techs-spending-as-positive-for-semiconductor-stocks-121056519.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
           "impact": "medium"
         }
       ]
@@ -398,24 +398,24 @@
       "top_news": [
         {
           "ticker": "SPCX",
-          "headline": "SpaceX (SPCX) Launches Northrop Grumman Repair Mission And Opens A New Service Market",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-spcx-launches-northrop-grumman-200643407.html?.tsrc=rss",
-          "summary": "予想を下回る・新製品/新サービス→ 株価にポジティブ（高インパクト）",
+          "headline": "Traders Are Getting a New Tool to Wager on the Biggest US Stocks",
+          "url": "https://finance.yahoo.com/markets/options/articles/traders-are-getting-a-new-tool-to-wager-on-the-biggest-us-stocks-140000194.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "SPCX",
-          "headline": "Dow Jones Futures: U.S., Iran Seek Deal; Apple Leads Earnings Wave, Fed Meeting Ahead",
-          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures%3A-u.s.%2C-iran.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "SpaceX Stock Is Down 49% — Elon Musk Says That’s Exactly What Investors Should Expect",
+          "url": "https://247wallst.com/investing/2026/07/27/spacex-stock-is-down-49-elon-musk-says-thats-exactly-what-investors-should-expect/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         },
         {
           "ticker": "SPCX",
-          "headline": "Elon Musk's Starship Tries Again Today After Engine Abort, Weather Scrub: What Prediction Markets Say About Flight 13",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/elon-musks-starship-tries-again-163024910.html?.tsrc=rss",
+          "headline": "Cathie Wood's Ark Bought $21.3 Million of SpaceX Stock as Shares Fell 45% From Their Record High. Wall Street's Median Price Target Is $243.81, 111.5% Above the Current Close.",
+          "url": "https://www.fool.com/investing/2026/07/27/cathie-woods-ark-bought-213-million-of-spacex-stoc/?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
