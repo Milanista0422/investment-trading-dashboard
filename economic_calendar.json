@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-07-27T20:05:58.334210+09:00",
+  "generated_at": "2026-07-28T22:09:10.467934+09:00",
   "events": [
     {
-      "date": "2026-07-24",
-      "time_jst": "本引け後",
-      "currency": "GOOGL",
-      "impact": "High",
-      "event_en": "GOOGL Earnings",
-      "event_ja": "GOOGL 決算発表",
+      "date": "2026-07-25",
+      "time_jst": "09:55",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
       "forecast": "",
       "previous": "",
       "actual": ""
     },
     {
-      "date": "2026-07-25",
-      "time_jst": "09:55",
+      "date": "2026-07-28",
+      "time_jst": "03:50",
       "currency": "USD",
       "impact": "Medium",
       "event_en": "President Trump Speaks",
@@ -30,7 +30,7 @@
       "impact": "Medium",
       "event_en": "CB Consumer Confidence",
       "event_ja": "消費者信頼感指数(CB)",
-      "forecast": "92.1",
+      "forecast": "92.4",
       "previous": "91.2",
       "actual": ""
     },
@@ -96,7 +96,7 @@
       "impact": "High",
       "event_en": "Advance GDP q/q",
       "event_ja": "GDP速報値",
-      "forecast": "2.3%",
+      "forecast": "2.0%",
       "previous": "2.0%",
       "actual": ""
     },
@@ -107,7 +107,7 @@
       "impact": "High",
       "event_en": "Core PCE Price Index m/m",
       "event_ja": "コアPCE物価指数",
-      "forecast": "0.1%",
+      "forecast": "0.2%",
       "previous": "0.3%",
       "actual": ""
     },
@@ -118,7 +118,7 @@
       "impact": "Medium",
       "event_en": "Advance GDP Price Index q/q",
       "event_ja": "Advance GDP Price Index q/q",
-      "forecast": "3.7%",
+      "forecast": "4.1%",
       "previous": "3.6%",
       "actual": ""
     },
@@ -129,7 +129,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "206K",
+      "forecast": "201K",
       "previous": "187K",
       "actual": ""
     },
@@ -195,7 +195,7 @@
       "impact": "Medium",
       "event_en": "Revised UoM Consumer Sentiment",
       "event_ja": "ミシガン大学消費者信頼感（改定）",
-      "forecast": "54.2",
+      "forecast": "53.9",
       "previous": "54.4",
       "actual": ""
     },
