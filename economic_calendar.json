@@ -1,17 +1,6 @@
 {
-  "generated_at": "2026-07-28T22:09:10.467934+09:00",
+  "generated_at": "2026-08-01T23:03:33.897548+09:00",
   "events": [
-    {
-      "date": "2026-07-25",
-      "time_jst": "09:55",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-07-28",
       "time_jst": "03:50",
@@ -96,7 +85,7 @@
       "impact": "High",
       "event_en": "Advance GDP q/q",
       "event_ja": "GDP速報値",
-      "forecast": "2.0%",
+      "forecast": "2.1%",
       "previous": "2.0%",
       "actual": ""
     },
@@ -338,6 +327,61 @@
       "impact": "High",
       "event_en": "TSLA Earnings",
       "event_ja": "TSLA 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "本引け後",
+      "currency": "MSFT",
+      "impact": "High",
+      "event_en": "MSFT Earnings",
+      "event_ja": "MSFT 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "本引け後",
+      "currency": "META",
+      "impact": "High",
+      "event_en": "META Earnings",
+      "event_ja": "META 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "本引け後",
+      "currency": "GOOGL",
+      "impact": "High",
+      "event_en": "GOOGL Earnings",
+      "event_ja": "GOOGL 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-30",
+      "time_jst": "本引け後",
+      "currency": "AAPL",
+      "impact": "High",
+      "event_en": "AAPL Earnings",
+      "event_ja": "AAPL 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-30",
+      "time_jst": "本引け後",
+      "currency": "AMZN",
+      "impact": "High",
+      "event_en": "AMZN Earnings",
+      "event_ja": "AMZN 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
