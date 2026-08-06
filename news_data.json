@@ -1,6 +1,6 @@
 {
-  "date": "20260805",
-  "updated_at": "2026-08-05T23:02:26.824711+09:00",
+  "date": "20260806",
+  "updated_at": "2026-08-06T20:04:30.279499+09:00",
   "tickers": {
     "SOXL": {
       "top_news": [
@@ -62,19 +62,11 @@
       "top_news": [
         {
           "ticker": "QQQ",
-          "headline": "Wall Street Short Sellers Piled Into Amazon and Microsoft at Historic Rates Before Earnings. Now They’re Rallying.",
-          "url": "https://247wallst.com/investing/2026/08/04/wall-street-short-sellers-piled-into-amazon-and-microsoft-at-historic-rates-before-earnings-now-theyre-rallying/?.tsrc=rss",
-          "summary": "決算関連・株価急上昇→ 株価にポジティブ（高インパクト）",
+          "headline": "Alphabet Is Still Up 16% in 2026. What Will It Take to Get GOOGL Stock Above $400?",
+          "url": "https://247wallst.com/investing/2026/08/05/alphabet-is-still-up-16-in-2026-what-will-it-take-to-get-googl-stock-above-400/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
-        },
-        {
-          "ticker": "QQQ",
-          "headline": "Stock Market Today: Dow Rises After Surprise Jobs Data; AMD, SpaceX Plunge On Earnings (Live Coverage)",
-          "url": "https://finance.yahoo.com/m/df8bb7aa-2f8c-3068-aac6-ba6ee88129f0/stock-market-today%3A-dow-rises.html?.tsrc=rss",
-          "summary": "決算関連・株価急落→ 株価にネガティブ",
-          "sentiment": "negative",
-          "impact": "medium"
         },
         {
           "ticker": "QQQ",
@@ -83,6 +75,14 @@
           "summary": "ニュース→ 株価にネガティブ",
           "sentiment": "negative",
           "impact": "medium"
+        },
+        {
+          "ticker": "QQQ",
+          "headline": "US Stock Futures Flat After S&P500, Dow End At Record Highs On Strong Earnings, Easing Geopolitical Concerns — PLTR, AZN, CMG, MRNA In Focus",
+          "url": "https://stocktwits.com/news-articles/markets/equity/us-stock-futures-flat-after-s-and-p500-dow-end-at-record-highs/cZo5yAlRJ4k?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -90,27 +90,27 @@
       "top_news": [
         {
           "ticker": "NVDA",
-          "headline": "SpaceX stock declines post-earnings. Are investors worried about AI spending?",
-          "url": "https://finance.yahoo.com/video/spacex-stock-declines-post-earnings-133053667.html?.tsrc=rss",
-          "summary": "決算関連→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "AI Weekly: SpaceX's huge AI spend, Anthropic's hack scare",
+          "url": "https://finance.yahoo.com/video/ai-weekly-spacexs-huge-ai-105020964.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "NVDA",
-          "headline": "AMD sinks on revenue forecasts as competition with Nvidia grows more apparent",
-          "url": "https://finance.yahoo.com/video/amd-sinks-revenue-forecasts-competition-134557567.html?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
+          "headline": "Cathie Wood’s ARK Buys The Dip In NVDA, CRCL, SPCX Stocks – Dumps PLTR, SHOP, RBLX Shares",
+          "url": "https://stocktwits.com/news-articles/markets/equity/crcl-nvda-spcx-stocks-cathie-wood-top-buys-ark-invest-offloads-pltr-shop-rblx/cZoJugyRJ7d?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "NVDA",
-          "headline": "SpaceX Craters 12% on Soaring AI Costs; Space-Sector Peers Decline With SPCX Stock",
-          "url": "https://247wallst.com/investing/2026/08/05/spacex-falls-10-on-soaring-ai-costs-as-other-space-stocks-hold-steady/?.tsrc=rss",
-          "summary": "訴訟/規制→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "Nvidia’s (NVDA) Amkor (AMKR) Deal Adds Packaging Muscle Ahead Of Earnings",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-nvda-amkor-amkr-deal-104631781.html?.tsrc=rss",
+          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -118,27 +118,27 @@
       "top_news": [
         {
           "ticker": "TSLA",
-          "headline": "Tesla Stock Falls Along With SpaceX. Chinese Sales Aren’t Helping.",
-          "url": "https://finance.yahoo.com/m/20957c65-e63c-3157-8235-aaae2d84be5b/tesla-stock-falls-along-with.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "headline": "As AI spend continues to soar, when will investors start to be rewarded?",
+          "url": "https://moneyweek.com/investments/tech-stocks/ai-spend-continues-to-soar-when-will-investors-be-rewarded?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
-          "impact": "high"
+          "impact": "medium"
         },
         {
           "ticker": "TSLA",
-          "headline": "SpaceX And Tesla Earnings Have A Similar Theme: Capex Spending",
-          "url": "https://finance.yahoo.com/m/ff3acb5d-4218-381a-83b4-7347e2599bff/spacex-and-tesla-earnings.html?.tsrc=rss",
+          "headline": "Rivian Could Be a Surprise Robotaxi Winner After Scoring a $1.25 Billion Partnership With Uber",
+          "url": "https://www.fool.com/investing/2026/08/05/rivian-could-be-a-surprise-robotaxi-winner-after-s/?.tsrc=rss",
+          "summary": "提携・契約→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
+        },
+        {
+          "ticker": "TSLA",
+          "headline": "SpaceX’s $1T Goal and 3 More Shockers From Musk on the Earnings Call",
+          "url": "https://finance.yahoo.com/m/954539eb-42ed-35a5-bc45-3f6a2bec5755/spacex%E2%80%99s-%241t-goal-and-3-more.html?.tsrc=rss",
           "summary": "決算関連→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
           "impact": "high"
-        },
-        {
-          "ticker": "TSLA",
-          "headline": "Kurv Launches the Kurv Equity Option Income ETF (KEO), Designed to Provide Diversified Exposure with Weekly Income Potential",
-          "url": "https://finance.yahoo.com/markets/options/articles/kurv-launches-kurv-equity-option-130000825.html?.tsrc=rss",
-          "summary": "新製品/新サービス→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
         }
       ]
     },
@@ -146,26 +146,26 @@
       "top_news": [
         {
           "ticker": "AAPL",
-          "headline": "Tech Melt-Up Drives $3.5 Trillion Nasdaq 100 Gain in Four Days",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/tech-melt-drives-3-5-092612137.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
+          "headline": "OpenAI moves to dismiss Apple's trade secret lawsuit",
+          "url": "https://www.axios.com/2026/08/06/openai-apple-motion-to-dismiss#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-AI?.tsrc=rss",
+          "summary": "予想を下回る・訴訟/規制→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "AI demand pushes Foxconn's monthly revenue to record in July",
-          "url": "https://finance.yahoo.com/technology/ai/articles/foxconns-monthly-revenue-hits-record-074534993.html?.tsrc=rss",
-          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
+          "headline": "OpenAI Asks Judge to Toss Apple Suit Alleging Trade Secret Theft",
+          "url": "https://finance.yahoo.com/technology/ai/articles/openai-asks-judge-toss-apple-060750670.html?.tsrc=rss",
+          "summary": "訴訟/規制→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "Nvidia Partner Hon Hai’s Sales Rise 54% on Strong AI Demand",
-          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-partner-hon-hai-sales-073743931.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
+          "headline": "Apple Seeks Injunction Against OpenAI in Trade Secrets Lawsuit, Says It Faces 'Irreparable Harm'— Jim Cramer Says 'Gloves Off'",
+          "url": "https://finance.yahoo.com/technology/ai/articles/apple-seeks-injunction-against-openai-023111508.html?.tsrc=rss",
+          "summary": "訴訟/規制→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
           "impact": "high"
         }
       ]
@@ -174,25 +174,25 @@
       "top_news": [
         {
           "ticker": "MSFT",
-          "headline": "Microsoft Extends Winning Streak Amid Earnings Surge; Is The Stock A Buy Now?",
-          "url": "https://finance.yahoo.com/m/32d0b68b-7dcb-32ac-8506-1db647296a24/microsoft-extends-winning.html?.tsrc=rss",
-          "summary": "決算関連・株価急上昇→ 株価にポジティブ（高インパクト）",
+          "headline": "Why Sandisk Stock Is Falling Sharply After Blowout Earnings",
+          "url": "https://finance.yahoo.com/m/1b53b2c0-2a97-33a2-9ad0-71d1341b42cf/why-sandisk-stock-is-falling.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "MSFT",
-          "headline": "Canada's Shopify forecasts revenue above estimates, shares surge",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/canadas-shopify-forecasts-quarterly-revenue-110923561.html?.tsrc=rss",
-          "summary": "決算関連・株価急上昇→ 株価にポジティブ（高インパクト）",
+          "headline": "A10 Networks Q2 Earnings Call Highlights",
+          "url": "https://www.marketbeat.com/instant-alerts/a10-networks-q2-earnings-call-highlights-2026-08-06/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "MSFT",
-          "headline": "Tech Melt-Up Drives $3.5 Trillion Nasdaq 100 Gain in Four Days",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/tech-melt-drives-3-5-092612137.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "headline": "Nintendo Tops Estimates With Strong Games and Tariff Refunds",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nintendo-tops-estimates-strong-games-063403404.html?.tsrc=rss",
+          "summary": "予想を上回る・対中政策・関税→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         }
@@ -202,25 +202,25 @@
       "top_news": [
         {
           "ticker": "META",
-          "headline": "Aramark Declares Quarterly Dividend",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/aramark-declares-quarterly-dividend-113000224.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "headline": "Why Sandisk Stock Is Falling Sharply After Blowout Earnings",
+          "url": "https://finance.yahoo.com/m/1b53b2c0-2a97-33a2-9ad0-71d1341b42cf/why-sandisk-stock-is-falling.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "META",
-          "headline": "Nvidia Partner Hon Hai’s Sales Rise 54% on Strong AI Demand",
-          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-partner-hon-hai-sales-073743931.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "headline": "News Q4 Earnings Call Highlights",
+          "url": "https://www.marketbeat.com/instant-alerts/news-q4-earnings-call-highlights-2026-08-05/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "META",
-          "headline": "AMD's problem is not demand. It is where the demand comes from",
-          "url": "https://www.proactiveinvestors.com/companies/news/1096559/amd-s-problem-is-not-demand-it-is-where-the-demand-comes-from-1096559.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "headline": "Asian Stocks Set for Declines as AI Rally Cools: Markets Wrap",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/asian-stocks-set-declines-ai-220650572.html?.tsrc=rss",
+          "summary": "株価急上昇→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         }
@@ -230,25 +230,25 @@
       "top_news": [
         {
           "ticker": "AMZN",
-          "headline": "The Brand Behind AEO's Stock Rally Isn't the One On The Sign",
-          "url": "https://www.trefis.com/articles/610107/the-brand-behind-aeos-stock-rally-isnt-the-one-on-the-sign/2026-08-05?.tsrc=rss",
-          "summary": "株価急上昇→ 株価にポジティブ",
+          "headline": "Why Sandisk Stock Is Falling Sharply After Blowout Earnings",
+          "url": "https://finance.yahoo.com/m/1b53b2c0-2a97-33a2-9ad0-71d1341b42cf/why-sandisk-stock-is-falling.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         },
         {
           "ticker": "AMZN",
-          "headline": "Kurv Launches the Kurv Equity Option Income ETF (KEO), Designed to Provide Diversified Exposure with Weekly Income Potential",
-          "url": "https://finance.yahoo.com/markets/options/articles/kurv-launches-kurv-equity-option-130000825.html?.tsrc=rss",
-          "summary": "新製品/新サービス→ 株価にポジティブ",
+          "headline": "Pattern Group Q2 Earnings Call Highlights",
+          "url": "https://www.marketbeat.com/instant-alerts/pattern-group-q2-earnings-call-highlights-2026-08-05/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         },
         {
           "ticker": "AMZN",
-          "headline": "Stocks mostly rise tracking earnings, US-Iran hopes",
-          "url": "https://finance.yahoo.com/markets/world-indices/articles/tech-back-fashion-asian-markets-030055893.html?.tsrc=rss",
-          "summary": "決算関連→ 株価にポジティブ",
+          "headline": "As AI spend continues to soar, when will investors start to be rewarded?",
+          "url": "https://moneyweek.com/investments/tech-stocks/ai-spend-continues-to-soar-when-will-investors-be-rewarded?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         }
@@ -258,27 +258,27 @@
       "top_news": [
         {
           "ticker": "GOOGL",
-          "headline": "Canada's Shopify forecasts revenue above estimates, shares surge",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/canadas-shopify-forecasts-quarterly-revenue-110923561.html?.tsrc=rss",
-          "summary": "決算関連・株価急上昇→ 株価にポジティブ（高インパクト）",
+          "headline": "Why Sandisk Stock Is Falling Sharply After Blowout Earnings",
+          "url": "https://finance.yahoo.com/m/1b53b2c0-2a97-33a2-9ad0-71d1341b42cf/why-sandisk-stock-is-falling.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "GOOGL",
-          "headline": "Uber Gives In-Line Outlook, Says Brazil Rivals Hurt Trips Growth",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/uber-gives-line-outlook-says-105658166.html?.tsrc=rss",
+          "headline": "Google Shifts AI Power to California in Race Against Anthropic, OpenAI",
+          "url": "https://finance.yahoo.com/technology/ai/articles/google-shifts-ai-power-california-000039098.html?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "GOOGL",
-          "headline": "Kurv Launches the Kurv Equity Option Income ETF (KEO), Designed to Provide Diversified Exposure with Weekly Income Potential",
-          "url": "https://finance.yahoo.com/markets/options/articles/kurv-launches-kurv-equity-option-130000825.html?.tsrc=rss",
-          "summary": "新製品/新サービス→ 株価にポジティブ",
+          "headline": "Alphabet Post-Earnings Rebound is On: Buy at $363?",
+          "url": "https://247wallst.com/investing/2026/08/05/alphabet-post-earnings-rebound-is-on-buy-at-363/?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         }
       ]
     },
@@ -294,19 +294,19 @@
         },
         {
           "ticker": "GLD",
-          "headline": "Exchange-Traded Funds Higher, Equity Futures Mixed Pre-Bell Amid Corporate Earnings, Hormuz Reopening Hopes",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-higher-equity-131015495.html?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立",
-          "sentiment": "neutral",
-          "impact": "medium"
+          "headline": "GLD Sees Biggest Single-Day Gains Since February – But YTD Returns Still Remain In Negative Territory",
+          "url": "https://stocktwits.com/news-articles/markets/equity/gold-silver-rally-on-hormuz-reopen-talks/cZo4ziARJeg?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "low"
         },
         {
           "ticker": "GLD",
-          "headline": "Exchange-Traded Funds, Equity Futures Higher Pre-Bell Friday as Amazon Earnings Offset Apple Weakness",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-130636476.html?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立",
-          "sentiment": "neutral",
-          "impact": "medium"
+          "headline": "NUGT and AGQ Jump Big as Gold and Silver Rally",
+          "url": "https://247wallst.com/investing/etf/2026/08/05/nugt-and-agq-jump-big-as-gold-and-silver-rally/?.tsrc=rss",
+          "summary": "株価急上昇→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "low"
         }
       ]
     },
@@ -314,27 +314,27 @@
       "top_news": [
         {
           "ticker": "MU",
-          "headline": "SpaceX, Nvidia, AMD, Eli Lilly, Uber, CVS, Disney, and More Stocks That Explain Today’s Market",
-          "url": "https://finance.yahoo.com/m/a7670b0f-ed38-324c-8ef1-46c9a987c3cd/spacex%2C-nvidia%2C-amd%2C-eli.html?.tsrc=rss",
+          "headline": "Wall Street Is Selling Memory Stocks – Chipmakers Are Buying Them Back",
+          "url": "https://stocktwits.com/news-articles/markets/equity/wall-street-is-selling-memory-stocks-chipmakers-are-buying-them-back/cZoJV2SRJeM?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "MU",
-          "headline": "Semiconductor Rally Powers S&P 500 to Fresh Record High",
-          "url": "https://finance.yahoo.com/technology/articles/semiconductor-rally-powers-p-500-120000858.html?.tsrc=rss",
-          "summary": "株価急上昇→ 株価にポジティブ",
-          "sentiment": "positive",
+          "headline": "Micron Is Falling as Memory Stocks Take Another Hit",
+          "url": "https://finance.yahoo.com/m/cc4bce1f-18fb-31cf-84fe-ebe8d5450eb5/micron-is-falling-as-memory.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
           "impact": "medium"
         },
         {
           "ticker": "MU",
-          "headline": "This Week In AI Chips - AI Efficiency Boost Through Multiverse And Qualcomm Collaboration",
-          "url": "https://finance.yahoo.com/technology/ai/articles/week-ai-chips-ai-efficiency-113756908.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "AI momentum stocks tumble as earnings season shakes the tech sector",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ai-momentum-stocks-tumble-earnings-094407890.html?.tsrc=rss",
+          "summary": "決算関連・訴訟/規制・株価急落→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         }
       ]
     },
@@ -342,27 +342,27 @@
       "top_news": [
         {
           "ticker": "SNDK",
-          "headline": "Dow Jones and S&P 500 set to notch new highs despite AMD and SpaceX falls",
-          "url": "https://www.proactiveinvestors.com/companies/news/1096586/dow-jones-and-s-p-500-set-to-notch-new-highs-despite-amd-and-spacex-falls-1096586.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "Sandisk, Western Digital drag on chip stocks as lofty expectations eclipse strong earnings",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sandisk-western-digital-drag-chip-105728794.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "SNDK",
-          "headline": "Tech Melt-Up Drives $3.5 Trillion Nasdaq 100 Gain in Four Days",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/tech-melt-drives-3-5-092612137.html?.tsrc=rss",
+          "headline": "Sandisk shares slide as cautious guidance overshadows strong AI-driven growth",
+          "url": "https://investorshub.advfn.com/market-news/article/33576/sandisk-shares-slide-as-cautious-guidance-overshadows-strong-ai-driven-growth?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "SNDK",
-          "headline": "Stocks Rise Pre-Bell Amid Growing Hopes for Hormuz Deal; Traders Await More Corporate Earnings",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-rise-pre-bell-amid-121558765.html?.tsrc=rss",
-          "summary": "決算関連・提携・契約→ 株価にポジティブ",
+          "headline": "Why Sandisk Stock Is Falling Sharply After Blowout Earnings",
+          "url": "https://finance.yahoo.com/m/1b53b2c0-2a97-33a2-9ad0-71d1341b42cf/why-sandisk-stock-is-falling.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         }
       ]
     },
@@ -398,26 +398,26 @@
       "top_news": [
         {
           "ticker": "SPCX",
-          "headline": "SpaceX Stock Dives. Analysts React To Earnings Beat, Shift Price Targets.",
-          "url": "https://finance.yahoo.com/m/40315424-986c-3896-ab3f-eb1ad5c29c1e/spacex-stock-dives.-analysts.html?.tsrc=rss",
-          "summary": "決算関連・予想を上回る→ 株価にポジティブ（高インパクト）",
+          "headline": "AI Weekly: SpaceX's huge AI spend, Anthropic's hack scare",
+          "url": "https://finance.yahoo.com/video/ai-weekly-spacexs-huge-ai-105020964.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "SPCX",
-          "headline": "S&P 500 hits record high on Disney, Eli Lilly earnings",
-          "url": "https://qz.com/sp500-dow-record-high-disney-eli-lilly-earnings-080526?.tsrc=rss",
-          "summary": "決算関連→ 株価にポジティブ（高インパクト）",
+          "headline": "Cathie Wood’s ARK Buys The Dip In NVDA, CRCL, SPCX Stocks – Dumps PLTR, SHOP, RBLX Shares",
+          "url": "https://stocktwits.com/news-articles/markets/equity/crcl-nvda-spcx-stocks-cathie-wood-top-buys-ark-invest-offloads-pltr-shop-rblx/cZoJugyRJ7d?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "SPCX",
-          "headline": "SpaceX stock declines post-earnings. Are investors worried about AI spending?",
-          "url": "https://finance.yahoo.com/video/spacex-stock-declines-post-earnings-133053667.html?.tsrc=rss",
-          "summary": "決算関連→ 株価にネガティブ（高インパクト）",
-          "sentiment": "negative",
+          "headline": "Investors see big dividends from TerraCycle, a US recycling firm that turns trash into shareholder treasure",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/investors-see-big-dividends-terracycle-093000687.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
+          "sentiment": "positive",
           "impact": "high"
         }
       ]
