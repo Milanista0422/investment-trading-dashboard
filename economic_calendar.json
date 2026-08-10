@@ -1,94 +1,6 @@
 {
-  "generated_at": "2026-08-07T21:23:26.646635+09:00",
+  "generated_at": "2026-08-10T20:45:25.024573+09:00",
   "events": [
-    {
-      "date": "2026-08-03",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "ISM Manufacturing PMI",
-      "event_ja": "ISM製造業景況指数",
-      "forecast": "54.0",
-      "previous": "53.3",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-03",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "ISM Manufacturing Prices",
-      "event_ja": "ISM Manufacturing Prices",
-      "forecast": "70.0",
-      "previous": "73.0",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-04",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "JOLTS Job Openings",
-      "event_ja": "雇用動態調査(JOLTS)",
-      "forecast": "7.44M",
-      "previous": "7.59M",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-05",
-      "time_jst": "21:15",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "ADP Non-Farm Employment Change",
-      "event_ja": "ADP雇用統計",
-      "forecast": "68K",
-      "previous": "98K",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-05",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "ISM Services PMI",
-      "event_ja": "ISM非製造業景況指数",
-      "forecast": "54.5",
-      "previous": "54.0",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-06",
-      "time_jst": "05:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-06",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Unemployment Claims",
-      "event_ja": "新規失業保険申請件数",
-      "forecast": "203K",
-      "previous": "197K",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-06",
-      "time_jst": "本引け後",
-      "currency": "SNDK",
-      "impact": "High",
-      "event_en": "SNDK Earnings",
-      "event_ja": "SNDK 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-08-07",
       "time_jst": "21:30",
@@ -124,6 +36,50 @@
     },
     {
       "date": "2026-08-12",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core CPI m/m",
+      "event_ja": "コアCPI 前月比",
+      "forecast": "0.2%",
+      "previous": "0.0%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-12",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core CPI y/y",
+      "event_ja": "Core CPI y/y",
+      "forecast": "2.5%",
+      "previous": "2.6%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-12",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "CPI m/m",
+      "event_ja": "消費者物価指数(CPI) 前月比",
+      "forecast": "0.1%",
+      "previous": "-0.4%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-12",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "CPI y/y",
+      "event_ja": "消費者物価指数(CPI) 前年比",
+      "forecast": "3.4%",
+      "previous": "3.5%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-12",
       "time_jst": "本引け後",
       "currency": "LITE",
       "impact": "High",
@@ -135,6 +91,39 @@
     },
     {
       "date": "2026-08-13",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core PPI m/m",
+      "event_ja": "コアPPI",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-13",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "PPI m/m",
+      "event_ja": "生産者物価指数(PPI)",
+      "forecast": "0.2%",
+      "previous": "-0.3%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-13",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "202K",
+      "previous": "199K",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-13",
       "time_jst": "本引け後",
       "currency": "LITE",
       "impact": "High",
@@ -142,6 +131,50 @@
       "event_ja": "LITE 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-14",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Core Retail Sales m/m",
+      "event_ja": "コア小売売上高",
+      "forecast": "0.2%",
+      "previous": "-0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-14",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Retail Sales m/m",
+      "event_ja": "小売売上高",
+      "forecast": "0.1%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-14",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Prelim UoM Consumer Sentiment",
+      "event_ja": "ミシガン大学消費者信頼感（速報）",
+      "forecast": "54.4",
+      "previous": "54.4",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-14",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Prelim UoM Inflation Expectations",
+      "event_ja": "ミシガン大期待インフレ率（速報）",
+      "forecast": "",
+      "previous": "4.2%",
       "actual": ""
     },
     {
