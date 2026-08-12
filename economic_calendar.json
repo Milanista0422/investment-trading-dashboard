@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T20:03:31.162069+09:00",
+  "generated_at": "2026-08-12T20:02:43.649170+09:00",
   "events": [
     {
       "date": "2026-08-12",
@@ -85,7 +85,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "203K",
+      "forecast": "202K",
       "previous": "199K",
       "actual": ""
     },
@@ -272,6 +272,17 @@
       "impact": "High",
       "event_en": "AMZN Earnings",
       "event_ja": "AMZN 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-11-06",
+      "time_jst": "本引け後",
+      "currency": "LITE",
+      "impact": "High",
+      "event_en": "LITE Earnings",
+      "event_ja": "LITE 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
