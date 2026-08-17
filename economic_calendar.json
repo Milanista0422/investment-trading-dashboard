@@ -1,105 +1,6 @@
 {
-  "generated_at": "2026-08-14T20:11:31.308179+09:00",
+  "generated_at": "2026-08-17T20:06:03.471876+09:00",
   "events": [
-    {
-      "date": "2026-08-12",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Core CPI m/m",
-      "event_ja": "コアCPI 前月比",
-      "forecast": "0.2%",
-      "previous": "0.0%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-12",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Core CPI y/y",
-      "event_ja": "Core CPI y/y",
-      "forecast": "2.5%",
-      "previous": "2.6%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-12",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "CPI m/m",
-      "event_ja": "消費者物価指数(CPI) 前月比",
-      "forecast": "0.1%",
-      "previous": "-0.4%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-12",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "CPI y/y",
-      "event_ja": "消費者物価指数(CPI) 前年比",
-      "forecast": "3.4%",
-      "previous": "3.5%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-12",
-      "time_jst": "本引け後",
-      "currency": "LITE",
-      "impact": "High",
-      "event_en": "LITE Earnings",
-      "event_ja": "LITE 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-13",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Core PPI m/m",
-      "event_ja": "コアPPI",
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-13",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "PPI m/m",
-      "event_ja": "生産者物価指数(PPI)",
-      "forecast": "0.2%",
-      "previous": "-0.3%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-13",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Unemployment Claims",
-      "event_ja": "新規失業保険申請件数",
-      "forecast": "202K",
-      "previous": "199K",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-13",
-      "time_jst": "本引け後",
-      "currency": "LITE",
-      "impact": "High",
-      "event_en": "LITE Earnings",
-      "event_ja": "LITE 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-08-14",
       "time_jst": "21:30",
@@ -142,6 +43,39 @@
       "event_ja": "ミシガン大期待インフレ率（速報）",
       "forecast": "",
       "previous": "4.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-20",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Meeting Minutes",
+      "event_ja": "FOMC議事要旨",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-20",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Philly Fed Manufacturing Index",
+      "event_ja": "フィラデルフィア連銀製造業景気指数",
+      "forecast": "24.3",
+      "previous": "41.4",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-20",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "210K",
+      "previous": "209K",
       "actual": ""
     },
     {
