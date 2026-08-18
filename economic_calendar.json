@@ -1,50 +1,6 @@
 {
-  "generated_at": "2026-08-17T20:06:03.471876+09:00",
+  "generated_at": "2026-08-18T20:03:36.351512+09:00",
   "events": [
-    {
-      "date": "2026-08-14",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Core Retail Sales m/m",
-      "event_ja": "コア小売売上高",
-      "forecast": "0.2%",
-      "previous": "-0.2%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-14",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Retail Sales m/m",
-      "event_ja": "小売売上高",
-      "forecast": "0.1%",
-      "previous": "0.2%",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-14",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Prelim UoM Consumer Sentiment",
-      "event_ja": "ミシガン大学消費者信頼感（速報）",
-      "forecast": "54.7",
-      "previous": "54.4",
-      "actual": ""
-    },
-    {
-      "date": "2026-08-14",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Prelim UoM Inflation Expectations",
-      "event_ja": "ミシガン大期待インフレ率（速報）",
-      "forecast": "",
-      "previous": "4.2%",
-      "actual": ""
-    },
     {
       "date": "2026-08-20",
       "time_jst": "03:00",
@@ -63,7 +19,7 @@
       "impact": "Medium",
       "event_en": "Philly Fed Manufacturing Index",
       "event_ja": "フィラデルフィア連銀製造業景気指数",
-      "forecast": "24.3",
+      "forecast": "24.1",
       "previous": "41.4",
       "actual": ""
     },
