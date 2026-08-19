@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T20:03:36.351512+09:00",
+  "generated_at": "2026-08-19T20:07:04.720184+09:00",
   "events": [
     {
       "date": "2026-08-20",
@@ -8,6 +8,17 @@
       "impact": "High",
       "event_en": "FOMC Meeting Minutes",
       "event_ja": "FOMC議事要旨",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-08-20",
+      "time_jst": "03:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
       "forecast": "",
       "previous": "",
       "actual": ""
