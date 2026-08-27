@@ -1,17 +1,6 @@
 {
-  "generated_at": "2026-08-25T20:02:38.170290+09:00",
+  "generated_at": "2026-08-27T20:02:36.451006+09:00",
   "events": [
-    {
-      "date": "2026-08-22",
-      "time_jst": "08:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-08-24",
       "time_jst": "本引け後",
@@ -200,6 +189,17 @@
       "actual": ""
     },
     {
+      "date": "2026-10-01",
+      "time_jst": "本引け後",
+      "currency": "MU",
+      "impact": "High",
+      "event_en": "MU Earnings",
+      "event_ja": "MU 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
       "date": "2026-10-22",
       "time_jst": "本引け後",
       "currency": "TSLA",
@@ -283,6 +283,17 @@
       "impact": "High",
       "event_en": "SNDK Earnings",
       "event_ja": "SNDK 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-11-19",
+      "time_jst": "本引け後",
+      "currency": "NVDA",
+      "impact": "High",
+      "event_en": "NVDA Earnings",
+      "event_ja": "NVDA 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
