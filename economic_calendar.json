@@ -1,28 +1,6 @@
 {
-  "generated_at": "2026-09-06T20:36:53.060583+09:00",
+  "generated_at": "2026-09-07T20:24:49.313558+09:00",
   "events": [
-    {
-      "date": "2026-09-03",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Unemployment Claims",
-      "event_ja": "新規失業保険申請件数",
-      "forecast": "205K",
-      "previous": "203K",
-      "actual": ""
-    },
-    {
-      "date": "2026-09-03",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "ISM Services PMI",
-      "event_ja": "ISM非製造業景況指数",
-      "forecast": "54.2",
-      "previous": "54.1",
-      "actual": ""
-    },
     {
       "date": "2026-09-04",
       "time_jst": "21:30",
