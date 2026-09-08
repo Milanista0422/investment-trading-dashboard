@@ -1,39 +1,6 @@
 {
-  "generated_at": "2026-09-07T20:24:49.313558+09:00",
+  "generated_at": "2026-09-08T20:03:14.259760+09:00",
   "events": [
-    {
-      "date": "2026-09-04",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Average Hourly Earnings m/m",
-      "event_ja": "平均時給",
-      "forecast": "0.3%",
-      "previous": "0.1%",
-      "actual": ""
-    },
-    {
-      "date": "2026-09-04",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Non-Farm Employment Change",
-      "event_ja": "非農業部門雇用者数(NFP)",
-      "forecast": "55K",
-      "previous": "-23K",
-      "actual": ""
-    },
-    {
-      "date": "2026-09-04",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Unemployment Rate",
-      "event_ja": "失業率",
-      "forecast": "4.1%",
-      "previous": "4.1%",
-      "actual": ""
-    },
     {
       "date": "2026-09-10",
       "time_jst": "21:30",
