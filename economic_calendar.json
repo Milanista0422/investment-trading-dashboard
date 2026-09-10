@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-09-09T20:02:24.837637+09:00",
+  "generated_at": "2026-09-10T21:40:19.258983+09:00",
   "events": [
+    {
+      "date": "2026-09-10",
+      "time_jst": "10:15",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
     {
       "date": "2026-09-10",
       "time_jst": "21:30",
