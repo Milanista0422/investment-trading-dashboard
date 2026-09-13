@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T11:53:59.542494+09:00",
+  "generated_at": "2026-09-13T20:03:11.680709+09:00",
   "events": [
     {
       "date": "2026-09-10",
@@ -109,6 +109,94 @@
       "event_ja": "ミシガン大期待インフレ率（速報）",
       "forecast": "",
       "previous": "4.3%",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-16",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Core Retail Sales m/m",
+      "event_ja": "コア小売売上高",
+      "forecast": "0.5%",
+      "previous": "-0.3%",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-16",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Retail Sales m/m",
+      "event_ja": "小売売上高",
+      "forecast": "0.8%",
+      "previous": "-0.6%",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-17",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Federal Funds Rate",
+      "event_ja": "FF金利決定",
+      "forecast": "",
+      "previous": "3.75%",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-17",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Economic Projections",
+      "event_ja": "FOMC経済見通し",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-17",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Statement",
+      "event_ja": "FOMC声明・政策金利決定",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-17",
+      "time_jst": "03:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Press Conference",
+      "event_ja": "FOMC議長記者会見",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-17",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Philly Fed Manufacturing Index",
+      "event_ja": "フィラデルフィア連銀製造業景気指数",
+      "forecast": "28.9",
+      "previous": "47.4",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-17",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "209K",
+      "previous": "206K",
       "actual": ""
     },
     {
