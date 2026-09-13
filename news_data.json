@@ -1,6 +1,6 @@
 {
   "date": "20260913",
-  "updated_at": "2026-09-13T12:38:36.567341+09:00",
+  "updated_at": "2026-09-13T20:03:49.896806+09:00",
   "tickers": {
     "SOXL": {
       "top_news": [
@@ -90,27 +90,27 @@
       "top_news": [
         {
           "ticker": "NVDA",
-          "headline": "Adobe: After Lifting Guidance, Is the Beaten-Down Stock Ready to Break Out?",
-          "url": "https://www.fool.com/investing/2026/09/12/adobe-after-lifting-guidance-is-the-beaten-down-st/?.tsrc=rss",
-          "summary": "予想を上回る→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "NVDA",
-          "headline": "Berkshire Hathaway Has Paid Exactly 1 Dividend Since 1965. Here's Where the Cash Goes Instead.",
-          "url": "https://www.fool.com/investing/2026/09/12/berkshire-hathaway-has-paid-exactly-1-dividend/?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "headline": "Firmus Adds OpenAI. NVIDIA and Blackstone Face Different Sides of the AI Buildout",
+          "url": "https://finance.yahoo.com/technology/ai/articles/firmus-adds-openai-nvidia-blackstone-105141455.html?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立",
           "sentiment": "neutral",
-          "impact": "high"
+          "impact": "medium"
         },
         {
           "ticker": "NVDA",
-          "headline": "The AI Infrastructure Stock That Could Make Investors Millionaires Is Hiding in Plain Sight, and Wall Street Isn’t Paying Attention",
-          "url": "https://www.fool.com/investing/2026/09/12/the-ai-infrastructure-stock-that-could-make-investors-millionaires-is-hiding-in-plain-sight-and-wall-street-isn-t-paying-attention/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "low"
+          "headline": "Nvidia May Put $10 Billion Into Anthropic’s $2 Trillion IPO. Amazon Already Has Much More Riding on It",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-may-put-10-billion-103618397.html?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立",
+          "sentiment": "neutral",
+          "impact": "medium"
+        },
+        {
+          "ticker": "NVDA",
+          "headline": "Here's How Many Shares of Realty Income You'd Need for $2,000 in Monthly Dividends",
+          "url": "https://www.fool.com/investing/2026/09/13/how-many-shares-realty-income-month-dividend/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立",
+          "sentiment": "neutral",
+          "impact": "medium"
         }
       ]
     },
@@ -190,11 +190,11 @@
         },
         {
           "ticker": "MSFT",
-          "headline": "Jim Cramer Praises Microsoft (MSFT) for Its Permian Power Plan with Chevron (CVX)",
-          "url": "https://finance.yahoo.com/technology/articles/jim-cramer-praises-microsoft-msft-205636631.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "Jim Cramer Discussed Taking The Long View For Chevron Corporation (NYSE:CVX)",
+          "url": "https://finance.yahoo.com/energy/articles/jim-cramer-discussed-taking-long-104953141.html?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         }
       ]
     },
@@ -210,19 +210,19 @@
         },
         {
           "ticker": "META",
+          "headline": "5 big analyst AI moves: JPMorgan upgrades Meta, names KLA top chip equipment stock",
+          "url": "https://finance.yahoo.com/technology/ai/articles/5-big-analyst-ai-moves-170544815.html?.tsrc=rss",
+          "summary": "アナリスト格上げ→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
+        },
+        {
+          "ticker": "META",
           "headline": "Meta’s $18 Billion Settlement Could Be the Green Light for a New AI Push",
           "url": "https://finance.yahoo.com/technology/ai/articles/meta-18-billion-settlement-could-005623595.html?.tsrc=rss",
           "summary": "ニュース→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
           "impact": "high"
-        },
-        {
-          "ticker": "META",
-          "headline": "Top Stock Reports for Meta Platforms, Marvell & Amphenol",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/top-stock-reports-meta-platforms-212300174.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
         }
       ]
     },
@@ -246,8 +246,8 @@
         },
         {
           "ticker": "AMZN",
-          "headline": "Anthropic’s Prisoner’s Dilemma: Dario Amodei Hits the Brakes on AI While Begging Everyone Else to Do the Same",
-          "url": "https://247wallst.com/investing/2026/09/12/anthropics-prisoners-dilemma-dario-amodei-hits-the-brakes-on-ai-while-begging-everyone-else-to-do-the-same/?.tsrc=rss",
+          "headline": "Nvidia May Put $10 Billion Into Anthropic’s $2 Trillion IPO. Amazon Already Has Much More Riding on It",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-may-put-10-billion-103618397.html?.tsrc=rss",
           "summary": "ニュース→ 株価への影響は中立",
           "sentiment": "neutral",
           "impact": "medium"
@@ -274,8 +274,8 @@
         },
         {
           "ticker": "GOOGL",
-          "headline": "Agentic commerce: Is Payments the winner this time?",
-          "url": "https://finance.yahoo.com/technology/ai/articles/agentic-commerce-payments-winner-time-213309351.html?.tsrc=rss",
+          "headline": "SpaceX Says a Mystery AI Customer Adds $1.11 Billion a Month. Google Shows How Fast Compute Is Growing",
+          "url": "https://finance.yahoo.com/technology/ai/articles/spacex-says-mystery-ai-customer-104230984.html?.tsrc=rss",
           "summary": "ニュース→ 株価への影響は中立",
           "sentiment": "neutral",
           "impact": "medium"
@@ -414,11 +414,11 @@
         },
         {
           "ticker": "SPCX",
-          "headline": "3 Reasons SpaceX Stock Could Crash in Q4 -- and 1 Reason It Won't",
-          "url": "https://www.fool.com/investing/2026/09/12/3-reasons-spacex-stock-could-crash-in-q4-and-1-rea/?.tsrc=rss",
-          "summary": "決算関連・株価急落→ 株価にネガティブ",
-          "sentiment": "negative",
-          "impact": "low"
+          "headline": "Wall Street Thinks SpaceX Stock Has 50% Upside. Here's Why I Don't Care.",
+          "url": "https://www.fool.com/investing/2026/09/13/wall-street-thinks-spacex-stock-has-50-upside-here/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立",
+          "sentiment": "neutral",
+          "impact": "medium"
         }
       ]
     },
