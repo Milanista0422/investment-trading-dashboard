@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T01:19:55.057745+09:00",
+  "generated_at": "2026-09-15T20:03:51.446425+09:00",
   "events": [
     {
       "date": "2026-09-16",
@@ -74,7 +74,7 @@
       "impact": "Medium",
       "event_en": "Philly Fed Manufacturing Index",
       "event_ja": "フィラデルフィア連銀製造業景気指数",
-      "forecast": "28.9",
+      "forecast": "31.3",
       "previous": "47.4",
       "actual": ""
     },
@@ -85,7 +85,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "209K",
+      "forecast": "208K",
       "previous": "206K",
       "actual": ""
     },
