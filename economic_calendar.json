@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-09-15T20:03:51.446425+09:00",
+  "generated_at": "2026-09-17T20:05:15.496048+09:00",
   "events": [
+    {
+      "date": "2026-09-15",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Treasury Sec Bessent Speaks",
+      "event_ja": "Treasury Sec Bessent Speaks",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
     {
       "date": "2026-09-16",
       "time_jst": "21:30",
@@ -8,7 +19,7 @@
       "impact": "Medium",
       "event_en": "Core Retail Sales m/m",
       "event_ja": "コア小売売上高",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "-0.3%",
       "actual": ""
     },
@@ -85,7 +96,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "208K",
+      "forecast": "207K",
       "previous": "206K",
       "actual": ""
     },
