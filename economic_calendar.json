@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T20:13:31.145333+09:00",
+  "generated_at": "2026-09-24T23:02:16.185314+09:00",
   "events": [
     {
       "date": "2026-09-22",
@@ -32,6 +32,17 @@
       "event_ja": "新規失業保険申請件数",
       "forecast": "201K",
       "previous": "196K",
+      "actual": ""
+    },
+    {
+      "date": "2026-09-24",
+      "time_jst": "23:15",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "President Trump Speaks",
+      "event_ja": "President Trump Speaks",
+      "forecast": "",
+      "previous": "",
       "actual": ""
     },
     {
