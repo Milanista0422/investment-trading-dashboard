@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T01:33:33.252101+09:00",
+  "generated_at": "2026-09-29T20:26:15.694053+09:00",
   "events": [
     {
       "date": "2026-09-29",
@@ -8,7 +8,7 @@
       "impact": "Medium",
       "event_en": "CB Consumer Confidence",
       "event_ja": "消費者信頼感指数(CB)",
-      "forecast": "90.1",
+      "forecast": "89.2",
       "previous": "89.4",
       "actual": ""
     },
@@ -30,7 +30,7 @@
       "impact": "Medium",
       "event_en": "ADP Non-Farm Employment Change",
       "event_ja": "ADP雇用統計",
-      "forecast": "70K",
+      "forecast": "73K",
       "previous": "38K",
       "actual": ""
     },
@@ -85,7 +85,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "199K",
+      "forecast": "201K",
       "previous": "197K",
       "actual": ""
     },
@@ -107,7 +107,7 @@
       "impact": "Medium",
       "event_en": "ISM Manufacturing PMI",
       "event_ja": "ISM製造業景況指数",
-      "forecast": "55.0",
+      "forecast": "54.8",
       "previous": "54.6",
       "actual": ""
     },
@@ -140,7 +140,7 @@
       "impact": "High",
       "event_en": "Non-Farm Employment Change",
       "event_ja": "非農業部門雇用者数(NFP)",
-      "forecast": "89K",
+      "forecast": "90K",
       "previous": "162K",
       "actual": ""
     },
