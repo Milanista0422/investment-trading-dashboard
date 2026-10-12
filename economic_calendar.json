@@ -1,61 +1,6 @@
 {
-  "generated_at": "2026-10-10T23:25:10.659774+09:00",
+  "generated_at": "2026-10-12T20:26:08.059412+09:00",
   "events": [
-    {
-      "date": "2026-10-05",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "ISM Services PMI",
-      "event_ja": "ISM非製造業景況指数",
-      "forecast": "55.1",
-      "previous": "55.4",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-08",
-      "time_jst": "02:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-08",
-      "time_jst": "03:00",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "FOMC Meeting Minutes",
-      "event_ja": "FOMC議事要旨",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-08",
-      "time_jst": "17:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "FOMC Member Waller Speaks",
-      "event_ja": "FOMC Member Waller Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-08",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Unemployment Claims",
-      "event_ja": "新規失業保険申請件数",
-      "forecast": "200K",
-      "previous": "197K",
-      "actual": ""
-    },
     {
       "date": "2026-10-09",
       "time_jst": "23:00",
@@ -76,6 +21,127 @@
       "event_ja": "ミシガン大期待インフレ率（速報）",
       "forecast": "",
       "previous": "4.6%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-14",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core CPI m/m",
+      "event_ja": "コアCPI 前月比",
+      "forecast": "0.2%",
+      "previous": "0.3%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-14",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core CPI y/y",
+      "event_ja": "Core CPI y/y",
+      "forecast": "2.5%",
+      "previous": "2.4%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-14",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "CPI m/m",
+      "event_ja": "消費者物価指数(CPI) 前月比",
+      "forecast": "0.6%",
+      "previous": "0.4%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-14",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "CPI y/y",
+      "event_ja": "消費者物価指数(CPI) 前年比",
+      "forecast": "3.6%",
+      "previous": "3.4%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-15",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core PPI m/m",
+      "event_ja": "コアPPI",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-15",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core Retail Sales m/m",
+      "event_ja": "コア小売売上高",
+      "forecast": "0.5%",
+      "previous": "1.4%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-15",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "PPI m/m",
+      "event_ja": "生産者物価指数(PPI)",
+      "forecast": "0.5%",
+      "previous": "0.4%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-15",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Retail Sales m/m",
+      "event_ja": "小売売上高",
+      "forecast": "0.3%",
+      "previous": "1.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-15",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Philly Fed Manufacturing Index",
+      "event_ja": "フィラデルフィア連銀製造業景気指数",
+      "forecast": "26.5",
+      "previous": "37.8",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-15",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "195K",
+      "previous": "197K",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-16",
+      "time_jst": "12:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Fed Chairman Warsh Speaks",
+      "event_ja": "Fed Chairman Warsh Speaks",
+      "forecast": "",
+      "previous": "",
       "actual": ""
     },
     {
