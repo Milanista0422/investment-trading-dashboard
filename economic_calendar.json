@@ -1,28 +1,6 @@
 {
-  "generated_at": "2026-10-12T20:26:08.059412+09:00",
+  "generated_at": "2026-10-14T00:45:51.235367+09:00",
   "events": [
-    {
-      "date": "2026-10-09",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Prelim UoM Consumer Sentiment",
-      "event_ja": "ミシガン大学消費者信頼感（速報）",
-      "forecast": "47.5",
-      "previous": "47.8",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-09",
-      "time_jst": "23:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Prelim UoM Inflation Expectations",
-      "event_ja": "ミシガン大期待インフレ率（速報）",
-      "forecast": "",
-      "previous": "4.6%",
-      "actual": ""
-    },
     {
       "date": "2026-10-14",
       "time_jst": "21:30",
@@ -85,7 +63,7 @@
       "impact": "High",
       "event_en": "Core Retail Sales m/m",
       "event_ja": "コア小売売上高",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "1.4%",
       "actual": ""
     },
@@ -96,7 +74,7 @@
       "impact": "High",
       "event_en": "PPI m/m",
       "event_ja": "生産者物価指数(PPI)",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "0.4%",
       "actual": ""
     },
@@ -118,7 +96,7 @@
       "impact": "Medium",
       "event_en": "Philly Fed Manufacturing Index",
       "event_ja": "フィラデルフィア連銀製造業景気指数",
-      "forecast": "26.5",
+      "forecast": "28.2",
       "previous": "37.8",
       "actual": ""
     },
@@ -129,7 +107,7 @@
       "impact": "Medium",
       "event_en": "Unemployment Claims",
       "event_ja": "新規失業保険申請件数",
-      "forecast": "195K",
+      "forecast": "199K",
       "previous": "197K",
       "actual": ""
     },
@@ -151,6 +129,17 @@
       "impact": "High",
       "event_en": "TSLA Earnings",
       "event_ja": "TSLA 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-21",
+      "time_jst": "本引け後",
+      "currency": "META",
+      "impact": "High",
+      "event_en": "META Earnings",
+      "event_ja": "META 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
