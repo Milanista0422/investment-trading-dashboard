@@ -1,17 +1,6 @@
 {
-  "generated_at": "2026-10-19T23:53:48.419043+09:00",
+  "generated_at": "2026-10-22T16:53:23.614948+09:00",
   "events": [
-    {
-      "date": "2026-10-16",
-      "time_jst": "12:30",
-      "currency": "USD",
-      "impact": "High",
-      "event_en": "Fed Chairman Warsh Speaks",
-      "event_ja": "Fed Chairman Warsh Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-10-21",
       "time_jst": "本引け後",
@@ -63,7 +52,7 @@
       "impact": "Medium",
       "event_en": "Flash Manufacturing PMI",
       "event_ja": "Flash Manufacturing PMI",
-      "forecast": "55.5",
+      "forecast": "55.4",
       "previous": "57.0",
       "actual": ""
     },
@@ -74,7 +63,7 @@
       "impact": "Medium",
       "event_en": "Flash Services PMI",
       "event_ja": "Flash Services PMI",
-      "forecast": "58.0",
+      "forecast": "57.9",
       "previous": "58.7",
       "actual": ""
     },
