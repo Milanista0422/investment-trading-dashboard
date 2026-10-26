@@ -1,50 +1,6 @@
 {
-  "generated_at": "2026-10-24T20:26:37.935436+09:00",
+  "generated_at": "2026-10-26T18:59:24.064940+09:00",
   "events": [
-    {
-      "date": "2026-10-21",
-      "time_jst": "本引け後",
-      "currency": "TSLA",
-      "impact": "High",
-      "event_en": "TSLA Earnings",
-      "event_ja": "TSLA 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-21",
-      "time_jst": "本引け後",
-      "currency": "META",
-      "impact": "High",
-      "event_en": "META Earnings",
-      "event_ja": "META 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-22",
-      "time_jst": "21:30",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Unemployment Claims",
-      "event_ja": "新規失業保険申請件数",
-      "forecast": "200K",
-      "previous": "199K",
-      "actual": ""
-    },
-    {
-      "date": "2026-10-22",
-      "time_jst": "本引け後",
-      "currency": "TSLA",
-      "impact": "High",
-      "event_en": "TSLA Earnings",
-      "event_ja": "TSLA 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-10-23",
       "time_jst": "22:45",
@@ -90,6 +46,17 @@
       "actual": ""
     },
     {
+      "date": "2026-10-27",
+      "time_jst": "23:00",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "CB Consumer Confidence",
+      "event_ja": "消費者信頼感指数(CB)",
+      "forecast": "80.5",
+      "previous": "81.9",
+      "actual": ""
+    },
+    {
       "date": "2026-10-28",
       "time_jst": "本引け後",
       "currency": "MSFT",
@@ -120,6 +87,83 @@
       "event_ja": "GOOGL 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Federal Funds Rate",
+      "event_ja": "FF金利決定",
+      "forecast": "4.00%",
+      "previous": "4.00%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "03:00",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Statement",
+      "event_ja": "FOMC声明・政策金利決定",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "03:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "FOMC Press Conference",
+      "event_ja": "FOMC議長記者会見",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Advance GDP q/q",
+      "event_ja": "GDP速報値",
+      "forecast": "3.2%",
+      "previous": "1.5%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "High",
+      "event_en": "Core PCE Price Index m/m",
+      "event_ja": "コアPCE物価指数",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Advance GDP Price Index q/q",
+      "event_ja": "Advance GDP Price Index q/q",
+      "forecast": "3.5%",
+      "previous": "6.2%",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-29",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Unemployment Claims",
+      "event_ja": "新規失業保険申請件数",
+      "forecast": "198K",
+      "previous": "194K",
       "actual": ""
     },
     {
@@ -186,6 +230,17 @@
       "event_ja": "SNDK 決算発表",
       "forecast": "",
       "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2026-10-30",
+      "time_jst": "21:30",
+      "currency": "USD",
+      "impact": "Medium",
+      "event_en": "Employment Cost Index q/q",
+      "event_ja": "Employment Cost Index q/q",
+      "forecast": "0.8%",
+      "previous": "0.9%",
       "actual": ""
     },
     {
