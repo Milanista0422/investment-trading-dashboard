@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T20:17:03.852632+09:00",
+  "generated_at": "2026-10-28T20:14:24.840857+09:00",
   "events": [
     {
       "date": "2026-10-27",
@@ -107,7 +107,7 @@
       "impact": "Medium",
       "event_en": "Advance GDP Price Index q/q",
       "event_ja": "Advance GDP Price Index q/q",
-      "forecast": "3.3%",
+      "forecast": "3.2%",
       "previous": "6.2%",
       "actual": ""
     },
