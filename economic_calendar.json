@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T20:14:24.840857+09:00",
+  "generated_at": "2026-10-29T20:10:36.229435+09:00",
   "events": [
     {
       "date": "2026-10-27",
@@ -316,6 +316,17 @@
       "impact": "High",
       "event_en": "MU Earnings",
       "event_ja": "MU 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2027-01-27",
+      "time_jst": "本引け後",
+      "currency": "MSFT",
+      "impact": "High",
+      "event_en": "MSFT Earnings",
+      "event_ja": "MSFT 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
