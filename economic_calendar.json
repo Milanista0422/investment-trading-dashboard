@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T00:45:03.290595+09:00",
+  "generated_at": "2026-11-03T23:08:44.218593+09:00",
   "events": [
     {
       "date": "2026-11-02",
@@ -41,7 +41,7 @@
       "impact": "Medium",
       "event_en": "JOLTS Job Openings",
       "event_ja": "雇用動態調査(JOLTS)",
-      "forecast": "7.11M",
+      "forecast": "7.15M",
       "previous": "7.08M",
       "actual": ""
     },
@@ -63,7 +63,7 @@
       "impact": "Medium",
       "event_en": "ISM Services PMI",
       "event_ja": "ISM非製造業景況指数",
-      "forecast": "54.9",
+      "forecast": "54.8",
       "previous": "54.9",
       "actual": ""
     },
@@ -107,7 +107,7 @@
       "impact": "High",
       "event_en": "Non-Farm Employment Change",
       "event_ja": "非農業部門雇用者数(NFP)",
-      "forecast": "63K",
+      "forecast": "65K",
       "previous": "29K",
       "actual": ""
     },
@@ -151,7 +151,7 @@
       "impact": "Medium",
       "event_en": "Prelim UoM Consumer Sentiment",
       "event_ja": "ミシガン大学消費者信頼感（速報）",
-      "forecast": "47.8",
+      "forecast": "48.1",
       "previous": "46.3",
       "actual": ""
     },
@@ -250,6 +250,28 @@
       "impact": "High",
       "event_en": "META Earnings",
       "event_ja": "META 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2027-01-28",
+      "time_jst": "本引け後",
+      "currency": "AAPL",
+      "impact": "High",
+      "event_en": "AAPL Earnings",
+      "event_ja": "AAPL 決算発表",
+      "forecast": "",
+      "previous": "",
+      "actual": ""
+    },
+    {
+      "date": "2027-02-02",
+      "time_jst": "本引け後",
+      "currency": "LITE",
+      "impact": "High",
+      "event_en": "LITE Earnings",
+      "event_ja": "LITE 決算発表",
       "forecast": "",
       "previous": "",
       "actual": ""
