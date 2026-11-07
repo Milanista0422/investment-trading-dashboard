@@ -1,28 +1,6 @@
 {
-  "generated_at": "2026-11-04T21:51:44.005508+09:00",
+  "generated_at": "2026-11-07T19:51:23.334155+09:00",
   "events": [
-    {
-      "date": "2026-11-02",
-      "time_jst": "本引け後",
-      "currency": "AAPL",
-      "impact": "High",
-      "event_en": "AAPL Earnings",
-      "event_ja": "AAPL 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
-    {
-      "date": "2026-11-02",
-      "time_jst": "本引け後",
-      "currency": "LITE",
-      "impact": "High",
-      "event_en": "LITE Earnings",
-      "event_ja": "LITE 決算発表",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-11-03",
       "time_jst": "00:00",
