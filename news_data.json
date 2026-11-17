@@ -1,6 +1,6 @@
 {
-  "date": "20261116",
-  "updated_at": "2026-11-16T22:26:37.870613+09:00",
+  "date": "20261117",
+  "updated_at": "2026-11-17T20:09:13.516523+09:00",
   "tickers": {
     "SOXL": {
       "top_news": [
@@ -22,11 +22,11 @@
         },
         {
           "ticker": "SOXL",
-          "headline": "Chip Stocks Are Sliding—Why Is Smart Money Buying?",
-          "url": "https://www.marketbeat.com/articles/chip-stocks-are-slidingwhy-is-smart-money-buying/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "Eric Balchunas Says Dip Buyers Keep Piling Into an Nvidia Fund Down 47% in a Month",
+          "url": "https://247wallst.com/investing/etf/2026/11/13/eric-balchunas-says-dip-buyers-keep-piling-into-an-nvidia-fund-down-47-in-a-month/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         }
       ]
     },
@@ -62,24 +62,24 @@
       "top_news": [
         {
           "ticker": "QQQ",
-          "headline": "Michael Burry's Puts on the Nasdaq-100 Run to April 2027. I'm Not Following Him.",
-          "url": "https://www.fool.com/investing/2026/11/15/michael-burry-s-puts-on-the-nasdaq-100-run-to-april-2027-i-m-not-following-him/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "low"
-        },
-        {
-          "ticker": "QQQ",
-          "headline": "Invesco QQQ (QQQ) Adds Apple and Nvidia on Nov. 12",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/invesco-qqq-qqq-adds-apple-110402348.html?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立",
+          "headline": "QQQI Ex-Dividend Date Is Nov 18. Here’s The Math For A 32-Year-Old Who Wants $1,000 A Month",
+          "url": "https://247wallst.com/personal-finance/2026/11/16/qqqi-ex-dividend-date-is-nov-18-heres-the-math-for-a-32-year-old-who-wants-1000-a-month/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
+          "impact": "high"
+        },
+        {
+          "ticker": "QQQ",
+          "headline": "Exchange-Traded Funds Lower as US Equities Drop After Midday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-lower-us-181915979.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
           "impact": "low"
         },
         {
           "ticker": "QQQ",
-          "headline": "64 ETFs Add to Micron (MU) Holdings on Nov. 12",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/64-etfs-add-micron-mu-110146232.html?.tsrc=rss",
+          "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Monday Amid Weakness in AI-Linked Stocks",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-141346501.html?.tsrc=rss",
           "summary": "ニュース→ 株価への影響は中立",
           "sentiment": "neutral",
           "impact": "low"
@@ -90,27 +90,27 @@
       "top_news": [
         {
           "ticker": "NVDA",
-          "headline": "Premarket movers: Nvidia, Intel fall; J&J gains",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/premarket-movers-nvidia-intel-fall-125216380.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
+          "headline": "Nvidia to reveal first earnings since spy scandal",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-earnings-test-ai-boom-014359078.html?.tsrc=rss",
+          "summary": "決算関連→ 株価にネガティブ",
           "sentiment": "negative",
-          "impact": "high"
-        },
-        {
-          "ticker": "NVDA",
-          "headline": "Tech investor: Here's how Nvidia founder Jensen Huang can rebuild his reputation",
-          "url": "https://finance.yahoo.com/markets/article/tech-investor-heres-how-nvidia-founder-jensen-huang-can-rebuild-his-reputation-131738926.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "NVDA",
-          "headline": "Jensen Huang Reportedly Considers Returning To Nvidia: FT",
-          "url": "https://finance.yahoo.com/m/694d3941-721c-31d4-aff5-d306f1116454/jensen-huang-reportedly.html?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "Jim Simons’ Firm Sold 7 Million Nvidia Shares Before the Fall. A 67-Year-Old Holding 4,900 Has Until Tonight",
+          "url": "https://247wallst.com/investing/2026/11/17/jim-simons-firm-sold-7-million-nvidia-shares-before-the-fall-a-67-year-old-holding-4900-has-until-tuesday/?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "medium"
+        },
+        {
+          "ticker": "NVDA",
+          "headline": "Risky Nvidia Is Cheaper Than 'Safe' Walmart",
+          "url": "https://www.trefis.com/stock/nvda/articles/625607/risky-nvidia-is-cheaper-than-safe-walmart/2026-11-17?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -118,27 +118,27 @@
       "top_news": [
         {
           "ticker": "TSLA",
-          "headline": "Silvia, Inc. Launches Pilot Partnership with Direxion to Deliver Educational Content on Income Strategies to Its User Base",
-          "url": "https://finance.yahoo.com/markets/options/articles/silvia-inc-launches-pilot-partnership-120000641.html?.tsrc=rss",
-          "summary": "新製品/新サービス・提携・契約→ 株価にポジティブ（高インパクト）",
+          "headline": "Tesla is seemingly rushing Cybercab production to win a bet with a YouTuber. Reckless, or Elon Musk’s genius at work?",
+          "url": "https://finance.yahoo.com/technology/articles/tesla-seemingly-rushing-cybercab-production-100000963.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
-          "impact": "high"
+          "impact": "medium"
         },
         {
           "ticker": "TSLA",
-          "headline": "Consumer Defensive Stocks Extend Winning Streak To 6 Weeks As SPY, QQQ Rebound: TTD, CHTR, TSLA Lead Gains",
-          "url": "https://stocktwits.com/news-articles/markets/equity/consumer-defensive-stocks-extend-winning-streak-to-6-weeks-as-spy-qqq-rebound-ttd-chtr-tsla-lead-gains/cNb7EqoR9QC?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "TSLA",
-          "headline": "A Tesla Merger Could Fast-Track SpaceX Into the S&P 500. Index Funds Would Have to Buy",
-          "url": "https://www.tikr.com/blog/a-tesla-merger-could-fast-track-spacex-into-the-sp-500-index-funds-would-have-to-buy?ref=yahoofinance&tlnk=yf-261116-xxrmg2jp&.tsrc=rss",
-          "summary": "M&A関連→ 株価への影響は中立（高インパクト）",
+          "headline": "Cathie Wood’s $2.2 Billion Bet on Elon Musk Could Soon Become One Giant Stock",
+          "url": "https://247wallst.com/investing/2026/11/16/cathie-woods-2-2-billion-bet-on-elon-musk-could-soon-become-one-giant-stock/?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
           "impact": "high"
+        },
+        {
+          "ticker": "TSLA",
+          "headline": "Tesla board member Joe Gebbia: Nvidia should “reinstate” Jensen Huang to let investigation play out",
+          "url": "https://finance.yahoo.com/video/tesla-board-member-joe-gebbia-010013441.html?.tsrc=rss",
+          "summary": "訴訟/規制→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "medium"
         }
       ]
     },
@@ -146,27 +146,27 @@
       "top_news": [
         {
           "ticker": "AAPL",
-          "headline": "Biel Crystal Stands as a Primary UTG Supplier for iPhone Duo",
-          "url": "https://finance.yahoo.com/technology/articles/biel-crystal-stands-primary-utg-053200086.html?.tsrc=rss",
+          "headline": "Gene Munster Says Nvidia Could Be the Next Apple if Investors ‘Sleep Well at Night’",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/gene-munster-says-nvidia-could-032355214.html?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "WisdomTree U.S. Dividend Growth (DGRW) Adds Microsoft and Nvidia on Nov. 12",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/wisdomtree-u-dividend-growth-dgrw-110425336.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "Berkshire Boosts Lennar, Starts Bending Spoons, Trims Bank Of America In Q3",
+          "url": "https://stocktwits.com/news-articles/markets/equity/berkshire-boosts-lennar-starts-bending-spoons-trims-bank-of-america-in-q3/cNbJ2orR9g1?.tsrc=rss",
+          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         },
         {
           "ticker": "AAPL",
-          "headline": "Direxion Daily Technology Bull 3X (TECL) Adds Apple and Nvidia on Thursday",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/direxion-daily-technology-bull-3x-110459532.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "low"
+          "headline": "Elon Musk Warns Against Pushing Founders Out — Steve Jobs and Travis Kalanick Lessons Resurface as Jensen Huang Exits Nvidia",
+          "url": "https://finance.yahoo.com/small-business/articles/elon-musk-warns-against-pushing-193008615.html?.tsrc=rss",
+          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         }
       ]
     },
@@ -174,81 +174,56 @@
       "top_news": [
         {
           "ticker": "MSFT",
-          "headline": "WisdomTree U.S. Dividend Growth (DGRW) Adds Microsoft and Nvidia on Nov. 12",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/wisdomtree-u-dividend-growth-dgrw-110425336.html?.tsrc=rss",
+          "headline": "Quorum Cyber Completes Acquisition of Ontinue, Advancing Its Vision for Microsoft-First Autonomous Cyber Defense",
+          "url": "https://finance.yahoo.com/technology/ai/articles/quorum-cyber-completes-acquisition-ontinue-100000436.html?.tsrc=rss",
+          "summary": "M&A関連→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
+        },
+        {
+          "ticker": "MSFT",
+          "headline": "3 Undervalued Stocks Trading Up To 47% Below Fair Value",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/3-undervalued-stocks-trading-47-091833258.html?.tsrc=rss",
           "summary": "ニュース→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "MSFT",
-          "headline": "Trump plans major AI boost for Nvidia, Amazon, Microsoft",
-          "url": "https://finance.yahoo.com/technology/ai/articles/trump-plans-major-ai-boost-110243787.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
-        },
-        {
-          "ticker": "MSFT",
-          "headline": "IREN Limited Plummets 67% in 6 Months: Two Wall Street Firms Now Expect Returns Above 400%",
-          "url": "https://247wallst.com/investing/2026/11/16/iren-limited-plummets-67-in-6-months-two-wall-street-firms-now-expect-returns-above-400/?.tsrc=rss",
-          "summary": "株価急落→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "Bill Ackman Adds More To Netflix In Q3; Exits Hertz, Cuts Microsoft",
+          "url": "https://stocktwits.com/news-articles/markets/equity/bill-ackman-adds-more-to-netflix-in-q3-exits-hertz-cuts-microsoft/cNbaf33R9gj?.tsrc=rss",
+          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
         }
       ]
     },
     "META": {
-      "top_news": [
-        {
-          "ticker": "META",
-          "headline": "Silvia, Inc. Launches Pilot Partnership with Direxion to Deliver Educational Content on Income Strategies to Its User Base",
-          "url": "https://finance.yahoo.com/markets/options/articles/silvia-inc-launches-pilot-partnership-120000641.html?.tsrc=rss",
-          "summary": "新製品/新サービス・提携・契約→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "META",
-          "headline": "“Big Short” Investor: Big Tech Could Return to “Positive Cash Flow” in 2027. Meta Gains Most",
-          "url": "https://www.tikr.com/blog/big-short-investor-big-tech-could-return-to-positive-cash-flow-in-2027-meta-gains-most?ref=yahoofinance&tlnk=yf-261116-4mh9xx3w&.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "META",
-          "headline": "WisdomTree U.S. Dividend Growth (DGRW) Adds Microsoft and Nvidia on Nov. 12",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/wisdomtree-u-dividend-growth-dgrw-110425336.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
-        }
-      ]
+      "top_news": []
     },
     "AMZN": {
       "top_news": [
         {
           "ticker": "AMZN",
-          "headline": "United Launch Alliance Vulcan Rocket Fails After Launch, Losing 40 Amazon Leo Satellites",
-          "url": "https://investorshub.advfn.com/market-news/article/40070/united-launch-alliance-vulcan-rocket-fails-after-launch-losing-40-amazon-leo-satellites?.tsrc=rss",
-          "summary": "新製品/新サービス→ 株価にポジティブ（高インパクト）",
+          "headline": "Boeing (BA) ULA Rocket Failure Halts Deployment Of 40 Broadband Satellites",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/boeing-ba-ula-rocket-failure-001959401.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
           "impact": "high"
         },
         {
           "ticker": "AMZN",
-          "headline": "Amazon Just Lost 40 Leo Satellites. The Bigger Problem Is the Rocket It Booked 38 Launches On",
-          "url": "https://247wallst.com/investing/2026/11/16/amazon-just-lost-40-leo-satellites-the-bigger-problem-is-the-rocket-it-booked-38-launches-on/?.tsrc=rss",
-          "summary": "新製品/新サービス→ 株価にポジティブ",
+          "headline": "Not Amazon, Not American Express: This Credit Card Has The Best Rewards For 2026",
+          "url": "https://www.moneydigest.com/2313485/chase-freedom-unlimited-not-amazon-american-express-credit-card-best-rewards-2026/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
           "sentiment": "positive",
-          "impact": "medium"
+          "impact": "high"
         },
         {
           "ticker": "AMZN",
-          "headline": "Blackstone REIT to Buy Amazon Data Centers in $5 Billion Deal",
-          "url": "https://finance.yahoo.com/real-estate/articles/blackstone-reit-buy-amazon-data-115357460.html?.tsrc=rss",
-          "summary": "提携・契約→ 株価にポジティブ",
+          "headline": "Amazon Lost 40 Leo Satellites as Launch Stays “Extremely Constrained.” That Widens SpaceX’s Lead",
+          "url": "https://www.tikr.com/blog/amazon-lost-40-leo-satellites-as-launch-stays-extremely-constrained-that-widens-spacexs-lead?ref=yahoofinance&tlnk=yf-261117-4rv86xjg&.tsrc=rss",
+          "summary": "新製品/新サービス→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         }
@@ -258,27 +233,27 @@
       "top_news": [
         {
           "ticker": "GOOGL",
-          "headline": "Silvia, Inc. Launches Pilot Partnership with Direxion to Deliver Educational Content on Income Strategies to Its User Base",
-          "url": "https://finance.yahoo.com/markets/options/articles/silvia-inc-launches-pilot-partnership-120000641.html?.tsrc=rss",
-          "summary": "新製品/新サービス・提携・契約→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "GOOGL",
-          "headline": "Musk: Nvidia’s Key Supply Deals Were “a Handshake With Jensen.” Now Google Is Begging for Capacity",
-          "url": "https://www.tikr.com/blog/musk-nvidias-key-supply-deals-were-a-handshake-with-jensen-now-google-is-begging-for-capacity?ref=yahoofinance&tlnk=yf-261116-fmpgr6c4&.tsrc=rss",
-          "summary": "提携・契約→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
-        },
-        {
-          "ticker": "GOOGL",
-          "headline": "Nobody can replace Jensen Huang. What that means for AI",
-          "url": "https://finance.yahoo.com/video/nobody-replace-jensen-huang-means-120000902.html?.tsrc=rss",
+          "headline": "Why We Prefer Alphabet Stock Over Meta Right Now",
+          "url": "https://www.trefis.com/stock/meta/articles/625593/why-we-prefer-alphabet-stock-over-meta-right-now/2026-11-17?.tsrc=rss",
           "summary": "ニュース→ 株価への影響は中立（高インパクト）",
           "sentiment": "neutral",
           "impact": "high"
+        },
+        {
+          "ticker": "GOOGL",
+          "headline": "Broadcom Is “the Best Play” on Nvidia’s CEO Exit, One Investor Argues. The Reason Is China",
+          "url": "https://www.tikr.com/blog/broadcom-is-the-best-play-on-nvidias-ceo-exit-one-investor-argues-the-reason-is-china?ref=yahoofinance&tlnk=yf-261116-w5j2pv86&.tsrc=rss",
+          "summary": "対中政策・関税・CEO変更→ 株価への影響は中立（高インパクト）",
+          "sentiment": "neutral",
+          "impact": "high"
+        },
+        {
+          "ticker": "GOOGL",
+          "headline": "Anthropic IPO: AMZN, GOOGL Take On Greater AI Risk-Reward, As Marquee Investors See Windfall",
+          "url": "https://stocktwits.com/news-articles/markets/equity/anthropic-ipo-amzn-googl-take-on-greater-ai-risk-reward-as-marquee-investors-see-windfall/cNbaAGLR9WO?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "low"
         }
       ]
     },
@@ -314,27 +289,27 @@
       "top_news": [
         {
           "ticker": "MU",
-          "headline": "Silvia, Inc. Launches Pilot Partnership with Direxion to Deliver Educational Content on Income Strategies to Its User Base",
-          "url": "https://finance.yahoo.com/markets/options/articles/silvia-inc-launches-pilot-partnership-120000641.html?.tsrc=rss",
-          "summary": "新製品/新サービス・提携・契約→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "MU",
-          "headline": "Market Chatter: Micron, Samsung, SK Hynix Fail to Get DRAM Price-Fixing Lawsuit Dismissed",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/market-chatter-micron-samsung-sk-091200206.html?.tsrc=rss",
-          "summary": "予想を下回る・訴訟/規制→ 株価にネガティブ（高インパクト）",
+          "headline": "Micron Stocks Sink Nearly 7% After Judge Lets DRAM Supply Lawsuit Proceed",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-stocks-sink-nearly-7-182012075.html?.tsrc=rss",
+          "summary": "訴訟/規制→ 株価にネガティブ（高インパクト）",
           "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "MU",
-          "headline": "Renaissance Technologies Sold 99.7% Of Its $1.42 Billion Nvidia Stake Before Jensen Huang’s Exit, While Building A $1.62 Billion Stake In Another Chip Stock",
-          "url": "https://247wallst.com/investing/2026/11/16/renaissance-technologies-sold-99-7-of-its-1-42-billion-nvidia-stake-before-jensen-huangs-exit-while-building-a-1-62-billion-stake-in-another-chip-stock/?.tsrc=rss",
-          "summary": "ニュース→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "“What Would It Take” for Investors to Finally Admit that Micron Is Poised to Win for the Long Term?",
+          "url": "https://www.tikr.com/blog/what-would-it-take-for-investors-to-finally-admit-that-micron-is-poised-to-win-for-the-long-term?ref=yahoofinance&tlnk=yf-261117-rprf3fh3&.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
+        },
+        {
+          "ticker": "MU",
+          "headline": "Direxion and Anthony Pompliano's Silvia Join Forces to Help Investors Rethink Income",
+          "url": "https://finance.yahoo.com/markets/options/articles/direxion-anthony-pomplianos-silvia-join-210300213.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
@@ -342,27 +317,27 @@
       "top_news": [
         {
           "ticker": "SNDK",
-          "headline": "Beat Value Traps: 4 Stocks With Attractive PEG Ratios to Buy Now",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/beat-value-traps-4-stocks-190000039.html?.tsrc=rss",
-          "summary": "予想を上回る→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
+          "headline": "Why Is Sandisk (SNDK) Stock Sliding After A Shock AI Leadership Exit?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-sandisk-sndk-stock-sliding-020722050.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "SNDK",
-          "headline": "MarketBeat Week in Review – 11/9 - 11/13",
-          "url": "https://www.marketbeat.com/articles/marketbeat-week-in-review-11-9-11-13/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
-          "summary": "予想を上回る→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
+          "headline": "Nvidia, Sandisk, SpaceX, L3Harris, Strategy, Tyson, and More Stocks That Explain Today’s Market",
+          "url": "https://finance.yahoo.com/m/a7938ba3-f917-3e6f-b865-2195ea15d9d5/nvidia%2C-sandisk%2C-spacex%2C.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
           "impact": "high"
         },
         {
           "ticker": "SNDK",
-          "headline": "SanDisk Has 85% Margins, a Stock Split, and Continually Surging Data Center Revenue: Bullishness is Extremely Reasonable",
-          "url": "https://247wallst.com/investing/2026/11/16/sandisk-has-85-margins-a-stock-split-and-continually-surging-data-center-revenue-bullishness-is-extremely-reasonable/?.tsrc=rss",
-          "summary": "決算関連→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "AI Chip Stocks Extend Their Sell-Off as Monday Opens Deep in the Red",
+          "url": "https://beincrypto.com/chip-stocks-260-billion-hit-650-billion-two-days/?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
+          "impact": "medium"
         }
       ]
     },
@@ -378,18 +353,18 @@
         },
         {
           "ticker": "LITE",
-          "headline": "Lumentum Is Up 56% in 2026, but Marvell Now Sets Its Price. Take Profits, or Buy More?",
-          "url": "https://www.tikr.com/blog/lumentum-is-up-69-in-2026-but-marvell-now-sets-its-price-take-profits-or-buy-more?ref=yahoofinance&tlnk=yf-261113-5495wh63&.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
-          "sentiment": "positive",
-          "impact": "medium"
+          "headline": "CoreWeave, Oracle and Nebius Plunge as Nvidia Fallout Rattles AI Stocks",
+          "url": "https://finance.yahoo.com/technology/ai/articles/coreweave-oracle-nebius-plunge-nvidia-192652785.html?.tsrc=rss",
+          "summary": "株価急落→ 株価にネガティブ（高インパクト）",
+          "sentiment": "negative",
+          "impact": "high"
         },
         {
           "ticker": "LITE",
-          "headline": "Marvell Stocks Edge Higher as NVIDIA Exit Weighs on Lumentum Deal Currency",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/marvell-stocks-edge-higher-nvidia-114350787.html?.tsrc=rss",
-          "summary": "提携・契約→ 株価にポジティブ",
-          "sentiment": "positive",
+          "headline": "Lumentum (LITE) Got a Takeover Offer. What Does It Mean for Holders? (",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/lumentum-lite-got-takeover-offer-220406453.html?.tsrc=rss",
+          "summary": "ニュース→ 株価にネガティブ",
+          "sentiment": "negative",
           "impact": "medium"
         }
       ]
@@ -398,27 +373,27 @@
       "top_news": [
         {
           "ticker": "SPCX",
-          "headline": "Only Elon Musk Can Get Jensen Huang His Job Back",
-          "url": "https://247wallst.com/investing/2026/11/16/only-elon-musk-can-get-jensen-huang-his-job-back/?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ（高インパクト）",
-          "sentiment": "positive",
-          "impact": "high"
-        },
-        {
-          "ticker": "SPCX",
-          "headline": "SpaceX’s Latest Rocket Triumph Isn’t Enough to Lift the Stock",
-          "url": "https://finance.yahoo.com/m/bc9db056-cd9a-35d3-ba49-f0e0f1e7148f/spacex%E2%80%99s-latest-rocket.html?.tsrc=rss",
-          "summary": "ニュース→ 株価にポジティブ",
+          "headline": "2 Great Space Stocks Team Up on a $1.3 Billion Deal to Beat SpaceX at Satellite Internet",
+          "url": "https://www.fool.com/investing/2026/11/17/great-space-stocks-team-up-usd1-3-billion-deal-beat-spacex-satellite-internet/?.tsrc=rss",
+          "summary": "予想を上回る・提携・契約→ 株価にポジティブ",
           "sentiment": "positive",
           "impact": "medium"
         },
         {
           "ticker": "SPCX",
-          "headline": "KBRA Assigns Preliminary A- Ratings With Stable Outlook to Saturn Funding Trust's Senior and Subordinated Secured Notes",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/kbra-assigns-preliminary-ratings-stable-115700547.html?.tsrc=rss",
-          "summary": "訴訟/規制→ 株価への影響は中立（高インパクト）",
-          "sentiment": "neutral",
-          "impact": "high"
+          "headline": "Amazon Lost 40 Leo Satellites as Launch Stays “Extremely Constrained.” That Widens SpaceX’s Lead",
+          "url": "https://www.tikr.com/blog/amazon-lost-40-leo-satellites-as-launch-stays-extremely-constrained-that-widens-spacexs-lead?ref=yahoofinance&tlnk=yf-261117-4rv86xjg&.tsrc=rss",
+          "summary": "新製品/新サービス→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
+        },
+        {
+          "ticker": "SPCX",
+          "headline": "SpaceX Has 33 Analysts Covering It and Just 1 “Strong Sell.” Here’s What That Analyst Sees That the Other 32 Don’t.",
+          "url": "https://www.fool.com/investing/2026/11/17/spacex-has-33-analysts-covering-it-and-just-1-strong-sell-here-s-what-that-analyst-sees-that-the-other-32-don-t/?.tsrc=rss",
+          "summary": "ニュース→ 株価にポジティブ",
+          "sentiment": "positive",
+          "impact": "medium"
         }
       ]
     },
