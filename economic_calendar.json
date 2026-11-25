@@ -1,39 +1,6 @@
 {
-  "generated_at": "2026-11-24T20:08:40.210757+09:00",
+  "generated_at": "2026-11-25T20:07:37.285368+09:00",
   "events": [
-    {
-      "date": "2026-11-21",
-      "time_jst": "00:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Revised UoM Consumer Sentiment",
-      "event_ja": "ミシガン大学消費者信頼感（改定）",
-      "forecast": "51.7",
-      "previous": "51.0",
-      "actual": ""
-    },
-    {
-      "date": "2026-11-21",
-      "time_jst": "00:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "Revised UoM Inflation Expectations",
-      "event_ja": "Revised UoM Inflation Expectations",
-      "forecast": "",
-      "previous": "4.3%",
-      "actual": ""
-    },
-    {
-      "date": "2026-11-21",
-      "time_jst": "02:00",
-      "currency": "USD",
-      "impact": "Medium",
-      "event_en": "President Trump Speaks",
-      "event_ja": "President Trump Speaks",
-      "forecast": "",
-      "previous": "",
-      "actual": ""
-    },
     {
       "date": "2026-11-23",
       "time_jst": "23:45",
